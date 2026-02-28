@@ -1,0 +1,196 @@
+{
+  "title": "Spanakopita",
+  "servings": 8,
+
+  "devices": [
+    { "id": "oven", "name": "Oven", "settings": "180°C" },
+    { "id": "hob", "name": "Hob" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "baking_tray", "name": "Baking Tray" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "spinach", "name": "Spinach", "quantity": "500g" },
+    { "id": "feta", "name": "Feta Cheese", "quantity": "200g" },
+    { "id": "ricotta", "name": "Ricotta", "quantity": "150g" },
+    { "id": "eggs", "name": "Eggs", "quantity": "3" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
+    { "id": "dill", "name": "Fresh Dill", "quantity": "small bunch" },
+    { "id": "spring_onions", "name": "Spring Onions", "quantity": "4" },
+    { "id": "filo_pastry", "name": "Filo Pastry", "quantity": "270g pack" },
+    { "id": "butter", "name": "Butter", "quantity": "100g" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
+    { "id": "nutmeg", "name": "Nutmeg", "quantity": "1/4 tsp, freshly grated" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_filling",
+      "device": "bowl",
+      "action": "Prepare the spinach and cheese filling",
+      "inputs": ["spinach", "feta", "ricotta", "eggs", "onion", "garlic", "dill", "spring_onions", "olive_oil", "nutmeg", "salt", "pepper"],
+      "output": "filling",
+      "end": { "condition": "filling well combined and seasoned" },
+      "steps": [
+        {
+          "id": "prepare_spinach",
+          "device": "pan",
+          "action": "Wilt and squeeze dry the spinach",
+          "inputs": ["spinach", "salt"],
+          "output": "dry_spinach",
+          "end": { "condition": "spinach wilted and dry" },
+          "steps": [
+            {
+              "id": "wilt_spinach",
+              "device": "pan",
+              "action": "Wilt spinach in batches in a large pan with a pinch of salt",
+              "inputs": ["spinach", "salt"],
+              "output": "wilted_spinach",
+              "end": { "duration_minutes": 5, "condition": "fully wilted and collapsed" }
+            },
+            {
+              "id": "squeeze_spinach",
+              "device": "chopping_board",
+              "action": "Squeeze out as much moisture as possible, then roughly chop",
+              "after": "wilt_spinach",
+              "inputs": ["wilted_spinach"],
+              "output": "dry_spinach",
+              "end": { "duration_minutes": 3, "condition": "no more water comes out when squeezed" }
+            }
+          ]
+        },
+        {
+          "id": "saute_aromatics",
+          "device": "pan",
+          "action": "Sauté onion, garlic and spring onions",
+          "inputs": ["onion", "garlic", "spring_onions", "olive_oil"],
+          "output": "softened_aromatics",
+          "end": { "condition": "softened and fragrant" },
+          "steps": [
+            {
+              "id": "chop_onion_and_garlic",
+              "device": "chopping_board",
+              "action": "Finely dice onion, mince garlic, and slice spring onions",
+              "inputs": ["onion", "garlic", "spring_onions"],
+              "output": "chopped_aromatics",
+              "end": { "duration_minutes": 4 }
+            },
+            {
+              "id": "fry_aromatics",
+              "device": "pan",
+              "action": "Sauté onion in olive oil until soft, add garlic and spring onions",
+              "after": "chop_onion_and_garlic",
+              "inputs": ["chopped_aromatics", "olive_oil"],
+              "output": "softened_aromatics",
+              "end": { "duration_minutes": 6, "condition": "onion translucent and soft" }
+            }
+          ]
+        },
+        {
+          "id": "combine_filling",
+          "device": "bowl",
+          "action": "Combine all filling ingredients",
+          "after": ["prepare_spinach", "saute_aromatics"],
+          "inputs": ["dry_spinach", "softened_aromatics", "feta", "ricotta", "eggs", "dill", "nutmeg", "salt", "pepper"],
+          "output": "filling",
+          "end": { "condition": "evenly mixed" },
+          "steps": [
+            {
+              "id": "chop_dill",
+              "device": "chopping_board",
+              "action": "Finely chop fresh dill",
+              "inputs": ["dill"],
+              "output": "chopped_dill",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "crumble_feta",
+              "device": "bowl",
+              "action": "Crumble feta into a large mixing bowl",
+              "inputs": ["feta"],
+              "output": "crumbled_feta",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "mix_filling",
+              "device": "bowl",
+              "action": "Add spinach, aromatics, ricotta, eggs, dill, nutmeg, salt and pepper to feta and mix well",
+              "after": ["chop_dill", "crumble_feta"],
+              "inputs": ["dry_spinach", "softened_aromatics", "crumbled_feta", "ricotta", "eggs", "chopped_dill", "nutmeg", "salt", "pepper"],
+              "output": "filling",
+              "end": { "duration_minutes": 3, "condition": "everything evenly distributed" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prepare_butter",
+      "device": "hob",
+      "action": "Melt butter for brushing filo pastry",
+      "inputs": ["butter"],
+      "output": "melted_butter",
+      "end": { "duration_minutes": 2, "condition": "butter fully melted" }
+    },
+    {
+      "id": "layer_pastry",
+      "device": "baking_tray",
+      "action": "Layer filo pastry with filling in baking tray",
+      "after": ["make_filling", "prepare_butter"],
+      "inputs": ["filo_pastry", "melted_butter", "filling"],
+      "output": "assembled_spanakopita",
+      "end": { "condition": "neatly layered and ready to bake" },
+      "steps": [
+        {
+          "id": "layer_base",
+          "device": "baking_tray",
+          "action": "Layer bottom sheets of filo, brushing each with melted butter",
+          "inputs": ["filo_pastry", "melted_butter"],
+          "output": "pastry_base",
+          "end": { "duration_minutes": 5, "condition": "6-8 sheets layered and buttered" }
+        },
+        {
+          "id": "add_filling_layer",
+          "device": "baking_tray",
+          "action": "Spread filling evenly over pastry base",
+          "after": "layer_base",
+          "inputs": ["pastry_base", "filling"],
+          "output": "filled_pastry",
+          "end": { "duration_minutes": 2, "condition": "filling spread in even layer" }
+        },
+        {
+          "id": "layer_top",
+          "device": "baking_tray",
+          "action": "Layer remaining filo sheets on top, brushing each with butter",
+          "after": "add_filling_layer",
+          "inputs": ["filled_pastry", "filo_pastry", "melted_butter"],
+          "output": "topped_pastry",
+          "end": { "duration_minutes": 5, "condition": "6-8 sheets layered and buttered on top" }
+        },
+        {
+          "id": "score_top",
+          "device": "baking_tray",
+          "action": "Score top layers of filo into squares or diamonds with a sharp knife",
+          "after": "layer_top",
+          "inputs": ["topped_pastry"],
+          "output": "assembled_spanakopita",
+          "end": { "duration_minutes": 2, "condition": "top scored without cutting through to filling" }
+        }
+      ]
+    },
+    {
+      "id": "bake",
+      "device": "oven",
+      "action": "Bake spanakopita until golden and crisp",
+      "after": "layer_pastry",
+      "inputs": ["assembled_spanakopita"],
+      "output": "spanakopita",
+      "end": { "duration_minutes": 35, "condition": "deep golden brown and crisp, filling set" }
+    }
+  ]
+}

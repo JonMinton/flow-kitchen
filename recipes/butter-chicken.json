@@ -1,0 +1,270 @@
+{
+  "title": "Butter Chicken",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "oven", "name": "Oven", "settings": "220°C" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "saucepan", "name": "Saucepan" }
+  ],
+
+  "ingredients": [
+    { "id": "chicken_thighs", "name": "Chicken Thighs", "quantity": "600g, boneless" },
+    { "id": "yoghurt", "name": "Yoghurt", "quantity": "150ml" },
+    { "id": "lemon", "name": "Lemon", "quantity": "1, juiced" },
+    { "id": "garam_masala", "name": "Garam Masala", "quantity": "2 tsp" },
+    { "id": "turmeric", "name": "Turmeric", "quantity": "1 tsp" },
+    { "id": "chilli_powder", "name": "Chilli Powder", "quantity": "1 tsp" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
+    { "id": "butter", "name": "Butter", "quantity": "50g" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "tomato_puree", "name": "Tomato Purée", "quantity": "400g" },
+    { "id": "cream", "name": "Double Cream", "quantity": "150ml" },
+    { "id": "fenugreek_leaves", "name": "Dried Fenugreek Leaves", "quantity": "1 tbsp" },
+    { "id": "sugar", "name": "Sugar", "quantity": "1 tsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "rice", "name": "Basmati Rice", "quantity": "300g" },
+    { "id": "water", "name": "Water", "quantity": "600ml" }
+  ],
+
+  "steps": [
+    {
+      "id": "marinate_chicken",
+      "device": "bowl",
+      "action": "Marinate chicken in spiced yoghurt",
+      "inputs": ["chicken_thighs", "yoghurt", "lemon", "garam_masala", "turmeric", "chilli_powder", "garlic", "ginger", "salt"],
+      "output": "marinated_chicken",
+      "end": { "duration_minutes": 15, "condition": "chicken well coated and rested" },
+      "steps": [
+        {
+          "id": "prep_marinade_ingredients",
+          "device": "chopping_board",
+          "action": "Prepare marinade ingredients",
+          "inputs": ["garlic", "ginger", "lemon"],
+          "output": "prepped_aromatics",
+          "end": { "condition": "aromatics ready" },
+          "steps": [
+            {
+              "id": "mince_garlic",
+              "device": "chopping_board",
+              "action": "Mince garlic cloves finely",
+              "inputs": ["garlic"],
+              "output": "minced_garlic",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "grate_ginger",
+              "device": "chopping_board",
+              "action": "Peel and grate ginger",
+              "inputs": ["ginger"],
+              "output": "grated_ginger",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "juice_lemon",
+              "device": "chopping_board",
+              "action": "Juice the lemon",
+              "inputs": ["lemon"],
+              "output": "lemon_juice",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "mix_marinade",
+          "device": "bowl",
+          "action": "Combine yoghurt, spices, garlic, ginger, and lemon juice",
+          "inputs": ["yoghurt", "prepped_aromatics", "garam_masala", "turmeric", "chilli_powder", "salt"],
+          "output": "marinade",
+          "after": "prep_marinade_ingredients",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "cut_chicken",
+          "device": "chopping_board",
+          "action": "Cut chicken thighs into bite-sized pieces",
+          "inputs": ["chicken_thighs"],
+          "output": "chicken_pieces",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "coat_chicken",
+          "device": "bowl",
+          "action": "Coat chicken pieces in marinade and rest",
+          "inputs": ["chicken_pieces", "marinade"],
+          "output": "marinated_chicken",
+          "after": ["mix_marinade", "cut_chicken"],
+          "end": { "duration_minutes": 15, "condition": "chicken well coated and rested" }
+        }
+      ]
+    },
+    {
+      "id": "make_sauce",
+      "device": "hob",
+      "action": "Cook butter chicken sauce",
+      "inputs": ["onion", "garlic", "ginger", "butter", "tomato_puree", "cream", "garam_masala", "chilli_powder", "fenugreek_leaves", "sugar", "salt"],
+      "output": "finished_sauce",
+      "end": { "condition": "rich, creamy sauce ready" },
+      "steps": [
+        {
+          "id": "prep_sauce_veg",
+          "device": "chopping_board",
+          "action": "Prepare vegetables for sauce",
+          "inputs": ["onion", "garlic", "ginger"],
+          "output": "chopped_sauce_veg",
+          "end": { "condition": "veg finely chopped" },
+          "steps": [
+            {
+              "id": "dice_onion",
+              "device": "chopping_board",
+              "action": "Finely dice the onion",
+              "inputs": ["onion"],
+              "output": "diced_onion",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "chop_garlic_ginger",
+              "device": "chopping_board",
+              "action": "Finely chop remaining garlic and ginger",
+              "inputs": ["garlic", "ginger"],
+              "output": "chopped_garlic_ginger",
+              "end": { "duration_minutes": 2 }
+            }
+          ]
+        },
+        {
+          "id": "cook_sauce_base",
+          "device": "hob",
+          "action": "Cook the sauce base",
+          "inputs": ["chopped_sauce_veg", "butter", "tomato_puree", "garam_masala", "chilli_powder", "salt"],
+          "output": "sauce_base",
+          "after": "prep_sauce_veg",
+          "end": { "condition": "sauce base cooked down" },
+          "steps": [
+            {
+              "id": "fry_onion",
+              "device": "pan",
+              "action": "Melt butter and fry onion until golden",
+              "inputs": ["butter", "diced_onion"],
+              "output": "fried_onion",
+              "end": { "duration_minutes": 6, "condition": "golden and soft" }
+            },
+            {
+              "id": "add_garlic_ginger_to_sauce",
+              "device": "pan",
+              "action": "Add garlic and ginger, cook until fragrant",
+              "inputs": ["fried_onion", "chopped_garlic_ginger"],
+              "output": "aromatic_base",
+              "after": "fry_onion",
+              "end": { "duration_minutes": 2, "condition": "fragrant" }
+            },
+            {
+              "id": "add_tomato_and_spices",
+              "device": "pan",
+              "action": "Add tomato purée, garam masala, and chilli powder",
+              "inputs": ["aromatic_base", "tomato_puree", "garam_masala", "chilli_powder", "salt"],
+              "output": "tomato_sauce",
+              "after": "add_garlic_ginger_to_sauce",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "simmer_sauce",
+              "device": "pan",
+              "action": "Simmer sauce on low heat until thickened",
+              "inputs": ["tomato_sauce"],
+              "output": "sauce_base",
+              "after": "add_tomato_and_spices",
+              "end": { "duration_minutes": 10, "condition": "sauce thickened and oil separating" }
+            }
+          ]
+        },
+        {
+          "id": "finish_sauce",
+          "device": "pan",
+          "action": "Add cream, butter, fenugreek, and sugar to finish",
+          "inputs": ["sauce_base", "cream", "butter", "fenugreek_leaves", "sugar"],
+          "output": "finished_sauce",
+          "after": "cook_sauce_base",
+          "end": { "duration_minutes": 3, "condition": "sauce creamy and rich" }
+        }
+      ]
+    },
+    {
+      "id": "cook_chicken",
+      "device": "oven",
+      "action": "Grill marinated chicken until charred",
+      "inputs": ["marinated_chicken"],
+      "output": "cooked_chicken",
+      "after": "marinate_chicken",
+      "end": { "duration_minutes": 15, "condition": "chicken charred and cooked through" }
+    },
+    {
+      "id": "cook_rice",
+      "device": "hob",
+      "action": "Cook basmati rice",
+      "inputs": ["rice", "water", "salt"],
+      "output": "cooked_rice",
+      "end": { "condition": "rice fluffy" },
+      "steps": [
+        {
+          "id": "rinse_rice",
+          "device": "saucepan",
+          "action": "Rinse rice under cold water until clear",
+          "inputs": ["rice", "water"],
+          "output": "rinsed_rice",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "boil_rice",
+          "device": "hob",
+          "action": "Add rice to boiling salted water",
+          "inputs": ["rinsed_rice", "water", "salt"],
+          "output": "boiling_rice",
+          "after": "rinse_rice",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "steam_rice",
+          "device": "hob",
+          "action": "Cover and steam on low heat until water absorbed",
+          "inputs": ["boiling_rice"],
+          "output": "cooked_rice",
+          "after": "boil_rice",
+          "end": { "duration_minutes": 12, "condition": "water absorbed, rice fluffy" }
+        }
+      ]
+    },
+    {
+      "id": "combine_and_serve",
+      "device": "pan",
+      "action": "Combine chicken with sauce and serve with rice",
+      "inputs": ["cooked_chicken", "finished_sauce", "cooked_rice"],
+      "output": "butter_chicken",
+      "after": ["cook_chicken", "make_sauce", "cook_rice"],
+      "end": { "condition": "served" },
+      "steps": [
+        {
+          "id": "add_chicken_to_sauce",
+          "device": "pan",
+          "action": "Add grilled chicken pieces to the sauce and simmer briefly",
+          "inputs": ["cooked_chicken", "finished_sauce"],
+          "output": "butter_chicken_in_sauce",
+          "end": { "duration_minutes": 5, "condition": "chicken heated through and coated in sauce" }
+        },
+        {
+          "id": "serve",
+          "device": "chopping_board",
+          "action": "Plate butter chicken alongside fluffy rice",
+          "inputs": ["butter_chicken_in_sauce", "cooked_rice"],
+          "output": "butter_chicken",
+          "after": "add_chicken_to_sauce",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    }
+  ]
+}

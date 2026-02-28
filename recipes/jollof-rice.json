@@ -1,0 +1,241 @@
+{
+  "title": "Jollof Rice",
+  "servings": 6,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "pot", "name": "Pot" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "blender", "name": "Blender" }
+  ],
+
+  "ingredients": [
+    { "id": "long_grain_rice", "name": "Long Grain Rice", "quantity": "500g" },
+    { "id": "chicken_thighs", "name": "Chicken Thighs", "quantity": "6" },
+    { "id": "tomatoes", "name": "Tomatoes", "quantity": "6 large" },
+    { "id": "tomato_puree", "name": "Tomato Purée", "quantity": "3 tbsp" },
+    { "id": "red_pepper", "name": "Red Pepper", "quantity": "2" },
+    { "id": "scotch_bonnet", "name": "Scotch Bonnet", "quantity": "1" },
+    { "id": "onions", "name": "Onions", "quantity": "3" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
+    { "id": "thyme", "name": "Thyme", "quantity": "2 sprigs" },
+    { "id": "curry_powder", "name": "Curry Powder", "quantity": "1 tbsp" },
+    { "id": "bay_leaves", "name": "Bay Leaves", "quantity": "2" },
+    { "id": "chicken_stock", "name": "Chicken Stock", "quantity": "500ml" },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "4 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "blend_pepper_base",
+      "device": "blender",
+      "action": "Prepare and blend pepper base",
+      "inputs": ["tomatoes", "red_pepper", "scotch_bonnet", "onions"],
+      "output": "blended_pepper_base",
+      "end": { "condition": "smooth pepper purée" },
+      "steps": [
+        {
+          "id": "rough_chop_for_blender",
+          "device": "chopping_board",
+          "action": "Roughly chop tomatoes, red pepper, scotch bonnet, and one onion",
+          "inputs": ["tomatoes", "red_pepper", "scotch_bonnet", "onions"],
+          "output": "chopped_pepper_veg",
+          "end": { "duration_minutes": 4 },
+          "steps": [
+            {
+              "id": "chop_tomatoes",
+              "device": "chopping_board",
+              "action": "Roughly chop tomatoes into quarters",
+              "inputs": ["tomatoes"],
+              "output": "chopped_tomatoes",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "chop_peppers",
+              "device": "chopping_board",
+              "action": "Deseed and roughly chop red pepper and scotch bonnet",
+              "inputs": ["red_pepper", "scotch_bonnet"],
+              "output": "chopped_peppers",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "chop_blending_onion",
+              "device": "chopping_board",
+              "action": "Roughly chop one onion for blending",
+              "inputs": ["onions"],
+              "output": "chopped_pepper_veg",
+              "after": ["chop_tomatoes", "chop_peppers"],
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "blend_everything",
+          "device": "blender",
+          "action": "Blend all chopped vegetables until smooth",
+          "inputs": ["chopped_pepper_veg"],
+          "output": "blended_pepper_base",
+          "after": "rough_chop_for_blender",
+          "end": { "duration_minutes": 2, "condition": "smooth purée with no large chunks" }
+        }
+      ]
+    },
+    {
+      "id": "brown_chicken",
+      "device": "hob",
+      "action": "Season and brown chicken thighs",
+      "inputs": ["chicken_thighs", "salt", "curry_powder", "vegetable_oil"],
+      "output": "browned_chicken",
+      "end": { "condition": "chicken golden on both sides" },
+      "steps": [
+        {
+          "id": "season_chicken",
+          "device": "chopping_board",
+          "action": "Season chicken with salt and curry powder",
+          "inputs": ["chicken_thighs", "salt", "curry_powder"],
+          "output": "seasoned_chicken",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "sear_chicken",
+          "device": "hob",
+          "action": "Brown chicken in hot oil on both sides",
+          "inputs": ["seasoned_chicken", "vegetable_oil"],
+          "output": "seared_chicken",
+          "after": "season_chicken",
+          "end": { "duration_minutes": 6, "condition": "golden brown on both sides" }
+        },
+        {
+          "id": "set_chicken_aside",
+          "device": "chopping_board",
+          "action": "Remove chicken and set aside",
+          "inputs": ["seared_chicken"],
+          "output": "browned_chicken",
+          "after": "sear_chicken",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "fry_base",
+      "device": "hob",
+      "action": "Fry the jollof base sauce",
+      "inputs": ["onions", "garlic", "ginger", "blended_pepper_base", "tomato_puree", "vegetable_oil", "thyme", "curry_powder", "bay_leaves"],
+      "output": "cooked_jollof_base",
+      "after": ["blend_pepper_base", "brown_chicken"],
+      "end": { "condition": "sauce reduced and oil floating on top" },
+      "steps": [
+        {
+          "id": "prep_aromatics",
+          "device": "chopping_board",
+          "action": "Dice remaining onions, mince garlic and ginger",
+          "inputs": ["onions", "garlic", "ginger"],
+          "output": "prepped_aromatics",
+          "end": { "duration_minutes": 3 },
+          "steps": [
+            {
+              "id": "dice_onions",
+              "device": "chopping_board",
+              "action": "Finely dice remaining onions",
+              "inputs": ["onions"],
+              "output": "diced_onions",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "mince_garlic_ginger",
+              "device": "chopping_board",
+              "action": "Mince garlic and grate ginger",
+              "inputs": ["garlic", "ginger"],
+              "output": "prepped_aromatics",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "cook_onions",
+          "device": "hob",
+          "action": "Fry diced onions in the chicken drippings until soft",
+          "inputs": ["diced_onions", "vegetable_oil"],
+          "output": "fried_onions",
+          "after": "prep_aromatics",
+          "end": { "duration_minutes": 4, "condition": "translucent and soft" }
+        },
+        {
+          "id": "add_blended_peppers",
+          "device": "hob",
+          "action": "Add blended pepper base and cook down",
+          "inputs": ["fried_onions", "blended_pepper_base", "prepped_aromatics"],
+          "output": "cooking_base",
+          "after": "cook_onions",
+          "end": { "duration_minutes": 10, "condition": "sauce darkened and reduced" }
+        },
+        {
+          "id": "add_tomato_puree_and_spices",
+          "device": "hob",
+          "action": "Stir in tomato purée, thyme, curry powder, and bay leaves",
+          "inputs": ["cooking_base", "tomato_puree", "thyme", "curry_powder", "bay_leaves"],
+          "output": "spiced_base",
+          "after": "add_blended_peppers",
+          "end": { "duration_minutes": 3, "condition": "purée cooked out" }
+        },
+        {
+          "id": "cook_down_base",
+          "device": "hob",
+          "action": "Continue cooking until oil floats on top",
+          "inputs": ["spiced_base"],
+          "output": "cooked_jollof_base",
+          "after": "add_tomato_puree_and_spices",
+          "end": { "duration_minutes": 5, "condition": "oil visible on surface, sauce thick" }
+        }
+      ]
+    },
+    {
+      "id": "cook_rice",
+      "device": "pot",
+      "action": "Add rice and stock, cook until done",
+      "inputs": ["long_grain_rice", "chicken_stock", "cooked_jollof_base", "browned_chicken", "salt"],
+      "output": "jollof_rice",
+      "after": "fry_base",
+      "end": { "condition": "rice fully cooked and fluffy" },
+      "steps": [
+        {
+          "id": "add_stock_and_rice",
+          "device": "pot",
+          "action": "Add chicken stock and rinsed rice to the base",
+          "inputs": ["cooked_jollof_base", "chicken_stock", "long_grain_rice", "salt"],
+          "output": "rice_in_sauce",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "nestle_chicken",
+          "device": "pot",
+          "action": "Nestle browned chicken thighs into the rice",
+          "inputs": ["rice_in_sauce", "browned_chicken"],
+          "output": "rice_with_chicken",
+          "after": "add_stock_and_rice",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "cover_and_cook",
+          "device": "hob",
+          "action": "Cover tightly and cook on low heat until rice is done",
+          "inputs": ["rice_with_chicken"],
+          "output": "cooked_jollof",
+          "after": "nestle_chicken",
+          "end": { "duration_minutes": 25, "condition": "rice tender, liquid absorbed" }
+        },
+        {
+          "id": "fluff_and_serve",
+          "device": "pot",
+          "action": "Fluff rice with a fork and serve",
+          "inputs": ["cooked_jollof"],
+          "output": "jollof_rice",
+          "after": "cover_and_cook",
+          "end": { "duration_minutes": 2, "condition": "rice fluffy and well mixed" }
+        }
+      ]
+    }
+  ]
+}

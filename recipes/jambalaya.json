@@ -1,0 +1,220 @@
+{
+  "title": "Jambalaya",
+  "servings": 6,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "pan", "name": "Large Heavy Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "rice", "name": "Long Grain Rice", "quantity": "350g" },
+    { "id": "chicken_thighs", "name": "Chicken Thighs", "quantity": "500g, boneless" },
+    { "id": "andouille_sausage", "name": "Andouille Sausage", "quantity": "250g" },
+    { "id": "prawns", "name": "Raw King Prawns", "quantity": "200g, peeled" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "celery", "name": "Celery", "quantity": "2 sticks" },
+    { "id": "green_pepper", "name": "Green Pepper", "quantity": "1" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "tinned_tomatoes", "name": "Tinned Tomatoes", "quantity": "400g" },
+    { "id": "chicken_stock", "name": "Chicken Stock", "quantity": "500ml" },
+    { "id": "cajun_seasoning", "name": "Cajun Seasoning", "quantity": "2 tbsp" },
+    { "id": "thyme", "name": "Fresh Thyme", "quantity": "3 sprigs" },
+    { "id": "bay_leaf", "name": "Bay Leaf", "quantity": "2" },
+    { "id": "spring_onions", "name": "Spring Onions", "quantity": "4" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep",
+      "device": "chopping_board",
+      "action": "Prepare all ingredients",
+      "inputs": ["chicken_thighs", "andouille_sausage", "onion", "celery", "green_pepper", "garlic", "spring_onions"],
+      "output": "prepped_ingredients",
+      "end": { "condition": "all ingredients prepped" },
+      "steps": [
+        {
+          "id": "dice_chicken",
+          "device": "chopping_board",
+          "action": "Cut chicken thighs into bite-sized pieces and season with half the Cajun seasoning",
+          "inputs": ["chicken_thighs", "cajun_seasoning", "salt", "pepper"],
+          "output": "seasoned_chicken",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "slice_sausage",
+          "device": "chopping_board",
+          "action": "Slice andouille sausage into 1cm half-moons",
+          "inputs": ["andouille_sausage"],
+          "output": "sliced_sausage",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "chop_trinity",
+          "device": "chopping_board",
+          "action": "Dice the holy trinity of onion, celery, and green pepper",
+          "inputs": ["onion", "celery", "green_pepper"],
+          "output": "diced_trinity",
+          "end": { "condition": "all diced to similar size" },
+          "steps": [
+            {
+              "id": "dice_onion",
+              "device": "chopping_board",
+              "action": "Finely dice the onion",
+              "inputs": ["onion"],
+              "output": "diced_onion",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "dice_celery",
+              "device": "chopping_board",
+              "action": "Finely dice the celery sticks",
+              "inputs": ["celery"],
+              "output": "diced_celery",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "dice_pepper",
+              "device": "chopping_board",
+              "action": "Dice the green pepper",
+              "inputs": ["green_pepper"],
+              "output": "diced_pepper",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "mince_garlic",
+          "device": "chopping_board",
+          "action": "Mince garlic cloves",
+          "inputs": ["garlic"],
+          "output": "minced_garlic",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "slice_spring_onions",
+          "device": "chopping_board",
+          "action": "Thinly slice spring onions for garnish",
+          "inputs": ["spring_onions"],
+          "output": "sliced_spring_onions",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "brown_protein",
+      "device": "pan",
+      "action": "Brown the chicken and sausage",
+      "inputs": ["seasoned_chicken", "sliced_sausage", "olive_oil"],
+      "output": "browned_meats",
+      "after": "prep",
+      "end": { "condition": "meats browned and set aside" },
+      "steps": [
+        {
+          "id": "sear_chicken",
+          "device": "pan",
+          "action": "Heat olive oil in a large heavy pan over high heat, sear chicken pieces until golden on all sides, then remove",
+          "inputs": ["olive_oil", "seasoned_chicken"],
+          "output": "seared_chicken",
+          "end": { "duration_minutes": 5, "condition": "chicken golden brown, not fully cooked through" }
+        },
+        {
+          "id": "cook_sausage",
+          "device": "pan",
+          "action": "In the same pan, cook sausage slices until browned and fat renders, then remove",
+          "inputs": ["sliced_sausage"],
+          "output": "browned_sausage",
+          "after": "sear_chicken",
+          "end": { "duration_minutes": 4, "condition": "sausage browned and slightly crispy" }
+        }
+      ]
+    },
+    {
+      "id": "build_base",
+      "device": "pan",
+      "action": "Build the flavour base",
+      "inputs": ["diced_trinity", "minced_garlic", "tinned_tomatoes", "chicken_stock", "cajun_seasoning", "thyme", "bay_leaf"],
+      "output": "jambalaya_base",
+      "after": "brown_protein",
+      "end": { "condition": "base simmering and fragrant" },
+      "steps": [
+        {
+          "id": "saute_trinity",
+          "device": "pan",
+          "action": "Saut\u00e9 the holy trinity in the rendered fat until softened",
+          "inputs": ["diced_trinity"],
+          "output": "softened_trinity",
+          "end": { "duration_minutes": 5, "condition": "vegetables softened and translucent" }
+        },
+        {
+          "id": "add_garlic",
+          "device": "pan",
+          "action": "Add minced garlic and remaining Cajun seasoning, cook until fragrant",
+          "inputs": ["softened_trinity", "minced_garlic", "cajun_seasoning"],
+          "output": "spiced_trinity",
+          "after": "saute_trinity",
+          "end": { "duration_minutes": 1, "condition": "garlic fragrant" }
+        },
+        {
+          "id": "add_tomatoes_stock",
+          "device": "pan",
+          "action": "Add tinned tomatoes, chicken stock, thyme, and bay leaves; bring to a simmer",
+          "inputs": ["spiced_trinity", "tinned_tomatoes", "chicken_stock", "thyme", "bay_leaf"],
+          "output": "jambalaya_base",
+          "after": "add_garlic",
+          "end": { "duration_minutes": 3, "condition": "base at a simmer" }
+        }
+      ]
+    },
+    {
+      "id": "cook_rice",
+      "device": "pan",
+      "action": "Add rice and meats, cook until rice absorbs liquid",
+      "inputs": ["jambalaya_base", "rice", "seared_chicken", "browned_sausage", "salt", "pepper"],
+      "output": "cooked_jambalaya",
+      "after": "build_base",
+      "end": { "duration_minutes": 25, "condition": "rice tender and liquid absorbed" },
+      "steps": [
+        {
+          "id": "add_rice_and_meats",
+          "device": "pan",
+          "action": "Return browned chicken and sausage to the pan, stir in rice, season with salt and pepper",
+          "inputs": ["jambalaya_base", "rice", "seared_chicken", "browned_sausage", "salt", "pepper"],
+          "output": "raw_jambalaya",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "simmer_covered",
+          "device": "pan",
+          "action": "Cover tightly, reduce heat to low, and cook without stirring until rice is tender and liquid absorbed",
+          "inputs": ["raw_jambalaya"],
+          "output": "cooked_jambalaya",
+          "after": "add_rice_and_meats",
+          "end": { "duration_minutes": 20, "condition": "rice fluffy, liquid fully absorbed" }
+        }
+      ]
+    },
+    {
+      "id": "add_prawns",
+      "device": "pan",
+      "action": "Nestle prawns into the rice, cover, and cook until pink",
+      "inputs": ["cooked_jambalaya", "prawns"],
+      "output": "jambalaya_with_prawns",
+      "after": "cook_rice",
+      "end": { "duration_minutes": 5, "condition": "prawns pink and cooked through" }
+    },
+    {
+      "id": "garnish_and_serve",
+      "device": "pan",
+      "action": "Remove bay leaves and thyme, scatter with spring onions, and serve",
+      "inputs": ["jambalaya_with_prawns", "sliced_spring_onions"],
+      "output": "jambalaya",
+      "after": "add_prawns",
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

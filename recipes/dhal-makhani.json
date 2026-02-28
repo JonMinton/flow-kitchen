@@ -1,0 +1,185 @@
+{
+  "title": "Dhal Makhani",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "urad_dal", "name": "Black Lentils (Urad Dal)", "quantity": "200g" },
+    { "id": "kidney_beans", "name": "Kidney Beans", "quantity": "100g, tinned or pre-soaked" },
+    { "id": "butter", "name": "Butter", "quantity": "50g" },
+    { "id": "cream", "name": "Double Cream", "quantity": "100ml" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
+    { "id": "tomatoes", "name": "Tinned Tomatoes", "quantity": "400g" },
+    { "id": "garam_masala", "name": "Garam Masala", "quantity": "1 tsp" },
+    { "id": "cumin_seeds", "name": "Cumin Seeds", "quantity": "1 tsp" },
+    { "id": "chilli_powder", "name": "Chilli Powder", "quantity": "1 tsp" },
+    { "id": "turmeric", "name": "Turmeric", "quantity": "1/2 tsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "water", "name": "Water", "quantity": "800ml" },
+    { "id": "coriander", "name": "Fresh Coriander", "quantity": "small bunch" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_lentils",
+      "device": "saucepan",
+      "action": "Cook lentils and kidney beans until soft",
+      "inputs": ["urad_dal", "kidney_beans", "water", "salt", "turmeric"],
+      "output": "cooked_lentils",
+      "end": { "duration_minutes": 40, "condition": "lentils completely soft and creamy" },
+      "steps": [
+        {
+          "id": "rinse_lentils",
+          "device": "saucepan",
+          "action": "Rinse lentils and kidney beans under cold water until water runs clear",
+          "inputs": ["urad_dal", "kidney_beans"],
+          "output": "rinsed_lentils",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "boil_lentils",
+          "device": "saucepan",
+          "action": "Add lentils and beans to saucepan with water, turmeric, and salt, bring to a boil",
+          "inputs": ["rinsed_lentils", "water", "turmeric", "salt"],
+          "output": "boiling_lentils",
+          "after": "rinse_lentils",
+          "end": { "duration_minutes": 5, "condition": "rolling boil" }
+        },
+        {
+          "id": "simmer_lentils",
+          "device": "saucepan",
+          "action": "Reduce heat, partially cover, and simmer until lentils are completely soft and breaking down",
+          "inputs": ["boiling_lentils"],
+          "output": "cooked_lentils",
+          "after": "boil_lentils",
+          "end": { "duration_minutes": 35, "condition": "lentils soft, creamy, and breaking apart" }
+        }
+      ]
+    },
+    {
+      "id": "make_base",
+      "device": "pan",
+      "action": "Build the spiced tomato base",
+      "inputs": ["cumin_seeds", "onion", "garlic", "ginger", "tomatoes", "garam_masala", "chilli_powder", "salt", "butter"],
+      "output": "spiced_base",
+      "end": { "condition": "base cooked down and rich" },
+      "steps": [
+        {
+          "id": "prep_base_aromatics",
+          "device": "chopping_board",
+          "action": "Prepare aromatics for the base",
+          "inputs": ["onion", "garlic", "ginger"],
+          "output": "prepped_aromatics",
+          "end": { "condition": "aromatics ready" },
+          "steps": [
+            {
+              "id": "dice_onion",
+              "device": "chopping_board",
+              "action": "Finely dice the onion",
+              "inputs": ["onion"],
+              "output": "diced_onion",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "mince_garlic",
+              "device": "chopping_board",
+              "action": "Mince garlic cloves",
+              "inputs": ["garlic"],
+              "output": "minced_garlic",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "grate_ginger",
+              "device": "chopping_board",
+              "action": "Peel and finely grate ginger",
+              "inputs": ["ginger"],
+              "output": "grated_ginger",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "fry_cumin",
+          "device": "pan",
+          "action": "Heat half the butter in a pan and fry cumin seeds until they splutter",
+          "inputs": ["butter", "cumin_seeds"],
+          "output": "tempered_cumin",
+          "after": "prep_base_aromatics",
+          "end": { "duration_minutes": 1, "condition": "cumin seeds crackling and fragrant" }
+        },
+        {
+          "id": "saute_aromatics",
+          "device": "pan",
+          "action": "Add onion, garlic, and ginger, cook until onion is golden",
+          "inputs": ["tempered_cumin", "diced_onion", "minced_garlic", "grated_ginger"],
+          "output": "cooked_aromatics",
+          "after": "fry_cumin",
+          "end": { "duration_minutes": 6, "condition": "onion golden and soft" }
+        },
+        {
+          "id": "add_tomatoes_spices",
+          "device": "pan",
+          "action": "Add tomatoes, garam masala, chilli powder, and salt; cook until oil separates",
+          "inputs": ["cooked_aromatics", "tomatoes", "garam_masala", "chilli_powder", "salt"],
+          "output": "spiced_base",
+          "after": "saute_aromatics",
+          "end": { "duration_minutes": 8, "condition": "tomatoes broken down, oil separating from masala" }
+        }
+      ]
+    },
+    {
+      "id": "combine",
+      "device": "saucepan",
+      "action": "Combine lentils with base and finish with butter and cream",
+      "inputs": ["cooked_lentils", "spiced_base", "butter", "cream"],
+      "output": "finished_dhal",
+      "after": ["cook_lentils", "make_base"],
+      "end": { "condition": "rich, creamy dhal" },
+      "steps": [
+        {
+          "id": "add_lentils_to_base",
+          "device": "saucepan",
+          "action": "Pour spiced base into the cooked lentils and stir to combine",
+          "inputs": ["cooked_lentils", "spiced_base"],
+          "output": "combined_dhal",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "simmer_together",
+          "device": "saucepan",
+          "action": "Simmer gently, stirring occasionally, to let flavours meld",
+          "inputs": ["combined_dhal"],
+          "output": "simmered_dhal",
+          "after": "add_lentils_to_base",
+          "end": { "duration_minutes": 10, "condition": "thick, creamy consistency" }
+        },
+        {
+          "id": "finish_with_butter_cream",
+          "device": "saucepan",
+          "action": "Stir in remaining butter and cream, adjust seasoning",
+          "inputs": ["simmered_dhal", "butter", "cream"],
+          "output": "finished_dhal",
+          "after": "simmer_together",
+          "end": { "duration_minutes": 2, "condition": "dhal glossy and rich" }
+        }
+      ]
+    },
+    {
+      "id": "garnish",
+      "device": "chopping_board",
+      "action": "Chop coriander and garnish the dhal",
+      "inputs": ["finished_dhal", "coriander"],
+      "output": "dhal_makhani",
+      "after": "combine",
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

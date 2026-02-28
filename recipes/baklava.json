@@ -1,0 +1,190 @@
+{
+  "title": "Baklava",
+  "servings": 12,
+
+  "devices": [
+    { "id": "oven", "name": "Oven", "settings": "180°C / 350°F / Gas 4" },
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "baking_tray", "name": "Baking Tray" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "filo_pastry", "name": "Filo Pastry", "quantity": "270g (1 pack)" },
+    { "id": "pistachios", "name": "Pistachios", "quantity": "100g" },
+    { "id": "walnuts", "name": "Walnuts", "quantity": "100g" },
+    { "id": "butter", "name": "Butter", "quantity": "200g" },
+    { "id": "sugar", "name": "Caster Sugar", "quantity": "200g" },
+    { "id": "water", "name": "Water", "quantity": "150ml" },
+    { "id": "lemon_juice", "name": "Lemon Juice", "quantity": "1 tbsp" },
+    { "id": "honey", "name": "Honey", "quantity": "2 tbsp" },
+    { "id": "cinnamon", "name": "Ground Cinnamon", "quantity": "1 tsp" },
+    { "id": "cloves", "name": "Whole Cloves", "quantity": "3" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_syrup",
+      "device": "saucepan",
+      "action": "Make honey and spice syrup",
+      "inputs": ["sugar", "water", "lemon_juice", "honey", "cinnamon", "cloves"],
+      "output": "cooled_syrup",
+      "end": { "condition": "syrup cooled to room temperature" },
+      "steps": [
+        {
+          "id": "combine_syrup_ingredients",
+          "device": "saucepan",
+          "action": "Combine sugar, water, lemon juice, honey, cinnamon and cloves in saucepan",
+          "inputs": ["sugar", "water", "lemon_juice", "honey", "cinnamon", "cloves"],
+          "output": "raw_syrup",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "boil_syrup",
+          "device": "hob",
+          "action": "Bring to a boil, then simmer until slightly thickened",
+          "inputs": ["raw_syrup"],
+          "output": "hot_syrup",
+          "after": "combine_syrup_ingredients",
+          "end": { "duration_minutes": 8, "condition": "syrup coats back of spoon" }
+        },
+        {
+          "id": "cool_syrup",
+          "device": "saucepan",
+          "action": "Set syrup aside to cool completely",
+          "inputs": ["hot_syrup"],
+          "output": "cooled_syrup",
+          "after": "boil_syrup",
+          "end": { "duration_minutes": 30, "condition": "room temperature" }
+        }
+      ]
+    },
+    {
+      "id": "prep_nuts",
+      "device": "chopping_board",
+      "action": "Prepare nut filling",
+      "inputs": ["pistachios", "walnuts", "cinnamon"],
+      "output": "nut_mixture",
+      "end": { "condition": "finely chopped and mixed" },
+      "steps": [
+        {
+          "id": "chop_pistachios",
+          "device": "chopping_board",
+          "action": "Finely chop pistachios",
+          "inputs": ["pistachios"],
+          "output": "chopped_pistachios",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "chop_walnuts",
+          "device": "chopping_board",
+          "action": "Finely chop walnuts",
+          "inputs": ["walnuts"],
+          "output": "chopped_walnuts",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "mix_nuts_cinnamon",
+          "device": "chopping_board",
+          "action": "Combine chopped nuts with cinnamon and mix well",
+          "inputs": ["chopped_pistachios", "chopped_walnuts", "cinnamon"],
+          "output": "nut_mixture",
+          "after": ["chop_pistachios", "chop_walnuts"],
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "melt_butter",
+      "device": "saucepan",
+      "action": "Melt butter gently over low heat",
+      "inputs": ["butter"],
+      "output": "melted_butter",
+      "end": { "duration_minutes": 3, "condition": "fully melted" }
+    },
+    {
+      "id": "layer_baklava",
+      "device": "baking_tray",
+      "action": "Layer filo pastry with butter and nut mixture",
+      "inputs": ["filo_pastry", "melted_butter", "nut_mixture"],
+      "output": "assembled_baklava",
+      "after": ["prep_nuts", "melt_butter"],
+      "end": { "condition": "all layers assembled and scored" },
+      "steps": [
+        {
+          "id": "layer_base",
+          "device": "baking_tray",
+          "action": "Build buttered filo base layers",
+          "inputs": ["filo_pastry", "melted_butter"],
+          "output": "base_layers",
+          "end": { "condition": "8 sheets layered and buttered" },
+          "steps": [
+            {
+              "id": "brush_tray",
+              "device": "baking_tray",
+              "action": "Brush baking tray with melted butter",
+              "inputs": ["melted_butter"],
+              "output": "buttered_tray",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "lay_base_sheets",
+              "device": "baking_tray",
+              "action": "Layer 8 sheets of filo, brushing each with melted butter",
+              "inputs": ["filo_pastry", "melted_butter", "buttered_tray"],
+              "output": "base_layers",
+              "after": "brush_tray",
+              "end": { "duration_minutes": 5, "condition": "8 sheets layered, each brushed" }
+            }
+          ]
+        },
+        {
+          "id": "add_nut_layers",
+          "device": "baking_tray",
+          "action": "Alternate nut filling with filo layers",
+          "inputs": ["base_layers", "nut_mixture", "filo_pastry", "melted_butter"],
+          "output": "filled_baklava",
+          "after": "layer_base",
+          "end": { "duration_minutes": 8, "condition": "nut filling evenly distributed between pastry layers" }
+        },
+        {
+          "id": "add_top_layers",
+          "device": "baking_tray",
+          "action": "Finish with 8 more buttered filo sheets on top",
+          "inputs": ["filled_baklava", "filo_pastry", "melted_butter"],
+          "output": "topped_baklava",
+          "after": "add_nut_layers",
+          "end": { "duration_minutes": 5, "condition": "top layers golden with butter" }
+        },
+        {
+          "id": "score_diamonds",
+          "device": "baking_tray",
+          "action": "Score through top layers into diamond shapes with a sharp knife",
+          "inputs": ["topped_baklava"],
+          "output": "assembled_baklava",
+          "after": "add_top_layers",
+          "end": { "duration_minutes": 3, "condition": "even diamond pattern scored" }
+        }
+      ]
+    },
+    {
+      "id": "bake",
+      "device": "oven",
+      "action": "Bake until golden and crisp",
+      "inputs": ["assembled_baklava"],
+      "output": "baked_baklava",
+      "after": "layer_baklava",
+      "end": { "duration_minutes": 35, "condition": "deep golden brown and crisp" }
+    },
+    {
+      "id": "pour_syrup",
+      "device": "baking_tray",
+      "action": "Pour cooled syrup evenly over hot baklava",
+      "inputs": ["baked_baklava", "cooled_syrup"],
+      "output": "baklava",
+      "after": ["bake", "make_syrup"],
+      "end": { "duration_minutes": 2, "condition": "syrup absorbed, baklava glistening" }
+    }
+  ]
+}

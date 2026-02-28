@@ -1,0 +1,144 @@
+{
+  "title": "Carbonara",
+  "servings": 2,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "spaghetti", "name": "Spaghetti", "quantity": "200g" },
+    { "id": "guanciale", "name": "Guanciale", "quantity": "150g" },
+    { "id": "eggs", "name": "Eggs", "quantity": "3 (2 whole + 1 yolk)" },
+    { "id": "parmesan", "name": "Parmesan", "quantity": "50g, finely grated" },
+    { "id": "pecorino", "name": "Pecorino Romano", "quantity": "30g, finely grated" },
+    { "id": "black_pepper", "name": "Black Pepper", "quantity": "generous amount" },
+    { "id": "salt", "name": "Salt", "quantity": "for pasta water" },
+    { "id": "water", "name": "Water", "quantity": "2 litres" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_pasta",
+      "device": "hob",
+      "action": "Cook spaghetti in salted boiling water",
+      "inputs": ["spaghetti", "water", "salt"],
+      "output": "cooked_pasta",
+      "end": { "condition": "pasta al dente" },
+      "steps": [
+        {
+          "id": "boil_water",
+          "device": "hob",
+          "action": "Bring large pot of water to a rolling boil and salt generously",
+          "inputs": ["water", "salt"],
+          "output": "boiling_water",
+          "end": { "duration_minutes": 8, "condition": "rolling boil" }
+        },
+        {
+          "id": "add_pasta",
+          "device": "saucepan",
+          "action": "Add spaghetti and cook until al dente, reserve pasta water before draining",
+          "inputs": ["spaghetti", "boiling_water"],
+          "output": "cooked_pasta",
+          "after": "boil_water",
+          "end": { "duration_minutes": 10, "condition": "al dente with bite" }
+        }
+      ]
+    },
+    {
+      "id": "prep",
+      "device": "chopping_board",
+      "action": "Prepare guanciale and egg mixture",
+      "inputs": ["guanciale", "eggs", "parmesan", "pecorino", "black_pepper"],
+      "output": "egg_mixture",
+      "end": { "condition": "guanciale diced and egg mixture ready" },
+      "steps": [
+        {
+          "id": "dice_guanciale",
+          "device": "chopping_board",
+          "action": "Remove rind and cut guanciale into small batons",
+          "inputs": ["guanciale"],
+          "output": "diced_guanciale",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "mix_egg_cheese",
+          "device": "bowl",
+          "action": "Whisk eggs with grated cheeses and generous black pepper",
+          "inputs": ["eggs", "parmesan", "pecorino", "black_pepper"],
+          "output": "egg_mixture",
+          "end": { "duration_minutes": 2, "condition": "smooth and well combined" }
+        }
+      ]
+    },
+    {
+      "id": "fry_guanciale",
+      "device": "hob",
+      "action": "Render guanciale fat and crisp the meat",
+      "inputs": ["diced_guanciale"],
+      "output": "crispy_guanciale",
+      "after": "prep",
+      "end": { "condition": "golden and crispy with rendered fat" },
+      "steps": [
+        {
+          "id": "start_cold_pan",
+          "device": "pan",
+          "action": "Place guanciale in a cold pan and set over medium heat",
+          "inputs": ["diced_guanciale"],
+          "output": "rendering_guanciale",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "render_fat",
+          "device": "pan",
+          "action": "Cook slowly until fat renders and meat crisps",
+          "inputs": ["rendering_guanciale"],
+          "output": "crispy_guanciale",
+          "after": "start_cold_pan",
+          "end": { "duration_minutes": 6, "condition": "golden and crispy, fat rendered" }
+        }
+      ]
+    },
+    {
+      "id": "combine",
+      "device": "pan",
+      "action": "Toss pasta with egg mixture and guanciale off the heat",
+      "inputs": ["cooked_pasta", "egg_mixture", "crispy_guanciale", "black_pepper"],
+      "output": "carbonara",
+      "after": ["cook_pasta", "fry_guanciale"],
+      "end": { "condition": "silky, emulsified sauce coating every strand" },
+      "steps": [
+        {
+          "id": "toss_pasta_in_fat",
+          "device": "pan",
+          "action": "Remove pan from heat and add drained pasta to guanciale fat",
+          "inputs": ["cooked_pasta", "crispy_guanciale"],
+          "output": "pasta_with_guanciale",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "add_egg_mixture",
+          "device": "pan",
+          "action": "Pour egg and cheese mixture over hot pasta, toss vigorously with splash of pasta water",
+          "inputs": ["pasta_with_guanciale", "egg_mixture"],
+          "output": "sauced_pasta",
+          "after": "toss_pasta_in_fat",
+          "end": { "duration_minutes": 1, "condition": "silky emulsified sauce, not scrambled" }
+        },
+        {
+          "id": "finish_and_serve",
+          "device": "pan",
+          "action": "Finish with extra pecorino and black pepper, serve immediately",
+          "inputs": ["sauced_pasta", "black_pepper"],
+          "output": "carbonara",
+          "after": "add_egg_mixture",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    }
+  ]
+}

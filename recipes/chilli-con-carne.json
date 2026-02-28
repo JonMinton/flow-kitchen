@@ -1,0 +1,184 @@
+{
+  "title": "Chilli con Carne",
+  "servings": 6,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "pan", "name": "Large Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "beef_mince", "name": "Beef Mince", "quantity": "500g" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
+    { "id": "red_pepper", "name": "Red Pepper", "quantity": "1" },
+    { "id": "tinned_tomatoes", "name": "Tinned Tomatoes", "quantity": "400g tin" },
+    { "id": "kidney_beans", "name": "Kidney Beans", "quantity": "400g tin, drained" },
+    { "id": "tomato_puree", "name": "Tomato Purée", "quantity": "2 tbsp" },
+    { "id": "cumin", "name": "Ground Cumin", "quantity": "2 tsp" },
+    { "id": "chilli_powder", "name": "Chilli Powder", "quantity": "1 tsp" },
+    { "id": "paprika", "name": "Smoked Paprika", "quantity": "1 tsp" },
+    { "id": "oregano", "name": "Dried Oregano", "quantity": "1 tsp" },
+    { "id": "beef_stock", "name": "Beef Stock", "quantity": "200ml" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep_vegetables",
+      "device": "chopping_board",
+      "action": "Prepare all vegetables",
+      "inputs": ["onion", "garlic", "red_pepper"],
+      "output": "prepped_veg",
+      "end": { "condition": "all vegetables diced and ready" },
+      "steps": [
+        {
+          "id": "dice_onion",
+          "device": "chopping_board",
+          "action": "Dice the onion finely",
+          "inputs": ["onion"],
+          "output": "diced_onion",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "mince_garlic",
+          "device": "chopping_board",
+          "action": "Mince the garlic cloves",
+          "inputs": ["garlic"],
+          "output": "minced_garlic",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "dice_pepper",
+          "device": "chopping_board",
+          "action": "Deseed and dice the red pepper",
+          "inputs": ["red_pepper"],
+          "output": "diced_pepper",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "brown_mince",
+      "device": "hob",
+      "action": "Brown the beef mince",
+      "inputs": ["beef_mince", "olive_oil", "salt", "pepper"],
+      "output": "browned_mince",
+      "end": { "condition": "mince browned and broken up" },
+      "steps": [
+        {
+          "id": "heat_oil",
+          "device": "pan",
+          "action": "Heat olive oil in a large pan over high heat",
+          "inputs": ["olive_oil"],
+          "output": "hot_oil",
+          "end": { "duration_minutes": 1, "condition": "oil shimmering" }
+        },
+        {
+          "id": "sear_mince",
+          "device": "pan",
+          "action": "Add mince and break up with a spoon, season and cook until browned",
+          "inputs": ["beef_mince", "hot_oil", "salt", "pepper"],
+          "output": "browned_mince",
+          "after": "heat_oil",
+          "end": { "duration_minutes": 7, "condition": "no pink remaining, well browned" }
+        },
+        {
+          "id": "drain_and_set_aside",
+          "device": "pan",
+          "action": "Remove browned mince from pan and set aside",
+          "inputs": ["browned_mince"],
+          "output": "reserved_mince",
+          "after": "sear_mince",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "cook_chilli",
+      "device": "hob",
+      "action": "Build and simmer the chilli",
+      "inputs": ["prepped_veg", "reserved_mince", "tinned_tomatoes", "kidney_beans", "tomato_puree", "cumin", "chilli_powder", "paprika", "oregano", "beef_stock"],
+      "output": "chilli_con_carne",
+      "after": ["prep_vegetables", "brown_mince"],
+      "end": { "condition": "chilli rich and thick" },
+      "steps": [
+        {
+          "id": "saute_vegetables",
+          "device": "hob",
+          "action": "Sauté vegetables until soft",
+          "inputs": ["diced_onion", "diced_pepper", "minced_garlic", "olive_oil"],
+          "output": "softened_veg",
+          "end": { "condition": "vegetables softened" },
+          "steps": [
+            {
+              "id": "cook_onion_pepper",
+              "device": "pan",
+              "action": "Cook onion and pepper in the same pan until softened",
+              "inputs": ["diced_onion", "diced_pepper"],
+              "output": "soft_onion_pepper",
+              "end": { "duration_minutes": 5, "condition": "softened and lightly coloured" }
+            },
+            {
+              "id": "add_garlic",
+              "device": "pan",
+              "action": "Add minced garlic and cook briefly",
+              "inputs": ["soft_onion_pepper", "minced_garlic"],
+              "output": "softened_veg",
+              "after": "cook_onion_pepper",
+              "end": { "duration_minutes": 1, "condition": "fragrant" }
+            }
+          ]
+        },
+        {
+          "id": "add_mince_back",
+          "device": "pan",
+          "action": "Return browned mince to the pan",
+          "inputs": ["softened_veg", "reserved_mince"],
+          "output": "mince_and_veg",
+          "after": "saute_vegetables",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "add_spices",
+          "device": "pan",
+          "action": "Stir in cumin, chilli powder, paprika, and oregano",
+          "inputs": ["mince_and_veg", "cumin", "chilli_powder", "paprika", "oregano"],
+          "output": "spiced_mince",
+          "after": "add_mince_back",
+          "end": { "duration_minutes": 1, "condition": "spices toasted and fragrant" }
+        },
+        {
+          "id": "add_liquids",
+          "device": "pan",
+          "action": "Add tinned tomatoes, tomato purée, and beef stock",
+          "inputs": ["spiced_mince", "tinned_tomatoes", "tomato_puree", "beef_stock"],
+          "output": "chilli_mixture",
+          "after": "add_spices",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "add_beans_and_simmer",
+          "device": "pan",
+          "action": "Add kidney beans, bring to boil then simmer",
+          "inputs": ["chilli_mixture", "kidney_beans"],
+          "output": "simmering_chilli",
+          "after": "add_liquids",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "simmer",
+          "device": "hob",
+          "action": "Simmer on low heat until thick and rich, stirring occasionally",
+          "inputs": ["simmering_chilli"],
+          "output": "chilli_con_carne",
+          "after": "add_beans_and_simmer",
+          "end": { "duration_minutes": 20, "condition": "thick, rich, flavours melded" }
+        }
+      ]
+    }
+  ]
+}

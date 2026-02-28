@@ -1,0 +1,183 @@
+{
+  "title": "Kung Pao Chicken",
+  "servings": 2,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "wok", "name": "Wok" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "chicken_breast", "name": "Chicken Breast", "quantity": "300g" },
+    { "id": "peanuts", "name": "Peanuts", "quantity": "50g" },
+    { "id": "dried_chillies", "name": "Dried Chillies", "quantity": "8-10" },
+    { "id": "spring_onions", "name": "Spring Onions", "quantity": "3" },
+    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
+    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "2 tbsp" },
+    { "id": "rice_vinegar", "name": "Rice Vinegar", "quantity": "1 tbsp" },
+    { "id": "sugar", "name": "Sugar", "quantity": "1 tbsp" },
+    { "id": "cornstarch", "name": "Cornstarch", "quantity": "2 tsp" },
+    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "1 tbsp" },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
+    { "id": "sichuan_peppercorns", "name": "Sichuan Peppercorns", "quantity": "1 tsp" },
+    { "id": "water", "name": "Water", "quantity": "2 tbsp" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep_chicken",
+      "device": "bowl",
+      "action": "Dice and marinate chicken",
+      "inputs": ["chicken_breast", "soy_sauce", "cornstarch"],
+      "output": "marinated_chicken",
+      "end": { "condition": "chicken coated and resting" },
+      "steps": [
+        {
+          "id": "dice_chicken",
+          "device": "chopping_board",
+          "action": "Dice chicken breast into 2cm cubes",
+          "inputs": ["chicken_breast"],
+          "output": "diced_chicken",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "marinate_chicken",
+          "device": "bowl",
+          "action": "Toss chicken with soy sauce and cornstarch",
+          "inputs": ["diced_chicken", "soy_sauce", "cornstarch"],
+          "output": "marinated_chicken",
+          "after": "dice_chicken",
+          "end": { "duration_minutes": 10, "condition": "chicken coated evenly" }
+        }
+      ]
+    },
+    {
+      "id": "make_sauce",
+      "device": "bowl",
+      "action": "Mix the kung pao sauce",
+      "inputs": ["soy_sauce", "rice_vinegar", "sugar", "cornstarch", "sesame_oil", "water"],
+      "output": "kung_pao_sauce",
+      "end": { "condition": "sauce mixed and smooth" },
+      "steps": [
+        {
+          "id": "combine_sauce_ingredients",
+          "device": "bowl",
+          "action": "Whisk soy sauce, rice vinegar, sugar, cornstarch, sesame oil and water",
+          "inputs": ["soy_sauce", "rice_vinegar", "sugar", "cornstarch", "sesame_oil", "water"],
+          "output": "kung_pao_sauce",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "prep_aromatics",
+      "device": "chopping_board",
+      "action": "Prepare garlic, ginger, spring onions and chillies",
+      "inputs": ["garlic", "ginger", "spring_onions", "dried_chillies"],
+      "output": "prepped_aromatics",
+      "end": { "condition": "all aromatics prepared" },
+      "steps": [
+        {
+          "id": "mince_garlic_ginger",
+          "device": "chopping_board",
+          "action": "Mince garlic and finely chop ginger",
+          "inputs": ["garlic", "ginger"],
+          "output": "minced_aromatics",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "slice_spring_onions",
+          "device": "chopping_board",
+          "action": "Slice spring onions, separating whites and greens",
+          "inputs": ["spring_onions"],
+          "output": "sliced_spring_onions",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "snip_chillies",
+          "device": "chopping_board",
+          "action": "Snip dried chillies into pieces, shake out seeds",
+          "inputs": ["dried_chillies"],
+          "output": "prepared_chillies",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "wok_cooking",
+      "device": "wok",
+      "action": "Wok-fry everything together",
+      "inputs": ["marinated_chicken", "kung_pao_sauce", "prepped_aromatics", "peanuts", "vegetable_oil", "sichuan_peppercorns"],
+      "output": "kung_pao_chicken",
+      "after": ["prep_chicken", "make_sauce", "prep_aromatics"],
+      "end": { "condition": "chicken cooked, sauce glossy" },
+      "steps": [
+        {
+          "id": "heat_wok",
+          "device": "hob",
+          "action": "Heat wok until smoking, add vegetable oil",
+          "inputs": ["vegetable_oil"],
+          "output": "hot_wok",
+          "end": { "duration_minutes": 1, "condition": "wok smoking hot" }
+        },
+        {
+          "id": "fry_peppercorns_chillies",
+          "device": "wok",
+          "action": "Fry Sichuan peppercorns and dried chillies until fragrant",
+          "inputs": ["hot_wok", "sichuan_peppercorns", "prepared_chillies"],
+          "output": "fragrant_oil",
+          "after": "heat_wok",
+          "end": { "duration_minutes": 1, "condition": "darkened and fragrant, not burnt" }
+        },
+        {
+          "id": "cook_chicken_in_wok",
+          "device": "wok",
+          "action": "Add marinated chicken and stir-fry until golden",
+          "inputs": ["fragrant_oil", "marinated_chicken"],
+          "output": "cooked_chicken",
+          "after": "fry_peppercorns_chillies",
+          "end": { "duration_minutes": 4, "condition": "chicken cooked through, lightly browned" }
+        },
+        {
+          "id": "add_garlic_ginger",
+          "device": "wok",
+          "action": "Add minced garlic and ginger, toss briefly",
+          "inputs": ["cooked_chicken", "minced_aromatics"],
+          "output": "chicken_with_aromatics",
+          "after": "cook_chicken_in_wok",
+          "end": { "duration_minutes": 1, "condition": "fragrant" }
+        },
+        {
+          "id": "add_peanuts",
+          "device": "wok",
+          "action": "Toss in peanuts",
+          "inputs": ["chicken_with_aromatics", "peanuts"],
+          "output": "chicken_with_peanuts",
+          "after": "add_garlic_ginger",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "add_sauce",
+          "device": "wok",
+          "action": "Pour in sauce and toss until glossy and thickened",
+          "inputs": ["chicken_with_peanuts", "kung_pao_sauce"],
+          "output": "glazed_chicken",
+          "after": "add_peanuts",
+          "end": { "duration_minutes": 2, "condition": "sauce thickened and coating everything" }
+        },
+        {
+          "id": "toss_spring_onions",
+          "device": "wok",
+          "action": "Toss through spring onion greens and serve",
+          "inputs": ["glazed_chicken", "sliced_spring_onions"],
+          "output": "kung_pao_chicken",
+          "after": "add_sauce",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    }
+  ]
+}

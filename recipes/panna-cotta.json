@@ -1,0 +1,170 @@
+{
+  "title": "Panna Cotta",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob", "settings": "low-medium heat" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "bowl", "name": "Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "double_cream", "name": "Double Cream", "quantity": "400ml" },
+    { "id": "milk", "name": "Milk", "quantity": "100ml" },
+    { "id": "caster_sugar", "name": "Caster Sugar", "quantity": "75g" },
+    { "id": "vanilla_pod", "name": "Vanilla Pod", "quantity": "1" },
+    { "id": "gelatine_leaves", "name": "Gelatine Leaves", "quantity": "3" },
+    { "id": "cold_water", "name": "Cold Water", "quantity": "small bowl" },
+    { "id": "strawberries", "name": "Strawberries", "quantity": "200g" },
+    { "id": "icing_sugar", "name": "Icing Sugar", "quantity": "2 tbsp" },
+    { "id": "lemon_juice", "name": "Lemon Juice", "quantity": "1 tsp" }
+  ],
+
+  "steps": [
+    {
+      "id": "bloom_gelatine",
+      "device": "bowl",
+      "action": "Bloom gelatine leaves in cold water",
+      "inputs": ["gelatine_leaves", "cold_water"],
+      "output": "bloomed_gelatine",
+      "end": { "duration_minutes": 5, "condition": "soft and pliable" },
+      "steps": [
+        {
+          "id": "submerge_gelatine",
+          "device": "bowl",
+          "action": "Place gelatine leaves in a bowl of cold water",
+          "inputs": ["gelatine_leaves", "cold_water"],
+          "output": "soaking_gelatine",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "soak_gelatine",
+          "device": "bowl",
+          "action": "Leave to soften for 5 minutes",
+          "inputs": ["soaking_gelatine"],
+          "output": "bloomed_gelatine",
+          "after": "submerge_gelatine",
+          "end": { "duration_minutes": 5, "condition": "completely soft and floppy" }
+        }
+      ]
+    },
+    {
+      "id": "heat_cream_mixture",
+      "device": "saucepan",
+      "action": "Heat cream mixture and dissolve gelatine",
+      "inputs": ["double_cream", "milk", "caster_sugar", "vanilla_pod", "bloomed_gelatine"],
+      "output": "panna_cotta_mixture",
+      "after": "bloom_gelatine",
+      "end": { "condition": "smooth mixture with gelatine fully dissolved" },
+      "steps": [
+        {
+          "id": "split_vanilla",
+          "device": "saucepan",
+          "action": "Split vanilla pod lengthways and scrape out seeds",
+          "inputs": ["vanilla_pod"],
+          "output": "vanilla_seeds_and_pod",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "warm_cream",
+          "device": "hob",
+          "action": "Gently heat cream, milk, sugar and vanilla until sugar dissolves and mixture just steams",
+          "inputs": ["double_cream", "milk", "caster_sugar", "vanilla_seeds_and_pod"],
+          "output": "warm_cream_mixture",
+          "after": "split_vanilla",
+          "end": { "duration_minutes": 5, "condition": "sugar dissolved, mixture steaming but not boiling" }
+        },
+        {
+          "id": "squeeze_gelatine",
+          "device": "bowl",
+          "action": "Squeeze excess water from bloomed gelatine",
+          "inputs": ["bloomed_gelatine"],
+          "output": "squeezed_gelatine",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "dissolve_gelatine",
+          "device": "saucepan",
+          "action": "Remove pan from heat, stir in squeezed gelatine until fully dissolved",
+          "inputs": ["warm_cream_mixture", "squeezed_gelatine"],
+          "output": "panna_cotta_mixture",
+          "after": ["warm_cream", "squeeze_gelatine"],
+          "end": { "duration_minutes": 2, "condition": "gelatine completely dissolved, no lumps" }
+        }
+      ]
+    },
+    {
+      "id": "pour_and_chill",
+      "device": "bowl",
+      "action": "Pour into moulds and chill until set",
+      "inputs": ["panna_cotta_mixture"],
+      "output": "set_panna_cotta",
+      "after": "heat_cream_mixture",
+      "end": { "condition": "fully set and firm" },
+      "steps": [
+        {
+          "id": "strain_and_pour",
+          "device": "bowl",
+          "action": "Strain mixture through a sieve into moulds or ramekins",
+          "inputs": ["panna_cotta_mixture"],
+          "output": "poured_panna_cotta",
+          "end": { "duration_minutes": 2, "condition": "evenly distributed between 4 moulds" }
+        },
+        {
+          "id": "chill",
+          "device": "bowl",
+          "action": "Refrigerate for at least 4 hours or overnight until firmly set",
+          "inputs": ["poured_panna_cotta"],
+          "output": "set_panna_cotta",
+          "after": "strain_and_pour",
+          "end": { "duration_minutes": 240, "condition": "firm wobble when shaken" }
+        }
+      ]
+    },
+    {
+      "id": "make_coulis",
+      "device": "bowl",
+      "action": "Make strawberry coulis",
+      "inputs": ["strawberries", "icing_sugar", "lemon_juice"],
+      "output": "strawberry_coulis",
+      "end": { "condition": "smooth and pourable" },
+      "steps": [
+        {
+          "id": "hull_strawberries",
+          "device": "bowl",
+          "action": "Hull and halve strawberries",
+          "inputs": ["strawberries"],
+          "output": "prepared_strawberries",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "blend_coulis",
+          "device": "bowl",
+          "action": "Blend strawberries with icing sugar and lemon juice until smooth",
+          "inputs": ["prepared_strawberries", "icing_sugar", "lemon_juice"],
+          "output": "blended_coulis",
+          "after": "hull_strawberries",
+          "end": { "duration_minutes": 2, "condition": "smooth puree" }
+        },
+        {
+          "id": "strain_coulis",
+          "device": "bowl",
+          "action": "Pass through a fine sieve to remove seeds",
+          "inputs": ["blended_coulis"],
+          "output": "strawberry_coulis",
+          "after": "blend_coulis",
+          "end": { "duration_minutes": 2, "condition": "silky smooth, no seeds" }
+        }
+      ]
+    },
+    {
+      "id": "unmould_and_serve",
+      "device": "bowl",
+      "action": "Unmould panna cotta and serve with coulis",
+      "inputs": ["set_panna_cotta", "strawberry_coulis"],
+      "output": "panna_cotta_with_coulis",
+      "after": ["pour_and_chill", "make_coulis"],
+      "end": { "duration_minutes": 2, "condition": "neatly unmoulded with coulis pooled around" }
+    }
+  ]
+}

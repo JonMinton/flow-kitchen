@@ -1,0 +1,220 @@
+{
+  "title": "Bánh Mì",
+  "servings": 2,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "baguette", "name": "Baguette", "quantity": "1 large, halved" },
+    { "id": "pork_loin", "name": "Pork Loin", "quantity": "250g" },
+    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "2 tbsp" },
+    { "id": "fish_sauce", "name": "Fish Sauce", "quantity": "1 tbsp" },
+    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
+    { "id": "sugar", "name": "Sugar", "quantity": "2 tsp" },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "1 tbsp" },
+    { "id": "carrots", "name": "Carrots", "quantity": "1 large" },
+    { "id": "daikon", "name": "Daikon", "quantity": "100g" },
+    { "id": "rice_vinegar", "name": "Rice Vinegar", "quantity": "60ml" },
+    { "id": "cucumber", "name": "Cucumber", "quantity": "½" },
+    { "id": "coriander", "name": "Fresh Coriander", "quantity": "handful" },
+    { "id": "jalapeno", "name": "Jalapeño", "quantity": "1" },
+    { "id": "mayonnaise", "name": "Mayonnaise", "quantity": "3 tbsp" },
+    { "id": "sriracha", "name": "Sriracha", "quantity": "1 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "½ tsp" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_pickles",
+      "device": "bowl",
+      "action": "Make quick-pickled vegetables",
+      "inputs": ["carrots", "daikon", "rice_vinegar", "sugar", "salt"],
+      "output": "pickled_veg",
+      "end": { "condition": "vegetables pickled and slightly softened" },
+      "steps": [
+        {
+          "id": "julienne_veg",
+          "device": "chopping_board",
+          "action": "Julienne carrots and daikon into matchsticks",
+          "inputs": ["carrots", "daikon"],
+          "output": "julienned_veg",
+          "end": { "duration_minutes": 5 },
+          "steps": [
+            {
+              "id": "julienne_carrots",
+              "device": "chopping_board",
+              "action": "Peel and julienne carrots into thin matchsticks",
+              "inputs": ["carrots"],
+              "output": "julienned_carrots",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "julienne_daikon",
+              "device": "chopping_board",
+              "action": "Peel and julienne daikon into thin matchsticks",
+              "inputs": ["daikon"],
+              "output": "julienned_veg",
+              "end": { "duration_minutes": 2 }
+            }
+          ]
+        },
+        {
+          "id": "make_pickle_liquid",
+          "device": "bowl",
+          "action": "Mix rice vinegar, sugar and salt until dissolved",
+          "inputs": ["rice_vinegar", "sugar", "salt"],
+          "output": "pickle_liquid",
+          "end": { "duration_minutes": 1, "condition": "sugar dissolved" }
+        },
+        {
+          "id": "pickle_vegetables",
+          "device": "bowl",
+          "action": "Submerge julienned vegetables in pickle liquid",
+          "inputs": ["julienned_veg", "pickle_liquid"],
+          "output": "pickled_veg",
+          "after": ["julienne_veg", "make_pickle_liquid"],
+          "end": { "duration_minutes": 15, "condition": "vegetables slightly softened and tangy" }
+        }
+      ]
+    },
+    {
+      "id": "cook_pork",
+      "device": "pan",
+      "action": "Marinate and pan-fry pork",
+      "inputs": ["pork_loin", "soy_sauce", "fish_sauce", "garlic", "sugar", "vegetable_oil"],
+      "output": "cooked_pork",
+      "end": { "condition": "pork cooked through with caramelised edges" },
+      "steps": [
+        {
+          "id": "prep_pork",
+          "device": "chopping_board",
+          "action": "Slice pork and prepare marinade",
+          "inputs": ["pork_loin", "soy_sauce", "fish_sauce", "garlic", "sugar"],
+          "output": "marinated_pork",
+          "end": { "condition": "pork sliced and coated in marinade" },
+          "steps": [
+            {
+              "id": "slice_pork",
+              "device": "chopping_board",
+              "action": "Slice pork loin into thin slices against the grain",
+              "inputs": ["pork_loin"],
+              "output": "sliced_pork",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "mince_garlic",
+              "device": "chopping_board",
+              "action": "Finely mince garlic",
+              "inputs": ["garlic"],
+              "output": "minced_garlic",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "marinate_pork",
+              "device": "bowl",
+              "action": "Toss pork with soy sauce, fish sauce, garlic and sugar",
+              "inputs": ["sliced_pork", "soy_sauce", "fish_sauce", "minced_garlic", "sugar"],
+              "output": "marinated_pork",
+              "after": ["slice_pork", "mince_garlic"],
+              "end": { "duration_minutes": 5, "condition": "pork well coated" }
+            }
+          ]
+        },
+        {
+          "id": "fry_pork",
+          "device": "pan",
+          "action": "Pan-fry marinated pork over high heat",
+          "inputs": ["marinated_pork", "vegetable_oil"],
+          "output": "cooked_pork",
+          "after": "prep_pork",
+          "end": { "duration_minutes": 5, "condition": "caramelised and cooked through" }
+        }
+      ]
+    },
+    {
+      "id": "prep_fresh_veg",
+      "device": "chopping_board",
+      "action": "Prepare fresh vegetables and herbs",
+      "inputs": ["cucumber", "jalapeno", "coriander"],
+      "output": "prepped_fresh_veg",
+      "end": { "duration_minutes": 3, "condition": "all vegetables sliced" },
+      "steps": [
+        {
+          "id": "slice_cucumber",
+          "device": "chopping_board",
+          "action": "Slice cucumber into thin lengthwise strips",
+          "inputs": ["cucumber"],
+          "output": "sliced_cucumber",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "slice_jalapeno",
+          "device": "chopping_board",
+          "action": "Thinly slice jalapeño into rings",
+          "inputs": ["jalapeno"],
+          "output": "sliced_jalapeno",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "pick_coriander",
+          "device": "chopping_board",
+          "action": "Pick coriander leaves from stems",
+          "inputs": ["coriander"],
+          "output": "prepped_fresh_veg",
+          "after": ["slice_cucumber", "slice_jalapeno"],
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "make_sriracha_mayo",
+      "device": "bowl",
+      "action": "Mix sriracha mayonnaise",
+      "inputs": ["mayonnaise", "sriracha"],
+      "output": "sriracha_mayo",
+      "end": { "duration_minutes": 1, "condition": "evenly mixed" }
+    },
+    {
+      "id": "assemble_sandwich",
+      "device": "chopping_board",
+      "action": "Assemble bánh mì sandwiches",
+      "inputs": ["baguette", "cooked_pork", "pickled_veg", "prepped_fresh_veg", "sriracha_mayo"],
+      "output": "banh_mi",
+      "after": ["cook_pork", "make_pickles", "prep_fresh_veg", "make_sriracha_mayo"],
+      "end": { "condition": "sandwiches assembled and ready to serve" },
+      "steps": [
+        {
+          "id": "split_baguette",
+          "device": "chopping_board",
+          "action": "Split baguette halves lengthwise, leaving one side attached",
+          "inputs": ["baguette"],
+          "output": "split_baguette",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "spread_mayo",
+          "device": "chopping_board",
+          "action": "Spread sriracha mayo on both sides of baguette",
+          "inputs": ["split_baguette", "sriracha_mayo"],
+          "output": "mayo_baguette",
+          "after": "split_baguette",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "layer_fillings",
+          "device": "chopping_board",
+          "action": "Layer pork, pickles, cucumber, jalapeño and coriander",
+          "inputs": ["mayo_baguette", "cooked_pork", "pickled_veg", "sliced_cucumber", "sliced_jalapeno", "prepped_fresh_veg"],
+          "output": "banh_mi",
+          "after": "spread_mayo",
+          "end": { "duration_minutes": 2, "condition": "generously filled" }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "title": "Garlic Bread",
+  "servings": 4,
+
+  "devices": [
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "oven", "name": "Oven" },
+    { "id": "baking_tray", "name": "Baking Tray" }
+  ],
+
+  "ingredients": [
+    { "id": "baguette", "name": "Baguette", "quantity": "1 large" },
+    { "id": "butter", "name": "Butter", "quantity": "100g" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "parsley", "name": "Fresh Parsley", "quantity": "2 tbsp, chopped" },
+    { "id": "salt", "name": "Salt", "quantity": "pinch" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_garlic_butter",
+      "device": "bowl",
+      "action": "Prepare garlic butter",
+      "inputs": ["butter", "garlic", "parsley", "salt"],
+      "output": "garlic_butter",
+      "end": { "condition": "smooth and well combined" },
+      "steps": [
+        {
+          "id": "soften_butter",
+          "device": "bowl",
+          "action": "Leave butter at room temperature until soft",
+          "inputs": ["butter"],
+          "output": "soft_butter",
+          "end": { "duration_minutes": 2, "condition": "easily spreadable" }
+        },
+        {
+          "id": "mince_garlic",
+          "device": "chopping_board",
+          "action": "Peel and finely mince garlic cloves",
+          "inputs": ["garlic"],
+          "output": "minced_garlic",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "mix_garlic_butter",
+          "device": "bowl",
+          "action": "Combine soft butter with minced garlic, parsley and salt",
+          "inputs": ["soft_butter", "minced_garlic", "parsley", "salt"],
+          "output": "garlic_butter",
+          "after": ["soften_butter", "mince_garlic"],
+          "end": { "duration_minutes": 1, "condition": "evenly mixed" }
+        }
+      ]
+    },
+    {
+      "id": "prep_bread",
+      "device": "chopping_board",
+      "action": "Prepare the baguette for spreading",
+      "inputs": ["baguette"],
+      "output": "sliced_baguette",
+      "end": { "duration_minutes": 1 },
+      "steps": [
+        {
+          "id": "slice_baguette",
+          "device": "chopping_board",
+          "action": "Slice baguette in half lengthways",
+          "inputs": ["baguette"],
+          "output": "sliced_baguette",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "spread_and_bake",
+      "device": "oven",
+      "action": "Spread garlic butter on bread and bake until golden",
+      "inputs": ["sliced_baguette", "garlic_butter"],
+      "output": "garlic_bread",
+      "after": ["make_garlic_butter", "prep_bread"],
+      "end": { "condition": "golden and crispy" },
+      "steps": [
+        {
+          "id": "preheat_oven",
+          "device": "oven",
+          "action": "Preheat oven to 200C / 400F",
+          "inputs": [],
+          "output": "hot_oven",
+          "end": { "duration_minutes": 2, "condition": "oven at temperature" }
+        },
+        {
+          "id": "spread_butter",
+          "device": "baking_tray",
+          "action": "Spread garlic butter generously over cut sides of baguette",
+          "inputs": ["sliced_baguette", "garlic_butter"],
+          "output": "buttered_bread",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "bake_bread",
+          "device": "oven",
+          "action": "Place on baking tray and bake until golden and crispy",
+          "inputs": ["buttered_bread", "hot_oven"],
+          "output": "garlic_bread",
+          "after": ["preheat_oven", "spread_butter"],
+          "end": { "duration_minutes": 8, "condition": "golden brown and edges crispy" }
+        }
+      ]
+    }
+  ]
+}

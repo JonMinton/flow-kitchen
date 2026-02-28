@@ -1,0 +1,250 @@
+{
+  "title": "French Onion Soup",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "oven", "name": "Oven", "settings": "200°C grill" },
+    { "id": "pan", "name": "Large Heavy Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "onions", "name": "Onions", "quantity": "6 large" },
+    { "id": "butter", "name": "Butter", "quantity": "50g" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "1 tbsp" },
+    { "id": "sugar", "name": "Sugar", "quantity": "1 tsp" },
+    { "id": "white_wine", "name": "White Wine", "quantity": "150ml" },
+    { "id": "vegetable_stock", "name": "Vegetable Stock", "quantity": "1 litre" },
+    { "id": "thyme", "name": "Fresh Thyme", "quantity": "3 sprigs" },
+    { "id": "bay_leaf", "name": "Bay Leaf", "quantity": "1" },
+    { "id": "baguette", "name": "Baguette", "quantity": "1, day-old" },
+    { "id": "gruyere", "name": "Gruyère Cheese", "quantity": "150g, grated" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "caramelize_onions",
+      "device": "hob",
+      "action": "Slowly caramelize onions to deep golden brown",
+      "inputs": ["onions", "butter", "olive_oil", "sugar", "salt"],
+      "output": "caramelized_onions",
+      "end": { "duration_minutes": 35, "condition": "deep golden brown and jammy" },
+      "steps": [
+        {
+          "id": "prep_onions",
+          "device": "chopping_board",
+          "action": "Prepare onions for caramelization",
+          "inputs": ["onions"],
+          "output": "sliced_onions",
+          "end": { "condition": "all onions thinly sliced" },
+          "steps": [
+            {
+              "id": "peel_onions",
+              "device": "chopping_board",
+              "action": "Peel and halve all onions",
+              "inputs": ["onions"],
+              "output": "peeled_onions",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "slice_onions_thinly",
+              "device": "chopping_board",
+              "action": "Slice onions into thin half-moons, as even as possible",
+              "inputs": ["peeled_onions"],
+              "output": "sliced_onions",
+              "after": "peel_onions",
+              "end": { "duration_minutes": 5 }
+            }
+          ]
+        },
+        {
+          "id": "start_caramelization",
+          "device": "hob",
+          "action": "Begin cooking onions low and slow",
+          "inputs": ["sliced_onions", "butter", "olive_oil", "salt"],
+          "output": "cooking_onions",
+          "after": "prep_onions",
+          "end": { "condition": "onions softened and releasing liquid" },
+          "steps": [
+            {
+              "id": "melt_butter_and_oil",
+              "device": "pan",
+              "action": "Melt butter with olive oil over medium heat",
+              "inputs": ["butter", "olive_oil"],
+              "output": "melted_fat",
+              "end": { "duration_minutes": 1, "condition": "butter foaming" }
+            },
+            {
+              "id": "add_onions_to_pan",
+              "device": "pan",
+              "action": "Add all sliced onions and a pinch of salt, stir to coat",
+              "inputs": ["sliced_onions", "melted_fat", "salt"],
+              "output": "onions_in_pan",
+              "after": "melt_butter_and_oil",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "sweat_onions",
+              "device": "hob",
+              "action": "Reduce heat to low, cook covered, stirring every 5 minutes",
+              "inputs": ["onions_in_pan"],
+              "output": "cooking_onions",
+              "after": "add_onions_to_pan",
+              "end": { "duration_minutes": 15, "condition": "onions soft, translucent, and collapsed" }
+            }
+          ]
+        },
+        {
+          "id": "deep_caramelize",
+          "device": "hob",
+          "action": "Continue caramelizing to deep brown with sugar",
+          "inputs": ["cooking_onions", "sugar"],
+          "output": "caramelized_onions",
+          "after": "start_caramelization",
+          "end": { "condition": "deep golden brown and jammy" },
+          "steps": [
+            {
+              "id": "add_sugar",
+              "device": "pan",
+              "action": "Sprinkle sugar over onions to encourage browning",
+              "inputs": ["cooking_onions", "sugar"],
+              "output": "sugared_onions",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "uncovered_cook",
+              "device": "hob",
+              "action": "Remove lid and continue cooking, scraping fond from pan bottom regularly",
+              "inputs": ["sugared_onions"],
+              "output": "browning_onions",
+              "after": "add_sugar",
+              "end": { "duration_minutes": 10, "condition": "onions turning golden brown" }
+            },
+            {
+              "id": "final_browning",
+              "device": "hob",
+              "action": "Continue stirring and scraping until deep mahogany brown",
+              "inputs": ["browning_onions"],
+              "output": "caramelized_onions",
+              "after": "uncovered_cook",
+              "end": { "duration_minutes": 5, "condition": "deep brown, sweet, and jammy" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "build_soup",
+      "device": "hob",
+      "action": "Deglaze, add stock, and simmer into soup",
+      "inputs": ["caramelized_onions", "white_wine", "vegetable_stock", "thyme", "bay_leaf", "salt", "pepper"],
+      "output": "finished_soup",
+      "after": "caramelize_onions",
+      "end": { "condition": "rich onion soup ready" },
+      "steps": [
+        {
+          "id": "deglaze_with_wine",
+          "device": "pan",
+          "action": "Pour in white wine and scrape up all caramelized fond",
+          "inputs": ["caramelized_onions", "white_wine"],
+          "output": "deglazed_onions",
+          "end": { "duration_minutes": 3, "condition": "wine reduced by half, fond dissolved" }
+        },
+        {
+          "id": "add_stock_and_herbs",
+          "device": "pan",
+          "action": "Add vegetable stock, thyme, and bay leaf",
+          "inputs": ["deglazed_onions", "vegetable_stock", "thyme", "bay_leaf"],
+          "output": "onion_soup_base",
+          "after": "deglaze_with_wine",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "simmer_soup",
+          "device": "hob",
+          "action": "Bring to boil then simmer gently",
+          "inputs": ["onion_soup_base"],
+          "output": "simmered_soup",
+          "after": "add_stock_and_herbs",
+          "end": { "duration_minutes": 15, "condition": "flavours melded and developed" }
+        },
+        {
+          "id": "season_soup",
+          "device": "pan",
+          "action": "Remove herb sprigs, season with salt and pepper",
+          "inputs": ["simmered_soup", "salt", "pepper"],
+          "output": "finished_soup",
+          "after": "simmer_soup",
+          "end": { "duration_minutes": 1, "condition": "well seasoned" }
+        }
+      ]
+    },
+    {
+      "id": "make_croutons",
+      "device": "oven",
+      "action": "Prepare cheese croutons",
+      "inputs": ["baguette", "gruyere"],
+      "output": "cheese_croutons",
+      "end": { "condition": "cheese melted and bubbling" },
+      "steps": [
+        {
+          "id": "slice_baguette",
+          "device": "chopping_board",
+          "action": "Cut baguette into thick rounds",
+          "inputs": ["baguette"],
+          "output": "baguette_slices",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "toast_baguette",
+          "device": "oven",
+          "action": "Toast baguette slices under grill until golden on both sides",
+          "inputs": ["baguette_slices"],
+          "output": "toasted_baguette",
+          "after": "slice_baguette",
+          "end": { "duration_minutes": 3, "condition": "golden and crisp" }
+        },
+        {
+          "id": "add_cheese",
+          "device": "oven",
+          "action": "Top with generous pile of gruyère and grill until melted",
+          "inputs": ["toasted_baguette", "gruyere"],
+          "output": "cheese_croutons",
+          "after": "toast_baguette",
+          "end": { "duration_minutes": 2, "condition": "cheese melted, bubbling and golden" }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "device": "chopping_board",
+      "action": "Ladle soup into bowls and top with cheese croutons",
+      "inputs": ["finished_soup", "cheese_croutons"],
+      "output": "french_onion_soup",
+      "after": ["build_soup", "make_croutons"],
+      "end": { "duration_minutes": 2 },
+      "steps": [
+        {
+          "id": "ladle_soup",
+          "device": "pan",
+          "action": "Ladle hot soup into oven-proof bowls",
+          "inputs": ["finished_soup"],
+          "output": "bowls_of_soup",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "top_with_croutons",
+          "device": "chopping_board",
+          "action": "Float cheese croutons on top of each bowl and serve immediately",
+          "inputs": ["bowls_of_soup", "cheese_croutons"],
+          "output": "french_onion_soup",
+          "after": "ladle_soup",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    }
+  ]
+}

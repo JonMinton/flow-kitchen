@@ -1,0 +1,192 @@
+{
+  "title": "Cauliflower Cheese",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "oven", "name": "Oven", "settings": "200\u00b0C" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "baking_dish", "name": "Baking Dish" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "cauliflower", "name": "Cauliflower", "quantity": "1 large head" },
+    { "id": "butter", "name": "Butter", "quantity": "40g" },
+    { "id": "plain_flour", "name": "Plain Flour", "quantity": "40g" },
+    { "id": "milk", "name": "Milk", "quantity": "500ml" },
+    { "id": "cheddar_cheese", "name": "Cheddar Cheese", "quantity": "200g" },
+    { "id": "mustard_powder", "name": "Mustard Powder", "quantity": "1 tsp" },
+    { "id": "nutmeg", "name": "Nutmeg", "quantity": "pinch" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Pepper", "quantity": "to taste" },
+    { "id": "breadcrumbs", "name": "Breadcrumbs", "quantity": "30g" },
+    { "id": "water", "name": "Water", "quantity": "for blanching" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep_cauliflower",
+      "device": "hob",
+      "action": "Prepare and blanch cauliflower",
+      "inputs": ["cauliflower", "water", "salt"],
+      "output": "blanched_cauliflower",
+      "end": { "condition": "cauliflower just tender" },
+      "steps": [
+        {
+          "id": "cut_florets",
+          "device": "chopping_board",
+          "action": "Trim cauliflower and cut into even florets",
+          "inputs": ["cauliflower"],
+          "output": "cauliflower_florets",
+          "end": { "duration_minutes": 4 }
+        },
+        {
+          "id": "blanch_cauliflower",
+          "device": "hob",
+          "action": "Blanch florets in boiling salted water",
+          "inputs": ["cauliflower_florets", "water", "salt"],
+          "output": "boiled_cauliflower",
+          "after": "cut_florets",
+          "end": { "duration_minutes": 5, "condition": "just tender, still has bite" }
+        },
+        {
+          "id": "drain_cauliflower",
+          "device": "saucepan",
+          "action": "Drain cauliflower well",
+          "inputs": ["boiled_cauliflower"],
+          "output": "blanched_cauliflower",
+          "after": "blanch_cauliflower",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "make_cheese_sauce",
+      "device": "hob",
+      "action": "Make cheese sauce",
+      "inputs": ["butter", "plain_flour", "milk", "cheddar_cheese", "mustard_powder", "nutmeg", "salt", "pepper"],
+      "output": "cheese_sauce",
+      "end": { "condition": "smooth, thick cheese sauce" },
+      "steps": [
+        {
+          "id": "grate_cheese",
+          "device": "chopping_board",
+          "action": "Grate the cheddar cheese",
+          "inputs": ["cheddar_cheese"],
+          "output": "grated_cheese",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "make_roux",
+          "device": "hob",
+          "action": "Make a roux with butter and flour",
+          "inputs": ["butter", "plain_flour"],
+          "output": "roux",
+          "end": { "condition": "roux smooth and bubbling" },
+          "steps": [
+            {
+              "id": "melt_butter",
+              "device": "hob",
+              "action": "Melt butter in a saucepan over medium heat",
+              "inputs": ["butter"],
+              "output": "melted_butter",
+              "end": { "duration_minutes": 1, "condition": "butter foaming" }
+            },
+            {
+              "id": "add_flour",
+              "device": "hob",
+              "action": "Add flour and stir to form a paste",
+              "inputs": ["melted_butter", "plain_flour"],
+              "output": "raw_roux",
+              "after": "melt_butter",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "cook_roux",
+              "device": "hob",
+              "action": "Cook roux for 1 minute, stirring constantly",
+              "inputs": ["raw_roux"],
+              "output": "roux",
+              "after": "add_flour",
+              "end": { "duration_minutes": 1, "condition": "sandy texture, no raw flour smell" }
+            }
+          ]
+        },
+        {
+          "id": "add_milk",
+          "device": "hob",
+          "action": "Gradually add milk to roux, whisking to prevent lumps",
+          "inputs": ["roux", "milk"],
+          "output": "white_sauce",
+          "after": "make_roux",
+          "end": { "duration_minutes": 5, "condition": "smooth, thick enough to coat a spoon" }
+        },
+        {
+          "id": "melt_cheese_into_sauce",
+          "device": "hob",
+          "action": "Remove from heat and stir in most of the grated cheese",
+          "inputs": ["white_sauce", "grated_cheese"],
+          "output": "cheese_sauce_unseasoned",
+          "after": ["add_milk", "grate_cheese"],
+          "end": { "duration_minutes": 2, "condition": "cheese fully melted and smooth" }
+        },
+        {
+          "id": "season_sauce",
+          "device": "hob",
+          "action": "Season with mustard powder, nutmeg, salt and pepper",
+          "inputs": ["cheese_sauce_unseasoned", "mustard_powder", "nutmeg", "salt", "pepper"],
+          "output": "cheese_sauce",
+          "after": "melt_cheese_into_sauce",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "device": "baking_dish",
+      "action": "Assemble the cauliflower cheese",
+      "inputs": ["blanched_cauliflower", "cheese_sauce", "breadcrumbs", "grated_cheese"],
+      "output": "assembled_dish",
+      "after": ["prep_cauliflower", "make_cheese_sauce"],
+      "end": { "condition": "ready for the oven" },
+      "steps": [
+        {
+          "id": "place_cauliflower",
+          "device": "baking_dish",
+          "action": "Arrange blanched cauliflower florets in the baking dish",
+          "inputs": ["blanched_cauliflower"],
+          "output": "cauliflower_in_dish",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "pour_sauce",
+          "device": "baking_dish",
+          "action": "Pour cheese sauce evenly over the cauliflower",
+          "inputs": ["cauliflower_in_dish", "cheese_sauce"],
+          "output": "sauced_cauliflower",
+          "after": "place_cauliflower",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "add_topping",
+          "device": "baking_dish",
+          "action": "Scatter remaining cheese and breadcrumbs over the top",
+          "inputs": ["sauced_cauliflower", "grated_cheese", "breadcrumbs"],
+          "output": "assembled_dish",
+          "after": "pour_sauce",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "bake",
+      "device": "oven",
+      "action": "Bake until golden and bubbling",
+      "inputs": ["assembled_dish"],
+      "output": "cauliflower_cheese",
+      "after": "assemble",
+      "end": { "duration_minutes": 20, "condition": "top golden brown and sauce bubbling at edges" }
+    }
+  ]
+}

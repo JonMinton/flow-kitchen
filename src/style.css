@@ -273,6 +273,45 @@ h1 {
   opacity: 1;
 }
 
+/* ── Feedback dropdown ──────────────────────────────────────────── */
+
+.feedback-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.feedback-dropdown {
+  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(100% + 6px);
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  min-width: 150px;
+  overflow: hidden;
+}
+
+.feedback-dropdown.open {
+  display: block;
+}
+
+.feedback-dropdown a {
+  display: block;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.feedback-dropdown a:hover {
+  background: #f0eeeb;
+}
+
 /* ── View toggle ────────────────────────────────────────────────── */
 
 #view-toggle {
@@ -368,7 +407,8 @@ h1 {
   #back-link,
   #view-toggle,
   #filter-bar,
-  #tooltip {
+  #tooltip,
+  .feedback-wrapper {
     display: none !important;
   }
 

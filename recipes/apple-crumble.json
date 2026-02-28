@@ -1,0 +1,107 @@
+{
+  "title": "Apple Crumble",
+  "servings": 6,
+
+  "devices": [
+    { "id": "oven", "name": "Oven", "settings": "190°C / 375°F / Gas 5" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "small_bowl", "name": "Small Bowl" },
+    { "id": "baking_dish", "name": "Baking Dish" }
+  ],
+
+  "ingredients": [
+    { "id": "apples", "name": "Bramley Apples", "quantity": "800g (about 4 large)" },
+    { "id": "caster_sugar", "name": "Caster Sugar", "quantity": "75g" },
+    { "id": "lemon", "name": "Lemon", "quantity": "1" },
+    { "id": "cinnamon", "name": "Ground Cinnamon", "quantity": "1 tsp" },
+    { "id": "plain_flour", "name": "Plain Flour", "quantity": "175g" },
+    { "id": "butter", "name": "Cold Butter", "quantity": "100g, cubed" },
+    { "id": "demerara_sugar", "name": "Demerara Sugar", "quantity": "50g" },
+    { "id": "oats", "name": "Rolled Oats", "quantity": "50g" },
+    { "id": "salt", "name": "Salt", "quantity": "pinch" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_filling",
+      "device": "baking_dish",
+      "action": "Prepare apple filling",
+      "inputs": ["apples", "caster_sugar", "lemon", "cinnamon"],
+      "output": "apple_filling",
+      "end": { "condition": "filling ready in dish" },
+      "steps": [
+        {
+          "id": "prep_apples",
+          "device": "chopping_board",
+          "action": "Peel, core and slice apples",
+          "inputs": ["apples"],
+          "output": "sliced_apples",
+          "end": { "duration_minutes": 8, "condition": "evenly sliced, about 5mm thick" }
+        },
+        {
+          "id": "juice_lemon",
+          "device": "small_bowl",
+          "action": "Squeeze lemon juice",
+          "inputs": ["lemon"],
+          "output": "lemon_juice",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "toss_filling",
+          "device": "baking_dish",
+          "action": "Toss apple slices with caster sugar, lemon juice and cinnamon in the baking dish",
+          "inputs": ["sliced_apples", "caster_sugar", "lemon_juice", "cinnamon"],
+          "output": "apple_filling",
+          "after": ["prep_apples", "juice_lemon"],
+          "end": { "duration_minutes": 2, "condition": "apples evenly coated" }
+        }
+      ]
+    },
+    {
+      "id": "make_crumble",
+      "device": "bowl",
+      "action": "Make crumble topping",
+      "inputs": ["plain_flour", "butter", "demerara_sugar", "oats", "salt"],
+      "output": "crumble_topping",
+      "end": { "condition": "crumble mix clumpy and sandy" },
+      "steps": [
+        {
+          "id": "rub_butter",
+          "device": "bowl",
+          "action": "Rub cold butter into flour and salt with fingertips until mixture resembles breadcrumbs",
+          "inputs": ["plain_flour", "butter", "salt"],
+          "output": "breadcrumb_mix",
+          "end": { "duration_minutes": 5, "condition": "coarse breadcrumb texture with some larger lumps" }
+        },
+        {
+          "id": "add_sugar_oats",
+          "device": "bowl",
+          "action": "Stir in demerara sugar and oats",
+          "inputs": ["breadcrumb_mix", "demerara_sugar", "oats"],
+          "output": "crumble_topping",
+          "after": "rub_butter",
+          "end": { "duration_minutes": 1, "condition": "evenly mixed" }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "device": "baking_dish",
+      "action": "Top fruit with crumble mixture",
+      "inputs": ["apple_filling", "crumble_topping"],
+      "output": "assembled_crumble",
+      "after": ["make_filling", "make_crumble"],
+      "end": { "duration_minutes": 1, "condition": "crumble evenly spread, not packed down" }
+    },
+    {
+      "id": "bake",
+      "device": "oven",
+      "action": "Bake until golden and bubbling",
+      "inputs": ["assembled_crumble"],
+      "output": "apple_crumble",
+      "after": "assemble",
+      "end": { "duration_minutes": 35, "condition": "crumble golden brown and fruit juices bubbling at edges" }
+    }
+  ]
+}

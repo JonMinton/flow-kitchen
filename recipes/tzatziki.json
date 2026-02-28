@@ -1,0 +1,149 @@
+{
+  "title": "Tzatziki",
+  "servings": 4,
+
+  "devices": [
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "grater", "name": "Grater" },
+    { "id": "tea_towel", "name": "Tea Towel" },
+    { "id": "bowl", "name": "Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "greek_yoghurt", "name": "Greek Yoghurt", "quantity": "400g" },
+    { "id": "cucumber", "name": "Cucumber", "quantity": "1 large" },
+    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
+    { "id": "lemon", "name": "Lemon", "quantity": "1" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
+    { "id": "dill", "name": "Fresh Dill", "quantity": "small bunch" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep_cucumber",
+      "device": "grater",
+      "action": "Grate and squeeze cucumber dry",
+      "inputs": ["cucumber", "salt"],
+      "output": "dry_cucumber",
+      "end": { "condition": "cucumber grated and excess moisture removed" },
+      "steps": [
+        {
+          "id": "halve_cucumber",
+          "device": "chopping_board",
+          "action": "Halve cucumber lengthwise and scoop out seeds",
+          "inputs": ["cucumber"],
+          "output": "deseeded_cucumber",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "grate_cucumber",
+          "device": "grater",
+          "action": "Coarsely grate the cucumber",
+          "inputs": ["deseeded_cucumber"],
+          "output": "grated_cucumber",
+          "after": "halve_cucumber",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "salt_cucumber",
+          "device": "bowl",
+          "action": "Toss grated cucumber with a pinch of salt",
+          "inputs": ["grated_cucumber", "salt"],
+          "output": "salted_cucumber",
+          "after": "grate_cucumber",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "squeeze_cucumber",
+          "device": "tea_towel",
+          "action": "Wrap in tea towel and squeeze out excess liquid",
+          "inputs": ["salted_cucumber"],
+          "output": "dry_cucumber",
+          "after": "salt_cucumber",
+          "end": { "duration_minutes": 2, "condition": "no more liquid comes out" }
+        }
+      ]
+    },
+    {
+      "id": "prep_aromatics",
+      "device": "chopping_board",
+      "action": "Prepare garlic, lemon and dill",
+      "inputs": ["garlic", "lemon", "dill"],
+      "output": "prepped_aromatics",
+      "end": { "condition": "aromatics ready" },
+      "steps": [
+        {
+          "id": "mince_garlic",
+          "device": "chopping_board",
+          "action": "Finely mince or grate garlic cloves",
+          "inputs": ["garlic"],
+          "output": "minced_garlic",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "juice_lemon",
+          "device": "chopping_board",
+          "action": "Juice the lemon",
+          "inputs": ["lemon"],
+          "output": "lemon_juice",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "chop_dill",
+          "device": "chopping_board",
+          "action": "Finely chop fresh dill, reserving a sprig for garnish",
+          "inputs": ["dill"],
+          "output": "chopped_dill",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "combine_and_season",
+      "device": "bowl",
+      "action": "Combine all ingredients and season",
+      "inputs": ["greek_yoghurt", "dry_cucumber", "minced_garlic", "lemon_juice", "chopped_dill", "olive_oil", "salt"],
+      "output": "tzatziki",
+      "after": ["prep_cucumber", "prep_aromatics"],
+      "end": { "condition": "well combined and seasoned" },
+      "steps": [
+        {
+          "id": "add_yoghurt",
+          "device": "bowl",
+          "action": "Place yoghurt in mixing bowl",
+          "inputs": ["greek_yoghurt"],
+          "output": "yoghurt_in_bowl",
+          "end": { "duration_minutes": 0.5 }
+        },
+        {
+          "id": "fold_in_cucumber",
+          "device": "bowl",
+          "action": "Fold squeezed cucumber into yoghurt",
+          "inputs": ["yoghurt_in_bowl", "dry_cucumber"],
+          "output": "yoghurt_cucumber_mix",
+          "after": "add_yoghurt",
+          "end": { "duration_minutes": 0.5 }
+        },
+        {
+          "id": "add_aromatics",
+          "device": "bowl",
+          "action": "Stir in garlic, lemon juice, dill and olive oil",
+          "inputs": ["yoghurt_cucumber_mix", "minced_garlic", "lemon_juice", "chopped_dill", "olive_oil"],
+          "output": "mixed_tzatziki",
+          "after": "fold_in_cucumber",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "season_and_taste",
+          "device": "bowl",
+          "action": "Season with salt and adjust lemon to taste",
+          "inputs": ["mixed_tzatziki", "salt"],
+          "output": "tzatziki",
+          "after": "add_aromatics",
+          "end": { "duration_minutes": 0.5, "condition": "balanced and creamy" }
+        }
+      ]
+    }
+  ]
+}

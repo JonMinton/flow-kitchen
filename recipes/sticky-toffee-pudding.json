@@ -1,0 +1,203 @@
+{
+  "title": "Sticky Toffee Pudding",
+  "servings": 6,
+
+  "devices": [
+    { "id": "oven", "name": "Oven", "settings": "180°C / 350°F / Gas 4" },
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "baking_dish", "name": "Baking Dish" }
+  ],
+
+  "ingredients": [
+    { "id": "dates", "name": "Medjool Dates", "quantity": "200g, pitted" },
+    { "id": "bicarbonate_of_soda", "name": "Bicarbonate of Soda", "quantity": "1 tsp" },
+    { "id": "boiling_water", "name": "Boiling Water", "quantity": "175ml" },
+    { "id": "butter", "name": "Butter", "quantity": "85g (sponge) + 50g (sauce)" },
+    { "id": "dark_brown_sugar", "name": "Dark Brown Sugar", "quantity": "150g (sponge) + 100g (sauce)" },
+    { "id": "eggs", "name": "Eggs", "quantity": "2" },
+    { "id": "self_raising_flour", "name": "Self-raising Flour", "quantity": "175g" },
+    { "id": "vanilla_extract", "name": "Vanilla Extract", "quantity": "1 tsp" },
+    { "id": "double_cream", "name": "Double Cream", "quantity": "150ml" },
+    { "id": "golden_syrup", "name": "Golden Syrup", "quantity": "2 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "pinch" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep_dates",
+      "device": "bowl",
+      "action": "Prepare date mixture",
+      "inputs": ["dates", "boiling_water", "bicarbonate_of_soda"],
+      "output": "date_paste",
+      "end": { "condition": "dates softened and roughly mashed" },
+      "steps": [
+        {
+          "id": "chop_dates",
+          "device": "bowl",
+          "action": "Roughly chop the pitted dates",
+          "inputs": ["dates"],
+          "output": "chopped_dates",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "soak_dates",
+          "device": "bowl",
+          "action": "Place chopped dates in a bowl, add bicarbonate of soda, pour over boiling water and leave to soak",
+          "inputs": ["chopped_dates", "bicarbonate_of_soda", "boiling_water"],
+          "output": "soaking_dates",
+          "after": "chop_dates",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "soften_dates",
+          "device": "bowl",
+          "action": "Leave dates to soften and cool, then mash roughly with a fork",
+          "inputs": ["soaking_dates"],
+          "output": "date_paste",
+          "after": "soak_dates",
+          "end": { "duration_minutes": 15, "condition": "dates soft and broken down into a thick paste" }
+        }
+      ]
+    },
+    {
+      "id": "make_sponge_batter",
+      "device": "bowl",
+      "action": "Make sponge batter",
+      "inputs": ["butter", "dark_brown_sugar", "eggs", "self_raising_flour", "vanilla_extract", "salt", "date_paste"],
+      "output": "sponge_batter",
+      "after": "prep_dates",
+      "end": { "condition": "smooth batter with date paste folded through" },
+      "steps": [
+        {
+          "id": "cream_butter_sugar",
+          "device": "bowl",
+          "action": "Cream butter and brown sugar together",
+          "inputs": ["butter", "dark_brown_sugar"],
+          "output": "creamed_mixture",
+          "end": { "condition": "light and fluffy" },
+          "steps": [
+            {
+              "id": "soften_butter",
+              "device": "bowl",
+              "action": "Beat butter until soft",
+              "inputs": ["butter"],
+              "output": "softened_butter",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "add_sugar_and_cream",
+              "device": "bowl",
+              "action": "Add dark brown sugar and beat until light and fluffy",
+              "inputs": ["softened_butter", "dark_brown_sugar"],
+              "output": "creamed_mixture",
+              "after": "soften_butter",
+              "end": { "duration_minutes": 3, "condition": "pale, light and fluffy" }
+            }
+          ]
+        },
+        {
+          "id": "add_eggs",
+          "device": "bowl",
+          "action": "Beat in eggs one at a time, adding a spoonful of flour with each to prevent curdling",
+          "inputs": ["creamed_mixture", "eggs", "vanilla_extract"],
+          "output": "egg_mixture",
+          "after": "cream_butter_sugar",
+          "end": { "duration_minutes": 2, "condition": "smooth and well combined" }
+        },
+        {
+          "id": "fold_flour",
+          "device": "bowl",
+          "action": "Sift in remaining flour and salt, fold gently",
+          "inputs": ["egg_mixture", "self_raising_flour", "salt"],
+          "output": "flour_mixture",
+          "after": "add_eggs",
+          "end": { "condition": "just combined, no dry streaks" }
+        },
+        {
+          "id": "add_date_mixture",
+          "device": "bowl",
+          "action": "Fold in the date paste until evenly distributed",
+          "inputs": ["flour_mixture", "date_paste"],
+          "output": "sponge_batter",
+          "after": "fold_flour",
+          "end": { "duration_minutes": 1, "condition": "date paste evenly distributed through batter" }
+        }
+      ]
+    },
+    {
+      "id": "bake_pudding",
+      "device": "oven",
+      "action": "Pour into dish and bake",
+      "inputs": ["sponge_batter"],
+      "output": "baked_pudding",
+      "after": "make_sponge_batter",
+      "end": { "condition": "risen, firm to touch" },
+      "steps": [
+        {
+          "id": "pour_into_dish",
+          "device": "baking_dish",
+          "action": "Pour batter into a greased baking dish and level the surface",
+          "inputs": ["sponge_batter"],
+          "output": "raw_pudding",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "bake",
+          "device": "oven",
+          "action": "Bake in preheated oven until risen and firm",
+          "inputs": ["raw_pudding"],
+          "output": "baked_pudding",
+          "after": "pour_into_dish",
+          "end": { "duration_minutes": 35, "condition": "well risen, firm to touch, skewer comes out clean" }
+        }
+      ]
+    },
+    {
+      "id": "make_toffee_sauce",
+      "device": "saucepan",
+      "action": "Make toffee sauce",
+      "inputs": ["butter", "dark_brown_sugar", "double_cream", "golden_syrup"],
+      "output": "toffee_sauce",
+      "end": { "condition": "glossy, thick and pourable" },
+      "steps": [
+        {
+          "id": "melt_sauce_butter",
+          "device": "saucepan",
+          "action": "Melt butter in a saucepan over medium heat",
+          "inputs": ["butter"],
+          "output": "melted_sauce_butter",
+          "end": { "duration_minutes": 2, "condition": "fully melted" }
+        },
+        {
+          "id": "add_sauce_sugar_syrup",
+          "device": "saucepan",
+          "action": "Add brown sugar and golden syrup, stir until sugar dissolves",
+          "inputs": ["melted_sauce_butter", "dark_brown_sugar", "golden_syrup"],
+          "output": "toffee_base",
+          "after": "melt_sauce_butter",
+          "end": { "duration_minutes": 3, "condition": "sugar fully dissolved, bubbling" }
+        },
+        {
+          "id": "add_cream",
+          "device": "saucepan",
+          "action": "Stir in double cream and simmer until thickened",
+          "inputs": ["toffee_base", "double_cream"],
+          "output": "toffee_sauce",
+          "after": "add_sauce_sugar_syrup",
+          "end": { "duration_minutes": 3, "condition": "glossy, thick enough to coat back of spoon" }
+        }
+      ]
+    },
+    {
+      "id": "serve",
+      "device": "baking_dish",
+      "action": "Serve warm pudding with hot toffee sauce poured over",
+      "inputs": ["baked_pudding", "toffee_sauce"],
+      "output": "sticky_toffee_pudding",
+      "after": ["bake_pudding", "make_toffee_sauce"],
+      "end": { "duration_minutes": 2, "condition": "generous pool of toffee sauce over each portion" }
+    }
+  ]
+}

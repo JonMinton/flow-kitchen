@@ -18,6 +18,42 @@ let recipeIndex = [];
 let currentView = 'diagram';
 let filters = { diet: 'all', category: 'all', time: 'all', prep: 'all', cuisines: new Set(), ingredientQuery: '' };
 
+// ── Feedback links ───────────────────────────────────────────────
+const GITHUB_REPO_URL = 'https://github.com/JonMinton/recipes-as-music';
+const GOOGLE_FORM_URL = 'https://forms.gle/s3G3RaV6uNNbWsHY9';
+
+let outsideClickWired = false;
+
+function wireFeedbackDropdown(btnSel, dropdownSel, ghLinkSel, formLinkSel, ghUrl) {
+  const btn = document.querySelector(btnSel);
+  const dropdown = document.querySelector(dropdownSel);
+  const ghLink = document.querySelector(ghLinkSel);
+  const formLink = document.querySelector(formLinkSel);
+
+  ghLink.href = ghUrl;
+  formLink.href = GOOGLE_FORM_URL;
+
+  btn.onclick = (e) => {
+    e.stopPropagation();
+    // Close any other open dropdowns first
+    document.querySelectorAll('.feedback-dropdown.open').forEach(d => {
+      if (d !== dropdown) d.classList.remove('open');
+    });
+    dropdown.classList.toggle('open');
+  };
+
+  dropdown.onclick = (e) => e.stopPropagation();
+
+  if (!outsideClickWired) {
+    outsideClickWired = true;
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.feedback-dropdown.open').forEach(d => {
+        d.classList.remove('open');
+      });
+    });
+  }
+}
+
 // ── Routing ──────────────────────────────────────────────────────
 function route() {
   const hash = window.location.hash.replace('#', '');
@@ -34,6 +70,9 @@ function showLandingView() {
   buildCuisineFilters();
   wireFilters();
   renderCards();
+
+  const ghUrl = `${GITHUB_REPO_URL}/issues/new?title=${encodeURIComponent('Feature request: ')}&labels=enhancement`;
+  wireFeedbackDropdown('#landing-feedback-btn', '#landing-feedback-dropdown', '#landing-github-link', '#landing-form-link', ghUrl);
 }
 
 function showDiagramView(id) {
@@ -200,6 +239,9 @@ async function loadRecipe(id) {
   d3.select('#recipe-meta').text(
     `${entry ? entry.cuisine + ' · ' : ''}Serves ${recipe.servings}`
   );
+
+  const ghUrl = `${GITHUB_REPO_URL}/issues/new?title=${encodeURIComponent('Recipe feedback: ' + recipe.title)}&labels=recipe-feedback`;
+  wireFeedbackDropdown('#recipe-feedback-btn', '#recipe-feedback-dropdown', '#recipe-github-link', '#recipe-form-link', ghUrl);
 
   wireViewToggle();
   render();

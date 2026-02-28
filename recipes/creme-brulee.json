@@ -1,0 +1,188 @@
+{
+  "title": "Creme Brulee",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "oven", "name": "Oven", "settings": "150°C / 300°F / Gas 2" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "ramekins", "name": "Ramekins" },
+    { "id": "roasting_tin", "name": "Roasting Tin" }
+  ],
+
+  "ingredients": [
+    { "id": "double_cream", "name": "Double Cream", "quantity": "500ml" },
+    { "id": "egg_yolks", "name": "Egg Yolks", "quantity": "5" },
+    { "id": "caster_sugar", "name": "Caster Sugar", "quantity": "75g" },
+    { "id": "vanilla_pod", "name": "Vanilla Pod", "quantity": "1" },
+    { "id": "demerara_sugar", "name": "Demerara Sugar", "quantity": "4 tbsp" },
+    { "id": "water", "name": "Water", "quantity": "for bain-marie" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_custard",
+      "device": "bowl",
+      "action": "Make custard base",
+      "inputs": ["double_cream", "egg_yolks", "caster_sugar", "vanilla_pod"],
+      "output": "custard",
+      "end": { "condition": "custard smooth and strained" },
+      "steps": [
+        {
+          "id": "heat_cream",
+          "device": "hob",
+          "action": "Heat cream with vanilla",
+          "inputs": ["double_cream", "vanilla_pod"],
+          "output": "infused_cream",
+          "end": { "condition": "cream infused with vanilla" },
+          "steps": [
+            {
+              "id": "split_vanilla",
+              "device": "saucepan",
+              "action": "Split vanilla pod lengthways and scrape out seeds",
+              "inputs": ["vanilla_pod"],
+              "output": "vanilla_seeds_and_pod",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "warm_cream",
+              "device": "hob",
+              "action": "Add cream, vanilla seeds and pod to saucepan, heat gently until just below boiling",
+              "inputs": ["double_cream", "vanilla_seeds_and_pod"],
+              "output": "hot_cream",
+              "after": "split_vanilla",
+              "end": { "duration_minutes": 5, "condition": "steaming, tiny bubbles at edges, not boiling" }
+            },
+            {
+              "id": "infuse_cream",
+              "device": "saucepan",
+              "action": "Remove from heat and let vanilla infuse",
+              "inputs": ["hot_cream"],
+              "output": "infused_cream",
+              "after": "warm_cream",
+              "end": { "duration_minutes": 10, "condition": "cream fragrant with vanilla" }
+            }
+          ]
+        },
+        {
+          "id": "whisk_yolks",
+          "device": "bowl",
+          "action": "Whisk egg yolks with caster sugar until pale and thick",
+          "inputs": ["egg_yolks", "caster_sugar"],
+          "output": "yolk_sugar_mix",
+          "end": { "duration_minutes": 3, "condition": "pale and thick, leaves a ribbon trail" }
+        },
+        {
+          "id": "temper_eggs",
+          "device": "bowl",
+          "action": "Gradually pour hot cream into yolk mixture, whisking constantly to temper",
+          "inputs": ["yolk_sugar_mix", "infused_cream"],
+          "output": "raw_custard",
+          "after": ["heat_cream", "whisk_yolks"],
+          "end": { "duration_minutes": 2, "condition": "fully combined, no curdling" }
+        },
+        {
+          "id": "strain_custard",
+          "device": "bowl",
+          "action": "Strain custard through a fine sieve to remove vanilla pod and any lumps",
+          "inputs": ["raw_custard"],
+          "output": "custard",
+          "after": "temper_eggs",
+          "end": { "duration_minutes": 1, "condition": "silky smooth" }
+        }
+      ]
+    },
+    {
+      "id": "bake_bain_marie",
+      "device": "oven",
+      "action": "Bake custards in a bain-marie",
+      "inputs": ["custard", "water"],
+      "output": "baked_custards",
+      "after": "make_custard",
+      "end": { "condition": "custards set with a slight wobble" },
+      "steps": [
+        {
+          "id": "pour_ramekins",
+          "device": "ramekins",
+          "action": "Divide custard evenly between four ramekins",
+          "inputs": ["custard"],
+          "output": "filled_ramekins",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "prepare_bain_marie",
+          "device": "roasting_tin",
+          "action": "Place ramekins in a deep roasting tin",
+          "inputs": ["filled_ramekins"],
+          "output": "ramekins_in_tin",
+          "after": "pour_ramekins",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "boil_water",
+          "device": "hob",
+          "action": "Boil water in kettle",
+          "inputs": ["water"],
+          "output": "boiling_water",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "add_water",
+          "device": "roasting_tin",
+          "action": "Pour boiling water into roasting tin to come halfway up the ramekins",
+          "inputs": ["ramekins_in_tin", "boiling_water"],
+          "output": "bain_marie",
+          "after": ["prepare_bain_marie", "boil_water"],
+          "end": { "duration_minutes": 1, "condition": "water halfway up ramekins" }
+        },
+        {
+          "id": "bake",
+          "device": "oven",
+          "action": "Bake in preheated oven",
+          "inputs": ["bain_marie"],
+          "output": "baked_custards",
+          "after": "add_water",
+          "end": { "duration_minutes": 35, "condition": "set around edges with a gentle wobble in the centre" }
+        }
+      ]
+    },
+    {
+      "id": "chill",
+      "device": "ramekins",
+      "action": "Remove from water bath and refrigerate for at least 2 hours",
+      "inputs": ["baked_custards"],
+      "output": "chilled_custards",
+      "after": "bake_bain_marie",
+      "end": { "duration_minutes": 120, "condition": "completely cold and set firm" }
+    },
+    {
+      "id": "caramelize_top",
+      "device": "ramekins",
+      "action": "Caramelize the sugar topping",
+      "inputs": ["chilled_custards", "demerara_sugar"],
+      "output": "creme_brulee",
+      "after": "chill",
+      "end": { "condition": "sugar caramelized to a hard golden crust" },
+      "steps": [
+        {
+          "id": "sprinkle_sugar",
+          "device": "ramekins",
+          "action": "Sprinkle an even layer of demerara sugar over each custard",
+          "inputs": ["chilled_custards", "demerara_sugar"],
+          "output": "sugared_custards",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "torch_sugar",
+          "device": "ramekins",
+          "action": "Use a kitchen blowtorch (or place under a very hot grill) until sugar melts and caramelizes to a deep golden colour",
+          "inputs": ["sugared_custards"],
+          "output": "creme_brulee",
+          "after": "sprinkle_sugar",
+          "end": { "duration_minutes": 2, "condition": "sugar melted into hard, glassy caramel" }
+        }
+      ]
+    }
+  ]
+}

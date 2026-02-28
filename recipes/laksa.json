@@ -1,0 +1,193 @@
+{
+  "title": "Laksa",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "wok", "name": "Wok" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "blender", "name": "Blender" }
+  ],
+
+  "ingredients": [
+    { "id": "rice_noodles", "name": "Rice Noodles", "quantity": "400g" },
+    { "id": "prawns", "name": "Raw King Prawns", "quantity": "300g, peeled" },
+    { "id": "tofu_puffs", "name": "Tofu Puffs", "quantity": "150g" },
+    { "id": "coconut_milk", "name": "Coconut Milk", "quantity": "400ml tin" },
+    { "id": "laksa_paste", "name": "Laksa Paste", "quantity": "4 tbsp" },
+    { "id": "chicken_stock", "name": "Chicken Stock", "quantity": "500ml" },
+    { "id": "fish_sauce", "name": "Fish Sauce", "quantity": "2 tbsp" },
+    { "id": "sugar", "name": "Sugar", "quantity": "1 tsp" },
+    { "id": "bean_sprouts", "name": "Bean Sprouts", "quantity": "150g" },
+    { "id": "eggs", "name": "Eggs", "quantity": "4" },
+    { "id": "lime", "name": "Lime", "quantity": "2, cut into wedges" },
+    { "id": "coriander", "name": "Fresh Coriander", "quantity": "small bunch" },
+    { "id": "chilli_oil", "name": "Chilli Oil", "quantity": "to serve" },
+    { "id": "warm_water", "name": "Warm Water", "quantity": "for soaking noodles" }
+  ],
+
+  "steps": [
+    {
+      "id": "soak_noodles",
+      "device": "saucepan",
+      "action": "Soak rice noodles in warm water until softened",
+      "inputs": ["rice_noodles", "warm_water"],
+      "output": "softened_noodles",
+      "end": { "duration_minutes": 10, "condition": "noodles pliable but still firm" }
+    },
+    {
+      "id": "make_broth",
+      "device": "wok",
+      "action": "Cook laksa broth",
+      "inputs": ["laksa_paste", "coconut_milk", "chicken_stock", "fish_sauce", "sugar"],
+      "output": "laksa_broth",
+      "end": { "condition": "rich, fragrant broth" },
+      "steps": [
+        {
+          "id": "fry_paste",
+          "device": "wok",
+          "action": "Fry laksa paste in a dry wok over medium heat until fragrant and oil separates",
+          "inputs": ["laksa_paste"],
+          "output": "fried_paste",
+          "end": { "duration_minutes": 3, "condition": "paste fragrant and darkened slightly" }
+        },
+        {
+          "id": "add_coconut_stock",
+          "device": "wok",
+          "action": "Pour in coconut milk and chicken stock, stir to combine",
+          "inputs": ["fried_paste", "coconut_milk", "chicken_stock"],
+          "output": "raw_broth",
+          "after": "fry_paste",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "simmer_broth",
+          "device": "wok",
+          "action": "Bring to a gentle simmer and cook to let flavours develop",
+          "inputs": ["raw_broth"],
+          "output": "simmered_broth",
+          "after": "add_coconut_stock",
+          "end": { "duration_minutes": 10, "condition": "broth gently simmering, flavours melded" }
+        },
+        {
+          "id": "season_broth",
+          "device": "wok",
+          "action": "Season with fish sauce and sugar, taste and adjust",
+          "inputs": ["simmered_broth", "fish_sauce", "sugar"],
+          "output": "laksa_broth",
+          "after": "simmer_broth",
+          "end": { "duration_minutes": 1, "condition": "balanced — salty, sweet, rich" }
+        }
+      ]
+    },
+    {
+      "id": "cook_prawns",
+      "device": "wok",
+      "action": "Poach prawns in the laksa broth until just pink",
+      "inputs": ["laksa_broth", "prawns"],
+      "output": "cooked_prawns",
+      "after": "make_broth",
+      "end": { "duration_minutes": 3, "condition": "prawns pink and curled" }
+    },
+    {
+      "id": "prep_toppings",
+      "device": "chopping_board",
+      "action": "Prepare garnishes and toppings",
+      "inputs": ["eggs", "tofu_puffs", "bean_sprouts", "coriander", "lime"],
+      "output": "prepared_toppings",
+      "end": { "condition": "all toppings ready" },
+      "steps": [
+        {
+          "id": "boil_eggs",
+          "device": "saucepan",
+          "action": "Boil eggs for 8 minutes, cool in cold water, peel and halve",
+          "inputs": ["eggs"],
+          "output": "halved_eggs",
+          "end": { "duration_minutes": 12, "condition": "eggs hard-boiled and halved" },
+          "steps": [
+            {
+              "id": "cook_eggs",
+              "device": "saucepan",
+              "action": "Lower eggs into boiling water and cook for 8 minutes",
+              "inputs": ["eggs"],
+              "output": "boiled_eggs",
+              "end": { "duration_minutes": 8 }
+            },
+            {
+              "id": "cool_peel_halve",
+              "device": "chopping_board",
+              "action": "Cool eggs under cold water, peel, and halve lengthways",
+              "inputs": ["boiled_eggs"],
+              "output": "halved_eggs",
+              "after": "cook_eggs",
+              "end": { "duration_minutes": 4 }
+            }
+          ]
+        },
+        {
+          "id": "slice_tofu_puffs",
+          "device": "chopping_board",
+          "action": "Halve tofu puffs",
+          "inputs": ["tofu_puffs"],
+          "output": "sliced_tofu_puffs",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "prep_garnishes",
+          "device": "chopping_board",
+          "action": "Roughly chop coriander and cut limes into wedges",
+          "inputs": ["coriander", "lime"],
+          "output": "prepared_garnishes",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "device": "chopping_board",
+      "action": "Assemble laksa bowls",
+      "inputs": ["softened_noodles", "laksa_broth", "cooked_prawns", "halved_eggs", "sliced_tofu_puffs", "bean_sprouts", "prepared_garnishes", "chilli_oil"],
+      "output": "laksa",
+      "after": ["soak_noodles", "cook_prawns", "prep_toppings"],
+      "end": { "condition": "bowls assembled and steaming" },
+      "steps": [
+        {
+          "id": "add_noodles_to_bowls",
+          "device": "chopping_board",
+          "action": "Divide softened noodles among serving bowls",
+          "inputs": ["softened_noodles"],
+          "output": "bowls_with_noodles",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "ladle_broth",
+          "device": "chopping_board",
+          "action": "Ladle hot laksa broth over noodles",
+          "inputs": ["bowls_with_noodles", "laksa_broth"],
+          "output": "bowls_with_broth",
+          "after": "add_noodles_to_bowls",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "add_prawns_toppings",
+          "device": "chopping_board",
+          "action": "Top with prawns, tofu puffs, eggs, and bean sprouts",
+          "inputs": ["bowls_with_broth", "cooked_prawns", "sliced_tofu_puffs", "halved_eggs", "bean_sprouts"],
+          "output": "topped_bowls",
+          "after": "ladle_broth",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "garnish",
+          "device": "chopping_board",
+          "action": "Finish with fresh coriander, lime wedges, and a drizzle of chilli oil",
+          "inputs": ["topped_bowls", "prepared_garnishes", "chilli_oil"],
+          "output": "laksa",
+          "after": "add_prawns_toppings",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    }
+  ]
+}

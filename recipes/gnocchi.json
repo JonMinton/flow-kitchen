@@ -1,0 +1,203 @@
+{
+  "title": "Gnocchi with Sage Butter",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "oven", "name": "Oven", "settings": "200\u00b0C / 400\u00b0F / Gas 6" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "potatoes", "name": "Floury Potatoes", "quantity": "1kg" },
+    { "id": "flour", "name": "Plain Flour", "quantity": "250g" },
+    { "id": "egg", "name": "Egg", "quantity": "1" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "nutmeg", "name": "Nutmeg", "quantity": "1/4 tsp, freshly grated" },
+    { "id": "butter", "name": "Butter", "quantity": "75g" },
+    { "id": "sage", "name": "Fresh Sage", "quantity": "12 leaves" },
+    { "id": "parmesan", "name": "Parmesan", "quantity": "50g, finely grated" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" },
+    { "id": "water", "name": "Water", "quantity": "for boiling" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_potatoes",
+      "device": "oven",
+      "action": "Bake and prepare potato flesh",
+      "inputs": ["potatoes"],
+      "output": "riced_potato",
+      "end": { "condition": "potato flesh smooth and dry" },
+      "steps": [
+        {
+          "id": "bake_potatoes",
+          "device": "oven",
+          "action": "Prick potatoes with a fork and bake until completely tender",
+          "inputs": ["potatoes"],
+          "output": "baked_potatoes",
+          "end": { "duration_minutes": 50, "condition": "knife slides through easily" }
+        },
+        {
+          "id": "scoop_flesh",
+          "device": "chopping_board",
+          "action": "Halve potatoes and scoop out flesh while still hot",
+          "inputs": ["baked_potatoes"],
+          "output": "potato_flesh",
+          "after": "bake_potatoes",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "rice_potato",
+          "device": "bowl",
+          "action": "Pass potato flesh through a ricer or mash until smooth with no lumps",
+          "inputs": ["potato_flesh"],
+          "output": "riced_potato",
+          "after": "scoop_flesh",
+          "end": { "duration_minutes": 3, "condition": "smooth and lump-free" }
+        }
+      ]
+    },
+    {
+      "id": "make_dough",
+      "device": "chopping_board",
+      "action": "Mix and knead gnocchi dough",
+      "inputs": ["riced_potato", "flour", "egg", "salt", "nutmeg"],
+      "output": "gnocchi_dough",
+      "after": "cook_potatoes",
+      "end": { "condition": "soft, slightly sticky dough" },
+      "steps": [
+        {
+          "id": "combine_dough",
+          "device": "chopping_board",
+          "action": "Make a well in the potato, add flour, egg, salt, and nutmeg",
+          "inputs": ["riced_potato", "flour", "egg", "salt", "nutmeg"],
+          "output": "rough_dough",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "knead_dough",
+          "device": "chopping_board",
+          "action": "Gently bring together and knead briefly until just combined — do not overwork",
+          "inputs": ["rough_dough"],
+          "output": "gnocchi_dough",
+          "after": "combine_dough",
+          "end": { "duration_minutes": 2, "condition": "soft dough, slightly tacky, holds together" }
+        }
+      ]
+    },
+    {
+      "id": "shape_gnocchi",
+      "device": "chopping_board",
+      "action": "Roll, cut, and mark gnocchi pieces",
+      "inputs": ["gnocchi_dough"],
+      "output": "shaped_gnocchi",
+      "after": "make_dough",
+      "end": { "condition": "gnocchi shaped and ready to cook" },
+      "steps": [
+        {
+          "id": "roll_ropes",
+          "device": "chopping_board",
+          "action": "Divide dough into portions and roll each into a 2cm-thick rope on a floured surface",
+          "inputs": ["gnocchi_dough"],
+          "output": "dough_ropes",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "cut_pieces",
+          "device": "chopping_board",
+          "action": "Cut ropes into 2cm pieces",
+          "inputs": ["dough_ropes"],
+          "output": "gnocchi_pieces",
+          "after": "roll_ropes",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "fork_pattern",
+          "device": "chopping_board",
+          "action": "Press each piece against fork tines to create ridges",
+          "inputs": ["gnocchi_pieces"],
+          "output": "shaped_gnocchi",
+          "after": "cut_pieces",
+          "end": { "duration_minutes": 5, "condition": "all pieces ridged" }
+        }
+      ]
+    },
+    {
+      "id": "boil_gnocchi",
+      "device": "saucepan",
+      "action": "Boil gnocchi until they float",
+      "inputs": ["shaped_gnocchi", "water", "salt"],
+      "output": "cooked_gnocchi",
+      "after": "shape_gnocchi",
+      "end": { "condition": "gnocchi floating and cooked" },
+      "steps": [
+        {
+          "id": "boil_water",
+          "device": "saucepan",
+          "action": "Bring a large pan of salted water to a rolling boil",
+          "inputs": ["water", "salt"],
+          "output": "boiling_water",
+          "end": { "duration_minutes": 5 }
+        },
+        {
+          "id": "cook_gnocchi",
+          "device": "saucepan",
+          "action": "Drop gnocchi into boiling water in batches; they are done when they float to the surface",
+          "inputs": ["boiling_water", "shaped_gnocchi"],
+          "output": "cooked_gnocchi",
+          "after": "boil_water",
+          "end": { "duration_minutes": 3, "condition": "gnocchi risen to surface" }
+        }
+      ]
+    },
+    {
+      "id": "make_sage_butter",
+      "device": "pan",
+      "action": "Make sage butter sauce",
+      "inputs": ["butter", "sage"],
+      "output": "sage_butter",
+      "end": { "condition": "butter nutty brown, sage crisp" },
+      "steps": [
+        {
+          "id": "melt_butter",
+          "device": "pan",
+          "action": "Melt butter in a wide pan over medium heat until it begins to foam",
+          "inputs": ["butter"],
+          "output": "foaming_butter",
+          "end": { "duration_minutes": 2, "condition": "butter foaming" }
+        },
+        {
+          "id": "fry_sage",
+          "device": "pan",
+          "action": "Add sage leaves and fry until crisp and the butter turns nutty brown",
+          "inputs": ["foaming_butter", "sage"],
+          "output": "sage_butter",
+          "after": "melt_butter",
+          "end": { "duration_minutes": 2, "condition": "sage crisp, butter golden-brown and nutty" }
+        }
+      ]
+    },
+    {
+      "id": "toss_gnocchi",
+      "device": "pan",
+      "action": "Toss cooked gnocchi in sage butter",
+      "inputs": ["cooked_gnocchi", "sage_butter"],
+      "output": "sauced_gnocchi",
+      "after": ["boil_gnocchi", "make_sage_butter"],
+      "end": { "duration_minutes": 2, "condition": "gnocchi coated and lightly golden" }
+    },
+    {
+      "id": "serve",
+      "device": "chopping_board",
+      "action": "Serve gnocchi with grated parmesan and black pepper",
+      "inputs": ["sauced_gnocchi", "parmesan", "pepper"],
+      "output": "gnocchi_with_sage_butter",
+      "after": "toss_gnocchi",
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "title": "Thai Green Curry",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "wok", "name": "Wok" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "saucepan", "name": "Saucepan" }
+  ],
+
+  "ingredients": [
+    { "id": "chicken_breast", "name": "Chicken Breast", "quantity": "500g" },
+    { "id": "green_curry_paste", "name": "Green Curry Paste", "quantity": "3 tbsp" },
+    { "id": "coconut_milk", "name": "Coconut Milk", "quantity": "400ml tin" },
+    { "id": "bamboo_shoots", "name": "Bamboo Shoots", "quantity": "220g tin, drained" },
+    { "id": "thai_basil", "name": "Thai Basil", "quantity": "large handful" },
+    { "id": "fish_sauce", "name": "Fish Sauce", "quantity": "2 tbsp" },
+    { "id": "palm_sugar", "name": "Palm Sugar", "quantity": "1 tbsp" },
+    { "id": "lime_leaves", "name": "Kaffir Lime Leaves", "quantity": "4, torn" },
+    { "id": "aubergine", "name": "Thai Aubergine", "quantity": "2, quartered" },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
+    { "id": "jasmine_rice", "name": "Jasmine Rice", "quantity": "300g" },
+    { "id": "water", "name": "Water", "quantity": "450ml" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_rice",
+      "device": "hob",
+      "action": "Cook jasmine rice by absorption method",
+      "inputs": ["jasmine_rice", "water"],
+      "output": "cooked_rice",
+      "end": { "condition": "rice fluffy and tender" },
+      "steps": [
+        {
+          "id": "rinse_jasmine_rice",
+          "device": "saucepan",
+          "action": "Rinse rice under cold water until water runs clear",
+          "inputs": ["jasmine_rice", "water"],
+          "output": "rinsed_rice",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "bring_rice_to_boil",
+          "device": "hob",
+          "action": "Add rice and water to pan, bring to boil",
+          "inputs": ["rinsed_rice", "water"],
+          "output": "boiling_rice",
+          "after": "rinse_jasmine_rice",
+          "end": { "duration_minutes": 3, "condition": "water at a rolling boil" }
+        },
+        {
+          "id": "steam_jasmine_rice",
+          "device": "hob",
+          "action": "Reduce to lowest heat, cover tightly and steam",
+          "inputs": ["boiling_rice"],
+          "output": "cooked_rice",
+          "after": "bring_rice_to_boil",
+          "end": { "duration_minutes": 12, "condition": "water absorbed, rice tender" }
+        }
+      ]
+    },
+    {
+      "id": "make_curry",
+      "device": "wok",
+      "action": "Make Thai green curry",
+      "inputs": ["chicken_breast", "green_curry_paste", "coconut_milk", "bamboo_shoots", "aubergine", "lime_leaves", "fish_sauce", "palm_sugar", "thai_basil", "vegetable_oil"],
+      "output": "finished_curry",
+      "end": { "condition": "curry fragrant and chicken cooked through" },
+      "steps": [
+        {
+          "id": "prep_curry_ingredients",
+          "device": "chopping_board",
+          "action": "Prepare all curry ingredients",
+          "inputs": ["chicken_breast", "aubergine", "lime_leaves"],
+          "output": "prepped_curry_ingredients",
+          "end": { "condition": "all ingredients sliced and ready" },
+          "steps": [
+            {
+              "id": "slice_chicken",
+              "device": "chopping_board",
+              "action": "Slice chicken breast into thin strips",
+              "inputs": ["chicken_breast"],
+              "output": "sliced_chicken",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "quarter_aubergine",
+              "device": "chopping_board",
+              "action": "Quarter the Thai aubergines",
+              "inputs": ["aubergine"],
+              "output": "prepared_aubergine",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "tear_lime_leaves",
+              "device": "chopping_board",
+              "action": "Tear lime leaves and remove central vein",
+              "inputs": ["lime_leaves"],
+              "output": "torn_lime_leaves",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "cook_curry",
+          "device": "wok",
+          "action": "Cook the curry in the wok",
+          "inputs": ["prepped_curry_ingredients", "green_curry_paste", "coconut_milk", "bamboo_shoots", "fish_sauce", "palm_sugar", "thai_basil", "vegetable_oil"],
+          "output": "finished_curry",
+          "after": "prep_curry_ingredients",
+          "end": { "condition": "curry ready to serve" },
+          "steps": [
+            {
+              "id": "fry_paste",
+              "device": "wok",
+              "action": "Heat oil in wok and fry curry paste until fragrant",
+              "inputs": ["vegetable_oil", "green_curry_paste"],
+              "output": "fried_paste",
+              "end": { "duration_minutes": 2, "condition": "paste fragrant and darkened" }
+            },
+            {
+              "id": "add_coconut_milk",
+              "device": "wok",
+              "action": "Add coconut milk and bring to a gentle simmer",
+              "inputs": ["fried_paste", "coconut_milk", "torn_lime_leaves"],
+              "output": "curry_base",
+              "after": "fry_paste",
+              "end": { "duration_minutes": 2, "condition": "oil separating on surface" }
+            },
+            {
+              "id": "cook_chicken_in_curry",
+              "device": "wok",
+              "action": "Add sliced chicken and cook through",
+              "inputs": ["curry_base", "sliced_chicken"],
+              "output": "curry_with_chicken",
+              "after": "add_coconut_milk",
+              "end": { "duration_minutes": 6, "condition": "chicken cooked through" }
+            },
+            {
+              "id": "add_vegetables",
+              "device": "wok",
+              "action": "Add aubergine and bamboo shoots, cook until tender",
+              "inputs": ["curry_with_chicken", "prepared_aubergine", "bamboo_shoots"],
+              "output": "curry_with_veg",
+              "after": "cook_chicken_in_curry",
+              "end": { "duration_minutes": 5, "condition": "aubergine tender" }
+            },
+            {
+              "id": "season_curry",
+              "device": "wok",
+              "action": "Season with fish sauce and palm sugar, stir in Thai basil",
+              "inputs": ["curry_with_veg", "fish_sauce", "palm_sugar", "thai_basil"],
+              "output": "finished_curry",
+              "after": "add_vegetables",
+              "end": { "duration_minutes": 1, "condition": "basil just wilted" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "serve",
+      "device": "chopping_board",
+      "action": "Serve curry over jasmine rice",
+      "inputs": ["finished_curry", "cooked_rice"],
+      "output": "thai_green_curry",
+      "after": ["cook_rice", "make_curry"],
+      "end": { "duration_minutes": 2 }
+    }
+  ]
+}

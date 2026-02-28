@@ -1,0 +1,221 @@
+{
+  "title": "Bulgogi",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "beef_sirloin", "name": "Beef Sirloin", "quantity": "600g" },
+    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "4 tbsp" },
+    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "2 tbsp" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
+    { "id": "pear", "name": "Asian Pear", "quantity": "1" },
+    { "id": "sugar", "name": "Sugar", "quantity": "2 tbsp" },
+    { "id": "spring_onions", "name": "Spring Onions", "quantity": "4" },
+    { "id": "sesame_seeds", "name": "Sesame Seeds", "quantity": "1 tbsp" },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
+    { "id": "black_pepper", "name": "Black Pepper", "quantity": "1 tsp" },
+    { "id": "rice", "name": "Rice", "quantity": "300g" },
+    { "id": "water", "name": "Water", "quantity": "450ml" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_marinade",
+      "device": "bowl",
+      "action": "Make bulgogi marinade",
+      "inputs": ["pear", "soy_sauce", "sesame_oil", "garlic", "ginger", "sugar", "black_pepper"],
+      "output": "marinade",
+      "end": { "condition": "smooth, well-combined marinade" },
+      "steps": [
+        {
+          "id": "grate_pear",
+          "device": "chopping_board",
+          "action": "Peel and grate the Asian pear",
+          "inputs": ["pear"],
+          "output": "grated_pear",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "mince_garlic_ginger",
+          "device": "chopping_board",
+          "action": "Finely mince garlic and grate ginger",
+          "inputs": ["garlic", "ginger"],
+          "output": "minced_aromatics",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "combine_marinade",
+          "device": "bowl",
+          "action": "Mix grated pear with soy sauce, sesame oil, garlic, ginger, sugar and pepper",
+          "after": ["grate_pear", "mince_garlic_ginger"],
+          "inputs": ["grated_pear", "soy_sauce", "sesame_oil", "minced_aromatics", "sugar", "black_pepper"],
+          "output": "marinade",
+          "end": { "duration_minutes": 2, "condition": "well combined" }
+        }
+      ]
+    },
+    {
+      "id": "marinate_beef",
+      "device": "bowl",
+      "action": "Slice and marinate beef",
+      "after": "make_marinade",
+      "inputs": ["beef_sirloin", "marinade"],
+      "output": "marinated_beef",
+      "end": { "duration_minutes": 125, "condition": "beef fully marinated" },
+      "steps": [
+        {
+          "id": "slice_beef_thinly",
+          "device": "chopping_board",
+          "action": "Slice beef against the grain into very thin strips (freeze 20 min for easier slicing)",
+          "inputs": ["beef_sirloin"],
+          "output": "sliced_beef",
+          "end": { "duration_minutes": 5 }
+        },
+        {
+          "id": "coat_beef",
+          "device": "bowl",
+          "action": "Toss sliced beef in marinade to coat evenly",
+          "after": "slice_beef_thinly",
+          "inputs": ["sliced_beef", "marinade"],
+          "output": "coated_beef",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "rest_in_marinade",
+          "device": "bowl",
+          "action": "Cover and refrigerate to marinate for at least 2 hours",
+          "after": "coat_beef",
+          "inputs": ["coated_beef"],
+          "output": "marinated_beef",
+          "end": { "duration_minutes": 120, "condition": "deeply flavoured, pear has tenderised the beef" }
+        }
+      ]
+    },
+    {
+      "id": "cook_rice",
+      "device": "hob",
+      "action": "Cook rice",
+      "inputs": ["rice", "water"],
+      "output": "cooked_rice",
+      "end": { "condition": "rice fluffy and water absorbed" },
+      "steps": [
+        {
+          "id": "rinse_rice",
+          "device": "bowl",
+          "action": "Rinse rice under cold water until water runs clear",
+          "inputs": ["rice", "water"],
+          "output": "rinsed_rice",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "boil_rice",
+          "device": "hob",
+          "action": "Bring rice to a boil with water",
+          "after": "rinse_rice",
+          "inputs": ["rinsed_rice", "water"],
+          "output": "boiling_rice",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "simmer_rice",
+          "device": "hob",
+          "action": "Reduce heat, cover and simmer until water absorbed",
+          "after": "boil_rice",
+          "inputs": ["boiling_rice"],
+          "output": "cooked_rice",
+          "end": { "duration_minutes": 12, "condition": "water absorbed, rice fluffy" }
+        }
+      ]
+    },
+    {
+      "id": "stir_fry_beef",
+      "device": "pan",
+      "action": "Stir-fry marinated beef in batches over high heat",
+      "after": "marinate_beef",
+      "inputs": ["marinated_beef", "vegetable_oil"],
+      "output": "cooked_bulgogi",
+      "end": { "condition": "beef caramelised with charred edges" },
+      "steps": [
+        {
+          "id": "heat_pan",
+          "device": "pan",
+          "action": "Heat pan with vegetable oil over high heat until smoking",
+          "inputs": ["vegetable_oil"],
+          "output": "hot_pan",
+          "end": { "duration_minutes": 2, "condition": "oil shimmering and lightly smoking" }
+        },
+        {
+          "id": "cook_batch_one",
+          "device": "pan",
+          "action": "Cook first batch of beef, spreading in single layer, without stirring until charred",
+          "after": "heat_pan",
+          "inputs": ["marinated_beef", "hot_pan"],
+          "output": "batch_one",
+          "end": { "duration_minutes": 4, "condition": "caramelised and charred edges" }
+        },
+        {
+          "id": "cook_batch_two",
+          "device": "pan",
+          "action": "Cook second batch of beef the same way",
+          "after": "cook_batch_one",
+          "inputs": ["marinated_beef"],
+          "output": "batch_two",
+          "end": { "duration_minutes": 4, "condition": "caramelised and charred edges" }
+        },
+        {
+          "id": "combine_batches",
+          "device": "pan",
+          "action": "Return all beef to pan and toss briefly to combine",
+          "after": "cook_batch_two",
+          "inputs": ["batch_one", "batch_two"],
+          "output": "cooked_bulgogi",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "garnish_and_serve",
+      "device": "chopping_board",
+      "action": "Garnish with spring onions and sesame seeds, serve with rice",
+      "after": ["stir_fry_beef", "cook_rice"],
+      "inputs": ["cooked_bulgogi", "cooked_rice", "spring_onions", "sesame_seeds"],
+      "output": "bulgogi",
+      "end": { "condition": "served" },
+      "steps": [
+        {
+          "id": "slice_spring_onions",
+          "device": "chopping_board",
+          "action": "Finely slice spring onions on the diagonal",
+          "inputs": ["spring_onions"],
+          "output": "sliced_spring_onions",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "plate_up",
+          "device": "bowl",
+          "action": "Serve bulgogi over steamed rice",
+          "after": "slice_spring_onions",
+          "inputs": ["cooked_bulgogi", "cooked_rice"],
+          "output": "plated_bulgogi",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "add_garnish",
+          "device": "bowl",
+          "action": "Scatter spring onions and sesame seeds over the top",
+          "after": "plate_up",
+          "inputs": ["plated_bulgogi", "sliced_spring_onions", "sesame_seeds"],
+          "output": "bulgogi",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "title": "Potsticker Dumplings",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "pork_mince", "name": "Pork Mince", "quantity": "300g" },
+    { "id": "cabbage", "name": "Cabbage", "quantity": "200g" },
+    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
+    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "3 tbsp" },
+    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "1 tbsp" },
+    { "id": "spring_onions", "name": "Spring Onions", "quantity": "3" },
+    { "id": "dumpling_wrappers", "name": "Dumpling Wrappers", "quantity": "1 pack (approx 24)" },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
+    { "id": "water", "name": "Water", "quantity": "120ml" },
+    { "id": "rice_vinegar", "name": "Rice Vinegar", "quantity": "2 tbsp" },
+    { "id": "chilli_oil", "name": "Chilli Oil", "quantity": "1 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "1 tsp" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_filling",
+      "device": "bowl",
+      "action": "Make dumpling filling",
+      "inputs": ["pork_mince", "cabbage", "garlic", "ginger", "soy_sauce", "sesame_oil", "spring_onions", "salt"],
+      "output": "dumpling_filling",
+      "end": { "condition": "filling well-mixed and seasoned" },
+      "steps": [
+        {
+          "id": "prep_cabbage",
+          "device": "chopping_board",
+          "action": "Finely chop cabbage, salt and squeeze dry",
+          "inputs": ["cabbage", "salt"],
+          "output": "prepared_cabbage",
+          "end": { "condition": "cabbage dry and finely chopped" },
+          "steps": [
+            {
+              "id": "chop_cabbage",
+              "device": "chopping_board",
+              "action": "Finely chop cabbage into small pieces",
+              "inputs": ["cabbage"],
+              "output": "chopped_cabbage",
+              "end": { "duration_minutes": 4 }
+            },
+            {
+              "id": "salt_cabbage",
+              "device": "bowl",
+              "action": "Toss chopped cabbage with salt and leave to draw out moisture",
+              "after": "chop_cabbage",
+              "inputs": ["chopped_cabbage", "salt"],
+              "output": "salted_cabbage",
+              "end": { "duration_minutes": 5, "condition": "moisture released" }
+            },
+            {
+              "id": "squeeze_cabbage",
+              "device": "chopping_board",
+              "action": "Squeeze cabbage firmly in a clean tea towel to remove all liquid",
+              "after": "salt_cabbage",
+              "inputs": ["salted_cabbage"],
+              "output": "prepared_cabbage",
+              "end": { "duration_minutes": 2, "condition": "cabbage dry" }
+            }
+          ]
+        },
+        {
+          "id": "prep_aromatics",
+          "device": "chopping_board",
+          "action": "Mince garlic, grate ginger and slice spring onions",
+          "inputs": ["garlic", "ginger", "spring_onions"],
+          "output": "prepped_aromatics",
+          "end": { "duration_minutes": 3 },
+          "steps": [
+            {
+              "id": "mince_garlic",
+              "device": "chopping_board",
+              "action": "Finely mince garlic",
+              "inputs": ["garlic"],
+              "output": "minced_garlic",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "grate_ginger",
+              "device": "chopping_board",
+              "action": "Finely grate ginger",
+              "inputs": ["ginger"],
+              "output": "grated_ginger",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "slice_spring_onions",
+              "device": "chopping_board",
+              "action": "Finely slice spring onions",
+              "inputs": ["spring_onions"],
+              "output": "prepped_aromatics",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "mix_filling",
+          "device": "bowl",
+          "action": "Combine pork mince with cabbage, aromatics, soy sauce and sesame oil",
+          "after": ["prep_cabbage", "prep_aromatics"],
+          "inputs": ["pork_mince", "prepared_cabbage", "minced_garlic", "grated_ginger", "prepped_aromatics", "soy_sauce", "sesame_oil"],
+          "output": "dumpling_filling",
+          "end": { "duration_minutes": 3, "condition": "filling evenly combined, slightly sticky" }
+        }
+      ]
+    },
+    {
+      "id": "wrap_dumplings",
+      "device": "chopping_board",
+      "action": "Wrap dumplings",
+      "after": "make_filling",
+      "inputs": ["dumpling_filling", "dumpling_wrappers", "water"],
+      "output": "raw_dumplings",
+      "end": { "condition": "all dumplings wrapped and sealed" },
+      "steps": [
+        {
+          "id": "fill_wrapper",
+          "device": "chopping_board",
+          "action": "Place a heaped teaspoon of filling in the centre of each wrapper",
+          "inputs": ["dumpling_filling", "dumpling_wrappers"],
+          "output": "filled_wrappers",
+          "end": { "duration_minutes": 5 }
+        },
+        {
+          "id": "fold_and_pleat",
+          "device": "chopping_board",
+          "action": "Wet edges with water, fold in half and pleat to seal tightly",
+          "after": "fill_wrapper",
+          "inputs": ["filled_wrappers", "water"],
+          "output": "raw_dumplings",
+          "end": { "duration_minutes": 10, "condition": "all dumplings pleated and sealed" }
+        }
+      ]
+    },
+    {
+      "id": "cook_dumplings",
+      "device": "pan",
+      "action": "Steam-fry dumplings until crispy and cooked through",
+      "after": "wrap_dumplings",
+      "inputs": ["raw_dumplings", "vegetable_oil", "water"],
+      "output": "cooked_dumplings",
+      "end": { "condition": "bottoms golden and crispy, filling cooked through" },
+      "steps": [
+        {
+          "id": "heat_oil_in_pan",
+          "device": "pan",
+          "action": "Heat vegetable oil in a large non-stick pan over medium-high heat",
+          "inputs": ["vegetable_oil"],
+          "output": "hot_oiled_pan",
+          "end": { "duration_minutes": 2, "condition": "oil shimmering" }
+        },
+        {
+          "id": "place_dumplings",
+          "device": "pan",
+          "action": "Arrange dumplings flat-side down in the pan in a single layer",
+          "after": "heat_oil_in_pan",
+          "inputs": ["raw_dumplings", "hot_oiled_pan"],
+          "output": "dumplings_in_pan",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "fry_bottoms",
+          "device": "pan",
+          "action": "Fry without moving until bottoms are golden brown",
+          "after": "place_dumplings",
+          "inputs": ["dumplings_in_pan"],
+          "output": "golden_dumplings",
+          "end": { "duration_minutes": 3, "condition": "bottoms golden and crispy" }
+        },
+        {
+          "id": "add_water_and_cover",
+          "device": "pan",
+          "action": "Add water to pan and immediately cover with lid to steam",
+          "after": "fry_bottoms",
+          "inputs": ["golden_dumplings", "water"],
+          "output": "steaming_dumplings",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "steam_until_cooked",
+          "device": "pan",
+          "action": "Steam with lid on until water evaporates and filling is cooked through",
+          "after": "add_water_and_cover",
+          "inputs": ["steaming_dumplings"],
+          "output": "cooked_dumplings",
+          "end": { "duration_minutes": 5, "condition": "water evaporated, wrappers translucent, filling cooked" }
+        }
+      ]
+    },
+    {
+      "id": "make_dipping_sauce",
+      "device": "bowl",
+      "action": "Make dipping sauce",
+      "inputs": ["soy_sauce", "rice_vinegar", "chilli_oil"],
+      "output": "dipping_sauce",
+      "end": { "duration_minutes": 2 },
+      "steps": [
+        {
+          "id": "combine_sauce",
+          "device": "bowl",
+          "action": "Mix soy sauce, rice vinegar and chilli oil together",
+          "inputs": ["soy_sauce", "rice_vinegar", "chilli_oil"],
+          "output": "dipping_sauce",
+          "end": { "duration_minutes": 2, "condition": "well combined" }
+        }
+      ]
+    },
+    {
+      "id": "serve",
+      "device": "chopping_board",
+      "action": "Serve dumplings with dipping sauce",
+      "after": ["cook_dumplings", "make_dipping_sauce"],
+      "inputs": ["cooked_dumplings", "dipping_sauce"],
+      "output": "potsticker_dumplings",
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

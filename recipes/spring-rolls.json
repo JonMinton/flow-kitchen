@@ -1,0 +1,173 @@
+{
+  "title": "Vietnamese Spring Rolls",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "shallow_dish", "name": "Shallow Dish" },
+    { "id": "plate", "name": "Plate" }
+  ],
+
+  "ingredients": [
+    { "id": "rice_paper_wrappers", "name": "Rice Paper Wrappers", "quantity": "12 sheets" },
+    { "id": "rice_vermicelli", "name": "Rice Vermicelli", "quantity": "100g" },
+    { "id": "carrots", "name": "Carrots", "quantity": "2 medium" },
+    { "id": "cucumber", "name": "Cucumber", "quantity": "1/2" },
+    { "id": "lettuce", "name": "Little Gem Lettuce", "quantity": "1 head" },
+    { "id": "mint", "name": "Fresh Mint", "quantity": "small bunch" },
+    { "id": "coriander", "name": "Fresh Coriander", "quantity": "small bunch" },
+    { "id": "peanuts", "name": "Roasted Peanuts", "quantity": "50g" },
+    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "2 tbsp" },
+    { "id": "lime", "name": "Lime", "quantity": "2" },
+    { "id": "sweet_chilli_sauce", "name": "Sweet Chilli Sauce", "quantity": "3 tbsp" },
+    { "id": "warm_water", "name": "Warm Water", "quantity": "enough to soak" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_vermicelli",
+      "device": "saucepan",
+      "action": "Cook and cool rice vermicelli",
+      "inputs": ["rice_vermicelli"],
+      "output": "cooked_vermicelli",
+      "end": { "condition": "soft and cooled" },
+      "steps": [
+        {
+          "id": "boil_vermicelli",
+          "device": "saucepan",
+          "action": "Cook rice vermicelli in boiling water according to packet instructions",
+          "inputs": ["rice_vermicelli"],
+          "output": "boiled_vermicelli",
+          "end": { "duration_minutes": 3, "condition": "soft and translucent" }
+        },
+        {
+          "id": "drain_and_cool",
+          "device": "saucepan",
+          "action": "Drain vermicelli and rinse under cold water to cool",
+          "inputs": ["boiled_vermicelli"],
+          "output": "cooked_vermicelli",
+          "after": "boil_vermicelli",
+          "end": { "duration_minutes": 2, "condition": "cooled and drained" }
+        }
+      ]
+    },
+    {
+      "id": "prep_vegetables",
+      "device": "chopping_board",
+      "action": "Prepare all fresh vegetables and herbs",
+      "inputs": ["carrots", "cucumber", "lettuce", "mint", "coriander"],
+      "output": "prepped_veg",
+      "end": { "condition": "all vegetables cut and ready" },
+      "steps": [
+        {
+          "id": "julienne_carrots",
+          "device": "chopping_board",
+          "action": "Peel and julienne carrots into thin matchsticks",
+          "inputs": ["carrots"],
+          "output": "carrot_matchsticks",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "slice_cucumber",
+          "device": "chopping_board",
+          "action": "Cut cucumber into thin batons",
+          "inputs": ["cucumber"],
+          "output": "cucumber_batons",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "prep_leaves",
+          "device": "chopping_board",
+          "action": "Separate lettuce leaves, pick mint and coriander",
+          "inputs": ["lettuce", "mint", "coriander"],
+          "output": "prepped_leaves",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "combine_veg",
+          "device": "chopping_board",
+          "action": "Arrange all prepped vegetables on a plate for assembly",
+          "inputs": ["carrot_matchsticks", "cucumber_batons", "prepped_leaves"],
+          "output": "prepped_veg",
+          "after": ["julienne_carrots", "slice_cucumber", "prep_leaves"],
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "make_dipping_sauce",
+      "device": "bowl",
+      "action": "Make dipping sauce",
+      "inputs": ["soy_sauce", "lime", "sweet_chilli_sauce", "peanuts"],
+      "output": "dipping_sauce",
+      "end": { "condition": "well mixed" },
+      "steps": [
+        {
+          "id": "juice_limes",
+          "device": "chopping_board",
+          "action": "Squeeze juice from limes",
+          "inputs": ["lime"],
+          "output": "lime_juice",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "crush_peanuts",
+          "device": "chopping_board",
+          "action": "Roughly crush peanuts",
+          "inputs": ["peanuts"],
+          "output": "crushed_peanuts",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "mix_sauce",
+          "device": "bowl",
+          "action": "Combine soy sauce, lime juice, sweet chilli sauce and crushed peanuts",
+          "inputs": ["soy_sauce", "lime_juice", "sweet_chilli_sauce", "crushed_peanuts"],
+          "output": "dipping_sauce",
+          "after": ["juice_limes", "crush_peanuts"],
+          "end": { "duration_minutes": 1, "condition": "well combined" }
+        }
+      ]
+    },
+    {
+      "id": "assemble_rolls",
+      "device": "shallow_dish",
+      "action": "Soak wrappers, fill and roll spring rolls",
+      "inputs": ["rice_paper_wrappers", "warm_water", "cooked_vermicelli", "prepped_veg"],
+      "output": "spring_rolls",
+      "after": ["cook_vermicelli", "prep_vegetables", "make_dipping_sauce"],
+      "end": { "condition": "12 rolls assembled" },
+      "steps": [
+        {
+          "id": "dip_wrapper",
+          "device": "shallow_dish",
+          "action": "Dip a rice paper wrapper in warm water until just pliable",
+          "inputs": ["rice_paper_wrappers", "warm_water"],
+          "output": "softened_wrapper",
+          "end": { "duration_minutes": 1, "condition": "flexible but not too soft" }
+        },
+        {
+          "id": "fill_wrapper",
+          "device": "plate",
+          "action": "Lay wrapper flat, add vermicelli, vegetables and herbs in centre",
+          "inputs": ["softened_wrapper", "cooked_vermicelli", "prepped_veg"],
+          "output": "filled_wrapper",
+          "after": "dip_wrapper",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "roll_spring_roll",
+          "device": "plate",
+          "action": "Fold sides in, then roll tightly from bottom to top. Repeat for all wrappers",
+          "inputs": ["filled_wrapper"],
+          "output": "spring_rolls",
+          "after": "fill_wrapper",
+          "end": { "duration_minutes": 10, "condition": "tight, neat rolls with no tears" }
+        }
+      ]
+    }
+  ]
+}

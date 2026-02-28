@@ -1,0 +1,254 @@
+{
+  "title": "Empanadas",
+  "servings": 6,
+
+  "devices": [
+    { "id": "oven", "name": "Oven", "settings": "200°C" },
+    { "id": "hob", "name": "Hob" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "baking_tray", "name": "Baking Tray" }
+  ],
+
+  "ingredients": [
+    { "id": "plain_flour", "name": "Plain Flour", "quantity": "400g" },
+    { "id": "butter", "name": "Butter", "quantity": "100g cold, cubed" },
+    { "id": "egg", "name": "Egg", "quantity": "2" },
+    { "id": "water", "name": "Water", "quantity": "80ml cold" },
+    { "id": "salt", "name": "Salt", "quantity": "1 tsp" },
+    { "id": "beef_mince", "name": "Beef Mince", "quantity": "400g" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "red_pepper", "name": "Red Pepper", "quantity": "1" },
+    { "id": "cumin", "name": "Cumin", "quantity": "1 tsp" },
+    { "id": "paprika", "name": "Paprika", "quantity": "1 tsp" },
+    { "id": "olives", "name": "Green Olives", "quantity": "50g" },
+    { "id": "hard_boiled_egg", "name": "Hard-boiled Egg", "quantity": "2" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
+    { "id": "pepper", "name": "Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_dough",
+      "device": "bowl",
+      "action": "Make empanada dough",
+      "inputs": ["plain_flour", "butter", "egg", "water", "salt"],
+      "output": "rested_dough",
+      "end": { "condition": "dough smooth and rested" },
+      "steps": [
+        {
+          "id": "mix_dough",
+          "device": "bowl",
+          "action": "Mix flour, butter, egg, water and salt into dough",
+          "inputs": ["plain_flour", "butter", "egg", "water", "salt"],
+          "output": "rough_dough",
+          "end": { "condition": "dough just comes together" },
+          "steps": [
+            {
+              "id": "rub_butter_into_flour",
+              "device": "bowl",
+              "action": "Rub cold butter into flour and salt until breadcrumb texture",
+              "inputs": ["plain_flour", "butter", "salt"],
+              "output": "breadcrumb_mix",
+              "end": { "duration_minutes": 5, "condition": "resembles fine breadcrumbs" }
+            },
+            {
+              "id": "add_egg_and_water",
+              "device": "bowl",
+              "action": "Beat one egg, add with cold water and mix to form dough",
+              "inputs": ["breadcrumb_mix", "egg", "water"],
+              "output": "rough_dough",
+              "after": "rub_butter_into_flour",
+              "end": { "duration_minutes": 3, "condition": "dough just comes together" }
+            }
+          ]
+        },
+        {
+          "id": "knead_dough",
+          "device": "chopping_board",
+          "action": "Knead dough briefly until smooth",
+          "inputs": ["rough_dough"],
+          "output": "smooth_dough",
+          "after": "mix_dough",
+          "end": { "duration_minutes": 3, "condition": "smooth and pliable" }
+        },
+        {
+          "id": "rest_dough",
+          "device": "bowl",
+          "action": "Wrap dough in cling film and rest in fridge",
+          "inputs": ["smooth_dough"],
+          "output": "rested_dough",
+          "after": "knead_dough",
+          "end": { "duration_minutes": 20, "condition": "dough firm and rested" }
+        }
+      ]
+    },
+    {
+      "id": "make_filling",
+      "device": "pan",
+      "action": "Make beef filling",
+      "inputs": ["beef_mince", "onion", "red_pepper", "cumin", "paprika", "olives", "hard_boiled_egg", "olive_oil", "salt", "pepper"],
+      "output": "cooled_filling",
+      "end": { "condition": "filling cooked and cooled" },
+      "steps": [
+        {
+          "id": "prep_filling_ingredients",
+          "device": "chopping_board",
+          "action": "Chop vegetables, olives and hard-boiled eggs",
+          "inputs": ["onion", "red_pepper", "olives", "hard_boiled_egg"],
+          "output": "prepped_filling_veg",
+          "end": { "condition": "all filling ingredients chopped" },
+          "steps": [
+            {
+              "id": "dice_onion_and_pepper",
+              "device": "chopping_board",
+              "action": "Finely dice onion and red pepper",
+              "inputs": ["onion", "red_pepper"],
+              "output": "diced_veg",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "chop_olives_and_egg",
+              "device": "chopping_board",
+              "action": "Chop olives and dice hard-boiled eggs",
+              "inputs": ["olives", "hard_boiled_egg"],
+              "output": "prepped_filling_veg",
+              "end": { "duration_minutes": 2 }
+            }
+          ]
+        },
+        {
+          "id": "cook_filling",
+          "device": "pan",
+          "action": "Cook the filling on the hob",
+          "inputs": ["diced_veg", "beef_mince", "cumin", "paprika", "olive_oil", "salt", "pepper"],
+          "output": "cooked_filling",
+          "after": "prep_filling_ingredients",
+          "end": { "condition": "mince browned and seasoned" },
+          "steps": [
+            {
+              "id": "saute_onion_pepper",
+              "device": "pan",
+              "action": "Sauté onion and red pepper in olive oil",
+              "inputs": ["diced_veg", "olive_oil"],
+              "output": "softened_veg",
+              "end": { "duration_minutes": 4, "condition": "softened" }
+            },
+            {
+              "id": "brown_mince",
+              "device": "pan",
+              "action": "Add beef mince and brown",
+              "inputs": ["softened_veg", "beef_mince"],
+              "output": "browned_mince",
+              "after": "saute_onion_pepper",
+              "end": { "duration_minutes": 5, "condition": "mince cooked through, no pink" }
+            },
+            {
+              "id": "add_spices",
+              "device": "pan",
+              "action": "Add cumin, paprika, salt and pepper",
+              "inputs": ["browned_mince", "cumin", "paprika", "salt", "pepper"],
+              "output": "spiced_mince",
+              "after": "brown_mince",
+              "end": { "duration_minutes": 2, "condition": "spices fragrant" }
+            }
+          ]
+        },
+        {
+          "id": "add_olives_egg",
+          "device": "pan",
+          "action": "Stir in chopped olives and hard-boiled egg, then cool",
+          "inputs": ["spiced_mince", "prepped_filling_veg"],
+          "output": "cooled_filling",
+          "after": "cook_filling",
+          "end": { "duration_minutes": 10, "condition": "filling mixed and cooled enough to handle" }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "device": "chopping_board",
+      "action": "Assemble empanadas",
+      "inputs": ["rested_dough", "cooled_filling", "egg"],
+      "output": "assembled_empanadas",
+      "after": ["make_dough", "make_filling"],
+      "end": { "condition": "all empanadas sealed and egg-washed" },
+      "steps": [
+        {
+          "id": "roll_and_cut_dough",
+          "device": "chopping_board",
+          "action": "Roll out dough and cut into circles",
+          "inputs": ["rested_dough"],
+          "output": "dough_circles",
+          "end": { "condition": "12 circles cut" },
+          "steps": [
+            {
+              "id": "roll_out_dough",
+              "device": "chopping_board",
+              "action": "Roll dough out to 3mm thickness",
+              "inputs": ["rested_dough"],
+              "output": "rolled_dough",
+              "end": { "duration_minutes": 3, "condition": "even thickness" }
+            },
+            {
+              "id": "cut_circles",
+              "device": "chopping_board",
+              "action": "Cut 12 circles using a 12cm cutter or bowl",
+              "inputs": ["rolled_dough"],
+              "output": "dough_circles",
+              "after": "roll_out_dough",
+              "end": { "duration_minutes": 2 }
+            }
+          ]
+        },
+        {
+          "id": "fill_and_seal",
+          "device": "chopping_board",
+          "action": "Fill each circle with filling and crimp edges to seal",
+          "inputs": ["dough_circles", "cooled_filling"],
+          "output": "sealed_empanadas",
+          "after": "roll_and_cut_dough",
+          "end": { "duration_minutes": 8, "condition": "all empanadas filled and crimped" }
+        },
+        {
+          "id": "egg_wash",
+          "device": "baking_tray",
+          "action": "Place on baking tray and brush with beaten egg",
+          "inputs": ["sealed_empanadas", "egg"],
+          "output": "assembled_empanadas",
+          "after": "fill_and_seal",
+          "end": { "duration_minutes": 3 }
+        }
+      ]
+    },
+    {
+      "id": "bake",
+      "device": "oven",
+      "action": "Bake empanadas until golden",
+      "inputs": ["assembled_empanadas"],
+      "output": "empanadas",
+      "after": "assemble",
+      "end": { "duration_minutes": 20, "condition": "golden brown and crispy" },
+      "steps": [
+        {
+          "id": "bake_in_oven",
+          "device": "oven",
+          "action": "Bake at 200°C until golden brown",
+          "inputs": ["assembled_empanadas"],
+          "output": "baked_empanadas",
+          "end": { "duration_minutes": 18, "condition": "golden brown and pastry cooked through" }
+        },
+        {
+          "id": "cool_briefly",
+          "device": "baking_tray",
+          "action": "Rest on tray for a few minutes before serving",
+          "inputs": ["baked_empanadas"],
+          "output": "empanadas",
+          "after": "bake_in_oven",
+          "end": { "duration_minutes": 3, "condition": "cool enough to handle" }
+        }
+      ]
+    }
+  ]
+}
