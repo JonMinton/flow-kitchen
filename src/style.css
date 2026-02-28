@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #faf8f5;
+  color: #333;
+  padding: 1rem;
+}
+
+header {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+#recipe-meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 0.25rem;
+}
+
+#score {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+#score svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Sankey nodes */
+.sankey-node rect {
+  transition: opacity 0.15s;
+}
+
+.sankey-node:hover rect {
+  opacity: 0.85;
+}
+
+.sankey-label {
+  font-size: 11px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.expand-indicator {
+  pointer-events: none;
+}
+
+/* Sankey links */
+.sankey-link {
+  transition: opacity 0.15s;
+}
+
+.sankey-link:hover {
+  opacity: 0.6 !important;
+}
+
+/* Tooltip */
+#tooltip {
+  position: fixed;
+  background: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  max-width: 260px;
+  line-height: 1.4;
+  z-index: 100;
+}
+
+#tooltip.visible {
+  opacity: 1;
+}
+
+/* Portrait-friendly: narrow viewport */
+@media (max-width: 640px) {
+  body {
+    padding: 0.5rem;
+  }
+  h1 {
+    font-size: 1.3rem;
+  }
+}

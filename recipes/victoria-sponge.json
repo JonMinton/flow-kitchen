@@ -1,0 +1,115 @@
+{
+  "title": "Victoria Sponge",
+  "servings": 8,
+
+  "devices": [
+    { "id": "worktop", "name": "Worktop" },
+    { "id": "mixing_bowl", "name": "Mixing Bowl" },
+    { "id": "sieve", "name": "Sieve" },
+    { "id": "cake_tin", "name": "Cake Tin" },
+    { "id": "oven", "name": "Oven", "settings": "180\u00b0C / 350\u00b0F / Gas 4" },
+    { "id": "cooling_rack", "name": "Cooling Rack" }
+  ],
+
+  "ingredients": [
+    { "id": "butter", "name": "Butter", "quantity": "200g" },
+    { "id": "sugar", "name": "Caster Sugar", "quantity": "200g" },
+    { "id": "eggs", "name": "Eggs", "quantity": "4" },
+    { "id": "flour", "name": "Self-raising Flour", "quantity": "200g" },
+    { "id": "baking_powder", "name": "Baking Powder", "quantity": "1 tsp" },
+    { "id": "jam", "name": "Strawberry Jam", "quantity": "4 tbsp" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_batter",
+      "device": "mixing_bowl",
+      "action": "Make batter",
+      "inputs": ["butter", "sugar", "eggs", "flour", "baking_powder"],
+      "output": "batter",
+      "end": { "condition": "batter ready" },
+      "steps": [
+        {
+          "id": "cream",
+          "device": "mixing_bowl",
+          "action": "Cream together",
+          "inputs": ["butter", "sugar"],
+          "output": "creamed_mixture",
+          "end": { "condition": "pale and fluffy" }
+        },
+        {
+          "id": "beat_eggs",
+          "device": "mixing_bowl",
+          "action": "Beat in eggs one at a time",
+          "inputs": ["creamed_mixture", "eggs"],
+          "output": "wet_mix",
+          "after": "cream",
+          "end": { "condition": "well combined" }
+        },
+        {
+          "id": "sift",
+          "device": "sieve",
+          "action": "Sift",
+          "inputs": ["flour", "baking_powder"],
+          "output": "sifted_flour",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "fold",
+          "device": "mixing_bowl",
+          "action": "Fold in",
+          "inputs": ["wet_mix", "sifted_flour"],
+          "output": "batter",
+          "after": ["beat_eggs", "sift"],
+          "end": { "condition": "just combined" }
+        }
+      ]
+    },
+    {
+      "id": "bake_cake",
+      "device": "oven",
+      "action": "Tin, bake and cool",
+      "inputs": ["batter"],
+      "output": "cooled_cake",
+      "after": "make_batter",
+      "end": { "condition": "cooled" },
+      "steps": [
+        {
+          "id": "pour",
+          "device": "cake_tin",
+          "action": "Pour and level",
+          "inputs": ["batter"],
+          "output": "raw_cake",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "bake",
+          "device": "oven",
+          "action": "Bake",
+          "inputs": ["raw_cake"],
+          "output": "baked_cake",
+          "after": "pour",
+          "end": { "duration_minutes": 25, "condition": "golden brown" }
+        },
+        {
+          "id": "cool",
+          "device": "cooling_rack",
+          "action": "Cool",
+          "inputs": ["baked_cake"],
+          "output": "cooled_cake",
+          "after": "bake",
+          "end": { "condition": "completely cool" }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "device": "worktop",
+      "action": "Spread jam and sandwich",
+      "inputs": ["cooled_cake", "jam"],
+      "output": "victoria_sponge",
+      "after": "bake_cake",
+      "end": { "duration_minutes": 2 }
+    }
+  ]
+}
