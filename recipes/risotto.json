@@ -1,0 +1,153 @@
+{
+  "title": "Risotto",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "pan", "name": "Wide Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" }
+  ],
+
+  "ingredients": [
+    { "id": "arborio_rice", "name": "Arborio Rice", "quantity": "300g" },
+    { "id": "onion", "name": "Onion", "quantity": "1" },
+    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
+    { "id": "white_wine", "name": "White Wine", "quantity": "150ml" },
+    { "id": "chicken_stock", "name": "Chicken Stock", "quantity": "1L" },
+    { "id": "butter", "name": "Butter", "quantity": "30g" },
+    { "id": "parmesan", "name": "Parmesan", "quantity": "60g" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "1 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "heat_stock",
+      "device": "saucepan",
+      "action": "Heat stock and keep warm",
+      "inputs": ["chicken_stock"],
+      "output": "warm_stock",
+      "end": { "duration_minutes": 5, "condition": "gently simmering" }
+    },
+    {
+      "id": "make_risotto",
+      "device": "pan",
+      "action": "Build the risotto base and cook with stock",
+      "inputs": ["onion", "garlic", "olive_oil", "arborio_rice", "white_wine", "warm_stock", "salt"],
+      "output": "cooked_risotto",
+      "end": { "condition": "rice tender with creamy consistency" },
+      "steps": [
+        {
+          "id": "chop_onion",
+          "device": "chopping_board",
+          "action": "Finely dice the onion and mince garlic",
+          "inputs": ["onion", "garlic"],
+          "output": "prepped_aromatics",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "soften_onion",
+          "device": "pan",
+          "action": "Soften onion in olive oil over medium heat",
+          "inputs": ["prepped_aromatics", "olive_oil"],
+          "output": "softened_onion",
+          "after": "chop_onion",
+          "end": { "duration_minutes": 5, "condition": "translucent, not browned" }
+        },
+        {
+          "id": "add_rice",
+          "device": "pan",
+          "action": "Add rice and stir to coat in oil",
+          "inputs": ["softened_onion", "arborio_rice"],
+          "output": "coated_rice",
+          "after": "soften_onion",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "toast_rice",
+          "device": "pan",
+          "action": "Toast rice until edges become translucent",
+          "inputs": ["coated_rice"],
+          "output": "toasted_rice",
+          "after": "add_rice",
+          "end": { "duration_minutes": 2, "condition": "edges translucent, nutty aroma" }
+        },
+        {
+          "id": "add_wine",
+          "device": "pan",
+          "action": "Pour in white wine and stir until absorbed",
+          "inputs": ["toasted_rice", "white_wine"],
+          "output": "wine_rice",
+          "after": "toast_rice",
+          "end": { "duration_minutes": 2, "condition": "wine fully absorbed" }
+        },
+        {
+          "id": "add_stock_gradually",
+          "device": "pan",
+          "action": "Add warm stock one ladle at a time, stirring continuously",
+          "inputs": ["wine_rice", "warm_stock"],
+          "output": "stock_rice",
+          "after": "add_wine",
+          "end": { "duration_minutes": 18, "condition": "most stock absorbed" }
+        },
+        {
+          "id": "stir_until_absorbed",
+          "device": "pan",
+          "action": "Continue stirring until rice is tender but still has bite",
+          "inputs": ["stock_rice", "salt"],
+          "output": "cooked_risotto",
+          "after": "add_stock_gradually",
+          "end": { "duration_minutes": 2, "condition": "rice al dente, creamy consistency" }
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "device": "pan",
+      "action": "Finish with butter, parmesan, and seasoning",
+      "inputs": ["cooked_risotto", "butter", "parmesan", "pepper"],
+      "output": "risotto",
+      "after": "make_risotto",
+      "end": { "condition": "rich, creamy, and rested" },
+      "steps": [
+        {
+          "id": "stir_in_butter",
+          "device": "pan",
+          "action": "Remove from heat, stir in cold butter vigorously",
+          "inputs": ["cooked_risotto", "butter"],
+          "output": "buttered_risotto",
+          "end": { "duration_minutes": 1, "condition": "butter melted and incorporated" }
+        },
+        {
+          "id": "stir_in_parmesan",
+          "device": "pan",
+          "action": "Stir in freshly grated parmesan",
+          "inputs": ["buttered_risotto", "parmesan"],
+          "output": "cheesy_risotto",
+          "after": "stir_in_butter",
+          "end": { "duration_minutes": 1, "condition": "parmesan melted through" }
+        },
+        {
+          "id": "season",
+          "device": "pan",
+          "action": "Taste and adjust seasoning with salt and pepper",
+          "inputs": ["cheesy_risotto", "salt", "pepper"],
+          "output": "seasoned_risotto",
+          "after": "stir_in_parmesan",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "rest",
+          "device": "pan",
+          "action": "Cover and rest for 2 minutes before serving",
+          "inputs": ["seasoned_risotto"],
+          "output": "risotto",
+          "after": "season",
+          "end": { "duration_minutes": 2, "condition": "rested and ready to serve" }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "title": "Greek Salad",
+  "servings": 4,
+
+  "devices": [
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Salad Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "tomatoes", "name": "Tomatoes", "quantity": "4" },
+    { "id": "cucumber", "name": "Cucumber", "quantity": "1" },
+    { "id": "red_onion", "name": "Red Onion", "quantity": "half" },
+    { "id": "feta", "name": "Feta Cheese", "quantity": "200g" },
+    { "id": "olives", "name": "Kalamata Olives", "quantity": "handful" },
+    { "id": "olive_oil", "name": "Extra Virgin Olive Oil", "quantity": "3 tbsp" },
+    { "id": "oregano", "name": "Dried Oregano", "quantity": "1 tsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "chop_tomatoes",
+      "device": "chopping_board",
+      "action": "Cut tomatoes into irregular wedges",
+      "inputs": ["tomatoes"],
+      "output": "tomato_wedges",
+      "end": { "duration_minutes": 2 }
+    },
+    {
+      "id": "slice_cucumber",
+      "device": "chopping_board",
+      "action": "Halve cucumber lengthwise and slice into half-moons",
+      "inputs": ["cucumber"],
+      "output": "sliced_cucumber",
+      "end": { "duration_minutes": 2 }
+    },
+    {
+      "id": "slice_onion",
+      "device": "chopping_board",
+      "action": "Peel and thinly slice red onion into rings",
+      "inputs": ["red_onion"],
+      "output": "sliced_onion",
+      "end": { "duration_minutes": 2 }
+    },
+    {
+      "id": "cube_feta",
+      "device": "chopping_board",
+      "action": "Cut feta into rough cubes",
+      "inputs": ["feta"],
+      "output": "cubed_feta",
+      "end": { "duration_minutes": 1 }
+    },
+    {
+      "id": "combine_salad",
+      "device": "bowl",
+      "action": "Combine tomatoes, cucumber, onion, feta, and olives in the salad bowl",
+      "inputs": ["tomato_wedges", "sliced_cucumber", "sliced_onion", "cubed_feta", "olives"],
+      "output": "assembled_salad",
+      "after": ["chop_tomatoes", "slice_cucumber", "slice_onion", "cube_feta"],
+      "end": { "duration_minutes": 1 }
+    },
+    {
+      "id": "dress",
+      "device": "bowl",
+      "action": "Drizzle with olive oil, sprinkle oregano, salt, and pepper",
+      "inputs": ["assembled_salad", "olive_oil", "oregano", "salt", "pepper"],
+      "output": "greek_salad",
+      "after": "combine_salad",
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

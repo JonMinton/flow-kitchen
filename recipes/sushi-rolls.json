@@ -1,0 +1,230 @@
+{
+  "title": "Sushi Rolls",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "rolling_mat", "name": "Rolling Mat" }
+  ],
+
+  "ingredients": [
+    { "id": "sushi_rice", "name": "Sushi Rice", "quantity": "300g" },
+    { "id": "rice_vinegar", "name": "Rice Vinegar", "quantity": "3 tbsp" },
+    { "id": "sugar", "name": "Sugar", "quantity": "1 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "1 tsp" },
+    { "id": "nori", "name": "Nori Sheets", "quantity": "4 sheets" },
+    { "id": "cucumber", "name": "Cucumber", "quantity": "1" },
+    { "id": "avocado", "name": "Avocado", "quantity": "1" },
+    { "id": "smoked_salmon", "name": "Smoked Salmon", "quantity": "200g" },
+    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "for serving" },
+    { "id": "wasabi", "name": "Wasabi", "quantity": "for serving" },
+    { "id": "pickled_ginger", "name": "Pickled Ginger", "quantity": "for serving" },
+    { "id": "water", "name": "Water", "quantity": "400ml" }
+  ],
+
+  "steps": [
+    {
+      "id": "prepare_rice",
+      "device": "saucepan",
+      "action": "Cook and season sushi rice",
+      "inputs": ["sushi_rice", "water", "rice_vinegar", "sugar", "salt"],
+      "output": "seasoned_rice",
+      "end": { "condition": "rice seasoned and cooled" },
+      "steps": [
+        {
+          "id": "cook_rice",
+          "device": "hob",
+          "action": "Cook sushi rice on hob",
+          "inputs": ["sushi_rice", "water"],
+          "output": "cooked_sushi_rice",
+          "end": { "condition": "rice tender, water absorbed" },
+          "steps": [
+            {
+              "id": "rinse_sushi_rice",
+              "device": "saucepan",
+              "action": "Rinse rice under cold water until water runs clear",
+              "inputs": ["sushi_rice"],
+              "output": "rinsed_sushi_rice",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "add_water_to_rice",
+              "device": "saucepan",
+              "action": "Add measured water to rinsed rice",
+              "inputs": ["rinsed_sushi_rice", "water"],
+              "output": "rice_in_water",
+              "after": "rinse_sushi_rice",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "bring_to_boil",
+              "device": "hob",
+              "action": "Bring rice to a boil over high heat",
+              "inputs": ["rice_in_water"],
+              "output": "boiling_rice",
+              "after": "add_water_to_rice",
+              "end": { "duration_minutes": 5, "condition": "rolling boil" }
+            },
+            {
+              "id": "simmer_rice",
+              "device": "hob",
+              "action": "Reduce heat and simmer covered",
+              "inputs": ["boiling_rice"],
+              "output": "simmered_rice",
+              "after": "bring_to_boil",
+              "end": { "duration_minutes": 12, "condition": "water absorbed" }
+            },
+            {
+              "id": "rest_rice",
+              "device": "saucepan",
+              "action": "Remove from heat and rest with lid on",
+              "inputs": ["simmered_rice"],
+              "output": "cooked_sushi_rice",
+              "after": "simmer_rice",
+              "end": { "duration_minutes": 10 }
+            }
+          ]
+        },
+        {
+          "id": "season_rice",
+          "device": "saucepan",
+          "action": "Season rice with vinegar mixture",
+          "inputs": ["cooked_sushi_rice", "rice_vinegar", "sugar", "salt"],
+          "output": "seasoned_rice",
+          "after": "cook_rice",
+          "end": { "condition": "rice seasoned and cooled" },
+          "steps": [
+            {
+              "id": "mix_vinegar_sugar_salt",
+              "device": "saucepan",
+              "action": "Combine rice vinegar, sugar and salt, stir to dissolve",
+              "inputs": ["rice_vinegar", "sugar", "salt"],
+              "output": "sushi_vinegar",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "fold_into_rice",
+              "device": "saucepan",
+              "action": "Fold vinegar mixture into rice using cutting motions",
+              "inputs": ["cooked_sushi_rice", "sushi_vinegar"],
+              "output": "vinegared_rice",
+              "after": "mix_vinegar_sugar_salt",
+              "end": { "duration_minutes": 3, "condition": "evenly distributed" }
+            },
+            {
+              "id": "cool_rice",
+              "device": "saucepan",
+              "action": "Fan rice while folding to cool and add sheen",
+              "inputs": ["vinegared_rice"],
+              "output": "seasoned_rice",
+              "after": "fold_into_rice",
+              "end": { "duration_minutes": 10, "condition": "room temperature, glossy" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prepare_fillings",
+      "device": "chopping_board",
+      "action": "Prepare all filling ingredients",
+      "inputs": ["cucumber", "avocado", "smoked_salmon"],
+      "output": "prepared_fillings",
+      "end": { "condition": "all fillings sliced" },
+      "steps": [
+        {
+          "id": "slice_cucumber",
+          "device": "chopping_board",
+          "action": "Cut cucumber into long thin strips",
+          "inputs": ["cucumber"],
+          "output": "cucumber_strips",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "slice_avocado",
+          "device": "chopping_board",
+          "action": "Halve, stone and slice avocado thinly",
+          "inputs": ["avocado"],
+          "output": "avocado_slices",
+          "after": "slice_cucumber",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "slice_salmon",
+          "device": "chopping_board",
+          "action": "Slice smoked salmon into strips",
+          "inputs": ["smoked_salmon"],
+          "output": "prepared_fillings",
+          "after": "slice_avocado",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "assemble_rolls",
+      "device": "rolling_mat",
+      "action": "Assemble and roll sushi",
+      "inputs": ["nori", "seasoned_rice", "prepared_fillings"],
+      "output": "sliced_sushi",
+      "after": ["prepare_rice", "prepare_fillings"],
+      "end": { "condition": "rolls sliced into pieces" },
+      "steps": [
+        {
+          "id": "lay_nori",
+          "device": "rolling_mat",
+          "action": "Place nori sheet shiny-side down on rolling mat",
+          "inputs": ["nori"],
+          "output": "nori_on_mat",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "spread_rice_on_nori",
+          "device": "rolling_mat",
+          "action": "Spread seasoned rice evenly over nori, leaving 1cm border at top",
+          "inputs": ["nori_on_mat", "seasoned_rice"],
+          "output": "rice_on_nori",
+          "after": "lay_nori",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "arrange_fillings",
+          "device": "rolling_mat",
+          "action": "Arrange cucumber, avocado and salmon in a line across centre",
+          "inputs": ["rice_on_nori", "prepared_fillings"],
+          "output": "filled_nori",
+          "after": "spread_rice_on_nori",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "roll_tightly",
+          "device": "rolling_mat",
+          "action": "Roll tightly using mat, sealing edge with water",
+          "inputs": ["filled_nori"],
+          "output": "sushi_roll",
+          "after": "arrange_fillings",
+          "end": { "duration_minutes": 2, "condition": "tight and sealed" }
+        },
+        {
+          "id": "slice_roll",
+          "device": "chopping_board",
+          "action": "Slice each roll into 6-8 pieces with a wet knife",
+          "inputs": ["sushi_roll"],
+          "output": "sliced_sushi",
+          "after": "roll_tightly",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "plate",
+      "device": "chopping_board",
+      "action": "Arrange sushi on plate with accompaniments",
+      "inputs": ["sliced_sushi", "soy_sauce", "wasabi", "pickled_ginger"],
+      "output": "sushi_platter",
+      "after": "assemble_rolls",
+      "end": { "duration_minutes": 3 }
+    }
+  ]
+}

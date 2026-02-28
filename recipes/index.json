@@ -1,0 +1,22 @@
+[
+  { "id": "scrambled-eggs", "title": "Scrambled Eggs", "cuisine": "British", "servings": 2 },
+  { "id": "guacamole", "title": "Guacamole", "cuisine": "Mexican", "servings": 4 },
+  { "id": "greek-salad", "title": "Greek Salad", "cuisine": "Greek", "servings": 4 },
+  { "id": "miso-soup", "title": "Miso Soup", "cuisine": "Japanese", "servings": 4 },
+  { "id": "french-omelette", "title": "French Omelette", "cuisine": "French", "servings": 1 },
+  { "id": "hummus", "title": "Hummus", "cuisine": "Middle Eastern", "servings": 6 },
+  { "id": "pasta-aglio-e-olio", "title": "Pasta Aglio e Olio", "cuisine": "Italian", "servings": 2 },
+  { "id": "tomato-soup", "title": "Tomato Soup", "cuisine": "British", "servings": 4 },
+  { "id": "stir-fried-noodles", "title": "Stir-fried Noodles", "cuisine": "Chinese", "servings": 2 },
+  { "id": "fish-tacos", "title": "Fish Tacos", "cuisine": "Mexican", "servings": 4 },
+  { "id": "risotto", "title": "Risotto", "cuisine": "Italian", "servings": 4 },
+  { "id": "chicken-tikka-masala", "title": "Chicken Tikka Masala", "cuisine": "Indian", "servings": 4 },
+  { "id": "pad-thai", "title": "Pad Thai", "cuisine": "Thai", "servings": 2 },
+  { "id": "shepherds-pie", "title": "Shepherd's Pie", "cuisine": "British", "servings": 6 },
+  { "id": "sushi-rolls", "title": "Sushi Rolls", "cuisine": "Japanese", "servings": 4 },
+  { "id": "pizza-margherita", "title": "Pizza Margherita", "cuisine": "Italian", "servings": 2 },
+  { "id": "victoria-sponge", "title": "Victoria Sponge", "cuisine": "British", "servings": 8 },
+  { "id": "beef-bourguignon", "title": "Beef Bourguignon", "cuisine": "French", "servings": 6 },
+  { "id": "chicken-biryani", "title": "Chicken Biryani", "cuisine": "Indian", "servings": 6 },
+  { "id": "ramen", "title": "Ramen", "cuisine": "Japanese", "servings": 4 }
+]

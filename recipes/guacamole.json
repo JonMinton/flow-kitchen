@@ -1,0 +1,97 @@
+{
+  "title": "Guacamole",
+  "servings": 4,
+
+  "devices": [
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Mixing Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "avocados", "name": "Avocados", "quantity": "3" },
+    { "id": "lime", "name": "Lime", "quantity": "1" },
+    { "id": "red_onion", "name": "Red Onion", "quantity": "half" },
+    { "id": "tomato", "name": "Tomato", "quantity": "1" },
+    { "id": "coriander", "name": "Fresh Coriander", "quantity": "handful" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "chilli", "name": "Green Chilli", "quantity": "1" }
+  ],
+
+  "steps": [
+    {
+      "id": "halve_avocados",
+      "device": "chopping_board",
+      "action": "Halve avocados, remove stones, and scoop flesh into bowl",
+      "inputs": ["avocados"],
+      "output": "avocado_flesh",
+      "end": { "duration_minutes": 2 }
+    },
+    {
+      "id": "mash",
+      "device": "bowl",
+      "action": "Mash avocado flesh with a fork to a chunky paste",
+      "inputs": ["avocado_flesh"],
+      "output": "mashed_avocado",
+      "after": "halve_avocados",
+      "end": { "condition": "chunky but spreadable" }
+    },
+    {
+      "id": "chop_onion",
+      "device": "chopping_board",
+      "action": "Finely dice the red onion",
+      "inputs": ["red_onion"],
+      "output": "diced_onion",
+      "end": { "duration_minutes": 2 }
+    },
+    {
+      "id": "chop_tomato",
+      "device": "chopping_board",
+      "action": "Deseed and finely dice the tomato",
+      "inputs": ["tomato"],
+      "output": "diced_tomato",
+      "end": { "duration_minutes": 2 }
+    },
+    {
+      "id": "chop_chilli",
+      "device": "chopping_board",
+      "action": "Deseed and finely chop the chilli",
+      "inputs": ["chilli"],
+      "output": "chopped_chilli",
+      "end": { "duration_minutes": 1 }
+    },
+    {
+      "id": "chop_coriander",
+      "device": "chopping_board",
+      "action": "Roughly chop the fresh coriander",
+      "inputs": ["coriander"],
+      "output": "chopped_coriander",
+      "end": { "duration_minutes": 1 }
+    },
+    {
+      "id": "squeeze_lime",
+      "device": "chopping_board",
+      "action": "Halve and squeeze the lime",
+      "inputs": ["lime"],
+      "output": "lime_juice",
+      "end": { "duration_minutes": 1 }
+    },
+    {
+      "id": "combine_all",
+      "device": "bowl",
+      "action": "Add all chopped ingredients and lime juice to the mashed avocado and fold together",
+      "inputs": ["mashed_avocado", "diced_onion", "diced_tomato", "chopped_chilli", "chopped_coriander", "lime_juice"],
+      "output": "combined_guacamole",
+      "after": ["mash", "chop_onion", "chop_tomato", "chop_chilli", "chop_coriander", "squeeze_lime"],
+      "end": { "duration_minutes": 1 }
+    },
+    {
+      "id": "season",
+      "device": "bowl",
+      "action": "Season with salt and adjust lime to taste",
+      "inputs": ["combined_guacamole", "salt"],
+      "output": "guacamole",
+      "after": "combine_all",
+      "end": { "condition": "balanced and seasoned" }
+    }
+  ]
+}

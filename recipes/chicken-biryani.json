@@ -1,0 +1,423 @@
+{
+  "title": "Chicken Biryani",
+  "servings": 6,
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "oven", "name": "Oven", "settings": "180°C" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "pan", "name": "Pan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "baking_dish", "name": "Baking Dish" }
+  ],
+  "ingredients": [
+    { "id": "chicken_thighs", "name": "Chicken Thighs", "quantity": "600g" },
+    { "id": "basmati_rice", "name": "Basmati Rice", "quantity": "400g" },
+    { "id": "onion", "name": "Onion", "quantity": "3" },
+    { "id": "garlic", "name": "Garlic", "quantity": "6 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "large thumb" },
+    { "id": "yoghurt", "name": "Yoghurt", "quantity": "200ml" },
+    { "id": "tomatoes", "name": "Tomatoes", "quantity": "2" },
+    { "id": "green_chillies", "name": "Green Chillies", "quantity": "2" },
+    { "id": "mint", "name": "Mint", "quantity": "handful" },
+    { "id": "coriander", "name": "Coriander", "quantity": "handful" },
+    { "id": "biryani_masala", "name": "Biryani Masala", "quantity": "2 tbsp" },
+    { "id": "turmeric", "name": "Turmeric", "quantity": "1 tsp" },
+    { "id": "cumin", "name": "Cumin", "quantity": "1 tsp" },
+    { "id": "whole_spices", "name": "Whole Spices (Cardamom, Cinnamon, Cloves)", "quantity": "2 cardamom, 1 cinnamon stick, 4 cloves" },
+    { "id": "saffron", "name": "Saffron", "quantity": "pinch" },
+    { "id": "warm_milk", "name": "Warm Milk", "quantity": "3 tbsp" },
+    { "id": "ghee", "name": "Ghee", "quantity": "3 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "water", "name": "Water", "quantity": "800ml" },
+    { "id": "lemon", "name": "Lemon", "quantity": "1" }
+  ],
+  "steps": [
+    {
+      "id": "marinate_chicken",
+      "device": "bowl",
+      "action": "Prepare marinade and marinate chicken",
+      "inputs": ["chicken_thighs", "garlic", "ginger", "green_chillies", "coriander", "mint", "yoghurt", "biryani_masala", "turmeric", "cumin", "salt"],
+      "output": "marinated_chicken",
+      "end": { "duration_minutes": 30, "condition": "minimum 30 min, ideally 2 hours" },
+      "steps": [
+        {
+          "id": "prep_marinade",
+          "device": "chopping_board",
+          "action": "Prepare marinade ingredients",
+          "inputs": ["garlic", "ginger", "green_chillies", "coriander", "mint", "yoghurt", "biryani_masala", "turmeric", "cumin", "salt"],
+          "output": "marinade",
+          "end": { "condition": "smooth, spiced yoghurt marinade" },
+          "steps": [
+            {
+              "id": "mince_garlic_ginger",
+              "device": "chopping_board",
+              "action": "Finely mince garlic and grate ginger",
+              "inputs": ["garlic", "ginger"],
+              "output": "garlic_ginger_paste",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "slice_chillies",
+              "device": "chopping_board",
+              "action": "Slit green chillies lengthways",
+              "inputs": ["green_chillies"],
+              "output": "slit_chillies",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "chop_coriander_mint",
+              "device": "chopping_board",
+              "action": "Roughly chop coriander and mint",
+              "inputs": ["coriander", "mint"],
+              "output": "chopped_herbs",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "mix_yoghurt_spices",
+              "device": "bowl",
+              "action": "Combine yoghurt with spices, garlic-ginger, chillies, and half the herbs",
+              "after": ["mince_garlic_ginger", "slice_chillies", "chop_coriander_mint"],
+              "inputs": ["yoghurt", "biryani_masala", "turmeric", "cumin", "salt", "garlic_ginger_paste", "slit_chillies", "chopped_herbs"],
+              "output": "marinade",
+              "end": { "duration_minutes": 2 }
+            }
+          ]
+        },
+        {
+          "id": "marinate",
+          "device": "bowl",
+          "action": "Coat chicken in marinade and rest",
+          "after": "prep_marinade",
+          "inputs": ["chicken_thighs", "marinade"],
+          "output": "marinated_chicken",
+          "end": { "duration_minutes": 30, "condition": "minimum 30 min, ideally 2 hours" },
+          "steps": [
+            {
+              "id": "cut_chicken",
+              "device": "chopping_board",
+              "action": "Cut chicken thighs into large pieces",
+              "inputs": ["chicken_thighs"],
+              "output": "chicken_pieces",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "coat_in_marinade",
+              "device": "bowl",
+              "action": "Toss chicken in marinade until fully coated",
+              "after": "cut_chicken",
+              "inputs": ["chicken_pieces", "marinade"],
+              "output": "coated_chicken",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "rest_chicken",
+              "device": "bowl",
+              "action": "Cover and refrigerate to marinate",
+              "after": "coat_in_marinade",
+              "inputs": ["coated_chicken"],
+              "output": "marinated_chicken",
+              "end": { "duration_minutes": 30, "condition": "minimum 30 min, ideally 2 hours" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prepare_rice",
+      "device": "saucepan",
+      "action": "Parboil rice and prepare saffron milk",
+      "inputs": ["basmati_rice", "water", "whole_spices", "salt", "saffron", "warm_milk"],
+      "output": "parboiled_rice_and_saffron",
+      "end": { "condition": "rice 70% cooked, saffron steeped" },
+      "steps": [
+        {
+          "id": "parboil",
+          "device": "saucepan",
+          "action": "Rinse, soak, and parboil rice",
+          "inputs": ["basmati_rice", "water", "whole_spices", "salt"],
+          "output": "parboiled_rice",
+          "end": { "condition": "rice 70% cooked, grains separate" },
+          "steps": [
+            {
+              "id": "rinse_rice",
+              "device": "saucepan",
+              "action": "Rinse rice in cold water until water runs clear",
+              "inputs": ["basmati_rice"],
+              "output": "rinsed_rice",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "soak_rice",
+              "device": "saucepan",
+              "action": "Soak rice in cold water",
+              "after": "rinse_rice",
+              "inputs": ["rinsed_rice", "water"],
+              "output": "soaked_rice",
+              "end": { "duration_minutes": 20 }
+            },
+            {
+              "id": "boil_with_whole_spices",
+              "device": "saucepan",
+              "action": "Bring large pot of salted water to boil with whole spices",
+              "after": "soak_rice",
+              "inputs": ["water", "whole_spices", "salt"],
+              "output": "spiced_boiling_water",
+              "end": { "duration_minutes": 5, "condition": "rolling boil" }
+            },
+            {
+              "id": "cook_70_percent",
+              "device": "saucepan",
+              "action": "Add drained rice, cook until 70% done (grains with a chalky centre)",
+              "after": "boil_with_whole_spices",
+              "inputs": ["soaked_rice", "spiced_boiling_water"],
+              "output": "partially_cooked_rice",
+              "end": { "duration_minutes": 5, "condition": "grains with slight bite in centre" }
+            },
+            {
+              "id": "drain_rice",
+              "device": "saucepan",
+              "action": "Drain rice immediately, spread to stop cooking",
+              "after": "cook_70_percent",
+              "inputs": ["partially_cooked_rice"],
+              "output": "parboiled_rice",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "prepare_saffron",
+          "device": "bowl",
+          "action": "Steep saffron in warm milk",
+          "inputs": ["saffron", "warm_milk"],
+          "output": "saffron_milk",
+          "end": { "duration_minutes": 10, "condition": "milk deeply golden and fragrant" }
+        }
+      ]
+    },
+    {
+      "id": "cook_chicken_base",
+      "device": "pan",
+      "action": "Fry onions and cook marinated chicken",
+      "after": "marinate_chicken",
+      "inputs": ["onion", "ghee", "marinated_chicken", "tomatoes", "lemon"],
+      "output": "cooked_chicken",
+      "end": { "condition": "chicken cooked through, oil separates" },
+      "steps": [
+        {
+          "id": "fry_onions",
+          "device": "pan",
+          "action": "Fry onion slices until deep golden (birista)",
+          "inputs": ["onion", "ghee"],
+          "output": "fried_onions",
+          "end": { "condition": "deep golden brown, crispy" },
+          "steps": [
+            {
+              "id": "slice_onions",
+              "device": "chopping_board",
+              "action": "Thinly slice all onions into half-rings",
+              "inputs": ["onion"],
+              "output": "sliced_onions",
+              "end": { "duration_minutes": 5 }
+            },
+            {
+              "id": "fry_until_golden_brown",
+              "device": "pan",
+              "action": "Fry onions in ghee on medium heat, stirring regularly",
+              "after": "slice_onions",
+              "inputs": ["sliced_onions", "ghee"],
+              "output": "fried_onions",
+              "end": { "duration_minutes": 15, "condition": "deep golden brown, crispy birista" }
+            }
+          ]
+        },
+        {
+          "id": "cook_meat",
+          "device": "pan",
+          "action": "Cook marinated chicken with tomatoes",
+          "after": "fry_onions",
+          "inputs": ["marinated_chicken", "tomatoes", "lemon", "fried_onions"],
+          "output": "cooked_chicken",
+          "end": { "condition": "chicken cooked, oil separates from masala" },
+          "steps": [
+            {
+              "id": "add_marinated_chicken",
+              "device": "pan",
+              "action": "Add marinated chicken to the pan with half the fried onions",
+              "inputs": ["marinated_chicken", "fried_onions"],
+              "output": "chicken_in_pan",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "add_chopped_tomatoes",
+              "device": "pan",
+              "action": "Add chopped tomatoes",
+              "after": "add_marinated_chicken",
+              "inputs": ["tomatoes", "chicken_in_pan"],
+              "output": "chicken_with_tomatoes",
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "cook_until_oil_separates",
+              "device": "pan",
+              "action": "Cook on medium heat until oil separates from masala",
+              "after": "add_chopped_tomatoes",
+              "inputs": ["chicken_with_tomatoes"],
+              "output": "cooked_masala_chicken",
+              "end": { "duration_minutes": 15, "condition": "oil separates, chicken cooked through" }
+            },
+            {
+              "id": "squeeze_lemon",
+              "device": "pan",
+              "action": "Squeeze lemon juice over the cooked chicken",
+              "after": "cook_until_oil_separates",
+              "inputs": ["lemon", "cooked_masala_chicken"],
+              "output": "cooked_chicken",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "layer_and_cook",
+      "device": "oven",
+      "action": "Layer biryani and cook on dum",
+      "after": ["prepare_rice", "cook_chicken_base"],
+      "inputs": ["cooked_chicken", "parboiled_rice", "mint", "coriander", "saffron_milk", "ghee"],
+      "output": "cooked_biryani",
+      "end": { "duration_minutes": 35, "condition": "rice fully cooked, fragrant" },
+      "steps": [
+        {
+          "id": "assemble_layers",
+          "device": "baking_dish",
+          "action": "Layer chicken, rice, herbs, and saffron milk",
+          "inputs": ["cooked_chicken", "parboiled_rice", "mint", "coriander", "saffron_milk", "ghee"],
+          "output": "assembled_biryani",
+          "end": { "condition": "layers assembled and sealed" },
+          "steps": [
+            {
+              "id": "first_layer",
+              "device": "baking_dish",
+              "action": "Build first layer of chicken and rice",
+              "inputs": ["cooked_chicken", "parboiled_rice", "mint", "coriander", "saffron_milk"],
+              "output": "layered_biryani",
+              "end": { "condition": "evenly layered" },
+              "steps": [
+                {
+                  "id": "spread_chicken_in_dish",
+                  "device": "baking_dish",
+                  "action": "Spread cooked chicken evenly across the base of the dish",
+                  "inputs": ["cooked_chicken"],
+                  "output": "chicken_layer",
+                  "end": { "duration_minutes": 1 }
+                },
+                {
+                  "id": "layer_rice",
+                  "device": "baking_dish",
+                  "action": "Gently spread parboiled rice over chicken",
+                  "after": "spread_chicken_in_dish",
+                  "inputs": ["parboiled_rice", "chicken_layer"],
+                  "output": "rice_layer",
+                  "end": { "duration_minutes": 1 }
+                },
+                {
+                  "id": "sprinkle_mint_coriander",
+                  "device": "baking_dish",
+                  "action": "Scatter remaining fresh mint and coriander over rice",
+                  "after": "layer_rice",
+                  "inputs": ["mint", "coriander", "rice_layer"],
+                  "output": "herb_topped_layer",
+                  "end": { "duration_minutes": 1 }
+                },
+                {
+                  "id": "drizzle_saffron_milk",
+                  "device": "baking_dish",
+                  "action": "Drizzle saffron milk over the top in streaks",
+                  "after": "sprinkle_mint_coriander",
+                  "inputs": ["saffron_milk", "herb_topped_layer"],
+                  "output": "layered_biryani",
+                  "end": { "duration_minutes": 1 }
+                }
+              ]
+            },
+            {
+              "id": "seal",
+              "device": "baking_dish",
+              "action": "Seal the dish tightly",
+              "after": "first_layer",
+              "inputs": ["layered_biryani"],
+              "output": "assembled_biryani",
+              "end": { "duration_minutes": 2 },
+              "steps": [
+                {
+                  "id": "cover_tightly_with_foil",
+                  "device": "baking_dish",
+                  "action": "Cover dish tightly with a double layer of foil",
+                  "inputs": ["layered_biryani"],
+                  "output": "foil_covered_biryani",
+                  "end": { "duration_minutes": 1 }
+                },
+                {
+                  "id": "put_lid_on",
+                  "device": "baking_dish",
+                  "action": "Place heavy lid on top to create a tight seal",
+                  "after": "cover_tightly_with_foil",
+                  "inputs": ["foil_covered_biryani"],
+                  "output": "assembled_biryani",
+                  "end": { "duration_minutes": 1 }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dum_cook",
+          "device": "oven",
+          "action": "Cook on dum in the oven",
+          "after": "assemble_layers",
+          "inputs": ["assembled_biryani"],
+          "output": "cooked_biryani",
+          "end": { "duration_minutes": 35, "condition": "rice fully cooked, fragrant" }
+        }
+      ]
+    },
+    {
+      "id": "serve",
+      "device": "baking_dish",
+      "action": "Rest, fluff, and garnish biryani",
+      "after": "layer_and_cook",
+      "inputs": ["cooked_biryani", "fried_onions"],
+      "output": "chicken_biryani",
+      "end": { "condition": "fluffy, fragrant, beautifully garnished" },
+      "steps": [
+        {
+          "id": "rest_5_min",
+          "device": "baking_dish",
+          "action": "Rest biryani with lid on for 5 minutes",
+          "inputs": ["cooked_biryani"],
+          "output": "rested_biryani",
+          "end": { "duration_minutes": 5 }
+        },
+        {
+          "id": "fluff_with_fork",
+          "device": "baking_dish",
+          "action": "Gently fluff rice with a fork from bottom to top",
+          "after": "rest_5_min",
+          "inputs": ["rested_biryani"],
+          "output": "fluffed_biryani",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "garnish_with_fried_onions",
+          "device": "baking_dish",
+          "action": "Top with reserved crispy fried onions",
+          "after": "fluff_with_fork",
+          "inputs": ["fluffed_biryani", "fried_onions"],
+          "output": "chicken_biryani",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    }
+  ]
+}

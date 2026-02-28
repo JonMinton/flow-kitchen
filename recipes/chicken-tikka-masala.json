@@ -1,0 +1,264 @@
+{
+  "title": "Chicken Tikka Masala",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "oven", "name": "Oven", "settings": "200°C" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Bowl" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "baking_tray", "name": "Baking Tray" },
+    { "id": "blender", "name": "Blender" }
+  ],
+
+  "ingredients": [
+    { "id": "chicken_breast", "name": "Chicken Breast", "quantity": "500g" },
+    { "id": "yoghurt", "name": "Yoghurt", "quantity": "150ml" },
+    { "id": "tikka_paste", "name": "Tikka Paste", "quantity": "3 tbsp" },
+    { "id": "onion", "name": "Onion", "quantity": "2" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
+    { "id": "tomatoes", "name": "Tinned Tomatoes", "quantity": "400g tin" },
+    { "id": "cream", "name": "Cream", "quantity": "100ml" },
+    { "id": "basmati_rice", "name": "Basmati Rice", "quantity": "300g" },
+    { "id": "cumin", "name": "Cumin", "quantity": "1 tsp" },
+    { "id": "coriander_powder", "name": "Coriander Powder", "quantity": "1 tsp" },
+    { "id": "turmeric", "name": "Turmeric", "quantity": "1 tsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
+    { "id": "coriander_leaves", "name": "Fresh Coriander", "quantity": "handful" },
+    { "id": "water", "name": "Water", "quantity": "600ml" }
+  ],
+
+  "steps": [
+    {
+      "id": "marinate_and_cook_chicken",
+      "device": "oven",
+      "action": "Marinate and cook chicken",
+      "inputs": ["chicken_breast", "yoghurt", "tikka_paste", "cumin", "coriander_powder", "turmeric", "salt"],
+      "output": "cooked_chicken",
+      "end": { "condition": "chicken cooked through" },
+      "steps": [
+        {
+          "id": "marinate",
+          "device": "bowl",
+          "action": "Prepare and marinate chicken",
+          "inputs": ["chicken_breast", "yoghurt", "tikka_paste", "cumin", "coriander_powder", "turmeric", "salt"],
+          "output": "marinated_chicken",
+          "end": { "duration_minutes": 30 },
+          "steps": [
+            {
+              "id": "cut_chicken",
+              "device": "chopping_board",
+              "action": "Cut chicken into bite-sized pieces",
+              "inputs": ["chicken_breast"],
+              "output": "chicken_pieces",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "mix_marinade",
+              "device": "bowl",
+              "action": "Mix yoghurt with tikka paste and spices",
+              "inputs": ["yoghurt", "tikka_paste", "cumin", "coriander_powder", "turmeric", "salt"],
+              "output": "marinade",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "coat_chicken",
+              "device": "bowl",
+              "action": "Coat chicken pieces in marinade",
+              "inputs": ["chicken_pieces", "marinade"],
+              "output": "coated_chicken",
+              "after": ["cut_chicken", "mix_marinade"],
+              "end": { "duration_minutes": 1 }
+            },
+            {
+              "id": "rest_chicken",
+              "device": "bowl",
+              "action": "Rest chicken in marinade",
+              "inputs": ["coated_chicken"],
+              "output": "marinated_chicken",
+              "after": "coat_chicken",
+              "end": { "duration_minutes": 30, "condition": "flavours absorbed" }
+            }
+          ]
+        },
+        {
+          "id": "cook_chicken",
+          "device": "oven",
+          "action": "Bake marinated chicken on tray",
+          "inputs": ["marinated_chicken"],
+          "output": "cooked_chicken",
+          "after": "marinate",
+          "end": { "duration_minutes": 20, "condition": "charred at edges" }
+        }
+      ]
+    },
+    {
+      "id": "make_sauce",
+      "device": "hob",
+      "action": "Make tikka masala sauce",
+      "inputs": ["onion", "garlic", "ginger", "oil", "tomatoes", "cream"],
+      "output": "finished_sauce",
+      "end": { "condition": "sauce smooth and creamy" },
+      "steps": [
+        {
+          "id": "prep_sauce_base",
+          "device": "hob",
+          "action": "Prepare and fry sauce base",
+          "inputs": ["onion", "garlic", "ginger", "oil"],
+          "output": "sauce_base",
+          "end": { "condition": "aromatics softened" },
+          "steps": [
+            {
+              "id": "chop_onions",
+              "device": "chopping_board",
+              "action": "Finely chop onions",
+              "inputs": ["onion"],
+              "output": "chopped_onions",
+              "end": { "duration_minutes": 3 }
+            },
+            {
+              "id": "fry_onions",
+              "device": "hob",
+              "action": "Fry onions in oil until soft",
+              "inputs": ["chopped_onions", "oil"],
+              "output": "fried_onions",
+              "after": "chop_onions",
+              "end": { "duration_minutes": 8, "condition": "golden and soft" }
+            },
+            {
+              "id": "add_garlic_ginger",
+              "device": "hob",
+              "action": "Add minced garlic and ginger, cook briefly",
+              "inputs": ["fried_onions", "garlic", "ginger"],
+              "output": "aromatics_base",
+              "after": "fry_onions",
+              "end": { "duration_minutes": 2, "condition": "fragrant" }
+            },
+            {
+              "id": "add_spices_to_sauce",
+              "device": "hob",
+              "action": "Add remaining spices and stir",
+              "inputs": ["aromatics_base", "cumin", "coriander_powder", "turmeric"],
+              "output": "sauce_base",
+              "after": "add_garlic_ginger",
+              "end": { "duration_minutes": 1, "condition": "spices toasted" }
+            }
+          ]
+        },
+        {
+          "id": "finish_sauce",
+          "device": "hob",
+          "action": "Complete the sauce",
+          "inputs": ["sauce_base", "tomatoes", "cream"],
+          "output": "finished_sauce",
+          "after": "prep_sauce_base",
+          "end": { "condition": "sauce smooth and creamy" },
+          "steps": [
+            {
+              "id": "add_tomatoes",
+              "device": "hob",
+              "action": "Add tinned tomatoes and stir",
+              "inputs": ["sauce_base", "tomatoes"],
+              "output": "tomato_sauce",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "simmer_sauce",
+              "device": "hob",
+              "action": "Simmer sauce to reduce",
+              "inputs": ["tomato_sauce"],
+              "output": "reduced_sauce",
+              "after": "add_tomatoes",
+              "end": { "duration_minutes": 15, "condition": "thickened" }
+            },
+            {
+              "id": "blend_sauce",
+              "device": "blender",
+              "action": "Blend sauce until smooth",
+              "inputs": ["reduced_sauce"],
+              "output": "smooth_sauce",
+              "after": "simmer_sauce",
+              "end": { "duration_minutes": 2, "condition": "smooth" }
+            },
+            {
+              "id": "add_cream",
+              "device": "hob",
+              "action": "Stir in cream and warm through",
+              "inputs": ["smooth_sauce", "cream"],
+              "output": "finished_sauce",
+              "after": "blend_sauce",
+              "end": { "duration_minutes": 3, "condition": "heated through" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cook_rice",
+      "device": "hob",
+      "action": "Cook basmati rice",
+      "inputs": ["basmati_rice", "water", "salt"],
+      "output": "cooked_rice",
+      "end": { "condition": "rice fluffy" },
+      "steps": [
+        {
+          "id": "rinse_rice",
+          "device": "saucepan",
+          "action": "Rinse rice under cold water until water runs clear",
+          "inputs": ["basmati_rice", "water"],
+          "output": "rinsed_rice",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "boil_rice",
+          "device": "hob",
+          "action": "Add rice to boiling salted water",
+          "inputs": ["rinsed_rice", "water", "salt"],
+          "output": "boiling_rice",
+          "after": "rinse_rice",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "steam_rice",
+          "device": "hob",
+          "action": "Cover and steam on low heat",
+          "inputs": ["boiling_rice"],
+          "output": "cooked_rice",
+          "after": "boil_rice",
+          "end": { "duration_minutes": 12, "condition": "water absorbed, rice fluffy" }
+        }
+      ]
+    },
+    {
+      "id": "assemble",
+      "device": "hob",
+      "action": "Combine chicken and sauce, garnish and serve",
+      "inputs": ["cooked_chicken", "finished_sauce", "cooked_rice", "coriander_leaves"],
+      "output": "chicken_tikka_masala",
+      "after": ["marinate_and_cook_chicken", "make_sauce", "cook_rice"],
+      "end": { "condition": "served" },
+      "steps": [
+        {
+          "id": "combine_chicken_sauce",
+          "device": "hob",
+          "action": "Add cooked chicken to sauce and simmer briefly",
+          "inputs": ["cooked_chicken", "finished_sauce"],
+          "output": "tikka_masala",
+          "end": { "duration_minutes": 5, "condition": "chicken heated through in sauce" }
+        },
+        {
+          "id": "garnish_and_serve",
+          "device": "chopping_board",
+          "action": "Garnish with fresh coriander and serve with rice",
+          "inputs": ["tikka_masala", "cooked_rice", "coriander_leaves"],
+          "output": "chicken_tikka_masala",
+          "after": "combine_chicken_sauce",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    }
+  ]
+}

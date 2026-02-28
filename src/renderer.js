@@ -15,14 +15,49 @@ let recipe = null;
 let expanded = new Set();
 let revealed = new Set();
 
-// ── Entry point ───────────────────────────────────────────────────
-async function init() {
-  recipe = await d3.json('/victoria-sponge.json');
+// ── Load a recipe by ID ─────────────────────────────────────────
+async function loadRecipe(id) {
+  recipe = await d3.json(`${import.meta.env.BASE_URL}${id}.json`);
+  expanded = new Set();
+  revealed = new Set();
 
   d3.select('#recipe-title').text(recipe.title);
   d3.select('#recipe-meta').text(`Serves ${recipe.servings}`);
+  d3.select('#recipe-select').property('value', id);
 
+  window.location.hash = id;
   render();
+}
+
+// ── Entry point ───────────────────────────────────────────────────
+async function init() {
+  const index = await d3.json(`${import.meta.env.BASE_URL}index.json`);
+
+  // Populate selector
+  const select = d3.select('#recipe-select');
+  select.selectAll('option')
+    .data(index)
+    .join('option')
+    .attr('value', d => d.id)
+    .text(d => `${d.title} (${d.cuisine})`);
+
+  select.on('change', function () {
+    loadRecipe(this.value);
+  });
+
+  // Pick recipe from URL hash or default to first
+  const hash = window.location.hash.replace('#', '');
+  const startId = index.find(r => r.id === hash) ? hash : index[0].id;
+
+  await loadRecipe(startId);
+
+  // Handle browser back/forward
+  window.addEventListener('hashchange', () => {
+    const id = window.location.hash.replace('#', '');
+    if (id && index.find(r => r.id === id)) {
+      loadRecipe(id);
+    }
+  });
 }
 
 // ── Gather visible steps (respecting expand state) ────────────────

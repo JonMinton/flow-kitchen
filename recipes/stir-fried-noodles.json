@@ -1,0 +1,191 @@
+{
+  "title": "Stir-Fried Noodles",
+  "servings": 2,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "wok", "name": "Wok" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "bowl", "name": "Mixing Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "egg_noodles", "name": "Egg Noodles", "quantity": "200g" },
+    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "2 tbsp" },
+    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "1 tbsp" },
+    { "id": "oyster_sauce", "name": "Oyster Sauce", "quantity": "1 tbsp" },
+    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
+    { "id": "ginger", "name": "Fresh Ginger", "quantity": "thumb-sized piece" },
+    { "id": "spring_onions", "name": "Spring Onions", "quantity": "3" },
+    { "id": "pak_choi", "name": "Pak Choi", "quantity": "2" },
+    { "id": "bean_sprouts", "name": "Bean Sprouts", "quantity": "100g" },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "1 tbsp" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_noodles",
+      "device": "saucepan",
+      "action": "Cook and drain noodles",
+      "inputs": ["egg_noodles"],
+      "output": "drained_noodles",
+      "end": { "condition": "noodles cooked and drained" },
+      "steps": [
+        {
+          "id": "boil_water",
+          "device": "saucepan",
+          "action": "Bring water to the boil",
+          "inputs": [],
+          "output": "boiling_water",
+          "end": { "duration_minutes": 8, "condition": "rolling boil" }
+        },
+        {
+          "id": "cook_noodles_in_water",
+          "device": "saucepan",
+          "action": "Cook noodles according to packet instructions",
+          "inputs": ["boiling_water", "egg_noodles"],
+          "output": "cooked_noodles",
+          "after": "boil_water",
+          "end": { "duration_minutes": 4, "condition": "tender" }
+        },
+        {
+          "id": "drain_noodles",
+          "device": "saucepan",
+          "action": "Drain noodles and toss with a little sesame oil to prevent sticking",
+          "inputs": ["cooked_noodles"],
+          "output": "drained_noodles",
+          "after": "cook_noodles_in_water",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "make_sauce",
+      "device": "bowl",
+      "action": "Mix stir-fry sauce",
+      "inputs": ["soy_sauce", "sesame_oil", "oyster_sauce"],
+      "output": "stir_fry_sauce",
+      "end": { "condition": "well combined" },
+      "steps": [
+        {
+          "id": "combine_sauces",
+          "device": "bowl",
+          "action": "Combine soy sauce, sesame oil, and oyster sauce",
+          "inputs": ["soy_sauce", "sesame_oil", "oyster_sauce"],
+          "output": "mixed_sauce",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "whisk_sauce",
+          "device": "bowl",
+          "action": "Whisk until evenly blended",
+          "inputs": ["mixed_sauce"],
+          "output": "stir_fry_sauce",
+          "after": "combine_sauces",
+          "end": { "duration_minutes": 1, "condition": "well combined" }
+        }
+      ]
+    },
+    {
+      "id": "prep_veg",
+      "device": "chopping_board",
+      "action": "Prepare all vegetables",
+      "inputs": ["garlic", "ginger", "spring_onions", "pak_choi"],
+      "output": "prepped_veg",
+      "end": { "condition": "all vegetables prepped" },
+      "steps": [
+        {
+          "id": "slice_garlic_ginger",
+          "device": "chopping_board",
+          "action": "Finely slice garlic and julienne ginger",
+          "inputs": ["garlic", "ginger"],
+          "output": "sliced_aromatics",
+          "end": { "duration_minutes": 3 }
+        },
+        {
+          "id": "chop_spring_onions",
+          "device": "chopping_board",
+          "action": "Slice spring onions, separating whites from greens",
+          "inputs": ["spring_onions"],
+          "output": "chopped_spring_onions",
+          "after": "slice_garlic_ginger",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "halve_pak_choi",
+          "device": "chopping_board",
+          "action": "Halve pak choi lengthways",
+          "inputs": ["pak_choi"],
+          "output": "prepped_veg",
+          "after": "chop_spring_onions",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "stir_fry",
+      "device": "wok",
+      "action": "Stir-fry everything together",
+      "inputs": ["drained_noodles", "stir_fry_sauce", "prepped_veg", "bean_sprouts", "vegetable_oil"],
+      "output": "stir_fried_noodles",
+      "after": ["cook_noodles", "make_sauce", "prep_veg"],
+      "end": { "condition": "noodles hot and well coated" },
+      "steps": [
+        {
+          "id": "heat_wok",
+          "device": "wok",
+          "action": "Heat wok over high heat until smoking, add oil",
+          "inputs": ["vegetable_oil"],
+          "output": "hot_wok",
+          "end": { "duration_minutes": 2, "condition": "wok smoking" }
+        },
+        {
+          "id": "fry_aromatics",
+          "device": "wok",
+          "action": "Add garlic, ginger, and spring onion whites, stir-fry briefly",
+          "inputs": ["hot_wok", "sliced_aromatics", "chopped_spring_onions"],
+          "output": "fragrant_wok",
+          "after": "heat_wok",
+          "end": { "duration_minutes": 1, "condition": "fragrant" }
+        },
+        {
+          "id": "add_veg",
+          "device": "wok",
+          "action": "Add pak choi and bean sprouts, toss for 1 minute",
+          "inputs": ["fragrant_wok", "prepped_veg", "bean_sprouts"],
+          "output": "wok_with_veg",
+          "after": "fry_aromatics",
+          "end": { "duration_minutes": 1, "condition": "pak choi slightly wilted" }
+        },
+        {
+          "id": "add_noodles",
+          "device": "wok",
+          "action": "Add drained noodles to wok",
+          "inputs": ["wok_with_veg", "drained_noodles"],
+          "output": "wok_with_noodles",
+          "after": "add_veg",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "add_sauce",
+          "device": "wok",
+          "action": "Pour in sauce and toss everything together",
+          "inputs": ["wok_with_noodles", "stir_fry_sauce"],
+          "output": "sauced_noodles",
+          "after": "add_noodles",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "final_toss",
+          "device": "wok",
+          "action": "Toss until noodles are hot and evenly coated, top with spring onion greens",
+          "inputs": ["sauced_noodles"],
+          "output": "stir_fried_noodles",
+          "after": "add_sauce",
+          "end": { "duration_minutes": 1, "condition": "noodles hot and well coated" }
+        }
+      ]
+    }
+  ]
+}
