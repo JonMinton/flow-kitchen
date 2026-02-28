@@ -1,0 +1,172 @@
+{
+  "title": "Tadka Dal",
+  "servings": 4,
+
+  "devices": [
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "hob", "name": "Hob" },
+    { "id": "saucepan", "name": "Large Saucepan" },
+    { "id": "small_pan", "name": "Small Frying Pan" },
+    { "id": "serving_bowl", "name": "Serving Bowl" }
+  ],
+
+  "ingredients": [
+    { "id": "red_lentils", "name": "Red Lentils", "quantity": "250g" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
+    { "id": "ginger", "name": "Fresh Ginger", "quantity": "thumb-sized piece" },
+    { "id": "tomatoes", "name": "Tomatoes", "quantity": "2 medium" },
+    { "id": "turmeric", "name": "Turmeric", "quantity": "1 tsp" },
+    { "id": "cumin_seeds", "name": "Cumin Seeds", "quantity": "1 tsp" },
+    { "id": "mustard_seeds", "name": "Mustard Seeds", "quantity": "1 tsp" },
+    { "id": "ghee", "name": "Ghee", "quantity": "3 tbsp" },
+    { "id": "coriander", "name": "Fresh Coriander", "quantity": "small bunch" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_dal",
+      "device": "saucepan",
+      "action": "Cook lentils with aromatics until soft",
+      "inputs": ["red_lentils", "onion", "garlic", "ginger", "tomatoes", "turmeric", "salt"],
+      "output": "cooked_dal",
+      "end": { "condition": "lentils completely soft and thick" },
+      "steps": [
+        {
+          "id": "prep_dal_aromatics",
+          "device": "chopping_board",
+          "action": "Prepare aromatics for the dal",
+          "inputs": ["onion", "garlic", "ginger", "tomatoes"],
+          "output": "prepped_dal_veg",
+          "end": { "condition": "all chopped" },
+          "steps": [
+            {
+              "id": "dice_onion",
+              "device": "chopping_board",
+              "action": "Finely dice the onion",
+              "inputs": ["onion"],
+              "output": "diced_onion",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "mince_garlic_ginger",
+              "device": "chopping_board",
+              "action": "Mince garlic and grate ginger",
+              "inputs": ["garlic", "ginger"],
+              "output": "minced_garlic_ginger",
+              "end": { "duration_minutes": 2 }
+            },
+            {
+              "id": "chop_tomatoes",
+              "device": "chopping_board",
+              "action": "Roughly chop tomatoes",
+              "inputs": ["tomatoes"],
+              "output": "chopped_tomatoes",
+              "end": { "duration_minutes": 1 }
+            }
+          ]
+        },
+        {
+          "id": "rinse_lentils",
+          "device": "saucepan",
+          "action": "Rinse lentils under cold water until water runs clear",
+          "inputs": ["red_lentils"],
+          "output": "rinsed_lentils",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "cook_onion_base",
+          "device": "hob",
+          "action": "Sauté onion in a little ghee until soft and golden",
+          "inputs": ["diced_onion", "ghee"],
+          "output": "softened_onion",
+          "after": "prep_dal_aromatics",
+          "end": { "duration_minutes": 6, "condition": "golden and translucent" }
+        },
+        {
+          "id": "add_garlic_ginger_tomato",
+          "device": "hob",
+          "action": "Add garlic, ginger, and tomatoes, cook until softened",
+          "inputs": ["softened_onion", "minced_garlic_ginger", "chopped_tomatoes"],
+          "output": "dal_base",
+          "after": "cook_onion_base",
+          "end": { "duration_minutes": 3, "condition": "tomatoes broken down" }
+        },
+        {
+          "id": "simmer_lentils",
+          "device": "hob",
+          "action": "Add lentils, turmeric, salt, and water — simmer until lentils are soft and thick",
+          "inputs": ["dal_base", "rinsed_lentils", "turmeric", "salt"],
+          "output": "cooked_dal",
+          "after": ["add_garlic_ginger_tomato", "rinse_lentils"],
+          "end": { "duration_minutes": 25, "condition": "lentils completely broken down and creamy" }
+        }
+      ]
+    },
+    {
+      "id": "make_tadka",
+      "device": "small_pan",
+      "action": "Make the tempering (tadka)",
+      "inputs": ["ghee", "cumin_seeds", "mustard_seeds", "garlic"],
+      "output": "tadka",
+      "end": { "condition": "seeds popped and garlic golden" },
+      "steps": [
+        {
+          "id": "heat_ghee",
+          "device": "hob",
+          "action": "Heat ghee in a small pan until shimmering",
+          "inputs": ["ghee"],
+          "output": "hot_ghee",
+          "end": { "duration_minutes": 1, "condition": "ghee melted and hot" }
+        },
+        {
+          "id": "add_seeds",
+          "device": "small_pan",
+          "action": "Add cumin seeds and mustard seeds, let them crackle and pop",
+          "inputs": ["hot_ghee", "cumin_seeds", "mustard_seeds"],
+          "output": "popped_seeds",
+          "after": "heat_ghee",
+          "end": { "duration_minutes": 1, "condition": "mustard seeds popping, cumin fragrant" }
+        },
+        {
+          "id": "fry_garlic_tadka",
+          "device": "small_pan",
+          "action": "Add sliced garlic and fry until golden",
+          "inputs": ["popped_seeds", "garlic"],
+          "output": "tadka",
+          "after": "add_seeds",
+          "end": { "duration_minutes": 1, "condition": "garlic golden brown — do not burn" }
+        }
+      ]
+    },
+    {
+      "id": "combine",
+      "device": "serving_bowl",
+      "action": "Pour tadka over dal and garnish",
+      "inputs": ["cooked_dal", "tadka", "coriander"],
+      "output": "finished_tadka_dal",
+      "after": ["cook_dal", "make_tadka"],
+      "end": { "condition": "served" },
+      "steps": [
+        {
+          "id": "pour_tadka",
+          "device": "saucepan",
+          "action": "Pour sizzling tadka over the cooked dal — it should sizzle dramatically",
+          "inputs": ["cooked_dal", "tadka"],
+          "output": "dal_with_tadka",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "garnish",
+          "device": "serving_bowl",
+          "action": "Transfer to serving bowl and scatter with fresh coriander",
+          "inputs": ["dal_with_tadka", "coriander"],
+          "output": "finished_tadka_dal",
+          "after": "pour_tadka",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    }
+  ]
+}

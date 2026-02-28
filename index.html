@@ -3,16 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recipes as Music</title>
+  <title>Flow Kitchen</title>
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 <body>
-  <header>
-    <h1 id="recipe-title"></h1>
-    <p id="recipe-meta"></p>
-    <select id="recipe-select"></select>
-  </header>
-  <div id="score"></div>
+  <!-- LANDING VIEW (default) -->
+  <div id="landing-view">
+    <header class="landing-header">
+      <h1>Flow Kitchen</h1>
+      <p class="landing-subtitle">See how ingredients flow through every recipe</p>
+    </header>
+    <div id="filter-bar">
+      <div class="filter-group">
+        <span class="filter-label">Diet</span>
+        <button class="pill active" data-filter="diet" data-value="all">All</button>
+        <button class="pill" data-filter="diet" data-value="vegetarian">Vegetarian</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Category</span>
+        <button class="pill active" data-filter="category" data-value="all">All</button>
+        <button class="pill" data-filter="category" data-value="savoury">Savoury</button>
+        <button class="pill" data-filter="category" data-value="sweet">Sweet</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Time</span>
+        <button class="pill active" data-filter="time" data-value="all">All</button>
+        <button class="pill" data-filter="time" data-value="quick">Quick (&lt;20m)</button>
+        <button class="pill" data-filter="time" data-value="medium">Medium (20-60m)</button>
+        <button class="pill" data-filter="time" data-value="long">Long (60m+)</button>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Prep</span>
+        <button class="pill active" data-filter="prep" data-value="all">All</button>
+        <button class="pill" data-filter="prep" data-value="none">None</button>
+        <button class="pill" data-filter="prep" data-value="under2h">&lt;2h</button>
+        <button class="pill" data-filter="prep" data-value="over2h">2h+</button>
+        <button class="pill" data-filter="prep" data-value="overnight">Overnight</button>
+      </div>
+      <div class="filter-group" id="cuisine-filters">
+        <span class="filter-label">Cuisine</span>
+        <!-- Pills injected by JS -->
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Ingredients</span>
+        <input type="text" id="ingredient-search" placeholder="Search ingredients..." />
+      </div>
+    </div>
+    <p id="results-count"></p>
+    <div id="card-grid"></div>
+  </div>
+
+  <!-- DIAGRAM VIEW (hidden until recipe selected) -->
+  <div id="diagram-view" style="display: none;">
+    <header>
+      <a href="#" id="back-link">&larr; All recipes</a>
+      <h1 id="recipe-title"></h1>
+      <p id="recipe-meta"></p>
+      <button id="view-toggle" class="pill">Show Recipe</button>
+    </header>
+    <div id="score"></div>
+    <div id="recipe-text" style="display: none;"></div>
+  </div>
+
   <div id="tooltip"></div>
   <script type="module" src="/src/renderer.js"></script>
 </body>

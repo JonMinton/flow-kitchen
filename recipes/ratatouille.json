@@ -1,0 +1,179 @@
+{
+  "title": "Ratatouille",
+  "servings": 4,
+
+  "devices": [
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "hob", "name": "Hob", "settings": "medium heat" },
+    { "id": "large_pan", "name": "Large Sauté Pan / Casserole" },
+    { "id": "serving_dish", "name": "Serving Dish" }
+  ],
+
+  "ingredients": [
+    { "id": "aubergine", "name": "Aubergine", "quantity": "1 large" },
+    { "id": "courgette", "name": "Courgette", "quantity": "2 medium" },
+    { "id": "red_pepper", "name": "Red Pepper", "quantity": "2" },
+    { "id": "onion", "name": "Onion", "quantity": "1 large" },
+    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
+    { "id": "tomatoes", "name": "Tinned Plum Tomatoes", "quantity": "400g tin" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "4 tbsp" },
+    { "id": "herbs_de_provence", "name": "Herbes de Provence", "quantity": "2 tsp" },
+    { "id": "basil", "name": "Fresh Basil", "quantity": "small bunch" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep_vegetables",
+      "device": "chopping_board",
+      "action": "Prepare all vegetables",
+      "inputs": ["aubergine", "courgette", "red_pepper", "onion", "garlic"],
+      "output": "prepped_vegetables",
+      "end": { "condition": "all vegetables chopped" },
+      "steps": [
+        {
+          "id": "dice_aubergine",
+          "device": "chopping_board",
+          "action": "Cut aubergine into 2cm dice",
+          "inputs": ["aubergine"],
+          "output": "diced_aubergine",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "dice_courgette",
+          "device": "chopping_board",
+          "action": "Cut courgettes into 2cm dice",
+          "inputs": ["courgette"],
+          "output": "diced_courgette",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "dice_pepper",
+          "device": "chopping_board",
+          "action": "Deseed and dice red peppers into 2cm pieces",
+          "inputs": ["red_pepper"],
+          "output": "diced_pepper",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "dice_onion",
+          "device": "chopping_board",
+          "action": "Finely dice the onion",
+          "inputs": ["onion"],
+          "output": "diced_onion",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "mince_garlic",
+          "device": "chopping_board",
+          "action": "Finely mince garlic cloves",
+          "inputs": ["garlic"],
+          "output": "minced_garlic",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "saute_vegetables",
+      "device": "large_pan",
+      "action": "Sauté vegetables in stages",
+      "inputs": ["prepped_vegetables", "olive_oil", "salt", "pepper"],
+      "output": "sauteed_vegetables",
+      "after": "prep_vegetables",
+      "end": { "condition": "all vegetables sautéed and combined" },
+      "steps": [
+        {
+          "id": "saute_aubergine",
+          "device": "hob",
+          "action": "Fry aubergine in olive oil until golden on all sides, then remove to a plate",
+          "inputs": ["diced_aubergine", "olive_oil", "salt"],
+          "output": "cooked_aubergine",
+          "end": { "duration_minutes": 6, "condition": "golden and slightly softened" }
+        },
+        {
+          "id": "saute_courgette",
+          "device": "hob",
+          "action": "Fry courgette in the same pan until lightly browned, then remove",
+          "inputs": ["diced_courgette", "olive_oil"],
+          "output": "cooked_courgette",
+          "after": "saute_aubergine",
+          "end": { "duration_minutes": 4, "condition": "lightly golden" }
+        },
+        {
+          "id": "saute_pepper",
+          "device": "hob",
+          "action": "Fry peppers until softened and charred at edges, then remove",
+          "inputs": ["diced_pepper", "olive_oil"],
+          "output": "cooked_pepper",
+          "after": "saute_courgette",
+          "end": { "duration_minutes": 4, "condition": "softened with some char" }
+        },
+        {
+          "id": "saute_onion_garlic",
+          "device": "hob",
+          "action": "Soften onion and garlic in remaining oil",
+          "inputs": ["diced_onion", "minced_garlic", "olive_oil"],
+          "output": "softened_onion_garlic",
+          "after": "saute_pepper",
+          "end": { "duration_minutes": 5, "condition": "translucent and fragrant" }
+        },
+        {
+          "id": "return_vegetables",
+          "device": "large_pan",
+          "action": "Return all sautéed vegetables to the pan",
+          "inputs": ["softened_onion_garlic", "cooked_aubergine", "cooked_courgette", "cooked_pepper"],
+          "output": "sauteed_vegetables",
+          "after": "saute_onion_garlic",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "simmer",
+      "device": "large_pan",
+      "action": "Add tomatoes and herbs, simmer until rich and melded",
+      "inputs": ["sauteed_vegetables", "tomatoes", "herbs_de_provence", "salt", "pepper"],
+      "output": "simmered_ratatouille",
+      "after": "saute_vegetables",
+      "end": { "duration_minutes": 20, "condition": "vegetables tender, sauce thickened and flavours melded" },
+      "steps": [
+        {
+          "id": "add_tomatoes_herbs",
+          "device": "large_pan",
+          "action": "Add tinned tomatoes and herbes de Provence, stir to combine",
+          "inputs": ["sauteed_vegetables", "tomatoes", "herbs_de_provence"],
+          "output": "ratatouille_base",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "season",
+          "device": "large_pan",
+          "action": "Season well with salt and pepper",
+          "inputs": ["ratatouille_base", "salt", "pepper"],
+          "output": "seasoned_ratatouille",
+          "after": "add_tomatoes_herbs",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "slow_simmer",
+          "device": "hob",
+          "action": "Cover and simmer gently, stirring occasionally",
+          "inputs": ["seasoned_ratatouille"],
+          "output": "simmered_ratatouille",
+          "after": "season",
+          "end": { "duration_minutes": 20, "condition": "vegetables very tender, sauce rich and thick" }
+        }
+      ]
+    },
+    {
+      "id": "finish_and_serve",
+      "device": "serving_dish",
+      "action": "Tear over fresh basil and serve",
+      "inputs": ["simmered_ratatouille", "basil"],
+      "output": "finished_ratatouille",
+      "after": "simmer",
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

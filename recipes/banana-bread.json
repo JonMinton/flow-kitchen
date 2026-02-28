@@ -1,0 +1,108 @@
+{
+  "title": "Banana Bread",
+  "servings": 8,
+
+  "devices": [
+    { "id": "worktop", "name": "Worktop" },
+    { "id": "mixing_bowl", "name": "Mixing Bowl" },
+    { "id": "small_bowl", "name": "Small Bowl" },
+    { "id": "loaf_tin", "name": "Loaf Tin" },
+    { "id": "oven", "name": "Oven", "settings": "180°C / 350°F / Gas 4" },
+    { "id": "cooling_rack", "name": "Cooling Rack" }
+  ],
+
+  "ingredients": [
+    { "id": "bananas", "name": "Ripe Bananas", "quantity": "3 large" },
+    { "id": "butter", "name": "Butter", "quantity": "75g, melted" },
+    { "id": "sugar", "name": "Caster Sugar", "quantity": "150g" },
+    { "id": "eggs", "name": "Eggs", "quantity": "2" },
+    { "id": "flour", "name": "Plain Flour", "quantity": "250g" },
+    { "id": "baking_soda", "name": "Baking Soda", "quantity": "1 tsp" },
+    { "id": "vanilla", "name": "Vanilla Extract", "quantity": "1 tsp" },
+    { "id": "salt", "name": "Salt", "quantity": "1/4 tsp" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_batter",
+      "device": "mixing_bowl",
+      "action": "Make banana bread batter",
+      "inputs": ["bananas", "butter", "sugar", "eggs", "flour", "baking_soda", "vanilla", "salt"],
+      "output": "batter",
+      "end": { "condition": "batter just combined" },
+      "steps": [
+        {
+          "id": "mash_bananas",
+          "device": "mixing_bowl",
+          "action": "Mash bananas with a fork until smooth",
+          "inputs": ["bananas"],
+          "output": "mashed_bananas",
+          "end": { "duration_minutes": 2, "condition": "mostly smooth with a few small lumps" }
+        },
+        {
+          "id": "mix_wet",
+          "device": "mixing_bowl",
+          "action": "Stir melted butter, sugar, eggs and vanilla into mashed bananas",
+          "inputs": ["mashed_bananas", "butter", "sugar", "eggs", "vanilla"],
+          "output": "wet_mix",
+          "after": "mash_bananas",
+          "end": { "duration_minutes": 2, "condition": "well combined" }
+        },
+        {
+          "id": "mix_dry",
+          "device": "small_bowl",
+          "action": "Whisk together flour, baking soda and salt",
+          "inputs": ["flour", "baking_soda", "salt"],
+          "output": "dry_mix",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "combine_batter",
+          "device": "mixing_bowl",
+          "action": "Fold dry ingredients into wet mixture until just combined",
+          "inputs": ["wet_mix", "dry_mix"],
+          "output": "batter",
+          "after": ["mix_wet", "mix_dry"],
+          "end": { "condition": "no dry streaks but do not overmix" }
+        }
+      ]
+    },
+    {
+      "id": "bake",
+      "device": "oven",
+      "action": "Pour into tin and bake",
+      "inputs": ["batter"],
+      "output": "baked_bread",
+      "after": "make_batter",
+      "end": { "condition": "baked and cooled" },
+      "steps": [
+        {
+          "id": "pour_tin",
+          "device": "loaf_tin",
+          "action": "Pour batter into greased loaf tin and level the top",
+          "inputs": ["batter"],
+          "output": "raw_loaf",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "bake_loaf",
+          "device": "oven",
+          "action": "Bake in preheated oven",
+          "inputs": ["raw_loaf"],
+          "output": "baked_loaf",
+          "after": "pour_tin",
+          "end": { "duration_minutes": 55, "condition": "golden brown and a skewer comes out clean" }
+        },
+        {
+          "id": "cool",
+          "device": "cooling_rack",
+          "action": "Turn out onto wire rack and cool",
+          "inputs": ["baked_loaf"],
+          "output": "baked_bread",
+          "after": "bake_loaf",
+          "end": { "duration_minutes": 10, "condition": "cool enough to slice" }
+        }
+      ]
+    }
+  ]
+}

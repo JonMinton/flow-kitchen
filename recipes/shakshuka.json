@@ -1,0 +1,153 @@
+{
+  "title": "Shakshuka",
+  "servings": 2,
+
+  "devices": [
+    { "id": "chopping_board", "name": "Chopping Board" },
+    { "id": "hob", "name": "Hob", "settings": "medium heat" },
+    { "id": "skillet", "name": "Cast Iron Skillet" }
+  ],
+
+  "ingredients": [
+    { "id": "onion", "name": "Onion", "quantity": "1 medium" },
+    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
+    { "id": "red_pepper", "name": "Red Pepper", "quantity": "1" },
+    { "id": "tomatoes", "name": "Tinned Chopped Tomatoes", "quantity": "400g tin" },
+    { "id": "cumin", "name": "Ground Cumin", "quantity": "1 tsp" },
+    { "id": "paprika", "name": "Smoked Paprika", "quantity": "1 tsp" },
+    { "id": "chilli_flakes", "name": "Chilli Flakes", "quantity": "½ tsp" },
+    { "id": "eggs", "name": "Eggs", "quantity": "4" },
+    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "coriander", "name": "Fresh Coriander", "quantity": "small bunch" }
+  ],
+
+  "steps": [
+    {
+      "id": "prep_vegetables",
+      "device": "chopping_board",
+      "action": "Prepare all vegetables",
+      "inputs": ["onion", "garlic", "red_pepper"],
+      "output": "prepped_veg",
+      "end": { "condition": "all chopped" },
+      "steps": [
+        {
+          "id": "dice_onion",
+          "device": "chopping_board",
+          "action": "Finely dice the onion",
+          "inputs": ["onion"],
+          "output": "diced_onion",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "mince_garlic",
+          "device": "chopping_board",
+          "action": "Mince the garlic cloves",
+          "inputs": ["garlic"],
+          "output": "minced_garlic",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "dice_pepper",
+          "device": "chopping_board",
+          "action": "Deseed and dice the red pepper",
+          "inputs": ["red_pepper"],
+          "output": "diced_pepper",
+          "end": { "duration_minutes": 2 }
+        }
+      ]
+    },
+    {
+      "id": "build_sauce",
+      "device": "skillet",
+      "action": "Build the spiced tomato sauce",
+      "inputs": ["prepped_veg", "olive_oil", "cumin", "paprika", "chilli_flakes", "tomatoes", "salt"],
+      "output": "tomato_sauce",
+      "after": "prep_vegetables",
+      "end": { "condition": "sauce thickened and rich" },
+      "steps": [
+        {
+          "id": "saute_onion",
+          "device": "hob",
+          "action": "Heat olive oil and sauté onion until soft",
+          "inputs": ["olive_oil", "diced_onion"],
+          "output": "softened_onion",
+          "end": { "duration_minutes": 4, "condition": "translucent and soft" }
+        },
+        {
+          "id": "add_pepper",
+          "device": "hob",
+          "action": "Add diced pepper and cook until softened",
+          "inputs": ["softened_onion", "diced_pepper"],
+          "output": "onion_pepper_mix",
+          "after": "saute_onion",
+          "end": { "duration_minutes": 3, "condition": "pepper softened" }
+        },
+        {
+          "id": "add_garlic_spices",
+          "device": "hob",
+          "action": "Add garlic, cumin, paprika, and chilli flakes, stir until fragrant",
+          "inputs": ["onion_pepper_mix", "minced_garlic", "cumin", "paprika", "chilli_flakes"],
+          "output": "spiced_base",
+          "after": "add_pepper",
+          "end": { "duration_minutes": 1, "condition": "spices fragrant and toasted" }
+        },
+        {
+          "id": "add_tomatoes",
+          "device": "skillet",
+          "action": "Pour in tinned tomatoes, season with salt, and simmer to thicken",
+          "inputs": ["spiced_base", "tomatoes", "salt"],
+          "output": "tomato_sauce",
+          "after": "add_garlic_spices",
+          "end": { "duration_minutes": 10, "condition": "sauce reduced and slightly thickened" }
+        }
+      ]
+    },
+    {
+      "id": "poach_eggs",
+      "device": "skillet",
+      "action": "Create wells and poach eggs in the sauce",
+      "inputs": ["tomato_sauce", "eggs"],
+      "output": "shakshuka_cooked",
+      "after": "build_sauce",
+      "end": { "condition": "eggs set" },
+      "steps": [
+        {
+          "id": "make_wells",
+          "device": "skillet",
+          "action": "Use a spoon to make 4 wells in the sauce",
+          "inputs": ["tomato_sauce"],
+          "output": "sauce_with_wells",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "crack_eggs_in",
+          "device": "skillet",
+          "action": "Crack an egg into each well",
+          "inputs": ["sauce_with_wells", "eggs"],
+          "output": "sauce_with_eggs",
+          "after": "make_wells",
+          "end": { "duration_minutes": 1 }
+        },
+        {
+          "id": "cover_and_cook",
+          "device": "hob",
+          "action": "Cover skillet with lid, reduce heat and cook until whites are set but yolks still runny",
+          "inputs": ["sauce_with_eggs"],
+          "output": "shakshuka_cooked",
+          "after": "crack_eggs_in",
+          "end": { "duration_minutes": 5, "condition": "egg whites set, yolks still soft and runny" }
+        }
+      ]
+    },
+    {
+      "id": "garnish_and_serve",
+      "device": "skillet",
+      "action": "Scatter with fresh coriander and serve straight from the skillet",
+      "inputs": ["shakshuka_cooked", "coriander"],
+      "output": "finished_shakshuka",
+      "after": "poach_eggs",
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

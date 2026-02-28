@@ -1,0 +1,127 @@
+{
+  "title": "Churros",
+  "servings": 4,
+
+  "devices": [
+    { "id": "worktop", "name": "Worktop" },
+    { "id": "hob", "name": "Hob", "settings": "medium-high heat" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "small_saucepan", "name": "Small Saucepan" },
+    { "id": "mixing_bowl", "name": "Mixing Bowl" },
+    { "id": "deep_pan", "name": "Deep Pan / Fryer" },
+    { "id": "plate", "name": "Plate" }
+  ],
+
+  "ingredients": [
+    { "id": "flour", "name": "Plain Flour", "quantity": "150g" },
+    { "id": "butter", "name": "Butter", "quantity": "30g" },
+    { "id": "sugar", "name": "Caster Sugar", "quantity": "3 tbsp" },
+    { "id": "salt", "name": "Salt", "quantity": "1/4 tsp" },
+    { "id": "water", "name": "Water", "quantity": "200ml" },
+    { "id": "oil", "name": "Vegetable Oil", "quantity": "500ml, for frying" },
+    { "id": "cinnamon", "name": "Ground Cinnamon", "quantity": "1 tsp" },
+    { "id": "dark_chocolate", "name": "Dark Chocolate", "quantity": "100g, chopped" },
+    { "id": "cream", "name": "Double Cream", "quantity": "100ml" }
+  ],
+
+  "steps": [
+    {
+      "id": "make_dough",
+      "device": "saucepan",
+      "action": "Make churro dough",
+      "inputs": ["water", "butter", "sugar", "salt", "flour"],
+      "output": "rested_dough",
+      "end": { "condition": "dough rested and ready to pipe" },
+      "steps": [
+        {
+          "id": "heat_water",
+          "device": "saucepan",
+          "action": "Heat water, butter, 1 tbsp sugar and salt until butter melts and mixture boils",
+          "inputs": ["water", "butter", "sugar", "salt"],
+          "output": "hot_liquid",
+          "end": { "duration_minutes": 3, "condition": "rolling boil with butter fully melted" }
+        },
+        {
+          "id": "add_flour",
+          "device": "saucepan",
+          "action": "Remove from heat and stir in flour vigorously until dough forms a ball",
+          "inputs": ["hot_liquid", "flour"],
+          "output": "raw_dough",
+          "after": "heat_water",
+          "end": { "duration_minutes": 2, "condition": "smooth dough that pulls away from the sides" }
+        },
+        {
+          "id": "rest_dough",
+          "device": "worktop",
+          "action": "Transfer dough to piping bag with star nozzle and let rest briefly",
+          "inputs": ["raw_dough"],
+          "output": "rested_dough",
+          "after": "add_flour",
+          "end": { "duration_minutes": 5 }
+        }
+      ]
+    },
+    {
+      "id": "make_chocolate_sauce",
+      "device": "small_saucepan",
+      "action": "Make chocolate dipping sauce",
+      "inputs": ["dark_chocolate", "cream"],
+      "output": "chocolate_sauce",
+      "end": { "condition": "smooth and glossy" },
+      "steps": [
+        {
+          "id": "heat_cream",
+          "device": "small_saucepan",
+          "action": "Gently heat cream until it just begins to simmer",
+          "inputs": ["cream"],
+          "output": "hot_cream",
+          "end": { "duration_minutes": 2, "condition": "small bubbles around the edge" }
+        },
+        {
+          "id": "melt_chocolate",
+          "device": "small_saucepan",
+          "action": "Remove from heat, add chopped chocolate and stir until smooth",
+          "inputs": ["hot_cream", "dark_chocolate"],
+          "output": "chocolate_sauce",
+          "after": "heat_cream",
+          "end": { "duration_minutes": 2, "condition": "smooth, glossy and thick" }
+        }
+      ]
+    },
+    {
+      "id": "make_cinnamon_sugar",
+      "device": "mixing_bowl",
+      "action": "Mix remaining sugar with cinnamon in a shallow bowl",
+      "inputs": ["sugar", "cinnamon"],
+      "output": "cinnamon_sugar",
+      "end": { "duration_minutes": 1 }
+    },
+    {
+      "id": "fry_churros",
+      "device": "deep_pan",
+      "action": "Pipe dough into hot oil and fry in batches until golden and crisp",
+      "inputs": ["rested_dough", "oil"],
+      "output": "fried_churros",
+      "after": "make_dough",
+      "end": { "duration_minutes": 8, "condition": "deep golden brown and crisp all over" }
+    },
+    {
+      "id": "coat_churros",
+      "device": "mixing_bowl",
+      "action": "Toss hot churros in cinnamon sugar",
+      "inputs": ["fried_churros", "cinnamon_sugar"],
+      "output": "coated_churros",
+      "after": ["fry_churros", "make_cinnamon_sugar"],
+      "end": { "duration_minutes": 1, "condition": "evenly coated" }
+    },
+    {
+      "id": "serve",
+      "device": "plate",
+      "action": "Serve churros with warm chocolate dipping sauce",
+      "inputs": ["coated_churros", "chocolate_sauce"],
+      "output": "churros_with_sauce",
+      "after": ["coat_churros", "make_chocolate_sauce"],
+      "end": { "duration_minutes": 1 }
+    }
+  ]
+}

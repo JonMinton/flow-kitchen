@@ -1,0 +1,145 @@
+{
+  "title": "Macaroni Cheese",
+  "servings": 4,
+
+  "devices": [
+    { "id": "hob", "name": "Hob" },
+    { "id": "large_pot", "name": "Large Pot" },
+    { "id": "saucepan", "name": "Saucepan" },
+    { "id": "grater", "name": "Grater" },
+    { "id": "colander", "name": "Colander" },
+    { "id": "baking_dish", "name": "Baking Dish" },
+    { "id": "oven", "name": "Oven", "settings": "200°C / 400°F / Gas 6" }
+  ],
+
+  "ingredients": [
+    { "id": "macaroni", "name": "Macaroni Pasta", "quantity": "350g" },
+    { "id": "butter", "name": "Butter", "quantity": "50g" },
+    { "id": "flour", "name": "Plain Flour", "quantity": "50g" },
+    { "id": "milk", "name": "Whole Milk", "quantity": "600ml" },
+    { "id": "cheddar", "name": "Mature Cheddar Cheese", "quantity": "250g" },
+    { "id": "mustard_powder", "name": "English Mustard Powder", "quantity": "1 tsp" },
+    { "id": "salt", "name": "Salt", "quantity": "to taste" },
+    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+  ],
+
+  "steps": [
+    {
+      "id": "cook_pasta",
+      "device": "large_pot",
+      "action": "Boil macaroni until al dente",
+      "inputs": ["macaroni", "salt"],
+      "output": "cooked_pasta",
+      "end": { "condition": "pasta al dente" },
+      "steps": [
+        {
+          "id": "boil_water",
+          "device": "hob",
+          "action": "Bring a large pot of salted water to a rolling boil",
+          "inputs": ["salt"],
+          "output": "boiling_water",
+          "end": { "duration_minutes": 8, "condition": "water at a rolling boil" }
+        },
+        {
+          "id": "cook_macaroni",
+          "device": "large_pot",
+          "action": "Add macaroni and cook, stirring occasionally",
+          "inputs": ["boiling_water", "macaroni"],
+          "output": "boiled_macaroni",
+          "after": "boil_water",
+          "end": { "duration_minutes": 8, "condition": "al dente — firm to the bite" }
+        },
+        {
+          "id": "drain_pasta",
+          "device": "colander",
+          "action": "Drain pasta in colander, reserving a splash of pasta water",
+          "inputs": ["boiled_macaroni"],
+          "output": "cooked_pasta",
+          "after": "cook_macaroni",
+          "end": { "duration_minutes": 1 }
+        }
+      ]
+    },
+    {
+      "id": "make_cheese_sauce",
+      "device": "saucepan",
+      "action": "Make cheese sauce from a roux",
+      "inputs": ["butter", "flour", "milk", "cheddar", "mustard_powder", "salt", "pepper"],
+      "output": "cheese_sauce",
+      "end": { "condition": "thick, glossy, and cheesy" },
+      "steps": [
+        {
+          "id": "grate_cheese",
+          "device": "grater",
+          "action": "Grate the cheddar cheese",
+          "inputs": ["cheddar"],
+          "output": "grated_cheese",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "make_roux",
+          "device": "hob",
+          "action": "Melt butter and stir in flour to make a roux",
+          "inputs": ["butter", "flour"],
+          "output": "roux",
+          "end": { "duration_minutes": 2, "condition": "paste bubbling and sandy textured, no raw flour smell" }
+        },
+        {
+          "id": "add_milk",
+          "device": "hob",
+          "action": "Gradually add milk, whisking continuously to avoid lumps",
+          "inputs": ["roux", "milk"],
+          "output": "white_sauce",
+          "after": "make_roux",
+          "end": { "duration_minutes": 5, "condition": "smooth and thickened — coats the back of a spoon" }
+        },
+        {
+          "id": "add_cheese",
+          "device": "saucepan",
+          "action": "Remove from heat, stir in grated cheese, mustard powder, salt, and pepper",
+          "inputs": ["white_sauce", "grated_cheese", "mustard_powder", "salt", "pepper"],
+          "output": "cheese_sauce",
+          "after": ["add_milk", "grate_cheese"],
+          "end": { "duration_minutes": 2, "condition": "cheese fully melted and sauce glossy" }
+        }
+      ]
+    },
+    {
+      "id": "combine_and_bake",
+      "device": "oven",
+      "action": "Combine pasta and sauce, then bake until golden",
+      "inputs": ["cooked_pasta", "cheese_sauce"],
+      "output": "finished_mac_and_cheese",
+      "after": ["cook_pasta", "make_cheese_sauce"],
+      "end": { "condition": "golden and bubbling" },
+      "steps": [
+        {
+          "id": "mix_pasta_sauce",
+          "device": "baking_dish",
+          "action": "Fold drained pasta into cheese sauce and pour into baking dish",
+          "inputs": ["cooked_pasta", "cheese_sauce"],
+          "output": "assembled_mac",
+          "end": { "duration_minutes": 2 }
+        },
+        {
+          "id": "bake",
+          "device": "oven",
+          "action": "Bake until top is golden brown and bubbling at the edges",
+          "inputs": ["assembled_mac"],
+          "output": "baked_mac",
+          "after": "mix_pasta_sauce",
+          "end": { "duration_minutes": 15, "condition": "golden crust on top, bubbling around edges" }
+        },
+        {
+          "id": "rest_and_serve",
+          "device": "baking_dish",
+          "action": "Let rest for a few minutes before serving",
+          "inputs": ["baked_mac"],
+          "output": "finished_mac_and_cheese",
+          "after": "bake",
+          "end": { "duration_minutes": 3, "condition": "slightly cooled, sauce thickened" }
+        }
+      ]
+    }
+  ]
+}

@@ -47,21 +47,21 @@
           "end": { "condition": "well combined" }
         },
         {
-          "id": "sift",
+          "id": "mix_dry",
           "device": "sieve",
-          "action": "Sift",
+          "action": "Sift together flour and baking powder",
           "inputs": ["flour", "baking_powder"],
-          "output": "sifted_flour",
+          "output": "dry_mix",
           "end": { "duration_minutes": 1 }
         },
         {
           "id": "fold",
           "device": "mixing_bowl",
-          "action": "Fold in",
-          "inputs": ["wet_mix", "sifted_flour"],
+          "action": "Fold dry ingredients into wet mixture",
+          "inputs": ["wet_mix", "dry_mix"],
           "output": "batter",
-          "after": ["beat_eggs", "sift"],
-          "end": { "condition": "just combined" }
+          "after": ["beat_eggs", "mix_dry"],
+          "end": { "condition": "just combined, do not overmix" }
         }
       ]
     },
