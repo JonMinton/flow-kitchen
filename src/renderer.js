@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import { sankey as d3Sankey, sankeyLeft } from 'd3-sankey';
+import { resolveGraphSteps } from './graph-resolve.js';
 
 // ── Layout constants ──────────────────────────────────────────────
 const WIDTH = 600;
@@ -226,6 +227,7 @@ async function loadRecipe(id) {
   recipe = await d3.json(`${import.meta.env.BASE_URL}${id}.json`);
   expanded = new Set();
   revealed = new Set();
+  d3.select('#tooltip').classed('visible', false);
 
   // Reset to diagram view
   currentView = 'diagram';
@@ -239,6 +241,9 @@ async function loadRecipe(id) {
   d3.select('#recipe-meta').text(
     `${entry ? entry.cuisine + ' · ' : ''}Serves ${recipe.servings}`
   );
+  d3.select('#diet-note')
+    .text(recipe.diet_notes || '')
+    .style('display', recipe.diet_notes ? null : 'none');
 
   const ghUrl = `${GITHUB_REPO_URL}/issues/new?title=${encodeURIComponent('Recipe feedback: ' + recipe.title)}&labels=recipe-feedback`;
   wireFeedbackDropdown('#recipe-feedback-btn', '#recipe-feedback-dropdown', '#recipe-github-link', '#recipe-form-link', ghUrl);
@@ -252,19 +257,6 @@ async function init() {
   recipeIndex = await d3.json(`${import.meta.env.BASE_URL}index.json`);
   route();
   window.addEventListener('hashchange', route);
-}
-
-// ── Gather visible steps (respecting expand state) ────────────────
-function visibleSteps(steps, parentId = null) {
-  const result = [];
-  for (const step of steps) {
-    if (step.steps && expanded.has(step.id)) {
-      result.push(...visibleSteps(step.steps, step.id));
-    } else {
-      result.push({ ...step, _parentId: parentId });
-    }
-  }
-  return result;
 }
 
 // ── Humanize an ID like "creamed_mixture" → "Creamed mixture" ─────
@@ -558,7 +550,7 @@ function verticalLinkPath(d) {
 
 // ── Render ─────────────────────────────────────────────────────────
 function render() {
-  const steps = visibleSteps(recipe.steps);
+  const steps = resolveGraphSteps(recipe, expanded);
   const graphData = buildGraph(steps);
 
   const innerW = WIDTH - MARGIN.left - MARGIN.right;
@@ -768,6 +760,9 @@ function renderRecipeText() {
   if (entry?.cuisine) metaParts.push(entry.cuisine);
   metaParts.push(`Serves ${recipe.servings}`);
   container.append('p').attr('class', 'recipe-print-meta').text(metaParts.join(' · '));
+  if (recipe.diet_notes) {
+    container.append('p').attr('class', 'diet-note').text(recipe.diet_notes);
+  }
 
   // Thumbnail
   container.append('div').attr('class', 'recipe-thumbnail').attr('id', 'recipe-thumbnail');
@@ -853,7 +848,7 @@ function renderThumbnail() {
   expanded = new Set();
   revealed = new Set();
 
-  const steps = visibleSteps(recipe.steps);
+  const steps = resolveGraphSteps(recipe, expanded);
   const graphData = buildGraph(steps);
 
   // Reveal all nodes for the thumbnail

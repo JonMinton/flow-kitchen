@@ -1,68 +1,171 @@
 {
   "title": "Bibimbap",
   "servings": 2,
-
+  "cuisine": "Korean",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 40,
+  "prep_minutes": 10,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "rice", "name": "Rice", "quantity": "300g" },
-    { "id": "beef_sirloin", "name": "Beef Sirloin", "quantity": "200g" },
-    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "3 tbsp" },
-    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "2 tbsp" },
-    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
-    { "id": "sugar", "name": "Sugar", "quantity": "1 tbsp" },
-    { "id": "spinach", "name": "Spinach", "quantity": "150g" },
-    { "id": "bean_sprouts", "name": "Bean Sprouts", "quantity": "100g" },
-    { "id": "carrots", "name": "Carrots", "quantity": "2" },
-    { "id": "courgette", "name": "Courgette", "quantity": "1" },
-    { "id": "gochujang", "name": "Gochujang", "quantity": "2 tbsp" },
-    { "id": "eggs", "name": "Eggs", "quantity": "2" },
-    { "id": "sesame_seeds", "name": "Sesame Seeds", "quantity": "1 tbsp" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "water", "name": "Water", "quantity": "450ml" }
+    {
+      "id": "rice",
+      "name": "Rice",
+      "quantity": "300g"
+    },
+    {
+      "id": "beef_sirloin",
+      "name": "Beef Sirloin",
+      "quantity": "200g"
+    },
+    {
+      "id": "soy_sauce",
+      "name": "Soy Sauce",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "sesame_oil",
+      "name": "Sesame Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "3 cloves"
+    },
+    {
+      "id": "sugar",
+      "name": "Sugar",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "spinach",
+      "name": "Spinach",
+      "quantity": "150g"
+    },
+    {
+      "id": "bean_sprouts",
+      "name": "Bean Sprouts",
+      "quantity": "100g"
+    },
+    {
+      "id": "carrots",
+      "name": "Carrots",
+      "quantity": "2"
+    },
+    {
+      "id": "courgette",
+      "name": "Courgette",
+      "quantity": "1"
+    },
+    {
+      "id": "gochujang",
+      "name": "Gochujang",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "2"
+    },
+    {
+      "id": "sesame_seeds",
+      "name": "Sesame Seeds",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "450ml"
+    }
   ],
-
   "steps": [
     {
       "id": "cook_rice",
       "device": "saucepan",
       "action": "Cook rice",
-      "inputs": ["rice", "water", "salt"],
+      "inputs": [
+        "rice",
+        "water",
+        "salt"
+      ],
       "output": "cooked_rice",
-      "end": { "condition": "rice fluffy and water absorbed" },
+      "end": {
+        "condition": "rice fluffy and water absorbed"
+      },
       "steps": [
         {
           "id": "rinse_rice",
           "device": "saucepan",
           "action": "Rinse rice under cold water until water runs clear",
-          "inputs": ["rice", "water"],
+          "inputs": [
+            "rice",
+            "water"
+          ],
           "output": "rinsed_rice",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "boil_rice",
           "device": "hob",
           "action": "Bring rice to a boil with salted water",
-          "inputs": ["rinsed_rice", "water", "salt"],
+          "inputs": [
+            "rinsed_rice",
+            "water",
+            "salt"
+          ],
           "output": "boiling_rice",
           "after": "rinse_rice",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "simmer_rice",
           "device": "hob",
           "action": "Reduce heat, cover and simmer until water absorbed",
-          "inputs": ["boiling_rice"],
+          "inputs": [
+            "boiling_rice"
+          ],
           "output": "cooked_rice",
           "after": "boil_rice",
-          "end": { "duration_minutes": 12, "condition": "water absorbed, rice fluffy" }
+          "end": {
+            "duration_minutes": 12,
+            "condition": "water absorbed, rice fluffy"
+          }
         }
       ]
     },
@@ -70,51 +173,99 @@
       "id": "prepare_toppings",
       "device": "hob",
       "action": "Prepare all vegetable and beef toppings",
-      "inputs": ["beef_sirloin", "soy_sauce", "sesame_oil", "garlic", "sugar", "spinach", "bean_sprouts", "carrots", "courgette", "vegetable_oil", "salt"],
+      "inputs": [
+        "beef_sirloin",
+        "soy_sauce",
+        "sesame_oil",
+        "garlic",
+        "sugar",
+        "spinach",
+        "bean_sprouts",
+        "carrots",
+        "courgette",
+        "vegetable_oil",
+        "salt"
+      ],
       "output": "all_toppings",
-      "end": { "condition": "all toppings cooked and ready" },
+      "end": {
+        "condition": "all toppings cooked and ready"
+      },
       "steps": [
         {
           "id": "marinate_and_cook_beef",
           "device": "pan",
           "action": "Marinate and cook beef",
-          "inputs": ["beef_sirloin", "soy_sauce", "sesame_oil", "garlic", "sugar"],
+          "inputs": [
+            "beef_sirloin",
+            "soy_sauce",
+            "sesame_oil",
+            "garlic",
+            "sugar"
+          ],
           "output": "cooked_beef",
-          "end": { "condition": "beef caramelised and cooked through" },
+          "end": {
+            "condition": "beef caramelised and cooked through"
+          },
           "steps": [
             {
               "id": "slice_beef",
               "device": "chopping_board",
               "action": "Thinly slice beef sirloin against the grain",
-              "inputs": ["beef_sirloin"],
+              "inputs": [
+                "beef_sirloin"
+              ],
               "output": "sliced_beef",
-              "end": { "duration_minutes": 3 }
+              "end": {
+                "duration_minutes": 3
+              }
             },
             {
               "id": "mince_garlic_for_beef",
               "device": "chopping_board",
               "action": "Mince garlic for the marinade",
-              "inputs": ["garlic"],
+              "inputs": [
+                "garlic"
+              ],
               "output": "minced_garlic",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "marinate_beef",
               "device": "bowl",
               "action": "Toss beef with soy sauce, sesame oil, garlic and sugar",
-              "inputs": ["sliced_beef", "soy_sauce", "sesame_oil", "minced_garlic", "sugar"],
+              "inputs": [
+                "sliced_beef",
+                "soy_sauce",
+                "sesame_oil",
+                "minced_garlic",
+                "sugar"
+              ],
               "output": "marinated_beef",
-              "after": ["slice_beef", "mince_garlic_for_beef"],
-              "end": { "duration_minutes": 10, "condition": "flavours absorbed" }
+              "after": [
+                "slice_beef",
+                "mince_garlic_for_beef"
+              ],
+              "end": {
+                "duration_minutes": 10,
+                "condition": "flavours absorbed"
+              }
             },
             {
               "id": "cook_beef",
               "device": "pan",
               "action": "Stir-fry marinated beef over high heat until caramelised",
-              "inputs": ["marinated_beef", "vegetable_oil"],
+              "inputs": [
+                "marinated_beef",
+                "vegetable_oil"
+              ],
               "output": "cooked_beef",
               "after": "marinate_beef",
-              "end": { "duration_minutes": 4, "condition": "caramelised edges" }
+              "end": {
+                "duration_minutes": 4,
+                "condition": "caramelised edges"
+              }
             }
           ]
         },
@@ -122,109 +273,159 @@
           "id": "blanch_spinach",
           "device": "saucepan",
           "action": "Blanch and season spinach",
-          "inputs": ["spinach", "sesame_oil", "salt"],
+          "inputs": [
+            "spinach",
+            "sesame_oil",
+            "salt"
+          ],
           "output": "seasoned_spinach",
-          "end": { "condition": "spinach wilted and seasoned" },
+          "end": {
+            "condition": "spinach wilted and seasoned"
+          },
           "steps": [
             {
               "id": "boil_spinach",
               "device": "hob",
               "action": "Blanch spinach in boiling water for 30 seconds",
-              "inputs": ["spinach"],
+              "inputs": [
+                "spinach"
+              ],
               "output": "blanched_spinach",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "squeeze_spinach",
               "device": "chopping_board",
               "action": "Drain and squeeze out excess water",
-              "inputs": ["blanched_spinach"],
+              "inputs": [
+                "blanched_spinach"
+              ],
               "output": "drained_spinach",
               "after": "boil_spinach",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "season_spinach",
               "device": "bowl",
               "action": "Season with sesame oil and salt",
-              "inputs": ["drained_spinach", "sesame_oil", "salt"],
+              "inputs": [
+                "drained_spinach",
+                "sesame_oil",
+                "salt"
+              ],
               "output": "seasoned_spinach",
               "after": "squeeze_spinach",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
         {
           "id": "saute_carrots",
           "device": "pan",
-          "action": "Julienne and saut\u00e9 carrots",
-          "inputs": ["carrots", "vegetable_oil", "salt"],
+          "action": "Julienne and sauté carrots",
+          "inputs": [
+            "carrots",
+            "vegetable_oil",
+            "salt"
+          ],
           "output": "sauteed_carrots",
-          "end": { "condition": "carrots tender-crisp" },
+          "end": {
+            "condition": "carrots tender-crisp"
+          },
           "steps": [
             {
               "id": "julienne_carrots",
               "device": "chopping_board",
               "action": "Julienne carrots into thin matchsticks",
-              "inputs": ["carrots"],
+              "inputs": [
+                "carrots"
+              ],
               "output": "julienned_carrots",
-              "end": { "duration_minutes": 3 }
+              "end": {
+                "duration_minutes": 3
+              }
             },
             {
               "id": "fry_carrots",
               "device": "pan",
-              "action": "Saut\u00e9 carrots with a pinch of salt until tender-crisp",
-              "inputs": ["julienned_carrots", "vegetable_oil", "salt"],
+              "action": "Sauté carrots with a pinch of salt until tender-crisp",
+              "inputs": [
+                "julienned_carrots",
+                "vegetable_oil",
+                "salt"
+              ],
               "output": "sauteed_carrots",
               "after": "julienne_carrots",
-              "end": { "duration_minutes": 3, "condition": "tender-crisp" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "tender-crisp"
+              }
             }
           ]
         },
         {
           "id": "saute_courgette",
           "device": "pan",
-          "action": "Slice and saut\u00e9 courgette",
-          "inputs": ["courgette", "vegetable_oil", "salt"],
+          "action": "Slice and sauté courgette",
+          "inputs": [
+            "courgette",
+            "vegetable_oil",
+            "salt"
+          ],
           "output": "sauteed_courgette",
-          "end": { "condition": "courgette lightly golden" },
+          "end": {
+            "condition": "courgette lightly golden"
+          },
           "steps": [
             {
               "id": "slice_courgette",
               "device": "chopping_board",
               "action": "Cut courgette into half-moon slices",
-              "inputs": ["courgette"],
+              "inputs": [
+                "courgette"
+              ],
               "output": "sliced_courgette",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "fry_courgette",
               "device": "pan",
-              "action": "Saut\u00e9 courgette with salt until lightly golden",
-              "inputs": ["sliced_courgette", "vegetable_oil", "salt"],
+              "action": "Sauté courgette with salt until lightly golden",
+              "inputs": [
+                "sliced_courgette",
+                "vegetable_oil",
+                "salt"
+              ],
               "output": "sauteed_courgette",
               "after": "slice_courgette",
-              "end": { "duration_minutes": 3, "condition": "lightly golden" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "lightly golden"
+              }
             }
           ]
         },
         {
           "id": "saute_bean_sprouts",
           "device": "pan",
-          "action": "Quickly saut\u00e9 bean sprouts",
-          "inputs": ["bean_sprouts", "vegetable_oil", "salt"],
+          "action": "Quickly sauté bean sprouts",
+          "inputs": [
+            "bean_sprouts",
+            "vegetable_oil",
+            "salt"
+          ],
           "output": "sauteed_bean_sprouts",
-          "end": { "condition": "bean sprouts just wilted" },
-          "steps": [
-            {
-              "id": "fry_bean_sprouts",
-              "device": "pan",
-              "action": "Stir-fry bean sprouts briefly with salt",
-              "inputs": ["bean_sprouts", "vegetable_oil", "salt"],
-              "output": "sauteed_bean_sprouts",
-              "end": { "duration_minutes": 2, "condition": "just wilted, still crunchy" }
-            }
-          ]
+          "end": {
+            "condition": "bean sprouts just wilted"
+          }
         }
       ]
     },
@@ -232,53 +433,95 @@
       "id": "fry_eggs",
       "device": "pan",
       "action": "Fry eggs sunny-side up",
-      "inputs": ["eggs", "vegetable_oil"],
+      "inputs": [
+        "eggs",
+        "vegetable_oil"
+      ],
       "output": "fried_eggs",
-      "end": { "duration_minutes": 3, "condition": "whites set, yolk runny" }
+      "end": {
+        "duration_minutes": 3,
+        "condition": "whites set, yolk runny"
+      }
     },
     {
       "id": "assemble_bowl",
       "device": "bowl",
       "action": "Assemble bibimbap bowls",
-      "inputs": ["cooked_rice", "all_toppings", "fried_eggs", "gochujang", "sesame_seeds"],
+      "inputs": [
+        "cooked_rice",
+        "all_toppings",
+        "fried_eggs",
+        "gochujang",
+        "sesame_seeds"
+      ],
       "output": "bibimbap",
-      "after": ["cook_rice", "prepare_toppings", "fry_eggs"],
-      "end": { "condition": "served" },
+      "after": [
+        "cook_rice",
+        "prepare_toppings",
+        "fry_eggs"
+      ],
+      "end": {
+        "condition": "served"
+      },
       "steps": [
         {
           "id": "rice_base",
           "device": "bowl",
           "action": "Place hot rice in the base of serving bowls",
-          "inputs": ["cooked_rice"],
+          "inputs": [
+            "cooked_rice"
+          ],
           "output": "rice_in_bowl",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "arrange_toppings",
           "device": "bowl",
           "action": "Arrange toppings in sections around the rice",
-          "inputs": ["rice_in_bowl", "cooked_beef", "seasoned_spinach", "sauteed_carrots", "sauteed_courgette", "sauteed_bean_sprouts"],
+          "inputs": [
+            "rice_in_bowl",
+            "cooked_beef",
+            "seasoned_spinach",
+            "sauteed_carrots",
+            "sauteed_courgette",
+            "sauteed_bean_sprouts"
+          ],
           "output": "bowl_with_toppings",
           "after": "rice_base",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "top_with_egg",
           "device": "bowl",
           "action": "Place fried egg on top of each bowl",
-          "inputs": ["bowl_with_toppings", "fried_eggs"],
+          "inputs": [
+            "bowl_with_toppings",
+            "fried_eggs"
+          ],
           "output": "bowl_with_egg",
           "after": "arrange_toppings",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "serve_with_gochujang",
           "device": "bowl",
           "action": "Add gochujang and sprinkle with sesame seeds",
-          "inputs": ["bowl_with_egg", "gochujang", "sesame_seeds"],
+          "inputs": [
+            "bowl_with_egg",
+            "gochujang",
+            "sesame_seeds"
+          ],
           "output": "bibimbap",
           "after": "top_with_egg",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

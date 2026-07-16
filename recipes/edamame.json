@@ -1,54 +1,99 @@
 {
   "title": "Edamame",
   "servings": 4,
-
+  "cuisine": "Japanese",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 10,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "colander", "name": "Colander" },
-    { "id": "serving_bowl", "name": "Serving Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "colander",
+      "name": "Colander"
+    },
+    {
+      "id": "serving_bowl",
+      "name": "Serving Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "edamame_pods", "name": "Edamame Pods", "quantity": "400g, frozen" },
-    { "id": "sea_salt", "name": "Sea Salt", "quantity": "1 tbsp, plus extra to taste" },
-    { "id": "water", "name": "Water", "quantity": "1 litre" }
+    {
+      "id": "edamame_pods",
+      "name": "Edamame Pods",
+      "quantity": "400g, frozen"
+    },
+    {
+      "id": "sea_salt",
+      "name": "Sea Salt",
+      "quantity": "1 tbsp, plus extra to taste"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "1 litre"
+    }
   ],
-
   "steps": [
     {
       "id": "boil_water",
       "device": "saucepan",
       "action": "Bring salted water to a rolling boil",
-      "inputs": ["water", "sea_salt"],
+      "inputs": [
+        "water",
+        "sea_salt"
+      ],
       "output": "boiling_water",
-      "end": { "condition": "rolling boil" },
+      "end": {
+        "condition": "rolling boil"
+      },
       "steps": [
         {
           "id": "fill_pan",
           "device": "saucepan",
           "action": "Fill saucepan with water",
-          "inputs": ["water"],
+          "inputs": [
+            "water"
+          ],
           "output": "pan_with_water",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_salt_to_water",
           "device": "saucepan",
           "action": "Add a generous pinch of salt to the water",
-          "inputs": ["pan_with_water", "sea_salt"],
+          "inputs": [
+            "pan_with_water",
+            "sea_salt"
+          ],
           "output": "salted_water",
           "after": "fill_pan",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "bring_to_boil",
           "device": "saucepan",
           "action": "Bring water to a rolling boil over high heat",
-          "inputs": ["salted_water"],
+          "inputs": [
+            "salted_water"
+          ],
           "output": "boiling_water",
           "after": "add_salt_to_water",
-          "end": { "duration_minutes": 4, "condition": "vigorous bubbling" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "vigorous bubbling"
+          }
         }
       ]
     },
@@ -56,27 +101,43 @@
       "id": "cook_edamame",
       "device": "saucepan",
       "action": "Cook edamame pods in boiling water",
-      "inputs": ["boiling_water", "edamame_pods"],
+      "inputs": [
+        "boiling_water",
+        "edamame_pods"
+      ],
       "output": "cooked_edamame",
       "after": "boil_water",
-      "end": { "duration_minutes": 4, "condition": "tender but still bright green" },
+      "end": {
+        "duration_minutes": 4,
+        "condition": "tender but still bright green"
+      },
       "steps": [
         {
           "id": "add_edamame",
           "device": "saucepan",
           "action": "Add frozen edamame pods to boiling water",
-          "inputs": ["boiling_water", "edamame_pods"],
+          "inputs": [
+            "boiling_water",
+            "edamame_pods"
+          ],
           "output": "edamame_in_water",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "simmer_edamame",
           "device": "saucepan",
           "action": "Boil for 3-4 minutes until tender",
-          "inputs": ["edamame_in_water"],
+          "inputs": [
+            "edamame_in_water"
+          ],
           "output": "cooked_edamame",
           "after": "add_edamame",
-          "end": { "duration_minutes": 3, "condition": "pods tender, beans pop out easily" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "pods tender, beans pop out easily"
+          }
         }
       ]
     },
@@ -84,36 +145,54 @@
       "id": "drain_and_season",
       "device": "serving_bowl",
       "action": "Drain edamame and season with flaky salt",
-      "inputs": ["cooked_edamame", "sea_salt"],
+      "inputs": [
+        "cooked_edamame",
+        "sea_salt"
+      ],
       "output": "seasoned_edamame",
       "after": "cook_edamame",
-      "end": { "condition": "evenly salted" },
+      "end": {
+        "condition": "evenly salted"
+      },
       "steps": [
         {
           "id": "drain_edamame",
           "device": "colander",
           "action": "Drain edamame in a colander and shake off excess water",
-          "inputs": ["cooked_edamame"],
+          "inputs": [
+            "cooked_edamame"
+          ],
           "output": "drained_edamame",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "transfer_to_bowl",
           "device": "serving_bowl",
           "action": "Transfer drained edamame to a serving bowl",
-          "inputs": ["drained_edamame"],
+          "inputs": [
+            "drained_edamame"
+          ],
           "output": "edamame_in_bowl",
           "after": "drain_edamame",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "season_with_salt",
           "device": "serving_bowl",
           "action": "Sprinkle generously with flaky sea salt and toss",
-          "inputs": ["edamame_in_bowl", "sea_salt"],
+          "inputs": [
+            "edamame_in_bowl",
+            "sea_salt"
+          ],
           "output": "seasoned_edamame",
           "after": "transfer_to_bowl",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

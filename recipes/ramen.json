@@ -1,84 +1,219 @@
 {
   "title": "Ramen",
   "servings": 4,
+  "cuisine": "Japanese",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 180,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "large_pot", "name": "Large Pot" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "large_pot",
+      "name": "Large Pot"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    }
   ],
   "ingredients": [
-    { "id": "pork_bones", "name": "Pork Bones", "quantity": "1kg" },
-    { "id": "chicken_carcass", "name": "Chicken Carcass", "quantity": "1" },
-    { "id": "ginger", "name": "Ginger", "quantity": "large thumb" },
-    { "id": "garlic", "name": "Garlic", "quantity": "1 head" },
-    { "id": "spring_onions", "name": "Spring Onions", "quantity": "6" },
-    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "4 tbsp" },
-    { "id": "mirin", "name": "Mirin", "quantity": "2 tbsp" },
-    { "id": "sake", "name": "Sake", "quantity": "2 tbsp" },
-    { "id": "dashi_granules", "name": "Dashi Granules", "quantity": "1 tsp" },
-    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "1 tbsp" },
-    { "id": "ramen_noodles", "name": "Ramen Noodles", "quantity": "4 portions" },
-    { "id": "chashu_pork_belly", "name": "Pork Belly (for Chashu)", "quantity": "400g" },
-    { "id": "eggs", "name": "Eggs", "quantity": "4" },
-    { "id": "nori", "name": "Nori", "quantity": "4 sheets" },
-    { "id": "sweetcorn", "name": "Sweetcorn", "quantity": "100g" },
-    { "id": "chilli_oil", "name": "Chilli Oil", "quantity": "optional" },
-    { "id": "water", "name": "Water", "quantity": "3L" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" }
+    {
+      "id": "pork_bones",
+      "name": "Pork Bones",
+      "quantity": "1kg"
+    },
+    {
+      "id": "chicken_carcass",
+      "name": "Chicken Carcass",
+      "quantity": "1"
+    },
+    {
+      "id": "ginger",
+      "name": "Ginger",
+      "quantity": "large thumb"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "1 head"
+    },
+    {
+      "id": "spring_onions",
+      "name": "Spring Onions",
+      "quantity": "6"
+    },
+    {
+      "id": "soy_sauce",
+      "name": "Soy Sauce",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "mirin",
+      "name": "Mirin",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "sake",
+      "name": "Sake",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "dashi_granules",
+      "name": "Dashi Granules",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "sesame_oil",
+      "name": "Sesame Oil",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "ramen_noodles",
+      "name": "Ramen Noodles",
+      "quantity": "4 portions"
+    },
+    {
+      "id": "chashu_pork_belly",
+      "name": "Pork Belly (for Chashu)",
+      "quantity": "400g"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "4"
+    },
+    {
+      "id": "nori",
+      "name": "Nori",
+      "quantity": "4 sheets"
+    },
+    {
+      "id": "sweetcorn",
+      "name": "Sweetcorn",
+      "quantity": "100g"
+    },
+    {
+      "id": "chilli_oil",
+      "name": "Chilli Oil",
+      "quantity": "optional"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "3L"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    }
   ],
   "steps": [
     {
       "id": "make_broth",
       "device": "large_pot",
       "action": "Make tonkotsu-style broth from bones and aromatics",
-      "inputs": ["pork_bones", "chicken_carcass", "ginger", "garlic", "spring_onions", "water", "salt"],
+      "inputs": [
+        "pork_bones",
+        "chicken_carcass",
+        "ginger",
+        "garlic",
+        "spring_onions",
+        "water",
+        "salt"
+      ],
       "output": "finished_broth",
-      "end": { "duration_minutes": 240, "condition": "rich, milky, and deeply flavoured" },
+      "end": {
+        "duration_minutes": 240,
+        "condition": "rich, milky, and deeply flavoured"
+      },
       "steps": [
         {
           "id": "prepare_bones",
           "device": "large_pot",
           "action": "Blanch bones and prepare aromatics",
-          "inputs": ["pork_bones", "chicken_carcass", "garlic", "ginger", "spring_onions", "water"],
+          "inputs": [
+            "pork_bones",
+            "chicken_carcass",
+            "garlic",
+            "ginger",
+            "spring_onions",
+            "water"
+          ],
           "output": "prepared_bones_and_aromatics",
-          "end": { "condition": "bones clean, aromatics charred" },
+          "end": {
+            "condition": "bones clean, aromatics charred"
+          },
           "steps": [
             {
               "id": "blanch",
               "device": "large_pot",
               "action": "Blanch bones to remove impurities",
-              "inputs": ["pork_bones", "chicken_carcass", "water"],
+              "inputs": [
+                "pork_bones",
+                "chicken_carcass",
+                "water"
+              ],
               "output": "blanched_bones",
-              "end": { "condition": "bones clean and white" },
+              "end": {
+                "condition": "bones clean and white"
+              },
               "steps": [
                 {
                   "id": "cover_bones_with_water",
                   "device": "large_pot",
                   "action": "Place pork bones and chicken carcass in pot, cover with cold water",
-                  "inputs": ["pork_bones", "chicken_carcass", "water"],
+                  "inputs": [
+                    "pork_bones",
+                    "chicken_carcass",
+                    "water"
+                  ],
                   "output": "bones_in_water",
-                  "end": { "duration_minutes": 2 }
+                  "end": {
+                    "duration_minutes": 2
+                  }
                 },
                 {
                   "id": "boil_5_min",
                   "device": "large_pot",
                   "action": "Bring to a rolling boil and cook for 5 minutes to release scum",
                   "after": "cover_bones_with_water",
-                  "inputs": ["bones_in_water"],
+                  "inputs": [
+                    "bones_in_water"
+                  ],
                   "output": "boiled_bones",
-                  "end": { "duration_minutes": 5 }
+                  "end": {
+                    "duration_minutes": 5
+                  }
                 },
                 {
                   "id": "drain_and_rinse",
                   "device": "large_pot",
                   "action": "Drain, rinse bones under cold water, scrub off residue, clean pot",
                   "after": "boil_5_min",
-                  "inputs": ["boiled_bones"],
+                  "inputs": [
+                    "boiled_bones"
+                  ],
                   "output": "blanched_bones",
-                  "end": { "duration_minutes": 5 }
+                  "end": {
+                    "duration_minutes": 5
+                  }
                 }
               ]
             },
@@ -86,34 +221,58 @@
               "id": "roast_aromatics",
               "device": "pan",
               "action": "Char aromatics for depth of flavour",
-              "inputs": ["garlic", "ginger", "spring_onions"],
+              "inputs": [
+                "garlic",
+                "ginger",
+                "spring_onions"
+              ],
               "output": "charred_aromatics",
-              "end": { "condition": "deeply charred and fragrant" },
+              "end": {
+                "condition": "deeply charred and fragrant"
+              },
               "steps": [
                 {
                   "id": "halve_garlic",
                   "device": "chopping_board",
                   "action": "Halve the garlic head crossways",
-                  "inputs": ["garlic"],
+                  "inputs": [
+                    "garlic"
+                  ],
                   "output": "halved_garlic",
-                  "end": { "duration_minutes": 1 }
+                  "end": {
+                    "duration_minutes": 1
+                  }
                 },
                 {
                   "id": "slice_ginger",
                   "device": "chopping_board",
                   "action": "Slice ginger into thick coins (no need to peel)",
-                  "inputs": ["ginger"],
+                  "inputs": [
+                    "ginger"
+                  ],
                   "output": "sliced_ginger",
-                  "end": { "duration_minutes": 1 }
+                  "end": {
+                    "duration_minutes": 1
+                  }
                 },
                 {
                   "id": "char_spring_onion_whites",
                   "device": "pan",
                   "action": "Dry-char spring onion whites, garlic, and ginger in a hot pan",
-                  "after": ["halve_garlic", "slice_ginger"],
-                  "inputs": ["spring_onions", "halved_garlic", "sliced_ginger"],
+                  "after": [
+                    "halve_garlic",
+                    "slice_ginger"
+                  ],
+                  "inputs": [
+                    "spring_onions",
+                    "halved_garlic",
+                    "sliced_ginger"
+                  ],
                   "output": "charred_aromatics",
-                  "end": { "duration_minutes": 5, "condition": "deeply charred on cut sides" }
+                  "end": {
+                    "duration_minutes": 5,
+                    "condition": "deeply charred on cut sides"
+                  }
                 }
               ]
             }
@@ -124,62 +283,97 @@
           "device": "large_pot",
           "action": "Long simmer to extract collagen and flavour",
           "after": "prepare_bones",
-          "inputs": ["blanched_bones", "charred_aromatics", "water"],
+          "inputs": [
+            "blanched_bones",
+            "charred_aromatics",
+            "water"
+          ],
           "output": "simmered_broth",
-          "end": { "duration_minutes": 240, "condition": "rich and milky" },
+          "end": {
+            "duration_minutes": 240,
+            "condition": "rich and milky"
+          },
           "steps": [
             {
               "id": "add_bones_chicken_to_pot",
               "device": "large_pot",
               "action": "Add cleaned bones and chicken carcass to clean pot",
-              "inputs": ["blanched_bones"],
+              "inputs": [
+                "blanched_bones"
+              ],
               "output": "bones_in_pot",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_aromatics_to_broth",
               "device": "large_pot",
               "action": "Add charred aromatics to the pot",
               "after": "add_bones_chicken_to_pot",
-              "inputs": ["charred_aromatics", "bones_in_pot"],
+              "inputs": [
+                "charred_aromatics",
+                "bones_in_pot"
+              ],
               "output": "bones_with_aromatics",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_water_to_broth",
               "device": "large_pot",
               "action": "Cover with 3L fresh cold water",
               "after": "add_aromatics_to_broth",
-              "inputs": ["water", "bones_with_aromatics"],
+              "inputs": [
+                "water",
+                "bones_with_aromatics"
+              ],
               "output": "broth_ready_to_cook",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "bring_to_boil",
               "device": "large_pot",
               "action": "Bring to a rolling boil over high heat",
               "after": "add_water_to_broth",
-              "inputs": ["broth_ready_to_cook"],
+              "inputs": [
+                "broth_ready_to_cook"
+              ],
               "output": "boiling_broth",
-              "end": { "duration_minutes": 10, "condition": "vigorous boil" }
+              "end": {
+                "duration_minutes": 10,
+                "condition": "vigorous boil"
+              }
             },
             {
               "id": "skim_broth",
               "device": "large_pot",
               "action": "Skim any scum from the surface",
               "after": "bring_to_boil",
-              "inputs": ["boiling_broth"],
+              "inputs": [
+                "boiling_broth"
+              ],
               "output": "skimmed_broth",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "simmer_4_hours",
               "device": "large_pot",
               "action": "Reduce to medium-high, maintain active simmer for 4 hours (top up water as needed)",
               "after": "skim_broth",
-              "inputs": ["skimmed_broth"],
+              "inputs": [
+                "skimmed_broth"
+              ],
               "output": "simmered_broth",
-              "end": { "duration_minutes": 240, "condition": "broth is rich, milky-white, and emulsified" }
+              "end": {
+                "duration_minutes": 240,
+                "condition": "broth is rich, milky-white, and emulsified"
+              }
             }
           ]
         },
@@ -188,35 +382,53 @@
           "device": "large_pot",
           "action": "Strain broth and season",
           "after": "simmer_broth",
-          "inputs": ["simmered_broth", "salt"],
+          "inputs": [
+            "simmered_broth",
+            "salt"
+          ],
           "output": "finished_broth",
-          "end": { "condition": "clean, seasoned broth" },
+          "end": {
+            "condition": "clean, seasoned broth"
+          },
           "steps": [
             {
               "id": "strain_through_sieve",
               "device": "large_pot",
               "action": "Strain broth through fine-mesh sieve into clean pot",
-              "inputs": ["simmered_broth"],
+              "inputs": [
+                "simmered_broth"
+              ],
               "output": "strained_broth",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "discard_solids",
               "device": "large_pot",
               "action": "Discard bones and spent aromatics",
               "after": "strain_through_sieve",
-              "inputs": ["strained_broth"],
+              "inputs": [
+                "strained_broth"
+              ],
               "output": "clear_broth",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "season_broth_with_salt",
               "device": "large_pot",
               "action": "Season broth with salt to taste",
               "after": "discard_solids",
-              "inputs": ["clear_broth", "salt"],
+              "inputs": [
+                "clear_broth",
+                "salt"
+              ],
               "output": "finished_broth",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         }
@@ -226,35 +438,59 @@
       "id": "make_tare",
       "device": "saucepan",
       "action": "Make tare (seasoning base)",
-      "inputs": ["soy_sauce", "mirin", "sake", "dashi_granules"],
+      "inputs": [
+        "soy_sauce",
+        "mirin",
+        "sake",
+        "dashi_granules"
+      ],
       "output": "tare",
-      "end": { "duration_minutes": 5, "condition": "fragrant and combined" },
+      "end": {
+        "duration_minutes": 5,
+        "condition": "fragrant and combined"
+      },
       "steps": [
         {
           "id": "combine_tare_ingredients",
           "device": "saucepan",
           "action": "Combine soy sauce, mirin, sake, and dashi granules in a small saucepan",
-          "inputs": ["soy_sauce", "mirin", "sake", "dashi_granules"],
+          "inputs": [
+            "soy_sauce",
+            "mirin",
+            "sake",
+            "dashi_granules"
+          ],
           "output": "tare_mixture",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "heat_tare_gently",
           "device": "saucepan",
           "action": "Heat gently until dashi dissolves and flavours meld, do not boil",
           "after": "combine_tare_ingredients",
-          "inputs": ["tare_mixture"],
+          "inputs": [
+            "tare_mixture"
+          ],
           "output": "heated_tare",
-          "end": { "duration_minutes": 5, "condition": "dashi dissolved, fragrant" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "dashi dissolved, fragrant"
+          }
         },
         {
           "id": "set_tare_aside",
           "device": "bowl",
           "action": "Set tare aside to cool (reserve some for marinating eggs)",
           "after": "heat_tare_gently",
-          "inputs": ["heated_tare"],
+          "inputs": [
+            "heated_tare"
+          ],
           "output": "tare",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -262,34 +498,56 @@
       "id": "prepare_chashu",
       "device": "pan",
       "action": "Prepare chashu pork belly",
-      "inputs": ["chashu_pork_belly", "soy_sauce", "mirin", "sake", "water"],
+      "inputs": [
+        "chashu_pork_belly",
+        "soy_sauce",
+        "mirin",
+        "sake",
+        "water"
+      ],
       "output": "sliced_chashu",
-      "end": { "duration_minutes": 90, "condition": "tender, sliceable" },
+      "end": {
+        "duration_minutes": 90,
+        "condition": "tender, sliceable"
+      },
       "steps": [
         {
           "id": "sear_pork",
           "device": "pan",
           "action": "Tie and sear pork belly",
-          "inputs": ["chashu_pork_belly"],
+          "inputs": [
+            "chashu_pork_belly"
+          ],
           "output": "seared_pork",
-          "end": { "condition": "golden crust on all sides" },
+          "end": {
+            "condition": "golden crust on all sides"
+          },
           "steps": [
             {
               "id": "tie_pork_belly",
               "device": "chopping_board",
               "action": "Roll and tie pork belly with kitchen twine into a tight cylinder",
-              "inputs": ["chashu_pork_belly"],
+              "inputs": [
+                "chashu_pork_belly"
+              ],
               "output": "tied_pork",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "sear_all_sides",
               "device": "pan",
               "action": "Sear pork in a hot pan on all sides until golden",
               "after": "tie_pork_belly",
-              "inputs": ["tied_pork"],
+              "inputs": [
+                "tied_pork"
+              ],
               "output": "seared_pork",
-              "end": { "duration_minutes": 8, "condition": "deep golden crust on all sides" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "deep golden crust on all sides"
+              }
             }
           ]
         },
@@ -298,71 +556,112 @@
           "device": "saucepan",
           "action": "Braise pork belly until tender, rest, and slice",
           "after": "sear_pork",
-          "inputs": ["seared_pork", "soy_sauce", "mirin", "sake", "water"],
+          "inputs": [
+            "seared_pork",
+            "soy_sauce",
+            "mirin",
+            "sake",
+            "water"
+          ],
           "output": "sliced_chashu",
-          "end": { "condition": "tender and sliceable" },
+          "end": {
+            "condition": "tender and sliceable"
+          },
           "steps": [
             {
               "id": "add_soy_to_pork",
               "device": "saucepan",
               "action": "Place seared pork in saucepan, add soy sauce",
-              "inputs": ["seared_pork", "soy_sauce"],
+              "inputs": [
+                "seared_pork",
+                "soy_sauce"
+              ],
               "output": "pork_with_soy",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_mirin_to_pork",
               "device": "saucepan",
               "action": "Add mirin",
               "after": "add_soy_to_pork",
-              "inputs": ["mirin", "pork_with_soy"],
+              "inputs": [
+                "mirin",
+                "pork_with_soy"
+              ],
               "output": "pork_with_mirin",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_sake_to_pork",
               "device": "saucepan",
               "action": "Add sake",
               "after": "add_mirin_to_pork",
-              "inputs": ["sake", "pork_with_mirin"],
+              "inputs": [
+                "sake",
+                "pork_with_mirin"
+              ],
               "output": "pork_with_sake",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_water_to_pork",
               "device": "saucepan",
               "action": "Add enough water to come halfway up the pork",
               "after": "add_sake_to_pork",
-              "inputs": ["water", "pork_with_sake"],
+              "inputs": [
+                "water",
+                "pork_with_sake"
+              ],
               "output": "pork_in_braising_liquid",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "simmer_pork",
               "device": "saucepan",
               "action": "Simmer gently, turning occasionally, until tender",
               "after": "add_water_to_pork",
-              "inputs": ["pork_in_braising_liquid"],
+              "inputs": [
+                "pork_in_braising_liquid"
+              ],
               "output": "braised_pork",
-              "end": { "duration_minutes": 90, "condition": "fork-tender, easily pierced" }
+              "end": {
+                "duration_minutes": 90,
+                "condition": "fork-tender, easily pierced"
+              }
             },
             {
               "id": "rest_pork",
               "device": "chopping_board",
               "action": "Remove pork from liquid, rest before slicing",
               "after": "simmer_pork",
-              "inputs": ["braised_pork"],
+              "inputs": [
+                "braised_pork"
+              ],
               "output": "rested_pork",
-              "end": { "duration_minutes": 10 }
+              "end": {
+                "duration_minutes": 10
+              }
             },
             {
               "id": "slice_chashu",
               "device": "chopping_board",
               "action": "Remove twine and slice into 5mm rounds",
               "after": "rest_pork",
-              "inputs": ["rested_pork"],
+              "inputs": [
+                "rested_pork"
+              ],
               "output": "sliced_chashu",
-              "end": { "duration_minutes": 3 }
+              "end": {
+                "duration_minutes": 3
+              }
             }
           ]
         }
@@ -372,44 +671,71 @@
       "id": "prepare_eggs",
       "device": "saucepan",
       "action": "Soft-boil and marinate eggs",
-      "inputs": ["eggs", "tare", "water"],
+      "inputs": [
+        "eggs",
+        "tare",
+        "water"
+      ],
       "output": "marinated_eggs",
-      "end": { "duration_minutes": 30, "condition": "jammy yolks, flavoured throughout" },
+      "end": {
+        "duration_minutes": 30,
+        "condition": "jammy yolks, flavoured throughout"
+      },
       "steps": [
         {
           "id": "soft_boil_eggs",
           "device": "saucepan",
           "action": "Soft-boil eggs for jammy yolks",
-          "inputs": ["eggs", "water"],
+          "inputs": [
+            "eggs",
+            "water"
+          ],
           "output": "soft_boiled_eggs",
-          "end": { "duration_minutes": 7, "condition": "jammy yolk" }
+          "end": {
+            "duration_minutes": 7,
+            "condition": "jammy yolk"
+          }
         },
         {
           "id": "ice_bath_eggs",
           "device": "bowl",
           "action": "Plunge eggs into ice water to stop cooking",
           "after": "soft_boil_eggs",
-          "inputs": ["soft_boiled_eggs"],
+          "inputs": [
+            "soft_boiled_eggs"
+          ],
           "output": "cooled_eggs",
-          "end": { "duration_minutes": 5 }
+          "end": {
+            "duration_minutes": 5
+          }
         },
         {
           "id": "peel_eggs",
           "device": "bowl",
           "action": "Carefully peel cooled eggs",
           "after": "ice_bath_eggs",
-          "inputs": ["cooled_eggs"],
+          "inputs": [
+            "cooled_eggs"
+          ],
           "output": "peeled_eggs",
-          "end": { "duration_minutes": 3 }
+          "end": {
+            "duration_minutes": 3
+          }
         },
         {
           "id": "marinate_in_tare",
           "device": "bowl",
           "action": "Submerge peeled eggs in tare to marinate",
           "after": "peel_eggs",
-          "inputs": ["peeled_eggs", "tare"],
+          "inputs": [
+            "peeled_eggs",
+            "tare"
+          ],
           "output": "marinated_eggs",
-          "end": { "duration_minutes": 30, "condition": "at least 30 min, ideally several hours" }
+          "end": {
+            "duration_minutes": 30,
+            "condition": "at least 30 min, ideally several hours"
+          }
         }
       ]
     },
@@ -417,33 +743,51 @@
       "id": "prepare_toppings",
       "device": "chopping_board",
       "action": "Prepare fresh toppings",
-      "inputs": ["spring_onions", "nori", "sweetcorn"],
+      "inputs": [
+        "spring_onions",
+        "nori",
+        "sweetcorn"
+      ],
       "output": "prepared_toppings",
-      "end": { "duration_minutes": 5 },
+      "end": {
+        "duration_minutes": 5
+      },
       "steps": [
         {
           "id": "slice_spring_onion_greens",
           "device": "chopping_board",
           "action": "Finely slice spring onion greens into rings",
-          "inputs": ["spring_onions"],
+          "inputs": [
+            "spring_onions"
+          ],
           "output": "sliced_spring_onions",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "prepare_nori",
           "device": "chopping_board",
           "action": "Cut nori sheets in half",
-          "inputs": ["nori"],
+          "inputs": [
+            "nori"
+          ],
           "output": "prepared_nori",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "prepare_sweetcorn",
           "device": "chopping_board",
           "action": "Drain sweetcorn and set aside",
-          "inputs": ["sweetcorn"],
-          "output": "prepared_toppings",
-          "end": { "duration_minutes": 1 }
+          "inputs": [
+            "sweetcorn"
+          ],
+          "output": "prepared_sweetcorn",
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -452,26 +796,41 @@
       "device": "large_pot",
       "action": "Cook ramen noodles just before serving",
       "after": "make_broth",
-      "inputs": ["ramen_noodles", "water"],
+      "inputs": [
+        "ramen_noodles",
+        "water"
+      ],
       "output": "cooked_noodles",
-      "end": { "duration_minutes": 3 },
+      "end": {
+        "duration_minutes": 3
+      },
       "steps": [
         {
           "id": "boil_noodles",
           "device": "large_pot",
           "action": "Cook noodles in rapidly boiling water according to packet instructions",
-          "inputs": ["ramen_noodles", "water"],
+          "inputs": [
+            "ramen_noodles",
+            "water"
+          ],
           "output": "boiled_noodles",
-          "end": { "duration_minutes": 3, "condition": "al dente, slight chew" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "al dente, slight chew"
+          }
         },
         {
           "id": "drain_noodles",
           "device": "large_pot",
           "action": "Drain noodles and shake off excess water",
           "after": "boil_noodles",
-          "inputs": ["boiled_noodles"],
+          "inputs": [
+            "boiled_noodles"
+          ],
           "output": "cooked_noodles",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -479,72 +838,125 @@
       "id": "assemble",
       "device": "bowl",
       "action": "Assemble ramen bowls",
-      "after": ["make_broth", "make_tare", "prepare_chashu", "prepare_eggs", "prepare_toppings", "cook_noodles"],
-      "inputs": ["tare", "finished_broth", "cooked_noodles", "sliced_chashu", "marinated_eggs", "prepared_toppings", "sesame_oil", "chilli_oil"],
+      "after": [
+        "make_broth",
+        "make_tare",
+        "prepare_chashu",
+        "prepare_eggs",
+        "prepare_toppings",
+        "cook_noodles"
+      ],
+      "inputs": [
+        "tare",
+        "finished_broth",
+        "cooked_noodles",
+        "sliced_chashu",
+        "marinated_eggs",
+        "prepared_toppings",
+        "sesame_oil",
+        "chilli_oil"
+      ],
       "output": "ramen",
-      "end": { "condition": "steaming, beautiful, ready to eat" },
+      "end": {
+        "condition": "steaming, beautiful, ready to eat"
+      },
       "steps": [
         {
           "id": "add_tare_to_bowls",
           "device": "bowl",
           "action": "Add 2 tablespoons of tare to each serving bowl",
-          "inputs": ["tare"],
+          "inputs": [
+            "tare"
+          ],
           "output": "bowls_with_tare",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "ladle_broth",
           "device": "bowl",
           "action": "Ladle hot broth into each bowl over the tare",
           "after": "add_tare_to_bowls",
-          "inputs": ["finished_broth", "bowls_with_tare"],
+          "inputs": [
+            "finished_broth",
+            "bowls_with_tare"
+          ],
           "output": "bowls_with_broth",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_noodles",
           "device": "bowl",
           "action": "Add cooked noodles to one side of each bowl",
           "after": "ladle_broth",
-          "inputs": ["cooked_noodles", "bowls_with_broth"],
+          "inputs": [
+            "cooked_noodles",
+            "bowls_with_broth"
+          ],
           "output": "bowls_with_noodles",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "arrange_chashu",
           "device": "bowl",
           "action": "Fan chashu slices on top of noodles",
           "after": "add_noodles",
-          "inputs": ["sliced_chashu", "bowls_with_noodles"],
+          "inputs": [
+            "sliced_chashu",
+            "bowls_with_noodles"
+          ],
           "output": "bowls_with_chashu",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_egg_halves",
           "device": "bowl",
           "action": "Halve marinated eggs and place yolk-up in bowl",
           "after": "arrange_chashu",
-          "inputs": ["marinated_eggs", "bowls_with_chashu"],
+          "inputs": [
+            "marinated_eggs",
+            "bowls_with_chashu"
+          ],
           "output": "bowls_with_eggs",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_toppings",
           "device": "bowl",
           "action": "Add spring onions, nori, sweetcorn, and a drizzle of sesame oil",
           "after": "add_egg_halves",
-          "inputs": ["prepared_toppings", "sesame_oil", "bowls_with_eggs"],
+          "inputs": [
+            "prepared_toppings",
+            "sesame_oil",
+            "bowls_with_eggs"
+          ],
           "output": "topped_bowls",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "drizzle_chilli_oil",
           "device": "bowl",
           "action": "Finish with a drizzle of chilli oil (optional)",
           "after": "add_toppings",
-          "inputs": ["chilli_oil", "topped_bowls"],
+          "inputs": [
+            "chilli_oil",
+            "topped_bowls"
+          ],
           "output": "ramen",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

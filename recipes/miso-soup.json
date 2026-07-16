@@ -1,80 +1,154 @@
 {
   "title": "Miso Soup",
   "servings": 4,
-
+  "cuisine": "Japanese",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 15,
+  "prep_minutes": 0,
+  "diet_notes": "Dashi is traditionally made with bonito (fish) flakes — use kombu or shiitake dashi to keep this vegetarian.",
   "devices": [
-    { "id": "hob", "name": "Hob", "settings": "medium heat" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob",
+      "settings": "medium heat"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "dashi_stock", "name": "Dashi Stock", "quantity": "800ml" },
-    { "id": "miso_paste", "name": "Miso Paste", "quantity": "3 tbsp" },
-    { "id": "tofu", "name": "Silken Tofu", "quantity": "150g" },
-    { "id": "spring_onions", "name": "Spring Onions", "quantity": "2" },
-    { "id": "wakame", "name": "Dried Wakame", "quantity": "1 tbsp" }
+    {
+      "id": "dashi_stock",
+      "name": "Dashi Stock",
+      "quantity": "800ml"
+    },
+    {
+      "id": "miso_paste",
+      "name": "Miso Paste",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "tofu",
+      "name": "Silken Tofu",
+      "quantity": "150g"
+    },
+    {
+      "id": "spring_onions",
+      "name": "Spring Onions",
+      "quantity": "2"
+    },
+    {
+      "id": "wakame",
+      "name": "Dried Wakame",
+      "quantity": "1 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "heat_dashi",
       "device": "saucepan",
       "action": "Pour dashi stock into saucepan and bring to a gentle simmer",
-      "inputs": ["dashi_stock"],
+      "inputs": [
+        "dashi_stock"
+      ],
       "output": "hot_dashi",
-      "end": { "duration_minutes": 5, "condition": "simmering but not boiling" }
+      "end": {
+        "duration_minutes": 5,
+        "condition": "simmering but not boiling"
+      }
     },
     {
       "id": "cube_tofu",
       "device": "chopping_board",
       "action": "Cut tofu into small 1cm cubes",
-      "inputs": ["tofu"],
+      "inputs": [
+        "tofu"
+      ],
       "output": "cubed_tofu",
-      "end": { "duration_minutes": 2 }
+      "end": {
+        "duration_minutes": 2
+      }
     },
     {
       "id": "slice_spring_onions",
       "device": "chopping_board",
       "action": "Thinly slice spring onions on the diagonal",
-      "inputs": ["spring_onions"],
+      "inputs": [
+        "spring_onions"
+      ],
       "output": "sliced_spring_onions",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "soak_wakame",
       "device": "chopping_board",
       "action": "Soak dried wakame in a small bowl of warm water until rehydrated",
-      "inputs": ["wakame"],
+      "inputs": [
+        "wakame"
+      ],
       "output": "rehydrated_wakame",
-      "end": { "duration_minutes": 5, "condition": "fully rehydrated and soft" }
+      "end": {
+        "duration_minutes": 5,
+        "condition": "fully rehydrated and soft"
+      }
     },
     {
       "id": "dissolve_miso",
       "device": "saucepan",
       "action": "Remove pan from direct heat, ladle some hot dashi into miso paste and stir to dissolve, then return to pan",
-      "inputs": ["hot_dashi", "miso_paste"],
+      "inputs": [
+        "hot_dashi",
+        "miso_paste"
+      ],
       "output": "miso_broth",
       "after": "heat_dashi",
-      "end": { "duration_minutes": 2, "condition": "miso fully dissolved, no lumps" }
+      "end": {
+        "duration_minutes": 2,
+        "condition": "miso fully dissolved, no lumps"
+      }
     },
     {
       "id": "add_solids",
       "device": "saucepan",
       "action": "Add tofu, wakame, and most of the spring onions to the miso broth and warm through gently",
-      "inputs": ["miso_broth", "cubed_tofu", "rehydrated_wakame", "sliced_spring_onions"],
+      "inputs": [
+        "miso_broth",
+        "cubed_tofu",
+        "rehydrated_wakame",
+        "sliced_spring_onions"
+      ],
       "output": "assembled_soup",
-      "after": ["dissolve_miso", "cube_tofu", "soak_wakame", "slice_spring_onions"],
-      "end": { "duration_minutes": 2, "condition": "heated through but not boiling" }
+      "after": [
+        "dissolve_miso",
+        "cube_tofu",
+        "soak_wakame",
+        "slice_spring_onions"
+      ],
+      "end": {
+        "duration_minutes": 2,
+        "condition": "heated through but not boiling"
+      }
     },
     {
       "id": "serve",
       "device": "saucepan",
       "action": "Ladle into bowls and garnish with remaining spring onion slices",
-      "inputs": ["assembled_soup"],
+      "inputs": [
+        "assembled_soup"
+      ],
       "output": "miso_soup",
       "after": "add_solids",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     }
   ]
 }

@@ -1,66 +1,161 @@
 {
   "title": "Massaman Curry",
   "servings": 4,
-
+  "cuisine": "Thai",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 60,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "wok", "name": "Wok" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "wok",
+      "name": "Wok"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "beef_chuck", "name": "Beef Chuck", "quantity": "600g" },
-    { "id": "massaman_paste", "name": "Massaman Curry Paste", "quantity": "3 tbsp" },
-    { "id": "coconut_milk", "name": "Coconut Milk", "quantity": "2 x 400ml tins" },
-    { "id": "potatoes", "name": "Potatoes", "quantity": "3 medium" },
-    { "id": "onion", "name": "Onion", "quantity": "1 large" },
-    { "id": "peanuts", "name": "Roasted Peanuts", "quantity": "50g" },
-    { "id": "tamarind_paste", "name": "Tamarind Paste", "quantity": "1 tbsp" },
-    { "id": "fish_sauce", "name": "Fish Sauce", "quantity": "2 tbsp" },
-    { "id": "palm_sugar", "name": "Palm Sugar", "quantity": "2 tbsp" },
-    { "id": "bay_leaves", "name": "Bay Leaves", "quantity": "2" },
-    { "id": "cinnamon_stick", "name": "Cinnamon Stick", "quantity": "1" },
-    { "id": "cardamom", "name": "Cardamom Pods", "quantity": "3, lightly crushed" },
-    { "id": "jasmine_rice", "name": "Jasmine Rice", "quantity": "300g" },
-    { "id": "water", "name": "Water", "quantity": "450ml" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" }
+    {
+      "id": "beef_chuck",
+      "name": "Beef Chuck",
+      "quantity": "600g"
+    },
+    {
+      "id": "massaman_paste",
+      "name": "Massaman Curry Paste",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "coconut_milk",
+      "name": "Coconut Milk",
+      "quantity": "2 x 400ml tins"
+    },
+    {
+      "id": "potatoes",
+      "name": "Potatoes",
+      "quantity": "3 medium"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1 large"
+    },
+    {
+      "id": "peanuts",
+      "name": "Roasted Peanuts",
+      "quantity": "50g"
+    },
+    {
+      "id": "tamarind_paste",
+      "name": "Tamarind Paste",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "fish_sauce",
+      "name": "Fish Sauce",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "palm_sugar",
+      "name": "Palm Sugar",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "bay_leaves",
+      "name": "Bay Leaves",
+      "quantity": "2"
+    },
+    {
+      "id": "cinnamon_stick",
+      "name": "Cinnamon Stick",
+      "quantity": "1"
+    },
+    {
+      "id": "cardamom",
+      "name": "Cardamom Pods",
+      "quantity": "3, lightly crushed"
+    },
+    {
+      "id": "jasmine_rice",
+      "name": "Jasmine Rice",
+      "quantity": "300g"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "450ml"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "2 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "cook_rice",
       "device": "hob",
       "action": "Cook jasmine rice by absorption method",
-      "inputs": ["jasmine_rice", "water"],
+      "inputs": [
+        "jasmine_rice",
+        "water"
+      ],
       "output": "cooked_rice",
-      "end": { "condition": "rice fluffy and tender" },
+      "end": {
+        "condition": "rice fluffy and tender"
+      },
       "steps": [
         {
           "id": "rinse_rice",
           "device": "saucepan",
           "action": "Rinse rice under cold water until water runs clear",
-          "inputs": ["jasmine_rice", "water"],
+          "inputs": [
+            "jasmine_rice",
+            "water"
+          ],
           "output": "rinsed_rice",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "bring_rice_to_boil",
           "device": "hob",
           "action": "Add rice and water to saucepan, bring to boil",
           "after": "rinse_rice",
-          "inputs": ["rinsed_rice", "water"],
+          "inputs": [
+            "rinsed_rice",
+            "water"
+          ],
           "output": "boiling_rice",
-          "end": { "duration_minutes": 3, "condition": "water at rolling boil" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "water at rolling boil"
+          }
         },
         {
           "id": "steam_rice",
           "device": "hob",
           "action": "Reduce to lowest heat, cover tightly and steam",
           "after": "bring_rice_to_boil",
-          "inputs": ["boiling_rice"],
+          "inputs": [
+            "boiling_rice"
+          ],
           "output": "cooked_rice",
-          "end": { "duration_minutes": 12, "condition": "water absorbed, rice tender" }
+          "end": {
+            "duration_minutes": 12,
+            "condition": "water absorbed, rice tender"
+          }
         }
       ]
     },
@@ -68,41 +163,75 @@
       "id": "make_curry",
       "device": "wok",
       "action": "Make massaman curry with beef, potatoes and peanuts",
-      "inputs": ["beef_chuck", "massaman_paste", "coconut_milk", "potatoes", "onion", "peanuts", "tamarind_paste", "fish_sauce", "palm_sugar", "bay_leaves", "cinnamon_stick", "cardamom", "vegetable_oil"],
+      "inputs": [
+        "beef_chuck",
+        "massaman_paste",
+        "coconut_milk",
+        "potatoes",
+        "onion",
+        "peanuts",
+        "tamarind_paste",
+        "fish_sauce",
+        "palm_sugar",
+        "bay_leaves",
+        "cinnamon_stick",
+        "cardamom",
+        "vegetable_oil"
+      ],
       "output": "finished_curry",
-      "end": { "condition": "beef tender, sauce rich and aromatic" },
+      "end": {
+        "condition": "beef tender, sauce rich and aromatic"
+      },
       "steps": [
         {
           "id": "prep_curry_ingredients",
           "device": "chopping_board",
           "action": "Prepare beef, potatoes and onion",
-          "inputs": ["beef_chuck", "potatoes", "onion"],
+          "inputs": [
+            "beef_chuck",
+            "potatoes",
+            "onion"
+          ],
           "output": "prepped_ingredients",
-          "end": { "condition": "all ingredients cut and ready" },
+          "end": {
+            "condition": "all ingredients cut and ready"
+          },
           "steps": [
             {
               "id": "cube_beef",
               "device": "chopping_board",
               "action": "Cut beef chuck into 3cm cubes",
-              "inputs": ["beef_chuck"],
+              "inputs": [
+                "beef_chuck"
+              ],
               "output": "cubed_beef",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "peel_and_cube_potatoes",
               "device": "chopping_board",
               "action": "Peel potatoes and cut into 2cm chunks",
-              "inputs": ["potatoes"],
+              "inputs": [
+                "potatoes"
+              ],
               "output": "cubed_potatoes",
-              "end": { "duration_minutes": 4 }
+              "end": {
+                "duration_minutes": 4
+              }
             },
             {
               "id": "quarter_onion",
               "device": "chopping_board",
               "action": "Cut onion into thick wedges",
-              "inputs": ["onion"],
+              "inputs": [
+                "onion"
+              ],
               "output": "onion_wedges",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             }
           ]
         },
@@ -111,62 +240,118 @@
           "device": "wok",
           "action": "Cook the curry in the wok",
           "after": "prep_curry_ingredients",
-          "inputs": ["prepped_ingredients", "massaman_paste", "coconut_milk", "peanuts", "tamarind_paste", "fish_sauce", "palm_sugar", "bay_leaves", "cinnamon_stick", "cardamom", "vegetable_oil"],
+          "inputs": [
+            "prepped_ingredients",
+            "massaman_paste",
+            "coconut_milk",
+            "peanuts",
+            "tamarind_paste",
+            "fish_sauce",
+            "palm_sugar",
+            "bay_leaves",
+            "cinnamon_stick",
+            "cardamom",
+            "vegetable_oil"
+          ],
           "output": "finished_curry",
-          "end": { "condition": "curry rich and beef tender" },
+          "end": {
+            "condition": "curry rich and beef tender"
+          },
           "steps": [
             {
               "id": "fry_paste",
               "device": "wok",
               "action": "Heat oil in wok, scoop thick coconut cream from top of tin and fry paste in it until fragrant",
-              "inputs": ["vegetable_oil", "massaman_paste", "coconut_milk"],
+              "inputs": [
+                "vegetable_oil",
+                "massaman_paste",
+                "coconut_milk"
+              ],
               "output": "fried_paste",
-              "end": { "duration_minutes": 3, "condition": "paste fragrant, oil separating" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "paste fragrant, oil separating"
+              }
             },
             {
               "id": "brown_beef",
               "device": "wok",
               "action": "Add beef cubes and sear until browned on all sides",
               "after": "fry_paste",
-              "inputs": ["cubed_beef", "fried_paste"],
+              "inputs": [
+                "cubed_beef",
+                "fried_paste"
+              ],
               "output": "browned_beef",
-              "end": { "duration_minutes": 5, "condition": "beef sealed on all sides" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "beef sealed on all sides"
+              }
             },
             {
               "id": "add_coconut_and_spices",
               "device": "wok",
               "action": "Pour in remaining coconut milk, add whole spices",
               "after": "brown_beef",
-              "inputs": ["browned_beef", "coconut_milk", "bay_leaves", "cinnamon_stick", "cardamom"],
+              "inputs": [
+                "browned_beef",
+                "coconut_milk",
+                "bay_leaves",
+                "cinnamon_stick",
+                "cardamom"
+              ],
               "output": "curry_base",
-              "end": { "duration_minutes": 2, "condition": "liquid simmering" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "liquid simmering"
+              }
             },
             {
               "id": "add_potatoes_and_onion",
               "device": "wok",
               "action": "Add potato chunks and onion wedges, stir through",
               "after": "add_coconut_and_spices",
-              "inputs": ["curry_base", "cubed_potatoes", "onion_wedges"],
+              "inputs": [
+                "curry_base",
+                "cubed_potatoes",
+                "onion_wedges"
+              ],
               "output": "curry_with_veg",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "simmer_curry",
               "device": "wok",
               "action": "Simmer gently until beef and potatoes are tender",
               "after": "add_potatoes_and_onion",
-              "inputs": ["curry_with_veg"],
+              "inputs": [
+                "curry_with_veg"
+              ],
               "output": "simmered_curry",
-              "end": { "duration_minutes": 35, "condition": "beef fork-tender, potatoes cooked through" }
+              "end": {
+                "duration_minutes": 35,
+                "condition": "beef fork-tender, potatoes cooked through"
+              }
             },
             {
               "id": "season_curry",
               "device": "wok",
               "action": "Add peanuts, tamarind paste, fish sauce and palm sugar, stir and cook briefly",
               "after": "simmer_curry",
-              "inputs": ["simmered_curry", "peanuts", "tamarind_paste", "fish_sauce", "palm_sugar"],
+              "inputs": [
+                "simmered_curry",
+                "peanuts",
+                "tamarind_paste",
+                "fish_sauce",
+                "palm_sugar"
+              ],
               "output": "finished_curry",
-              "end": { "duration_minutes": 3, "condition": "sweet, sour and salty balance achieved" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "sweet, sour and salty balance achieved"
+              }
             }
           ]
         }
@@ -176,10 +361,18 @@
       "id": "serve",
       "device": "chopping_board",
       "action": "Serve massaman curry over jasmine rice",
-      "after": ["cook_rice", "make_curry"],
-      "inputs": ["finished_curry", "cooked_rice"],
+      "after": [
+        "cook_rice",
+        "make_curry"
+      ],
+      "inputs": [
+        "finished_curry",
+        "cooked_rice"
+      ],
       "output": "massaman_curry",
-      "end": { "duration_minutes": 2 }
+      "end": {
+        "duration_minutes": 2
+      }
     }
   ]
 }

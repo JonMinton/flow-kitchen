@@ -1,64 +1,154 @@
 {
   "title": "Fish Tacos",
   "servings": 4,
-
+  "cuisine": "Mexican",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 25,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pan", "name": "Frying Pan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Mixing Bowl" },
-    { "id": "grill", "name": "Grill" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pan",
+      "name": "Frying Pan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Mixing Bowl"
+    },
+    {
+      "id": "grill",
+      "name": "Grill"
+    }
   ],
-
   "ingredients": [
-    { "id": "white_fish", "name": "White Fish Fillets", "quantity": "400g" },
-    { "id": "tortillas", "name": "Small Tortillas", "quantity": "8" },
-    { "id": "cabbage", "name": "White Cabbage", "quantity": "quarter" },
-    { "id": "lime", "name": "Lime", "quantity": "2" },
-    { "id": "sour_cream", "name": "Sour Cream", "quantity": "4 tbsp" },
-    { "id": "chipotle", "name": "Chipotle Paste", "quantity": "1 tsp" },
-    { "id": "cumin", "name": "Ground Cumin", "quantity": "1 tsp" },
-    { "id": "paprika", "name": "Smoked Paprika", "quantity": "1 tsp" },
-    { "id": "garlic_powder", "name": "Garlic Powder", "quantity": "1 tsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "coriander", "name": "Fresh Coriander", "quantity": "handful" },
-    { "id": "avocado", "name": "Avocado", "quantity": "1" }
+    {
+      "id": "white_fish",
+      "name": "White Fish Fillets",
+      "quantity": "400g"
+    },
+    {
+      "id": "tortillas",
+      "name": "Small Tortillas",
+      "quantity": "8"
+    },
+    {
+      "id": "cabbage",
+      "name": "White Cabbage",
+      "quantity": "quarter"
+    },
+    {
+      "id": "lime",
+      "name": "Lime",
+      "quantity": "2"
+    },
+    {
+      "id": "sour_cream",
+      "name": "Sour Cream",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "chipotle",
+      "name": "Chipotle Paste",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "cumin",
+      "name": "Ground Cumin",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "paprika",
+      "name": "Smoked Paprika",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "garlic_powder",
+      "name": "Garlic Powder",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "coriander",
+      "name": "Fresh Coriander",
+      "quantity": "handful"
+    },
+    {
+      "id": "avocado",
+      "name": "Avocado",
+      "quantity": "1"
+    }
   ],
-
   "steps": [
     {
       "id": "cook_fish",
       "device": "pan",
       "action": "Season and pan-fry fish",
-      "inputs": ["white_fish", "cumin", "paprika", "garlic_powder", "salt"],
+      "inputs": [
+        "white_fish",
+        "cumin",
+        "paprika",
+        "garlic_powder",
+        "salt"
+      ],
       "output": "cooked_fish",
-      "end": { "condition": "fish cooked through and flaky" },
+      "end": {
+        "condition": "fish cooked through and flaky"
+      },
       "steps": [
         {
           "id": "mix_spices",
           "device": "chopping_board",
           "action": "Mix cumin, paprika, garlic powder, and salt together",
-          "inputs": ["cumin", "paprika", "garlic_powder", "salt"],
+          "inputs": [
+            "cumin",
+            "paprika",
+            "garlic_powder",
+            "salt"
+          ],
           "output": "spice_mix",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "coat_fish",
           "device": "chopping_board",
           "action": "Pat fish dry and coat with spice mix",
-          "inputs": ["white_fish", "spice_mix"],
+          "inputs": [
+            "white_fish",
+            "spice_mix"
+          ],
           "output": "seasoned_fish",
           "after": "mix_spices",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "pan_fry_fish",
           "device": "pan",
           "action": "Pan-fry fish over medium-high heat, flipping once",
-          "inputs": ["seasoned_fish"],
+          "inputs": [
+            "seasoned_fish"
+          ],
           "output": "cooked_fish",
           "after": "coat_fish",
-          "end": { "duration_minutes": 6, "condition": "golden crust, fish flakes easily" }
+          "end": {
+            "duration_minutes": 6,
+            "condition": "golden crust, fish flakes easily"
+          }
         }
       ]
     },
@@ -66,35 +156,55 @@
       "id": "make_slaw",
       "device": "bowl",
       "action": "Make lime cabbage slaw",
-      "inputs": ["cabbage", "lime"],
+      "inputs": [
+        "cabbage",
+        "lime"
+      ],
       "output": "slaw",
-      "end": { "condition": "slaw tossed and ready" },
+      "end": {
+        "condition": "slaw tossed and ready"
+      },
       "steps": [
         {
           "id": "shred_cabbage",
           "device": "chopping_board",
           "action": "Finely shred cabbage into thin strips",
-          "inputs": ["cabbage"],
+          "inputs": [
+            "cabbage"
+          ],
           "output": "shredded_cabbage",
-          "end": { "duration_minutes": 3 }
+          "end": {
+            "duration_minutes": 3
+          }
         },
         {
           "id": "squeeze_lime",
           "device": "chopping_board",
           "action": "Juice one lime over the cabbage",
-          "inputs": ["shredded_cabbage", "lime"],
+          "inputs": [
+            "shredded_cabbage",
+            "lime"
+          ],
           "output": "dressed_cabbage",
           "after": "shred_cabbage",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "mix_slaw",
           "device": "bowl",
           "action": "Toss cabbage with lime juice and a pinch of salt",
-          "inputs": ["dressed_cabbage", "salt"],
+          "inputs": [
+            "dressed_cabbage",
+            "salt"
+          ],
           "output": "slaw",
           "after": "squeeze_lime",
-          "end": { "duration_minutes": 1, "condition": "evenly dressed" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "evenly dressed"
+          }
         }
       ]
     },
@@ -102,26 +212,43 @@
       "id": "make_crema",
       "device": "bowl",
       "action": "Make chipotle crema",
-      "inputs": ["sour_cream", "chipotle", "lime"],
+      "inputs": [
+        "sour_cream",
+        "chipotle",
+        "lime"
+      ],
       "output": "crema",
-      "end": { "condition": "smooth and well mixed" },
+      "end": {
+        "condition": "smooth and well mixed"
+      },
       "steps": [
         {
           "id": "combine_crema",
           "device": "bowl",
           "action": "Mix sour cream with chipotle paste",
-          "inputs": ["sour_cream", "chipotle"],
+          "inputs": [
+            "sour_cream",
+            "chipotle"
+          ],
           "output": "chipotle_cream",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_lime_to_crema",
           "device": "bowl",
           "action": "Squeeze in remaining lime juice and stir",
-          "inputs": ["chipotle_cream", "lime"],
+          "inputs": [
+            "chipotle_cream",
+            "lime"
+          ],
           "output": "crema",
           "after": "combine_crema",
-          "end": { "duration_minutes": 1, "condition": "smooth and well mixed" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "smooth and well mixed"
+          }
         }
       ]
     },
@@ -129,27 +256,55 @@
       "id": "assemble",
       "device": "chopping_board",
       "action": "Warm tortillas and assemble tacos",
-      "inputs": ["cooked_fish", "slaw", "crema", "tortillas", "coriander", "avocado"],
+      "inputs": [
+        "cooked_fish",
+        "slaw",
+        "crema",
+        "tortillas",
+        "coriander",
+        "avocado"
+      ],
       "output": "fish_tacos",
-      "after": ["cook_fish", "make_slaw", "make_crema"],
-      "end": { "condition": "tacos assembled and served" },
+      "after": [
+        "cook_fish",
+        "make_slaw",
+        "make_crema"
+      ],
+      "end": {
+        "condition": "tacos assembled and served"
+      },
       "steps": [
         {
           "id": "warm_tortillas",
           "device": "grill",
           "action": "Warm tortillas under the grill or in a dry pan",
-          "inputs": ["tortillas"],
+          "inputs": [
+            "tortillas"
+          ],
           "output": "warm_tortillas",
-          "end": { "duration_minutes": 2, "condition": "warm and pliable" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "warm and pliable"
+          }
         },
         {
           "id": "build_tacos",
           "device": "chopping_board",
           "action": "Layer fish, slaw, crema, sliced avocado, and coriander in each tortilla",
-          "inputs": ["warm_tortillas", "cooked_fish", "slaw", "crema", "avocado", "coriander"],
+          "inputs": [
+            "warm_tortillas",
+            "cooked_fish",
+            "slaw",
+            "crema",
+            "avocado",
+            "coriander"
+          ],
           "output": "fish_tacos",
           "after": "warm_tortillas",
-          "end": { "duration_minutes": 3, "condition": "tacos assembled and served" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "tacos assembled and served"
+          }
         }
       ]
     }

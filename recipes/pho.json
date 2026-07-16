@@ -1,69 +1,189 @@
 {
   "title": "Pho",
   "servings": 4,
-
+  "cuisine": "Vietnamese",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 180,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pot", "name": "Pot" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pot",
+      "name": "Pot"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "beef_bones", "name": "Beef Bones", "quantity": "1.5kg" },
-    { "id": "brisket", "name": "Beef Brisket", "quantity": "500g" },
-    { "id": "onion", "name": "Onion", "quantity": "2 large" },
-    { "id": "ginger", "name": "Ginger", "quantity": "large piece (100g)" },
-    { "id": "star_anise", "name": "Star Anise", "quantity": "4" },
-    { "id": "cinnamon_stick", "name": "Cinnamon Stick", "quantity": "1" },
-    { "id": "cloves", "name": "Cloves", "quantity": "4" },
-    { "id": "coriander_seeds", "name": "Coriander Seeds", "quantity": "1 tbsp" },
-    { "id": "fish_sauce", "name": "Fish Sauce", "quantity": "3 tbsp" },
-    { "id": "sugar", "name": "Sugar", "quantity": "1 tbsp" },
-    { "id": "rice_noodles", "name": "Rice Noodles", "quantity": "400g" },
-    { "id": "bean_sprouts", "name": "Bean Sprouts", "quantity": "200g" },
-    { "id": "thai_basil", "name": "Thai Basil", "quantity": "large handful" },
-    { "id": "lime", "name": "Lime", "quantity": "2" },
-    { "id": "spring_onions", "name": "Spring Onions", "quantity": "4" },
-    { "id": "chilli", "name": "Red Chilli", "quantity": "2" },
-    { "id": "hoisin_sauce", "name": "Hoisin Sauce", "quantity": "to serve" },
-    { "id": "sriracha", "name": "Sriracha", "quantity": "to serve" },
-    { "id": "water", "name": "Water", "quantity": "4L" }
+    {
+      "id": "beef_bones",
+      "name": "Beef Bones",
+      "quantity": "1.5kg"
+    },
+    {
+      "id": "brisket",
+      "name": "Beef Brisket",
+      "quantity": "500g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "2 large"
+    },
+    {
+      "id": "ginger",
+      "name": "Ginger",
+      "quantity": "large piece (100g)"
+    },
+    {
+      "id": "star_anise",
+      "name": "Star Anise",
+      "quantity": "4"
+    },
+    {
+      "id": "cinnamon_stick",
+      "name": "Cinnamon Stick",
+      "quantity": "1"
+    },
+    {
+      "id": "cloves",
+      "name": "Cloves",
+      "quantity": "4"
+    },
+    {
+      "id": "coriander_seeds",
+      "name": "Coriander Seeds",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "fish_sauce",
+      "name": "Fish Sauce",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "sugar",
+      "name": "Sugar",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "rice_noodles",
+      "name": "Rice Noodles",
+      "quantity": "400g"
+    },
+    {
+      "id": "bean_sprouts",
+      "name": "Bean Sprouts",
+      "quantity": "200g"
+    },
+    {
+      "id": "thai_basil",
+      "name": "Thai Basil",
+      "quantity": "large handful"
+    },
+    {
+      "id": "lime",
+      "name": "Lime",
+      "quantity": "2"
+    },
+    {
+      "id": "spring_onions",
+      "name": "Spring Onions",
+      "quantity": "4"
+    },
+    {
+      "id": "chilli",
+      "name": "Red Chilli",
+      "quantity": "2"
+    },
+    {
+      "id": "hoisin_sauce",
+      "name": "Hoisin Sauce",
+      "quantity": "to serve"
+    },
+    {
+      "id": "sriracha",
+      "name": "Sriracha",
+      "quantity": "to serve"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "4L"
+    }
   ],
-
   "steps": [
     {
       "id": "make_broth",
       "device": "pot",
       "action": "Make pho broth",
-      "inputs": ["beef_bones", "brisket", "onion", "ginger", "star_anise", "cinnamon_stick", "cloves", "coriander_seeds", "fish_sauce", "sugar", "water"],
+      "inputs": [
+        "beef_bones",
+        "brisket",
+        "onion",
+        "ginger",
+        "star_anise",
+        "cinnamon_stick",
+        "cloves",
+        "coriander_seeds",
+        "fish_sauce",
+        "sugar",
+        "water"
+      ],
       "output": "finished_broth",
-      "end": { "duration_minutes": 180, "condition": "clear, deeply aromatic, richly flavoured broth" },
+      "end": {
+        "duration_minutes": 180,
+        "condition": "clear, deeply aromatic, richly flavoured broth"
+      },
       "steps": [
         {
           "id": "char_aromatics",
           "device": "pan",
           "action": "Char onion and ginger for deep flavour",
-          "inputs": ["onion", "ginger"],
+          "inputs": [
+            "onion",
+            "ginger"
+          ],
           "output": "charred_aromatics",
-          "end": { "condition": "deeply blackened on cut sides" },
+          "end": {
+            "condition": "deeply blackened on cut sides"
+          },
           "steps": [
             {
               "id": "halve_onion_ginger",
               "device": "chopping_board",
               "action": "Halve onions and slice ginger lengthways into thick slabs",
-              "inputs": ["onion", "ginger"],
+              "inputs": [
+                "onion",
+                "ginger"
+              ],
               "output": "prepared_onion_ginger",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "char_in_dry_pan",
               "device": "pan",
               "action": "Place onion and ginger cut-side down in a dry hot pan and char until deeply blackened",
               "after": "halve_onion_ginger",
-              "inputs": ["prepared_onion_ginger"],
+              "inputs": [
+                "prepared_onion_ginger"
+              ],
               "output": "charred_aromatics",
-              "end": { "duration_minutes": 8, "condition": "deeply blackened, smoky aroma" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "deeply blackened, smoky aroma"
+              }
             }
           ]
         },
@@ -71,53 +191,69 @@
           "id": "toast_spices",
           "device": "pan",
           "action": "Toast whole spices to release essential oils",
-          "inputs": ["star_anise", "cinnamon_stick", "cloves", "coriander_seeds"],
+          "inputs": [
+            "star_anise",
+            "cinnamon_stick",
+            "cloves",
+            "coriander_seeds"
+          ],
           "output": "toasted_spices",
-          "end": { "condition": "fragrant, darkened slightly" },
-          "steps": [
-            {
-              "id": "dry_toast",
-              "device": "pan",
-              "action": "Toast star anise, cinnamon, cloves and coriander seeds in a dry pan over medium heat",
-              "inputs": ["star_anise", "cinnamon_stick", "cloves", "coriander_seeds"],
-              "output": "toasted_spices",
-              "end": { "duration_minutes": 3, "condition": "fragrant and lightly smoking" }
-            }
-          ]
+          "end": {
+            "condition": "fragrant, darkened slightly"
+          }
         },
         {
           "id": "blanch_bones",
           "device": "pot",
           "action": "Blanch beef bones to remove impurities",
-          "inputs": ["beef_bones", "water"],
+          "inputs": [
+            "beef_bones",
+            "water"
+          ],
           "output": "clean_bones",
-          "end": { "condition": "bones clean and white" },
+          "end": {
+            "condition": "bones clean and white"
+          },
           "steps": [
             {
               "id": "cover_with_cold_water",
               "device": "pot",
               "action": "Place beef bones in pot and cover with cold water",
-              "inputs": ["beef_bones", "water"],
+              "inputs": [
+                "beef_bones",
+                "water"
+              ],
               "output": "bones_in_water",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "boil_bones",
               "device": "pot",
               "action": "Bring to a vigorous boil for 5 minutes to release scum",
               "after": "cover_with_cold_water",
-              "inputs": ["bones_in_water"],
+              "inputs": [
+                "bones_in_water"
+              ],
               "output": "boiled_bones",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "drain_and_rinse_bones",
               "device": "pot",
               "action": "Drain, rinse bones under cold water, scrub off any residue, clean the pot",
               "after": "boil_bones",
-              "inputs": ["boiled_bones"],
+              "inputs": [
+                "boiled_bones"
+              ],
               "output": "clean_bones",
-              "end": { "duration_minutes": 5, "condition": "bones clean, pot scrubbed" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "bones clean, pot scrubbed"
+              }
             }
           ]
         },
@@ -125,63 +261,106 @@
           "id": "simmer_broth",
           "device": "pot",
           "action": "Simmer bones, brisket and aromatics for 2-3 hours",
-          "after": ["char_aromatics", "toast_spices", "blanch_bones"],
-          "inputs": ["clean_bones", "brisket", "charred_aromatics", "toasted_spices", "water"],
+          "after": [
+            "char_aromatics",
+            "toast_spices",
+            "blanch_bones"
+          ],
+          "inputs": [
+            "clean_bones",
+            "brisket",
+            "charred_aromatics",
+            "toasted_spices",
+            "water"
+          ],
           "output": "simmered_broth",
-          "end": { "duration_minutes": 150, "condition": "broth rich and aromatic, brisket tender" },
+          "end": {
+            "duration_minutes": 150,
+            "condition": "broth rich and aromatic, brisket tender"
+          },
           "steps": [
             {
               "id": "add_bones_and_brisket",
               "device": "pot",
               "action": "Return clean bones to pot, add brisket and cover with fresh cold water",
-              "inputs": ["clean_bones", "brisket", "water"],
+              "inputs": [
+                "clean_bones",
+                "brisket",
+                "water"
+              ],
               "output": "bones_and_brisket_in_water",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "add_charred_aromatics",
               "device": "pot",
               "action": "Add charred onion and ginger",
               "after": "add_bones_and_brisket",
-              "inputs": ["bones_and_brisket_in_water", "charred_aromatics"],
+              "inputs": [
+                "bones_and_brisket_in_water",
+                "charred_aromatics"
+              ],
               "output": "broth_with_aromatics",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_spices_to_broth",
               "device": "pot",
               "action": "Add toasted spices (place in a muslin bag for easy removal)",
               "after": "add_charred_aromatics",
-              "inputs": ["broth_with_aromatics", "toasted_spices"],
+              "inputs": [
+                "broth_with_aromatics",
+                "toasted_spices"
+              ],
               "output": "spiced_broth",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "bring_to_gentle_boil",
               "device": "pot",
               "action": "Bring to a boil then reduce to a gentle simmer",
               "after": "add_spices_to_broth",
-              "inputs": ["spiced_broth"],
+              "inputs": [
+                "spiced_broth"
+              ],
               "output": "simmering_broth",
-              "end": { "duration_minutes": 10, "condition": "gentle simmer, not a rolling boil" }
+              "end": {
+                "duration_minutes": 10,
+                "condition": "gentle simmer, not a rolling boil"
+              }
             },
             {
               "id": "skim_impurities",
               "device": "pot",
               "action": "Skim any scum and fat from the surface regularly",
               "after": "bring_to_gentle_boil",
-              "inputs": ["simmering_broth"],
+              "inputs": [
+                "simmering_broth"
+              ],
               "output": "skimmed_broth",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "long_simmer",
               "device": "pot",
               "action": "Simmer gently for 2-3 hours, removing brisket when tender (after about 1.5 hours)",
               "after": "skim_impurities",
-              "inputs": ["skimmed_broth"],
+              "inputs": [
+                "skimmed_broth"
+              ],
               "output": "simmered_broth",
-              "end": { "duration_minutes": 150, "condition": "broth deeply flavoured, clear, amber colour" }
+              "end": {
+                "duration_minutes": 150,
+                "condition": "broth deeply flavoured, clear, amber colour"
+              }
             }
           ]
         },
@@ -190,26 +369,43 @@
           "device": "pot",
           "action": "Strain broth and season with fish sauce and sugar",
           "after": "simmer_broth",
-          "inputs": ["simmered_broth", "fish_sauce", "sugar"],
+          "inputs": [
+            "simmered_broth",
+            "fish_sauce",
+            "sugar"
+          ],
           "output": "finished_broth",
-          "end": { "condition": "clear, balanced, deeply savoury" },
+          "end": {
+            "condition": "clear, balanced, deeply savoury"
+          },
           "steps": [
             {
               "id": "strain_broth",
               "device": "pot",
               "action": "Strain broth through a fine-mesh sieve into a clean pot, discard bones and aromatics",
-              "inputs": ["simmered_broth"],
+              "inputs": [
+                "simmered_broth"
+              ],
               "output": "strained_broth",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "season_with_fish_sauce",
               "device": "pot",
               "action": "Season with fish sauce and sugar, adjusting to taste",
               "after": "strain_broth",
-              "inputs": ["strained_broth", "fish_sauce", "sugar"],
+              "inputs": [
+                "strained_broth",
+                "fish_sauce",
+                "sugar"
+              ],
               "output": "finished_broth",
-              "end": { "duration_minutes": 2, "condition": "balanced savoury-sweet flavour" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "balanced savoury-sweet flavour"
+              }
             }
           ]
         }
@@ -220,26 +416,41 @@
       "device": "pot",
       "action": "Cook rice noodles",
       "after": "make_broth",
-      "inputs": ["rice_noodles", "water"],
+      "inputs": [
+        "rice_noodles",
+        "water"
+      ],
       "output": "cooked_noodles",
-      "end": { "condition": "noodles tender but still chewy" },
+      "end": {
+        "condition": "noodles tender but still chewy"
+      },
       "steps": [
         {
           "id": "boil_noodles",
           "device": "pot",
           "action": "Cook rice noodles in boiling water according to packet instructions",
-          "inputs": ["rice_noodles", "water"],
+          "inputs": [
+            "rice_noodles",
+            "water"
+          ],
           "output": "boiled_noodles",
-          "end": { "duration_minutes": 4, "condition": "tender but with slight chew" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "tender but with slight chew"
+          }
         },
         {
           "id": "drain_noodles",
           "device": "pot",
           "action": "Drain noodles and rinse briefly under cold water to stop cooking",
           "after": "boil_noodles",
-          "inputs": ["boiled_noodles"],
+          "inputs": [
+            "boiled_noodles"
+          ],
           "output": "cooked_noodles",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -247,50 +458,87 @@
       "id": "prep_garnishes",
       "device": "chopping_board",
       "action": "Prepare all fresh garnishes",
-      "inputs": ["spring_onions", "chilli", "thai_basil", "lime", "bean_sprouts"],
+      "inputs": [
+        "spring_onions",
+        "chilli",
+        "thai_basil",
+        "lime",
+        "bean_sprouts"
+      ],
       "output": "garnish_platter",
-      "end": { "duration_minutes": 8 },
+      "end": {
+        "duration_minutes": 8
+      },
       "steps": [
         {
           "id": "slice_spring_onions",
           "device": "chopping_board",
           "action": "Finely slice spring onions into rings",
-          "inputs": ["spring_onions"],
+          "inputs": [
+            "spring_onions"
+          ],
           "output": "sliced_spring_onions",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "slice_chilli",
           "device": "chopping_board",
           "action": "Thinly slice red chillies",
-          "inputs": ["chilli"],
+          "inputs": [
+            "chilli"
+          ],
           "output": "sliced_chilli",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "tear_basil",
           "device": "chopping_board",
           "action": "Pick Thai basil leaves from stems",
-          "inputs": ["thai_basil"],
+          "inputs": [
+            "thai_basil"
+          ],
           "output": "basil_leaves",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "halve_limes",
           "device": "chopping_board",
           "action": "Cut limes into wedges",
-          "inputs": ["lime"],
+          "inputs": [
+            "lime"
+          ],
           "output": "lime_wedges",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "arrange_garnish_platter",
           "device": "chopping_board",
           "action": "Arrange bean sprouts, basil, chilli, spring onions and lime wedges on a sharing plate",
-          "after": ["slice_spring_onions", "slice_chilli", "tear_basil", "halve_limes"],
-          "inputs": ["bean_sprouts", "basil_leaves", "sliced_chilli", "sliced_spring_onions", "lime_wedges"],
+          "after": [
+            "slice_spring_onions",
+            "slice_chilli",
+            "tear_basil",
+            "halve_limes"
+          ],
+          "inputs": [
+            "bean_sprouts",
+            "basil_leaves",
+            "sliced_chilli",
+            "sliced_spring_onions",
+            "lime_wedges"
+          ],
           "output": "garnish_platter",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         }
       ]
     },
@@ -299,53 +547,92 @@
       "device": "chopping_board",
       "action": "Slice cooked brisket very thinly against the grain",
       "after": "make_broth",
-      "inputs": ["brisket"],
+      "inputs": [
+        "brisket"
+      ],
       "output": "sliced_brisket",
-      "end": { "duration_minutes": 3 }
+      "end": {
+        "duration_minutes": 3
+      }
     },
     {
       "id": "assemble_bowls",
       "device": "pot",
       "action": "Assemble pho bowls",
-      "after": ["cook_noodles", "prep_garnishes", "slice_brisket"],
-      "inputs": ["cooked_noodles", "sliced_brisket", "finished_broth", "garnish_platter", "hoisin_sauce", "sriracha"],
+      "after": [
+        "cook_noodles",
+        "prep_garnishes",
+        "slice_brisket"
+      ],
+      "inputs": [
+        "cooked_noodles",
+        "sliced_brisket",
+        "finished_broth",
+        "garnish_platter",
+        "hoisin_sauce",
+        "sriracha"
+      ],
       "output": "pho",
-      "end": { "condition": "steaming, fragrant, ready to serve" },
+      "end": {
+        "condition": "steaming, fragrant, ready to serve"
+      },
       "steps": [
         {
           "id": "noodles_in_bowl",
           "device": "chopping_board",
           "action": "Divide cooked noodles between four large bowls",
-          "inputs": ["cooked_noodles"],
+          "inputs": [
+            "cooked_noodles"
+          ],
           "output": "bowls_with_noodles",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_brisket",
           "device": "chopping_board",
           "action": "Arrange sliced brisket on top of noodles",
           "after": "noodles_in_bowl",
-          "inputs": ["bowls_with_noodles", "sliced_brisket"],
+          "inputs": [
+            "bowls_with_noodles",
+            "sliced_brisket"
+          ],
           "output": "bowls_with_meat",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "ladle_hot_broth",
           "device": "pot",
           "action": "Bring broth back to a rolling boil, then ladle piping hot broth into each bowl",
           "after": "add_brisket",
-          "inputs": ["bowls_with_meat", "finished_broth"],
+          "inputs": [
+            "bowls_with_meat",
+            "finished_broth"
+          ],
           "output": "bowls_with_broth",
-          "end": { "duration_minutes": 2, "condition": "broth bubbling hot" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "broth bubbling hot"
+          }
         },
         {
           "id": "serve_with_garnishes",
           "device": "chopping_board",
           "action": "Serve immediately with garnish platter, hoisin sauce and sriracha on the side",
           "after": "ladle_hot_broth",
-          "inputs": ["bowls_with_broth", "garnish_platter", "hoisin_sauce", "sriracha"],
+          "inputs": [
+            "bowls_with_broth",
+            "garnish_platter",
+            "hoisin_sauce",
+            "sriracha"
+          ],
           "output": "pho",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

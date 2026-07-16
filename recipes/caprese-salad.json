@@ -1,47 +1,99 @@
 {
   "title": "Caprese Salad",
   "servings": 2,
-
+  "cuisine": "Italian",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 5,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "plate", "name": "Serving Plate" },
-    { "id": "bowl", "name": "Small Bowl" }
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "plate",
+      "name": "Serving Plate"
+    },
+    {
+      "id": "bowl",
+      "name": "Small Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "tomatoes", "name": "Tomatoes", "quantity": "3 large ripe" },
-    { "id": "mozzarella", "name": "Fresh Mozzarella", "quantity": "250g ball" },
-    { "id": "basil", "name": "Fresh Basil", "quantity": "small bunch" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "3 tbsp extra-virgin" },
-    { "id": "balsamic_glaze", "name": "Balsamic Glaze", "quantity": "1 tbsp" },
-    { "id": "salt", "name": "Flaky Sea Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+    {
+      "id": "tomatoes",
+      "name": "Tomatoes",
+      "quantity": "3 large ripe"
+    },
+    {
+      "id": "mozzarella",
+      "name": "Fresh Mozzarella",
+      "quantity": "250g ball"
+    },
+    {
+      "id": "basil",
+      "name": "Fresh Basil",
+      "quantity": "small bunch"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "3 tbsp extra-virgin"
+    },
+    {
+      "id": "balsamic_glaze",
+      "name": "Balsamic Glaze",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Flaky Sea Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Black Pepper",
+      "quantity": "to taste"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_main_ingredients",
       "device": "chopping_board",
       "action": "Slice tomatoes and mozzarella",
-      "inputs": ["tomatoes", "mozzarella"],
+      "inputs": [
+        "tomatoes",
+        "mozzarella"
+      ],
       "output": "sliced_ingredients",
-      "end": { "condition": "evenly sliced" },
+      "end": {
+        "condition": "evenly sliced"
+      },
       "steps": [
         {
           "id": "slice_tomatoes",
           "device": "chopping_board",
           "action": "Slice tomatoes into 5mm rounds",
-          "inputs": ["tomatoes"],
+          "inputs": [
+            "tomatoes"
+          ],
           "output": "sliced_tomatoes",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "slice_mozzarella",
           "device": "chopping_board",
           "action": "Slice mozzarella into 5mm rounds to match tomatoes",
-          "inputs": ["mozzarella"],
+          "inputs": [
+            "mozzarella"
+          ],
           "output": "sliced_mozzarella",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -49,26 +101,44 @@
       "id": "make_dressing",
       "device": "bowl",
       "action": "Prepare the olive oil and balsamic dressing",
-      "inputs": ["olive_oil", "balsamic_glaze", "salt", "pepper"],
+      "inputs": [
+        "olive_oil",
+        "balsamic_glaze",
+        "salt",
+        "pepper"
+      ],
       "output": "dressing",
-      "end": { "condition": "dressing mixed" },
+      "end": {
+        "condition": "dressing mixed"
+      },
       "steps": [
         {
           "id": "combine_oil_and_balsamic",
           "device": "bowl",
           "action": "Whisk together olive oil and balsamic glaze",
-          "inputs": ["olive_oil", "balsamic_glaze"],
+          "inputs": [
+            "olive_oil",
+            "balsamic_glaze"
+          ],
           "output": "oil_balsamic_mix",
-          "end": { "duration_minutes": 0.5 }
+          "end": {
+            "duration_minutes": 0.5
+          }
         },
         {
           "id": "season_dressing",
           "device": "bowl",
           "action": "Season dressing with salt and pepper",
-          "inputs": ["oil_balsamic_mix", "salt", "pepper"],
+          "inputs": [
+            "oil_balsamic_mix",
+            "salt",
+            "pepper"
+          ],
           "output": "dressing",
           "after": "combine_oil_and_balsamic",
-          "end": { "duration_minutes": 0.5 }
+          "end": {
+            "duration_minutes": 0.5
+          }
         }
       ]
     },
@@ -76,45 +146,80 @@
       "id": "arrange_and_dress",
       "device": "plate",
       "action": "Arrange salad on plate and dress",
-      "inputs": ["sliced_tomatoes", "sliced_mozzarella", "basil", "dressing", "salt", "pepper"],
+      "inputs": [
+        "sliced_tomatoes",
+        "sliced_mozzarella",
+        "basil",
+        "dressing",
+        "salt",
+        "pepper"
+      ],
       "output": "caprese_salad",
-      "after": ["prep_main_ingredients", "make_dressing"],
-      "end": { "condition": "beautifully arranged and dressed" },
+      "after": [
+        "prep_main_ingredients",
+        "make_dressing"
+      ],
+      "end": {
+        "condition": "beautifully arranged and dressed"
+      },
       "steps": [
         {
           "id": "arrange_slices",
           "device": "plate",
           "action": "Alternate overlapping tomato and mozzarella slices on plate",
-          "inputs": ["sliced_tomatoes", "sliced_mozzarella"],
+          "inputs": [
+            "sliced_tomatoes",
+            "sliced_mozzarella"
+          ],
           "output": "arranged_salad",
-          "end": { "duration_minutes": 1, "condition": "neat overlapping pattern" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "neat overlapping pattern"
+          }
         },
         {
           "id": "add_basil",
           "device": "plate",
           "action": "Tuck fresh basil leaves between each pair of slices",
-          "inputs": ["arranged_salad", "basil"],
+          "inputs": [
+            "arranged_salad",
+            "basil"
+          ],
           "output": "salad_with_basil",
           "after": "arrange_slices",
-          "end": { "duration_minutes": 0.5 }
+          "end": {
+            "duration_minutes": 0.5
+          }
         },
         {
           "id": "drizzle_dressing",
           "device": "plate",
           "action": "Drizzle dressing over the arranged salad",
-          "inputs": ["salad_with_basil", "dressing"],
+          "inputs": [
+            "salad_with_basil",
+            "dressing"
+          ],
           "output": "dressed_salad",
           "after": "add_basil",
-          "end": { "duration_minutes": 0.5 }
+          "end": {
+            "duration_minutes": 0.5
+          }
         },
         {
           "id": "final_seasoning",
           "device": "plate",
           "action": "Finish with flaky salt and cracked black pepper",
-          "inputs": ["dressed_salad", "salt", "pepper"],
+          "inputs": [
+            "dressed_salad",
+            "salt",
+            "pepper"
+          ],
           "output": "caprese_salad",
           "after": "drizzle_dressing",
-          "end": { "duration_minutes": 0.5, "condition": "ready to serve immediately" }
+          "end": {
+            "duration_minutes": 0.5,
+            "condition": "ready to serve immediately"
+          }
         }
       ]
     }

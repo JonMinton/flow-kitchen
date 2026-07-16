@@ -1,66 +1,159 @@
 {
   "title": "Saag Paneer",
   "servings": 4,
-
+  "cuisine": "Indian",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 35,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pan", "name": "Frying Pan" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "blender", "name": "Blender" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pan",
+      "name": "Frying Pan"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "blender",
+      "name": "Blender"
+    }
   ],
-
   "ingredients": [
-    { "id": "paneer", "name": "Paneer", "quantity": "225g" },
-    { "id": "spinach", "name": "Spinach", "quantity": "500g" },
-    { "id": "onion", "name": "Onion", "quantity": "1 large" },
-    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
-    { "id": "ginger", "name": "Fresh Ginger", "quantity": "thumb-sized piece" },
-    { "id": "green_chilli", "name": "Green Chilli", "quantity": "1" },
-    { "id": "cumin_seeds", "name": "Cumin Seeds", "quantity": "1 tsp" },
-    { "id": "garam_masala", "name": "Garam Masala", "quantity": "1 tsp" },
-    { "id": "turmeric", "name": "Turmeric", "quantity": "½ tsp" },
-    { "id": "cream", "name": "Double Cream", "quantity": "3 tbsp" },
-    { "id": "ghee", "name": "Ghee", "quantity": "2 tbsp" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "1 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "water", "name": "Water", "quantity": "as needed" }
+    {
+      "id": "paneer",
+      "name": "Paneer",
+      "quantity": "225g"
+    },
+    {
+      "id": "spinach",
+      "name": "Spinach",
+      "quantity": "500g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1 large"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "4 cloves"
+    },
+    {
+      "id": "ginger",
+      "name": "Fresh Ginger",
+      "quantity": "thumb-sized piece"
+    },
+    {
+      "id": "green_chilli",
+      "name": "Green Chilli",
+      "quantity": "1"
+    },
+    {
+      "id": "cumin_seeds",
+      "name": "Cumin Seeds",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "garam_masala",
+      "name": "Garam Masala",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "turmeric",
+      "name": "Turmeric",
+      "quantity": "½ tsp"
+    },
+    {
+      "id": "cream",
+      "name": "Double Cream",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "ghee",
+      "name": "Ghee",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "as needed"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_spinach",
       "device": "saucepan",
       "action": "Blanch and blend spinach into a puree",
-      "inputs": ["spinach", "water"],
+      "inputs": [
+        "spinach",
+        "water"
+      ],
       "output": "spinach_puree",
-      "end": { "condition": "smooth puree" },
+      "end": {
+        "condition": "smooth puree"
+      },
       "steps": [
         {
           "id": "blanch_spinach",
           "device": "saucepan",
           "action": "Blanch spinach in boiling water for 2 minutes, then drain and refresh in cold water",
-          "inputs": ["spinach", "water"],
+          "inputs": [
+            "spinach",
+            "water"
+          ],
           "output": "blanched_spinach",
-          "end": { "duration_minutes": 2, "condition": "wilted and bright green" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "wilted and bright green"
+          }
         },
         {
           "id": "squeeze_spinach",
           "device": "chopping_board",
           "action": "Squeeze out excess water from blanched spinach",
-          "inputs": ["blanched_spinach"],
+          "inputs": [
+            "blanched_spinach"
+          ],
           "output": "drained_spinach",
           "after": "blanch_spinach",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "blend_spinach",
           "device": "blender",
           "action": "Blend spinach into a smooth puree",
-          "inputs": ["drained_spinach"],
+          "inputs": [
+            "drained_spinach"
+          ],
           "output": "spinach_puree",
           "after": "squeeze_spinach",
-          "end": { "duration_minutes": 1, "condition": "smooth with no large pieces" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "smooth with no large pieces"
+          }
         }
       ]
     },
@@ -68,34 +161,57 @@
       "id": "fry_paneer",
       "device": "pan",
       "action": "Fry paneer cubes until golden on all sides",
-      "inputs": ["paneer", "vegetable_oil"],
+      "inputs": [
+        "paneer",
+        "vegetable_oil"
+      ],
       "output": "fried_paneer",
-      "end": { "condition": "golden on all sides" },
+      "end": {
+        "condition": "golden on all sides"
+      },
       "steps": [
         {
           "id": "cube_paneer",
           "device": "chopping_board",
           "action": "Cut paneer into 2cm cubes",
-          "inputs": ["paneer"],
+          "inputs": [
+            "paneer"
+          ],
           "output": "paneer_cubes",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "heat_oil_for_paneer",
           "device": "pan",
           "action": "Heat oil in frying pan over medium-high heat",
-          "inputs": ["vegetable_oil"],
+          "inputs": [
+            "vegetable_oil"
+          ],
           "output": "hot_pan",
-          "end": { "duration_minutes": 1, "condition": "oil shimmering" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "oil shimmering"
+          }
         },
         {
           "id": "sear_paneer",
           "device": "pan",
           "action": "Fry paneer cubes, turning occasionally, until golden all over",
-          "inputs": ["hot_pan", "paneer_cubes"],
+          "inputs": [
+            "hot_pan",
+            "paneer_cubes"
+          ],
           "output": "fried_paneer",
-          "after": ["cube_paneer", "heat_oil_for_paneer"],
-          "end": { "duration_minutes": 5, "condition": "golden brown on all sides" }
+          "after": [
+            "cube_paneer",
+            "heat_oil_for_paneer"
+          ],
+          "end": {
+            "duration_minutes": 5,
+            "condition": "golden brown on all sides"
+          }
         }
       ]
     },
@@ -103,42 +219,74 @@
       "id": "make_base",
       "device": "pan",
       "action": "Cook onion and spice base",
-      "inputs": ["ghee", "cumin_seeds", "onion", "garlic", "ginger", "green_chilli", "turmeric", "garam_masala", "salt"],
+      "inputs": [
+        "ghee",
+        "cumin_seeds",
+        "onion",
+        "garlic",
+        "ginger",
+        "green_chilli",
+        "turmeric",
+        "garam_masala",
+        "salt"
+      ],
       "output": "spiced_base",
       "after": "fry_paneer",
-      "end": { "condition": "spices fragrant and onion softened" },
+      "end": {
+        "condition": "spices fragrant and onion softened"
+      },
       "steps": [
         {
           "id": "prep_aromatics",
           "device": "chopping_board",
           "action": "Prepare aromatics for the base",
-          "inputs": ["onion", "garlic", "ginger", "green_chilli"],
+          "inputs": [
+            "onion",
+            "garlic",
+            "ginger",
+            "green_chilli"
+          ],
           "output": "prepped_aromatics",
-          "end": { "condition": "all finely chopped" },
+          "end": {
+            "condition": "all finely chopped"
+          },
           "steps": [
             {
               "id": "dice_onion",
               "device": "chopping_board",
               "action": "Finely dice the onion",
-              "inputs": ["onion"],
+              "inputs": [
+                "onion"
+              ],
               "output": "diced_onion",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "mince_garlic_ginger",
               "device": "chopping_board",
               "action": "Mince garlic and grate ginger",
-              "inputs": ["garlic", "ginger"],
+              "inputs": [
+                "garlic",
+                "ginger"
+              ],
               "output": "minced_garlic_ginger",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "slice_chilli",
               "device": "chopping_board",
               "action": "Finely slice green chilli",
-              "inputs": ["green_chilli"],
+              "inputs": [
+                "green_chilli"
+              ],
               "output": "sliced_chilli",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -146,45 +294,80 @@
           "id": "heat_ghee",
           "device": "pan",
           "action": "Heat ghee in the pan over medium heat",
-          "inputs": ["ghee"],
+          "inputs": [
+            "ghee"
+          ],
           "output": "hot_ghee",
-          "end": { "duration_minutes": 1, "condition": "ghee melted and hot" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "ghee melted and hot"
+          }
         },
         {
           "id": "fry_cumin",
           "device": "pan",
           "action": "Add cumin seeds and fry until they crackle",
-          "inputs": ["hot_ghee", "cumin_seeds"],
+          "inputs": [
+            "hot_ghee",
+            "cumin_seeds"
+          ],
           "output": "tempered_ghee",
           "after": "heat_ghee",
-          "end": { "duration_minutes": 1, "condition": "seeds sizzling and fragrant" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "seeds sizzling and fragrant"
+          }
         },
         {
           "id": "cook_onion",
           "device": "pan",
           "action": "Add onion and cook until soft and golden",
-          "inputs": ["tempered_ghee", "diced_onion"],
+          "inputs": [
+            "tempered_ghee",
+            "diced_onion"
+          ],
           "output": "softened_onion",
-          "after": ["fry_cumin", "prep_aromatics"],
-          "end": { "duration_minutes": 5, "condition": "translucent and golden" }
+          "after": [
+            "fry_cumin",
+            "prep_aromatics"
+          ],
+          "end": {
+            "duration_minutes": 5,
+            "condition": "translucent and golden"
+          }
         },
         {
           "id": "add_garlic_ginger_chilli",
           "device": "pan",
           "action": "Add garlic, ginger and chilli, cook until fragrant",
-          "inputs": ["softened_onion", "minced_garlic_ginger", "sliced_chilli"],
+          "inputs": [
+            "softened_onion",
+            "minced_garlic_ginger",
+            "sliced_chilli"
+          ],
           "output": "aromatic_base",
           "after": "cook_onion",
-          "end": { "duration_minutes": 2, "condition": "fragrant, raw smell gone" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "fragrant, raw smell gone"
+          }
         },
         {
           "id": "add_spices",
           "device": "pan",
           "action": "Add turmeric, garam masala and salt, stir briefly",
-          "inputs": ["aromatic_base", "turmeric", "garam_masala", "salt"],
+          "inputs": [
+            "aromatic_base",
+            "turmeric",
+            "garam_masala",
+            "salt"
+          ],
           "output": "spiced_base",
           "after": "add_garlic_ginger_chilli",
-          "end": { "duration_minutes": 1, "condition": "spices toasted and fragrant" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "spices toasted and fragrant"
+          }
         }
       ]
     },
@@ -192,45 +375,78 @@
       "id": "combine",
       "device": "pan",
       "action": "Combine spinach puree with spiced base, add paneer and finish with cream",
-      "inputs": ["spiced_base", "spinach_puree", "fried_paneer", "cream"],
+      "inputs": [
+        "spiced_base",
+        "spinach_puree",
+        "fried_paneer",
+        "cream"
+      ],
       "output": "saag_paneer",
-      "after": ["make_base", "prep_spinach"],
-      "end": { "condition": "paneer heated through and coated in saag" },
+      "after": [
+        "make_base",
+        "prep_spinach"
+      ],
+      "end": {
+        "condition": "paneer heated through and coated in saag"
+      },
       "steps": [
         {
           "id": "add_spinach_puree",
           "device": "pan",
           "action": "Pour spinach puree into the spiced base and stir well",
-          "inputs": ["spiced_base", "spinach_puree"],
+          "inputs": [
+            "spiced_base",
+            "spinach_puree"
+          ],
           "output": "saag",
-          "end": { "duration_minutes": 3, "condition": "bubbling and well combined" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "bubbling and well combined"
+          }
         },
         {
           "id": "simmer_saag",
           "device": "pan",
           "action": "Simmer the saag, stirring occasionally",
-          "inputs": ["saag"],
+          "inputs": [
+            "saag"
+          ],
           "output": "simmered_saag",
           "after": "add_spinach_puree",
-          "end": { "duration_minutes": 5, "condition": "thickened slightly and darkened in colour" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "thickened slightly and darkened in colour"
+          }
         },
         {
           "id": "add_paneer",
           "device": "pan",
           "action": "Fold in fried paneer cubes",
-          "inputs": ["simmered_saag", "fried_paneer"],
+          "inputs": [
+            "simmered_saag",
+            "fried_paneer"
+          ],
           "output": "saag_with_paneer",
           "after": "simmer_saag",
-          "end": { "duration_minutes": 3, "condition": "paneer heated through" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "paneer heated through"
+          }
         },
         {
           "id": "finish_with_cream",
           "device": "pan",
           "action": "Stir in cream and serve",
-          "inputs": ["saag_with_paneer", "cream"],
+          "inputs": [
+            "saag_with_paneer",
+            "cream"
+          ],
           "output": "saag_paneer",
           "after": "add_paneer",
-          "end": { "duration_minutes": 1, "condition": "cream incorporated" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "cream incorporated"
+          }
         }
       ]
     }

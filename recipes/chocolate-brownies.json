@@ -1,79 +1,186 @@
 {
   "title": "Chocolate Brownies",
   "servings": 12,
-
+  "cuisine": "American",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 45,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "worktop", "name": "Worktop" },
-    { "id": "hob", "name": "Hob", "settings": "low heat" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "mixing_bowl", "name": "Mixing Bowl" },
-    { "id": "small_bowl", "name": "Small Bowl" },
-    { "id": "baking_tin", "name": "Baking Tin" },
-    { "id": "oven", "name": "Oven", "settings": "180°C / 350°F / Gas 4" },
-    { "id": "cooling_rack", "name": "Cooling Rack" }
+    {
+      "id": "worktop",
+      "name": "Worktop"
+    },
+    {
+      "id": "hob",
+      "name": "Hob",
+      "settings": "low heat"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "mixing_bowl",
+      "name": "Mixing Bowl"
+    },
+    {
+      "id": "small_bowl",
+      "name": "Small Bowl"
+    },
+    {
+      "id": "baking_tin",
+      "name": "Baking Tin"
+    },
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "180°C / 350°F / Gas 4"
+    },
+    {
+      "id": "cooling_rack",
+      "name": "Cooling Rack"
+    }
   ],
-
   "ingredients": [
-    { "id": "dark_chocolate", "name": "Dark Chocolate", "quantity": "200g, broken into pieces" },
-    { "id": "butter", "name": "Butter", "quantity": "200g" },
-    { "id": "sugar", "name": "Caster Sugar", "quantity": "250g" },
-    { "id": "eggs", "name": "Eggs", "quantity": "3" },
-    { "id": "flour", "name": "Plain Flour", "quantity": "100g" },
-    { "id": "cocoa", "name": "Cocoa Powder", "quantity": "30g" },
-    { "id": "vanilla", "name": "Vanilla Extract", "quantity": "1 tsp" },
-    { "id": "salt", "name": "Salt", "quantity": "1/4 tsp" }
+    {
+      "id": "dark_chocolate",
+      "name": "Dark Chocolate",
+      "quantity": "200g, broken into pieces"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "200g"
+    },
+    {
+      "id": "sugar",
+      "name": "Caster Sugar",
+      "quantity": "250g"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "3"
+    },
+    {
+      "id": "flour",
+      "name": "Plain Flour",
+      "quantity": "100g"
+    },
+    {
+      "id": "cocoa",
+      "name": "Cocoa Powder",
+      "quantity": "30g"
+    },
+    {
+      "id": "vanilla",
+      "name": "Vanilla Extract",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "1/4 tsp"
+    }
   ],
-
   "steps": [
     {
       "id": "make_brownie_batter",
       "device": "mixing_bowl",
       "action": "Make brownie batter",
-      "inputs": ["dark_chocolate", "butter", "sugar", "eggs", "flour", "cocoa", "vanilla", "salt"],
+      "inputs": [
+        "dark_chocolate",
+        "butter",
+        "sugar",
+        "eggs",
+        "flour",
+        "cocoa",
+        "vanilla",
+        "salt"
+      ],
       "output": "brownie_batter",
-      "end": { "condition": "batter smooth and glossy" },
+      "end": {
+        "condition": "batter smooth and glossy"
+      },
       "steps": [
         {
           "id": "melt_choc_butter",
           "device": "saucepan",
           "action": "Melt chocolate and butter together over low heat, stirring frequently",
-          "inputs": ["dark_chocolate", "butter"],
+          "inputs": [
+            "dark_chocolate",
+            "butter"
+          ],
           "output": "melted_choc_butter",
-          "end": { "duration_minutes": 5, "condition": "smooth and fully melted" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "smooth and fully melted"
+          }
         },
         {
           "id": "whisk_eggs_sugar",
           "device": "mixing_bowl",
           "action": "Whisk eggs, sugar and vanilla until thick and pale",
-          "inputs": ["eggs", "sugar", "vanilla"],
+          "inputs": [
+            "eggs",
+            "sugar",
+            "vanilla"
+          ],
           "output": "egg_sugar_mix",
-          "end": { "duration_minutes": 3, "condition": "pale, thick and doubled in volume" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "pale, thick and doubled in volume"
+          }
         },
         {
           "id": "combine_wet",
           "device": "mixing_bowl",
           "action": "Pour melted chocolate mixture into egg mixture and stir to combine",
-          "inputs": ["melted_choc_butter", "egg_sugar_mix"],
+          "inputs": [
+            "melted_choc_butter",
+            "egg_sugar_mix"
+          ],
           "output": "wet_mix",
-          "after": ["melt_choc_butter", "whisk_eggs_sugar"],
-          "end": { "duration_minutes": 1, "condition": "evenly combined" }
+          "after": [
+            "melt_choc_butter",
+            "whisk_eggs_sugar"
+          ],
+          "end": {
+            "duration_minutes": 1,
+            "condition": "evenly combined"
+          }
         },
         {
           "id": "mix_dry",
           "device": "small_bowl",
           "action": "Sift together flour, cocoa powder and salt",
-          "inputs": ["flour", "cocoa", "salt"],
+          "inputs": [
+            "flour",
+            "cocoa",
+            "salt"
+          ],
           "output": "dry_mix",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "fold_together",
           "device": "mixing_bowl",
           "action": "Gently fold dry ingredients into wet mixture",
-          "inputs": ["wet_mix", "dry_mix"],
+          "inputs": [
+            "wet_mix",
+            "dry_mix"
+          ],
           "output": "brownie_batter",
-          "after": ["combine_wet", "mix_dry"],
-          "end": { "condition": "just combined with no dry streaks" }
+          "after": [
+            "combine_wet",
+            "mix_dry"
+          ],
+          "end": {
+            "condition": "just combined with no dry streaks"
+          }
         }
       ]
     },
@@ -81,36 +188,54 @@
       "id": "bake_brownies",
       "device": "oven",
       "action": "Pour into tin and bake",
-      "inputs": ["brownie_batter"],
+      "inputs": [
+        "brownie_batter"
+      ],
       "output": "baked_brownies",
       "after": "make_brownie_batter",
-      "end": { "condition": "baked" },
+      "end": {
+        "condition": "baked"
+      },
       "steps": [
         {
           "id": "pour_tin",
           "device": "baking_tin",
           "action": "Pour batter into lined baking tin and spread evenly",
-          "inputs": ["brownie_batter"],
+          "inputs": [
+            "brownie_batter"
+          ],
           "output": "raw_brownies",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "bake",
           "device": "oven",
           "action": "Bake in preheated oven",
-          "inputs": ["raw_brownies"],
+          "inputs": [
+            "raw_brownies"
+          ],
           "output": "hot_brownies",
           "after": "pour_tin",
-          "end": { "duration_minutes": 25, "condition": "set on top with a slight wobble in the centre" }
+          "end": {
+            "duration_minutes": 25,
+            "condition": "set on top with a slight wobble in the centre"
+          }
         },
         {
           "id": "cool",
           "device": "cooling_rack",
           "action": "Leave in tin to cool completely before cutting into squares",
-          "inputs": ["hot_brownies"],
+          "inputs": [
+            "hot_brownies"
+          ],
           "output": "baked_brownies",
           "after": "bake",
-          "end": { "duration_minutes": 15, "condition": "completely cool and firm" }
+          "end": {
+            "duration_minutes": 15,
+            "condition": "completely cool and firm"
+          }
         }
       ]
     }

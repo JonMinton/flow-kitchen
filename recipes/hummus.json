@@ -1,65 +1,137 @@
 {
   "title": "Hummus",
   "servings": 6,
-
+  "cuisine": "Middle Eastern",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 10,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "blender", "name": "Blender" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "blender",
+      "name": "Blender"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "chickpeas", "name": "Chickpeas", "quantity": "400g tin" },
-    { "id": "tahini", "name": "Tahini", "quantity": "3 tbsp" },
-    { "id": "lemon", "name": "Lemon", "quantity": "1" },
-    { "id": "garlic", "name": "Garlic Cloves", "quantity": "2" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
-    { "id": "cumin", "name": "Ground Cumin", "quantity": "1 tsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "water", "name": "Cold Water", "quantity": "2 tbsp" }
+    {
+      "id": "chickpeas",
+      "name": "Chickpeas",
+      "quantity": "400g tin"
+    },
+    {
+      "id": "tahini",
+      "name": "Tahini",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "quantity": "1"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic Cloves",
+      "quantity": "2"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "cumin",
+      "name": "Ground Cumin",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "water",
+      "name": "Cold Water",
+      "quantity": "2 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "drain_chickpeas",
       "device": "chopping_board",
       "action": "Drain and rinse chickpeas, reserving a little liquid",
-      "inputs": ["chickpeas"],
+      "inputs": [
+        "chickpeas"
+      ],
       "output": "drained_chickpeas",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "squeeze_lemon",
       "device": "chopping_board",
       "action": "Halve and squeeze lemon, discarding seeds",
-      "inputs": ["lemon"],
+      "inputs": [
+        "lemon"
+      ],
       "output": "lemon_juice",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "peel_garlic",
       "device": "chopping_board",
       "action": "Peel and roughly crush garlic cloves",
-      "inputs": ["garlic"],
+      "inputs": [
+        "garlic"
+      ],
       "output": "crushed_garlic",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "blend_all",
       "device": "blender",
       "action": "Add chickpeas, tahini, lemon juice, garlic, olive oil, cumin, salt, and water to blender and blitz until smooth",
-      "inputs": ["drained_chickpeas", "tahini", "lemon_juice", "crushed_garlic", "olive_oil", "cumin", "salt", "water"],
+      "inputs": [
+        "drained_chickpeas",
+        "tahini",
+        "lemon_juice",
+        "crushed_garlic",
+        "olive_oil",
+        "cumin",
+        "salt",
+        "water"
+      ],
       "output": "blended_hummus",
-      "after": ["drain_chickpeas", "squeeze_lemon", "peel_garlic"],
-      "end": { "duration_minutes": 3, "condition": "completely smooth and creamy" }
+      "after": [
+        "drain_chickpeas",
+        "squeeze_lemon",
+        "peel_garlic"
+      ],
+      "end": {
+        "duration_minutes": 3,
+        "condition": "completely smooth and creamy"
+      }
     },
     {
       "id": "adjust_seasoning",
       "device": "blender",
       "action": "Taste and adjust salt, lemon, or cumin as needed; add a splash more water if too thick",
-      "inputs": ["blended_hummus"],
+      "inputs": [
+        "blended_hummus"
+      ],
       "output": "hummus",
       "after": "blend_all",
-      "end": { "condition": "balanced flavour and smooth consistency" }
+      "end": {
+        "condition": "balanced flavour and smooth consistency"
+      }
     }
   ]
 }

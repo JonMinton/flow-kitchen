@@ -1,62 +1,152 @@
 {
   "title": "Pierogi",
   "servings": 4,
-
+  "cuisine": "Polish",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 75,
+  "prep_minutes": 20,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "bowl", "name": "Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "plain_flour", "name": "Plain Flour", "quantity": "300g" },
-    { "id": "egg", "name": "Egg", "quantity": "1" },
-    { "id": "sour_cream", "name": "Sour Cream", "quantity": "3 tbsp + extra to serve" },
-    { "id": "water", "name": "Water", "quantity": "120ml warm" },
-    { "id": "salt", "name": "Salt", "quantity": "1 tsp" },
-    { "id": "potatoes", "name": "Potatoes", "quantity": "500g" },
-    { "id": "cheddar_cheese", "name": "Cheddar Cheese", "quantity": "150g grated" },
-    { "id": "onion", "name": "Onion", "quantity": "2" },
-    { "id": "butter", "name": "Butter", "quantity": "60g" },
-    { "id": "pepper", "name": "Pepper", "quantity": "to taste" },
-    { "id": "chives", "name": "Fresh Chives", "quantity": "small bunch" }
+    {
+      "id": "plain_flour",
+      "name": "Plain Flour",
+      "quantity": "300g"
+    },
+    {
+      "id": "egg",
+      "name": "Egg",
+      "quantity": "1"
+    },
+    {
+      "id": "sour_cream",
+      "name": "Sour Cream",
+      "quantity": "3 tbsp + extra to serve"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "120ml warm"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "potatoes",
+      "name": "Potatoes",
+      "quantity": "500g"
+    },
+    {
+      "id": "cheddar_cheese",
+      "name": "Cheddar Cheese",
+      "quantity": "150g grated"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "2"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "60g"
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "quantity": "to taste"
+    },
+    {
+      "id": "chives",
+      "name": "Fresh Chives",
+      "quantity": "small bunch"
+    }
   ],
-
   "steps": [
     {
       "id": "make_dough",
       "device": "bowl",
       "action": "Make pierogi dough",
-      "inputs": ["plain_flour", "egg", "sour_cream", "water", "salt"],
+      "inputs": [
+        "plain_flour",
+        "egg",
+        "sour_cream",
+        "water",
+        "salt"
+      ],
       "output": "rested_dough",
-      "end": { "condition": "dough smooth and rested" },
+      "end": {
+        "condition": "dough smooth and rested"
+      },
       "steps": [
         {
           "id": "mix_dough",
           "device": "bowl",
           "action": "Combine flour, egg, sour cream, water and salt",
-          "inputs": ["plain_flour", "egg", "sour_cream", "water", "salt"],
+          "inputs": [
+            "plain_flour",
+            "egg",
+            "sour_cream",
+            "water",
+            "salt"
+          ],
           "output": "rough_dough",
-          "end": { "condition": "dough just comes together" },
+          "end": {
+            "condition": "dough just comes together"
+          },
           "steps": [
             {
               "id": "make_well",
               "device": "bowl",
               "action": "Sift flour and salt into bowl, make a well in centre",
-              "inputs": ["plain_flour", "salt"],
+              "inputs": [
+                "plain_flour",
+                "salt"
+              ],
               "output": "flour_well",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_wet_ingredients",
               "device": "bowl",
               "action": "Add egg, sour cream and warm water, mix to form dough",
-              "inputs": ["flour_well", "egg", "sour_cream", "water"],
+              "inputs": [
+                "flour_well",
+                "egg",
+                "sour_cream",
+                "water"
+              ],
               "output": "rough_dough",
               "after": "make_well",
-              "end": { "duration_minutes": 3, "condition": "shaggy dough formed" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "shaggy dough formed"
+              }
             }
           ]
         },
@@ -64,19 +154,29 @@
           "id": "knead_dough",
           "device": "chopping_board",
           "action": "Knead dough until smooth and elastic",
-          "inputs": ["rough_dough"],
+          "inputs": [
+            "rough_dough"
+          ],
           "output": "smooth_dough",
           "after": "mix_dough",
-          "end": { "duration_minutes": 8, "condition": "smooth and slightly tacky" }
+          "end": {
+            "duration_minutes": 8,
+            "condition": "smooth and slightly tacky"
+          }
         },
         {
           "id": "rest_dough",
           "device": "bowl",
           "action": "Cover dough and rest at room temperature",
-          "inputs": ["smooth_dough"],
+          "inputs": [
+            "smooth_dough"
+          ],
           "output": "rested_dough",
           "after": "knead_dough",
-          "end": { "duration_minutes": 20, "condition": "dough relaxed and pliable" }
+          "end": {
+            "duration_minutes": 20,
+            "condition": "dough relaxed and pliable"
+          }
         }
       ]
     },
@@ -84,43 +184,74 @@
       "id": "make_filling",
       "device": "bowl",
       "action": "Make potato and cheese filling",
-      "inputs": ["potatoes", "cheddar_cheese", "onion", "butter", "salt", "pepper"],
+      "inputs": [
+        "potatoes",
+        "cheddar_cheese",
+        "onion",
+        "butter",
+        "salt",
+        "pepper"
+      ],
       "output": "pierogi_filling",
-      "end": { "condition": "filling mixed and seasoned" },
+      "end": {
+        "condition": "filling mixed and seasoned"
+      },
       "steps": [
         {
           "id": "cook_potatoes",
           "device": "saucepan",
           "action": "Boil and mash potatoes",
-          "inputs": ["potatoes", "salt", "water"],
+          "inputs": [
+            "potatoes",
+            "salt",
+            "water"
+          ],
           "output": "mashed_potatoes",
-          "end": { "condition": "potatoes mashed smooth" },
+          "end": {
+            "condition": "potatoes mashed smooth"
+          },
           "steps": [
             {
               "id": "peel_and_chop_potatoes",
               "device": "chopping_board",
               "action": "Peel potatoes and cut into even chunks",
-              "inputs": ["potatoes"],
+              "inputs": [
+                "potatoes"
+              ],
               "output": "potato_chunks",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "boil_potatoes",
               "device": "saucepan",
               "action": "Boil potato chunks in salted water until tender",
-              "inputs": ["potato_chunks", "salt", "water"],
+              "inputs": [
+                "potato_chunks",
+                "salt",
+                "water"
+              ],
               "output": "boiled_potatoes",
               "after": "peel_and_chop_potatoes",
-              "end": { "duration_minutes": 15, "condition": "fork-tender" }
+              "end": {
+                "duration_minutes": 15,
+                "condition": "fork-tender"
+              }
             },
             {
               "id": "drain_and_mash",
               "device": "saucepan",
               "action": "Drain and mash potatoes until smooth",
-              "inputs": ["boiled_potatoes"],
+              "inputs": [
+                "boiled_potatoes"
+              ],
               "output": "mashed_potatoes",
               "after": "boil_potatoes",
-              "end": { "duration_minutes": 3, "condition": "smooth with no lumps" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "smooth with no lumps"
+              }
             }
           ]
         },
@@ -128,26 +259,41 @@
           "id": "fry_onions",
           "device": "pan",
           "action": "Fry onions in butter until golden",
-          "inputs": ["onion", "butter"],
+          "inputs": [
+            "onion",
+            "butter"
+          ],
           "output": "fried_onions",
-          "end": { "condition": "golden and caramelised" },
+          "end": {
+            "condition": "golden and caramelised"
+          },
           "steps": [
             {
               "id": "dice_onions",
               "device": "chopping_board",
               "action": "Finely dice onions",
-              "inputs": ["onion"],
+              "inputs": [
+                "onion"
+              ],
               "output": "diced_onions",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "cook_onions_in_butter",
               "device": "pan",
               "action": "Fry diced onions in half the butter until golden",
-              "inputs": ["diced_onions", "butter"],
+              "inputs": [
+                "diced_onions",
+                "butter"
+              ],
               "output": "fried_onions",
               "after": "dice_onions",
-              "end": { "duration_minutes": 8, "condition": "golden and sweet" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "golden and sweet"
+              }
             }
           ]
         },
@@ -155,10 +301,22 @@
           "id": "combine_filling",
           "device": "bowl",
           "action": "Mix mashed potatoes with fried onions and cheese",
-          "inputs": ["mashed_potatoes", "fried_onions", "cheddar_cheese", "salt", "pepper"],
+          "inputs": [
+            "mashed_potatoes",
+            "fried_onions",
+            "cheddar_cheese",
+            "salt",
+            "pepper"
+          ],
           "output": "pierogi_filling",
-          "after": ["cook_potatoes", "fry_onions"],
-          "end": { "duration_minutes": 3, "condition": "filling well combined and seasoned" }
+          "after": [
+            "cook_potatoes",
+            "fry_onions"
+          ],
+          "end": {
+            "duration_minutes": 3,
+            "condition": "filling well combined and seasoned"
+          }
         }
       ]
     },
@@ -166,36 +324,60 @@
       "id": "assemble_pierogi",
       "device": "chopping_board",
       "action": "Roll, cut, fill and seal pierogi",
-      "inputs": ["rested_dough", "pierogi_filling"],
+      "inputs": [
+        "rested_dough",
+        "pierogi_filling"
+      ],
       "output": "raw_pierogi",
-      "after": ["make_dough", "make_filling"],
-      "end": { "condition": "about 24 pierogi formed" },
+      "after": [
+        "make_dough",
+        "make_filling"
+      ],
+      "end": {
+        "condition": "about 24 pierogi formed"
+      },
       "steps": [
         {
           "id": "roll_dough_thin",
           "device": "chopping_board",
           "action": "Roll dough out thinly on floured surface",
-          "inputs": ["rested_dough"],
+          "inputs": [
+            "rested_dough"
+          ],
           "output": "rolled_dough",
-          "end": { "duration_minutes": 4, "condition": "about 2mm thick" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "about 2mm thick"
+          }
         },
         {
           "id": "cut_circles",
           "device": "chopping_board",
           "action": "Cut circles using a glass or 8cm cutter",
-          "inputs": ["rolled_dough"],
+          "inputs": [
+            "rolled_dough"
+          ],
           "output": "dough_circles",
           "after": "roll_dough_thin",
-          "end": { "duration_minutes": 3, "condition": "about 24 circles, re-rolling scraps" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "about 24 circles, re-rolling scraps"
+          }
         },
         {
           "id": "fill_and_seal",
           "device": "chopping_board",
           "action": "Place filling in centre of each circle, fold and press edges to seal",
-          "inputs": ["dough_circles", "pierogi_filling"],
+          "inputs": [
+            "dough_circles",
+            "pierogi_filling"
+          ],
           "output": "raw_pierogi",
           "after": "cut_circles",
-          "end": { "duration_minutes": 12, "condition": "all pierogi sealed tightly" }
+          "end": {
+            "duration_minutes": 12,
+            "condition": "all pierogi sealed tightly"
+          }
         }
       ]
     },
@@ -203,27 +385,45 @@
       "id": "boil_pierogi",
       "device": "saucepan",
       "action": "Boil pierogi in salted water",
-      "inputs": ["raw_pierogi", "salt", "water"],
+      "inputs": [
+        "raw_pierogi",
+        "salt",
+        "water"
+      ],
       "output": "boiled_pierogi",
       "after": "assemble_pierogi",
-      "end": { "condition": "pierogi float and are cooked through" },
+      "end": {
+        "condition": "pierogi float and are cooked through"
+      },
       "steps": [
         {
           "id": "bring_water_to_boil",
           "device": "saucepan",
           "action": "Bring a large pot of salted water to a rolling boil",
-          "inputs": ["water", "salt"],
+          "inputs": [
+            "water",
+            "salt"
+          ],
           "output": "boiling_water",
-          "end": { "duration_minutes": 5, "condition": "rolling boil" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "rolling boil"
+          }
         },
         {
           "id": "cook_in_batches",
           "device": "saucepan",
           "action": "Drop pierogi in batches, cook until they float",
-          "inputs": ["raw_pierogi", "boiling_water"],
+          "inputs": [
+            "raw_pierogi",
+            "boiling_water"
+          ],
           "output": "boiled_pierogi",
           "after": "bring_water_to_boil",
-          "end": { "duration_minutes": 6, "condition": "pierogi float to surface, cook 1 min more" }
+          "end": {
+            "duration_minutes": 6,
+            "condition": "pierogi float to surface, cook 1 min more"
+          }
         }
       ]
     },
@@ -231,36 +431,58 @@
       "id": "pan_fry_pierogi",
       "device": "pan",
       "action": "Pan-fry boiled pierogi in butter until crispy",
-      "inputs": ["boiled_pierogi", "butter"],
+      "inputs": [
+        "boiled_pierogi",
+        "butter"
+      ],
       "output": "fried_pierogi",
       "after": "boil_pierogi",
-      "end": { "duration_minutes": 5, "condition": "golden and crispy on both sides" }
+      "end": {
+        "duration_minutes": 5,
+        "condition": "golden and crispy on both sides"
+      }
     },
     {
       "id": "serve",
       "device": "chopping_board",
       "action": "Serve pierogi with sour cream and chives",
-      "inputs": ["fried_pierogi", "sour_cream", "chives"],
+      "inputs": [
+        "fried_pierogi",
+        "sour_cream",
+        "chives"
+      ],
       "output": "finished_pierogi",
       "after": "pan_fry_pierogi",
-      "end": { "duration_minutes": 2 },
+      "end": {
+        "duration_minutes": 2
+      },
       "steps": [
         {
           "id": "snip_chives",
           "device": "chopping_board",
           "action": "Finely snip fresh chives",
-          "inputs": ["chives"],
+          "inputs": [
+            "chives"
+          ],
           "output": "snipped_chives",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "plate_and_garnish",
           "device": "chopping_board",
           "action": "Plate pierogi, top with sour cream and chives",
-          "inputs": ["fried_pierogi", "sour_cream", "snipped_chives"],
+          "inputs": [
+            "fried_pierogi",
+            "sour_cream",
+            "snipped_chives"
+          ],
           "output": "finished_pierogi",
           "after": "snip_chives",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

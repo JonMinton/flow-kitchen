@@ -1,69 +1,149 @@
 {
   "title": "Falafel",
   "servings": 4,
-
+  "cuisine": "Middle Eastern",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 510,
+  "prep_minutes": 480,
   "devices": [
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "food_processor", "name": "Food Processor" },
-    { "id": "bowl", "name": "Mixing Bowl" },
-    { "id": "hob", "name": "Hob", "settings": "medium-high heat" },
-    { "id": "deep_pan", "name": "Deep Pan / Fryer" },
-    { "id": "plate", "name": "Plate" }
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "food_processor",
+      "name": "Food Processor"
+    },
+    {
+      "id": "bowl",
+      "name": "Mixing Bowl"
+    },
+    {
+      "id": "hob",
+      "name": "Hob",
+      "settings": "medium-high heat"
+    },
+    {
+      "id": "deep_pan",
+      "name": "Deep Pan / Fryer"
+    },
+    {
+      "id": "plate",
+      "name": "Plate"
+    }
   ],
-
   "ingredients": [
-    { "id": "chickpeas", "name": "Dried Chickpeas (soaked overnight)", "quantity": "400g" },
-    { "id": "onion", "name": "Onion", "quantity": "1 medium" },
-    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
-    { "id": "parsley", "name": "Fresh Parsley", "quantity": "large handful" },
-    { "id": "cumin", "name": "Ground Cumin", "quantity": "2 tsp" },
-    { "id": "coriander", "name": "Ground Coriander", "quantity": "1 tsp" },
-    { "id": "flour", "name": "Chickpea Flour", "quantity": "2 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "1 tsp" },
-    { "id": "oil", "name": "Vegetable Oil", "quantity": "for deep frying" }
+    {
+      "id": "chickpeas",
+      "name": "Dried Chickpeas (soaked overnight)",
+      "quantity": "400g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1 medium"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "4 cloves"
+    },
+    {
+      "id": "parsley",
+      "name": "Fresh Parsley",
+      "quantity": "large handful"
+    },
+    {
+      "id": "cumin",
+      "name": "Ground Cumin",
+      "quantity": "2 tsp"
+    },
+    {
+      "id": "coriander",
+      "name": "Ground Coriander",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "flour",
+      "name": "Chickpea Flour",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "oil",
+      "name": "Vegetable Oil",
+      "quantity": "for deep frying"
+    }
   ],
-
   "steps": [
     {
       "id": "soak_chickpeas",
       "device": "bowl",
       "action": "Cover dried chickpeas with plenty of cold water and soak overnight",
-      "inputs": ["chickpeas"],
+      "inputs": [
+        "chickpeas"
+      ],
       "output": "soaked_chickpeas",
-      "end": { "duration_minutes": 480, "condition": "chickpeas doubled in size and soft enough to break with fingers" }
+      "end": {
+        "duration_minutes": 480,
+        "condition": "chickpeas doubled in size and soft enough to break with fingers"
+      }
     },
     {
       "id": "prep_ingredients",
       "device": "chopping_board",
       "action": "Prepare all ingredients for the food processor",
-      "inputs": ["onion", "garlic", "parsley"],
+      "inputs": [
+        "onion",
+        "garlic",
+        "parsley"
+      ],
       "output": "prepped_aromatics",
       "after": "soak_chickpeas",
-      "end": { "condition": "all ingredients roughly chopped" },
+      "end": {
+        "condition": "all ingredients roughly chopped"
+      },
       "steps": [
         {
           "id": "chop_onion",
           "device": "chopping_board",
           "action": "Roughly chop onion into quarters",
-          "inputs": ["onion"],
+          "inputs": [
+            "onion"
+          ],
           "output": "chopped_onion",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "peel_garlic",
           "device": "chopping_board",
           "action": "Peel and roughly chop garlic cloves",
-          "inputs": ["garlic"],
+          "inputs": [
+            "garlic"
+          ],
           "output": "chopped_garlic",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "pick_parsley",
           "device": "chopping_board",
           "action": "Pick parsley leaves from stems and roughly chop",
-          "inputs": ["parsley"],
+          "inputs": [
+            "parsley"
+          ],
           "output": "chopped_parsley",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -71,27 +151,51 @@
       "id": "blend_mixture",
       "device": "food_processor",
       "action": "Blend all ingredients into falafel mixture",
-      "inputs": ["soaked_chickpeas", "prepped_aromatics", "cumin", "coriander", "salt"],
+      "inputs": [
+        "soaked_chickpeas",
+        "prepped_aromatics",
+        "cumin",
+        "coriander",
+        "salt"
+      ],
       "output": "falafel_mixture",
       "after": "prep_ingredients",
-      "end": { "condition": "coarse and holds together" },
+      "end": {
+        "condition": "coarse and holds together"
+      },
       "steps": [
         {
           "id": "pulse_chickpeas",
           "device": "food_processor",
           "action": "Pulse soaked chickpeas until coarsely broken down",
-          "inputs": ["soaked_chickpeas"],
+          "inputs": [
+            "soaked_chickpeas"
+          ],
           "output": "broken_chickpeas",
-          "end": { "duration_minutes": 1, "condition": "coarse texture, not a paste" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "coarse texture, not a paste"
+          }
         },
         {
           "id": "add_aromatics",
           "device": "food_processor",
           "action": "Add aromatics and spices, pulse to combine",
-          "inputs": ["broken_chickpeas", "chopped_onion", "chopped_garlic", "chopped_parsley", "cumin", "coriander", "salt"],
+          "inputs": [
+            "broken_chickpeas",
+            "chopped_onion",
+            "chopped_garlic",
+            "chopped_parsley",
+            "cumin",
+            "coriander",
+            "salt"
+          ],
           "output": "falafel_mixture",
           "after": "pulse_chickpeas",
-          "end": { "duration_minutes": 2, "condition": "evenly combined, coarse but holds together when squeezed" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "evenly combined, coarse but holds together when squeezed"
+          }
         }
       ]
     },
@@ -99,36 +203,56 @@
       "id": "form_falafel",
       "device": "bowl",
       "action": "Add flour and shape into balls",
-      "inputs": ["falafel_mixture", "flour"],
+      "inputs": [
+        "falafel_mixture",
+        "flour"
+      ],
       "output": "raw_falafel",
       "after": "blend_mixture",
-      "end": { "condition": "all falafel shaped" },
+      "end": {
+        "condition": "all falafel shaped"
+      },
       "steps": [
         {
           "id": "add_flour",
           "device": "bowl",
           "action": "Transfer mixture to bowl and fold in chickpea flour",
-          "inputs": ["falafel_mixture", "flour"],
+          "inputs": [
+            "falafel_mixture",
+            "flour"
+          ],
           "output": "binding_mixture",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "rest_mixture",
           "device": "bowl",
           "action": "Rest mixture in fridge to firm up",
-          "inputs": ["binding_mixture"],
+          "inputs": [
+            "binding_mixture"
+          ],
           "output": "rested_mixture",
           "after": "add_flour",
-          "end": { "duration_minutes": 10, "condition": "mixture holds shape firmly" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "mixture holds shape firmly"
+          }
         },
         {
           "id": "shape_balls",
           "device": "bowl",
           "action": "Roll mixture into walnut-sized balls, pressing firmly",
-          "inputs": ["rested_mixture"],
+          "inputs": [
+            "rested_mixture"
+          ],
           "output": "raw_falafel",
           "after": "rest_mixture",
-          "end": { "duration_minutes": 5, "condition": "about 16 balls formed" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "about 16 balls formed"
+          }
         }
       ]
     },
@@ -136,27 +260,43 @@
       "id": "fry_falafel",
       "device": "deep_pan",
       "action": "Deep fry falafel until golden and crisp",
-      "inputs": ["raw_falafel", "oil"],
+      "inputs": [
+        "raw_falafel",
+        "oil"
+      ],
       "output": "fried_falafel",
       "after": "form_falafel",
-      "end": { "condition": "all falafel fried" },
+      "end": {
+        "condition": "all falafel fried"
+      },
       "steps": [
         {
           "id": "heat_oil",
           "device": "hob",
           "action": "Heat oil to 180°C in deep pan",
-          "inputs": ["oil"],
+          "inputs": [
+            "oil"
+          ],
           "output": "hot_oil",
-          "end": { "duration_minutes": 5, "condition": "oil reaches 180°C — a small piece of mixture sizzles immediately" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "oil reaches 180°C — a small piece of mixture sizzles immediately"
+          }
         },
         {
           "id": "fry_batches",
           "device": "deep_pan",
           "action": "Fry falafel in batches of 4–5, turning occasionally",
-          "inputs": ["raw_falafel", "hot_oil"],
+          "inputs": [
+            "raw_falafel",
+            "hot_oil"
+          ],
           "output": "fried_falafel",
           "after": "heat_oil",
-          "end": { "duration_minutes": 8, "condition": "deep golden brown and crisp all over" }
+          "end": {
+            "duration_minutes": 8,
+            "condition": "deep golden brown and crisp all over"
+          }
         }
       ]
     },
@@ -164,10 +304,14 @@
       "id": "drain_and_serve",
       "device": "plate",
       "action": "Drain on kitchen paper and serve",
-      "inputs": ["fried_falafel"],
+      "inputs": [
+        "fried_falafel"
+      ],
       "output": "finished_falafel",
       "after": "fry_falafel",
-      "end": { "duration_minutes": 2 }
+      "end": {
+        "duration_minutes": 2
+      }
     }
   ]
 }

@@ -1,70 +1,165 @@
 {
   "title": "Caesar Salad",
   "servings": 2,
-
+  "cuisine": "American",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 15,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "blender", "name": "Blender" },
-    { "id": "oven", "name": "Oven" },
-    { "id": "baking_tray", "name": "Baking Tray" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Large Bowl" }
+    {
+      "id": "blender",
+      "name": "Blender"
+    },
+    {
+      "id": "oven",
+      "name": "Oven"
+    },
+    {
+      "id": "baking_tray",
+      "name": "Baking Tray"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Large Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "romaine_lettuce", "name": "Romaine Lettuce", "quantity": "2 heads" },
-    { "id": "parmesan", "name": "Parmesan", "quantity": "50g" },
-    { "id": "croutons_bread", "name": "Crusty Bread", "quantity": "2 thick slices" },
-    { "id": "anchovy_fillets", "name": "Anchovy Fillets", "quantity": "4" },
-    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
-    { "id": "lemon", "name": "Lemon", "quantity": "1" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "6 tbsp" },
-    { "id": "egg_yolk", "name": "Egg Yolk", "quantity": "1" },
-    { "id": "dijon_mustard", "name": "Dijon Mustard", "quantity": "1 tsp" },
-    { "id": "worcestershire_sauce", "name": "Worcestershire Sauce", "quantity": "1 tsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+    {
+      "id": "romaine_lettuce",
+      "name": "Romaine Lettuce",
+      "quantity": "2 heads"
+    },
+    {
+      "id": "parmesan",
+      "name": "Parmesan",
+      "quantity": "50g"
+    },
+    {
+      "id": "croutons_bread",
+      "name": "Crusty Bread",
+      "quantity": "2 thick slices"
+    },
+    {
+      "id": "anchovy_fillets",
+      "name": "Anchovy Fillets",
+      "quantity": "4"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "2 cloves"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "quantity": "1"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "6 tbsp"
+    },
+    {
+      "id": "egg_yolk",
+      "name": "Egg Yolk",
+      "quantity": "1"
+    },
+    {
+      "id": "dijon_mustard",
+      "name": "Dijon Mustard",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "worcestershire_sauce",
+      "name": "Worcestershire Sauce",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Black Pepper",
+      "quantity": "to taste"
+    }
   ],
-
   "steps": [
     {
       "id": "make_dressing",
       "device": "blender",
       "action": "Make classic Caesar dressing",
-      "inputs": ["anchovy_fillets", "garlic", "lemon", "egg_yolk", "dijon_mustard", "worcestershire_sauce", "olive_oil", "salt", "pepper"],
+      "inputs": [
+        "anchovy_fillets",
+        "garlic",
+        "lemon",
+        "egg_yolk",
+        "dijon_mustard",
+        "worcestershire_sauce",
+        "olive_oil",
+        "salt",
+        "pepper"
+      ],
       "output": "caesar_dressing",
-      "end": { "condition": "smooth, creamy and emulsified" },
+      "end": {
+        "condition": "smooth, creamy and emulsified"
+      },
       "steps": [
         {
           "id": "prep_dressing_ingredients",
           "device": "chopping_board",
           "action": "Prepare dressing components",
-          "inputs": ["garlic", "lemon", "anchovy_fillets"],
+          "inputs": [
+            "garlic",
+            "lemon",
+            "anchovy_fillets"
+          ],
           "output": "prepped_dressing_base",
-          "end": { "condition": "ingredients ready for blending" },
+          "end": {
+            "condition": "ingredients ready for blending"
+          },
           "steps": [
             {
               "id": "peel_garlic",
               "device": "chopping_board",
               "action": "Peel and roughly chop garlic",
-              "inputs": ["garlic"],
+              "inputs": [
+                "garlic"
+              ],
               "output": "chopped_garlic",
-              "end": { "duration_minutes": 0.5 }
+              "end": {
+                "duration_minutes": 0.5
+              }
             },
             {
               "id": "juice_lemon",
               "device": "chopping_board",
               "action": "Juice the lemon",
-              "inputs": ["lemon"],
+              "inputs": [
+                "lemon"
+              ],
               "output": "lemon_juice",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "chop_anchovies",
               "device": "chopping_board",
               "action": "Roughly chop anchovy fillets",
-              "inputs": ["anchovy_fillets"],
+              "inputs": [
+                "anchovy_fillets"
+              ],
               "output": "chopped_anchovies",
-              "end": { "duration_minutes": 0.5 }
+              "end": {
+                "duration_minutes": 0.5
+              }
             }
           ]
         },
@@ -72,28 +167,51 @@
           "id": "blend_base",
           "device": "blender",
           "action": "Blend anchovies, garlic, lemon juice, egg yolk, mustard and Worcestershire",
-          "inputs": ["chopped_anchovies", "chopped_garlic", "lemon_juice", "egg_yolk", "dijon_mustard", "worcestershire_sauce"],
+          "inputs": [
+            "chopped_anchovies",
+            "chopped_garlic",
+            "lemon_juice",
+            "egg_yolk",
+            "dijon_mustard",
+            "worcestershire_sauce"
+          ],
           "output": "dressing_base",
           "after": "prep_dressing_ingredients",
-          "end": { "duration_minutes": 1, "condition": "smooth paste" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "smooth paste"
+          }
         },
         {
           "id": "emulsify_oil",
           "device": "blender",
           "action": "Slowly drizzle in olive oil while blending to emulsify",
-          "inputs": ["dressing_base", "olive_oil"],
+          "inputs": [
+            "dressing_base",
+            "olive_oil"
+          ],
           "output": "emulsified_dressing",
           "after": "blend_base",
-          "end": { "duration_minutes": 1, "condition": "thick and creamy emulsion" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "thick and creamy emulsion"
+          }
         },
         {
           "id": "season_dressing",
           "device": "blender",
           "action": "Season with salt and pepper, pulse to combine",
-          "inputs": ["emulsified_dressing", "salt", "pepper"],
+          "inputs": [
+            "emulsified_dressing",
+            "salt",
+            "pepper"
+          ],
           "output": "caesar_dressing",
           "after": "emulsify_oil",
-          "end": { "duration_minutes": 0.5, "condition": "well seasoned" }
+          "end": {
+            "duration_minutes": 0.5,
+            "condition": "well seasoned"
+          }
         }
       ]
     },
@@ -101,9 +219,16 @@
       "id": "make_croutons",
       "device": "oven",
       "action": "Make crispy garlic croutons",
-      "inputs": ["croutons_bread", "olive_oil", "garlic", "salt"],
+      "inputs": [
+        "croutons_bread",
+        "olive_oil",
+        "garlic",
+        "salt"
+      ],
       "output": "croutons",
-      "end": { "condition": "golden and crunchy" },
+      "end": {
+        "condition": "golden and crunchy"
+      },
       "steps": [
         {
           "id": "preheat_oven",
@@ -111,33 +236,56 @@
           "action": "Preheat oven to 200C / 400F",
           "inputs": [],
           "output": "hot_oven",
-          "end": { "duration_minutes": 5, "condition": "oven at temperature" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "oven at temperature"
+          }
         },
         {
           "id": "cube_bread",
           "device": "chopping_board",
           "action": "Cut bread into 2cm cubes",
-          "inputs": ["croutons_bread"],
+          "inputs": [
+            "croutons_bread"
+          ],
           "output": "bread_cubes",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "toss_croutons",
           "device": "baking_tray",
           "action": "Toss bread cubes with olive oil and a pinch of salt",
-          "inputs": ["bread_cubes", "olive_oil", "salt"],
+          "inputs": [
+            "bread_cubes",
+            "olive_oil",
+            "salt"
+          ],
           "output": "seasoned_cubes",
           "after": "cube_bread",
-          "end": { "duration_minutes": 1, "condition": "evenly coated" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "evenly coated"
+          }
         },
         {
           "id": "bake_croutons",
           "device": "oven",
           "action": "Spread on baking tray and bake until golden",
-          "inputs": ["seasoned_cubes", "hot_oven"],
+          "inputs": [
+            "seasoned_cubes",
+            "hot_oven"
+          ],
           "output": "croutons",
-          "after": ["toss_croutons", "preheat_oven"],
-          "end": { "duration_minutes": 8, "condition": "golden brown and crunchy" }
+          "after": [
+            "toss_croutons",
+            "preheat_oven"
+          ],
+          "end": {
+            "duration_minutes": 8,
+            "condition": "golden brown and crunchy"
+          }
         }
       ]
     },
@@ -145,25 +293,38 @@
       "id": "prep_salad",
       "device": "chopping_board",
       "action": "Prepare lettuce and parmesan",
-      "inputs": ["romaine_lettuce", "parmesan"],
+      "inputs": [
+        "romaine_lettuce",
+        "parmesan"
+      ],
       "output": "prepped_salad",
-      "end": { "condition": "lettuce and cheese ready" },
+      "end": {
+        "condition": "lettuce and cheese ready"
+      },
       "steps": [
         {
           "id": "wash_and_tear_lettuce",
           "device": "chopping_board",
           "action": "Wash romaine, dry well, and tear into bite-sized pieces",
-          "inputs": ["romaine_lettuce"],
+          "inputs": [
+            "romaine_lettuce"
+          ],
           "output": "torn_lettuce",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "shave_parmesan",
           "device": "chopping_board",
           "action": "Shave parmesan into thin curls with a peeler",
-          "inputs": ["parmesan"],
+          "inputs": [
+            "parmesan"
+          ],
           "output": "parmesan_shavings",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -171,36 +332,66 @@
       "id": "assemble_salad",
       "device": "bowl",
       "action": "Assemble and toss the Caesar salad",
-      "inputs": ["torn_lettuce", "caesar_dressing", "croutons", "parmesan_shavings", "pepper"],
+      "inputs": [
+        "torn_lettuce",
+        "caesar_dressing",
+        "croutons",
+        "parmesan_shavings",
+        "pepper"
+      ],
       "output": "caesar_salad",
-      "after": ["make_dressing", "make_croutons", "prep_salad"],
-      "end": { "condition": "evenly dressed and garnished" },
+      "after": [
+        "make_dressing",
+        "make_croutons",
+        "prep_salad"
+      ],
+      "end": {
+        "condition": "evenly dressed and garnished"
+      },
       "steps": [
         {
           "id": "dress_lettuce",
           "device": "bowl",
           "action": "Place lettuce in bowl and add dressing, toss to coat",
-          "inputs": ["torn_lettuce", "caesar_dressing"],
+          "inputs": [
+            "torn_lettuce",
+            "caesar_dressing"
+          ],
           "output": "dressed_lettuce",
-          "end": { "duration_minutes": 1, "condition": "leaves evenly coated" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "leaves evenly coated"
+          }
         },
         {
           "id": "add_croutons",
           "device": "bowl",
           "action": "Scatter croutons over dressed lettuce",
-          "inputs": ["dressed_lettuce", "croutons"],
+          "inputs": [
+            "dressed_lettuce",
+            "croutons"
+          ],
           "output": "salad_with_croutons",
           "after": "dress_lettuce",
-          "end": { "duration_minutes": 0.5 }
+          "end": {
+            "duration_minutes": 0.5
+          }
         },
         {
           "id": "top_with_parmesan",
           "device": "bowl",
           "action": "Top with parmesan shavings and cracked pepper",
-          "inputs": ["salad_with_croutons", "parmesan_shavings", "pepper"],
+          "inputs": [
+            "salad_with_croutons",
+            "parmesan_shavings",
+            "pepper"
+          ],
           "output": "caesar_salad",
           "after": "add_croutons",
-          "end": { "duration_minutes": 0.5, "condition": "generously topped and ready to serve" }
+          "end": {
+            "duration_minutes": 0.5,
+            "condition": "generously topped and ready to serve"
+          }
         }
       ]
     }

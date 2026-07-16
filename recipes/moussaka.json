@@ -1,80 +1,199 @@
 {
   "title": "Moussaka",
   "servings": 6,
-
+  "cuisine": "Greek",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 90,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "oven", "name": "Oven", "settings": "180°C" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "baking_dish", "name": "Baking Dish" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "180°C"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "baking_dish",
+      "name": "Baking Dish"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "aubergines", "name": "Aubergines", "quantity": "3 large" },
-    { "id": "lamb_mince", "name": "Lamb Mince", "quantity": "500g" },
-    { "id": "onion", "name": "Onion", "quantity": "1 large" },
-    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
-    { "id": "tinned_tomatoes", "name": "Tinned Tomatoes", "quantity": "400g" },
-    { "id": "tomato_puree", "name": "Tomato Purée", "quantity": "2 tbsp" },
-    { "id": "cinnamon", "name": "Cinnamon", "quantity": "1 tsp" },
-    { "id": "oregano", "name": "Oregano", "quantity": "1 tsp" },
-    { "id": "red_wine", "name": "Red Wine", "quantity": "100ml" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "4 tbsp" },
-    { "id": "butter", "name": "Butter", "quantity": "50g" },
-    { "id": "plain_flour", "name": "Plain Flour", "quantity": "50g" },
-    { "id": "milk", "name": "Milk", "quantity": "500ml" },
-    { "id": "eggs", "name": "Eggs", "quantity": "2" },
-    { "id": "nutmeg", "name": "Nutmeg", "quantity": "pinch" },
-    { "id": "parmesan", "name": "Parmesan", "quantity": "50g" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Pepper", "quantity": "to taste" }
+    {
+      "id": "aubergines",
+      "name": "Aubergines",
+      "quantity": "3 large"
+    },
+    {
+      "id": "lamb_mince",
+      "name": "Lamb Mince",
+      "quantity": "500g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1 large"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "4 cloves"
+    },
+    {
+      "id": "tinned_tomatoes",
+      "name": "Tinned Tomatoes",
+      "quantity": "400g"
+    },
+    {
+      "id": "tomato_puree",
+      "name": "Tomato Purée",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "cinnamon",
+      "name": "Cinnamon",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "oregano",
+      "name": "Oregano",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "red_wine",
+      "name": "Red Wine",
+      "quantity": "100ml"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "50g"
+    },
+    {
+      "id": "plain_flour",
+      "name": "Plain Flour",
+      "quantity": "50g"
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "quantity": "500ml"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "2"
+    },
+    {
+      "id": "nutmeg",
+      "name": "Nutmeg",
+      "quantity": "pinch"
+    },
+    {
+      "id": "parmesan",
+      "name": "Parmesan",
+      "quantity": "50g"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "quantity": "to taste"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_aubergines",
       "device": "oven",
       "action": "Prepare and grill aubergines",
-      "inputs": ["aubergines", "olive_oil", "salt"],
+      "inputs": [
+        "aubergines",
+        "olive_oil",
+        "salt"
+      ],
       "output": "grilled_aubergines",
-      "end": { "condition": "aubergines golden and softened" },
+      "end": {
+        "condition": "aubergines golden and softened"
+      },
       "steps": [
         {
           "id": "slice_aubergines",
           "device": "chopping_board",
           "action": "Slice aubergines into 1cm thick rounds",
-          "inputs": ["aubergines"],
+          "inputs": [
+            "aubergines"
+          ],
           "output": "sliced_aubergines",
-          "end": { "duration_minutes": 4 }
+          "end": {
+            "duration_minutes": 4
+          }
         },
         {
           "id": "salt_aubergines",
           "device": "chopping_board",
           "action": "Sprinkle both sides with salt and leave to drain in a colander",
           "after": "slice_aubergines",
-          "inputs": ["sliced_aubergines", "salt"],
+          "inputs": [
+            "sliced_aubergines",
+            "salt"
+          ],
           "output": "salted_aubergines",
-          "end": { "duration_minutes": 15, "condition": "moisture beaded on surface" }
+          "end": {
+            "duration_minutes": 15,
+            "condition": "moisture beaded on surface"
+          }
         },
         {
           "id": "pat_dry",
           "device": "chopping_board",
           "action": "Pat aubergine slices dry and brush both sides with olive oil",
           "after": "salt_aubergines",
-          "inputs": ["salted_aubergines", "olive_oil"],
+          "inputs": [
+            "salted_aubergines",
+            "olive_oil"
+          ],
           "output": "oiled_aubergines",
-          "end": { "duration_minutes": 3 }
+          "end": {
+            "duration_minutes": 3
+          }
         },
         {
           "id": "grill_aubergines",
           "device": "oven",
           "action": "Grill aubergine slices under a hot grill or bake at 200°C until golden",
           "after": "pat_dry",
-          "inputs": ["oiled_aubergines"],
+          "inputs": [
+            "oiled_aubergines"
+          ],
           "output": "grilled_aubergines",
-          "end": { "duration_minutes": 15, "condition": "golden brown and softened on both sides" }
+          "end": {
+            "duration_minutes": 15,
+            "condition": "golden brown and softened on both sides"
+          }
         }
       ]
     },
@@ -82,33 +201,60 @@
       "id": "make_meat_sauce",
       "device": "pan",
       "action": "Make lamb meat sauce",
-      "inputs": ["lamb_mince", "onion", "garlic", "red_wine", "tinned_tomatoes", "tomato_puree", "cinnamon", "oregano", "olive_oil", "salt", "pepper"],
+      "inputs": [
+        "lamb_mince",
+        "onion",
+        "garlic",
+        "red_wine",
+        "tinned_tomatoes",
+        "tomato_puree",
+        "cinnamon",
+        "oregano",
+        "olive_oil",
+        "salt",
+        "pepper"
+      ],
       "output": "meat_sauce",
-      "end": { "condition": "thick, rich meat sauce" },
+      "end": {
+        "condition": "thick, rich meat sauce"
+      },
       "steps": [
         {
           "id": "prep_onion_garlic",
           "device": "chopping_board",
           "action": "Dice onion and mince garlic",
-          "inputs": ["onion", "garlic"],
+          "inputs": [
+            "onion",
+            "garlic"
+          ],
           "output": "prepped_aromatics",
-          "end": { "duration_minutes": 4 },
+          "end": {
+            "duration_minutes": 4
+          },
           "steps": [
             {
               "id": "dice_onion",
               "device": "chopping_board",
               "action": "Finely dice the onion",
-              "inputs": ["onion"],
+              "inputs": [
+                "onion"
+              ],
               "output": "diced_onion",
-              "end": { "duration_minutes": 3 }
+              "end": {
+                "duration_minutes": 3
+              }
             },
             {
               "id": "mince_garlic",
               "device": "chopping_board",
               "action": "Finely mince garlic cloves",
-              "inputs": ["garlic"],
+              "inputs": [
+                "garlic"
+              ],
               "output": "minced_garlic",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -117,62 +263,115 @@
           "device": "pan",
           "action": "Cook the meat sauce on the hob",
           "after": "prep_onion_garlic",
-          "inputs": ["diced_onion", "minced_garlic", "lamb_mince", "red_wine", "tinned_tomatoes", "tomato_puree", "cinnamon", "oregano", "olive_oil", "salt", "pepper"],
+          "inputs": [
+            "diced_onion",
+            "minced_garlic",
+            "lamb_mince",
+            "red_wine",
+            "tinned_tomatoes",
+            "tomato_puree",
+            "cinnamon",
+            "oregano",
+            "olive_oil",
+            "salt",
+            "pepper"
+          ],
           "output": "meat_sauce",
-          "end": { "condition": "thick and rich" },
+          "end": {
+            "condition": "thick and rich"
+          },
           "steps": [
             {
               "id": "saute_onion",
               "device": "pan",
               "action": "Sauté diced onion in olive oil until softened",
-              "inputs": ["diced_onion", "olive_oil"],
+              "inputs": [
+                "diced_onion",
+                "olive_oil"
+              ],
               "output": "softened_onion",
-              "end": { "duration_minutes": 5, "condition": "translucent and soft" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "translucent and soft"
+              }
             },
             {
               "id": "add_garlic_to_sauce",
               "device": "pan",
               "action": "Add minced garlic and cook until fragrant",
               "after": "saute_onion",
-              "inputs": ["softened_onion", "minced_garlic"],
+              "inputs": [
+                "softened_onion",
+                "minced_garlic"
+              ],
               "output": "onion_garlic_base",
-              "end": { "duration_minutes": 1, "condition": "fragrant" }
+              "end": {
+                "duration_minutes": 1,
+                "condition": "fragrant"
+              }
             },
             {
               "id": "brown_lamb",
               "device": "pan",
               "action": "Add lamb mince and brown, breaking up with a spoon",
               "after": "add_garlic_to_sauce",
-              "inputs": ["onion_garlic_base", "lamb_mince"],
+              "inputs": [
+                "onion_garlic_base",
+                "lamb_mince"
+              ],
               "output": "browned_lamb",
-              "end": { "duration_minutes": 6, "condition": "no pink remaining" }
+              "end": {
+                "duration_minutes": 6,
+                "condition": "no pink remaining"
+              }
             },
             {
               "id": "deglaze_with_wine",
               "device": "pan",
               "action": "Pour in red wine and let it bubble and reduce",
               "after": "brown_lamb",
-              "inputs": ["browned_lamb", "red_wine"],
+              "inputs": [
+                "browned_lamb",
+                "red_wine"
+              ],
               "output": "deglazed_lamb",
-              "end": { "duration_minutes": 3, "condition": "wine mostly evaporated" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "wine mostly evaporated"
+              }
             },
             {
               "id": "add_tomatoes_and_spices",
               "device": "pan",
               "action": "Add tinned tomatoes, tomato purée, cinnamon, oregano, salt and pepper",
               "after": "deglaze_with_wine",
-              "inputs": ["deglazed_lamb", "tinned_tomatoes", "tomato_puree", "cinnamon", "oregano", "salt", "pepper"],
+              "inputs": [
+                "deglazed_lamb",
+                "tinned_tomatoes",
+                "tomato_puree",
+                "cinnamon",
+                "oregano",
+                "salt",
+                "pepper"
+              ],
               "output": "saucy_lamb",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "simmer_meat_sauce",
               "device": "pan",
               "action": "Simmer until thick and rich, stirring occasionally",
               "after": "add_tomatoes_and_spices",
-              "inputs": ["saucy_lamb"],
+              "inputs": [
+                "saucy_lamb"
+              ],
               "output": "meat_sauce",
-              "end": { "duration_minutes": 15, "condition": "thick, rich, reduced" }
+              "end": {
+                "duration_minutes": 15,
+                "condition": "thick, rich, reduced"
+              }
             }
           ]
         }
@@ -182,34 +381,61 @@
       "id": "make_bechamel",
       "device": "saucepan",
       "action": "Make béchamel sauce",
-      "inputs": ["butter", "plain_flour", "milk", "eggs", "nutmeg", "parmesan", "salt", "pepper"],
+      "inputs": [
+        "butter",
+        "plain_flour",
+        "milk",
+        "eggs",
+        "nutmeg",
+        "parmesan",
+        "salt",
+        "pepper"
+      ],
       "output": "bechamel",
-      "end": { "condition": "thick, smooth, enriched béchamel" },
+      "end": {
+        "condition": "thick, smooth, enriched béchamel"
+      },
       "steps": [
         {
           "id": "make_roux",
           "device": "saucepan",
           "action": "Make a roux with butter and flour",
-          "inputs": ["butter", "plain_flour"],
+          "inputs": [
+            "butter",
+            "plain_flour"
+          ],
           "output": "roux",
-          "end": { "condition": "smooth paste, raw flour cooked out" },
+          "end": {
+            "condition": "smooth paste, raw flour cooked out"
+          },
           "steps": [
             {
               "id": "melt_butter",
               "device": "saucepan",
               "action": "Melt butter in saucepan over medium heat",
-              "inputs": ["butter"],
+              "inputs": [
+                "butter"
+              ],
               "output": "melted_butter",
-              "end": { "duration_minutes": 1, "condition": "butter foaming" }
+              "end": {
+                "duration_minutes": 1,
+                "condition": "butter foaming"
+              }
             },
             {
               "id": "add_flour",
               "device": "saucepan",
               "action": "Add flour and stir continuously to form a smooth paste",
               "after": "melt_butter",
-              "inputs": ["melted_butter", "plain_flour"],
+              "inputs": [
+                "melted_butter",
+                "plain_flour"
+              ],
               "output": "roux",
-              "end": { "duration_minutes": 2, "condition": "smooth, no lumps, lightly golden" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "smooth, no lumps, lightly golden"
+              }
             }
           ]
         },
@@ -218,18 +444,34 @@
           "device": "saucepan",
           "action": "Gradually add milk, whisking continuously until thick and smooth",
           "after": "make_roux",
-          "inputs": ["roux", "milk"],
+          "inputs": [
+            "roux",
+            "milk"
+          ],
           "output": "white_sauce",
-          "end": { "duration_minutes": 8, "condition": "thick enough to coat the back of a spoon" }
+          "end": {
+            "duration_minutes": 8,
+            "condition": "thick enough to coat the back of a spoon"
+          }
         },
         {
           "id": "enrich_bechamel",
           "device": "saucepan",
           "action": "Remove from heat, beat in eggs, nutmeg and parmesan",
           "after": "add_milk",
-          "inputs": ["white_sauce", "eggs", "nutmeg", "parmesan", "salt", "pepper"],
+          "inputs": [
+            "white_sauce",
+            "eggs",
+            "nutmeg",
+            "parmesan",
+            "salt",
+            "pepper"
+          ],
           "output": "bechamel",
-          "end": { "duration_minutes": 3, "condition": "smooth, rich, well seasoned" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "smooth, rich, well seasoned"
+          }
         }
       ]
     },
@@ -237,62 +479,102 @@
       "id": "assemble_and_bake",
       "device": "oven",
       "action": "Assemble moussaka layers and bake",
-      "after": ["prep_aubergines", "make_meat_sauce", "make_bechamel"],
-      "inputs": ["grilled_aubergines", "meat_sauce", "bechamel"],
+      "after": [
+        "prep_aubergines",
+        "make_meat_sauce",
+        "make_bechamel"
+      ],
+      "inputs": [
+        "grilled_aubergines",
+        "meat_sauce",
+        "bechamel"
+      ],
       "output": "moussaka",
-      "end": { "condition": "golden, bubbling, set" },
+      "end": {
+        "condition": "golden, bubbling, set"
+      },
       "steps": [
         {
           "id": "layer_moussaka",
           "device": "baking_dish",
           "action": "Layer aubergines, meat sauce, aubergines, meat sauce, then top with béchamel",
-          "inputs": ["grilled_aubergines", "meat_sauce", "bechamel"],
+          "inputs": [
+            "grilled_aubergines",
+            "meat_sauce",
+            "bechamel"
+          ],
           "output": "assembled_moussaka",
-          "end": { "duration_minutes": 5 },
+          "end": {
+            "duration_minutes": 5
+          },
           "steps": [
             {
               "id": "first_aubergine_layer",
               "device": "baking_dish",
               "action": "Arrange a layer of grilled aubergine slices on the bottom of the dish",
-              "inputs": ["grilled_aubergines"],
+              "inputs": [
+                "grilled_aubergines"
+              ],
               "output": "first_layer",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "first_meat_layer",
               "device": "baking_dish",
               "action": "Spread half the meat sauce over the aubergines",
               "after": "first_aubergine_layer",
-              "inputs": ["first_layer", "meat_sauce"],
+              "inputs": [
+                "first_layer",
+                "meat_sauce"
+              ],
               "output": "second_layer",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "second_aubergine_layer",
               "device": "baking_dish",
               "action": "Add another layer of aubergine slices",
               "after": "first_meat_layer",
-              "inputs": ["second_layer", "grilled_aubergines"],
+              "inputs": [
+                "second_layer",
+                "grilled_aubergines"
+              ],
               "output": "third_layer",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "second_meat_layer",
               "device": "baking_dish",
               "action": "Spread remaining meat sauce on top",
               "after": "second_aubergine_layer",
-              "inputs": ["third_layer", "meat_sauce"],
+              "inputs": [
+                "third_layer",
+                "meat_sauce"
+              ],
               "output": "fourth_layer",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "pour_bechamel",
               "device": "baking_dish",
               "action": "Pour béchamel sauce evenly over the top and smooth out",
               "after": "second_meat_layer",
-              "inputs": ["fourth_layer", "bechamel"],
+              "inputs": [
+                "fourth_layer",
+                "bechamel"
+              ],
               "output": "assembled_moussaka",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -301,18 +583,28 @@
           "device": "oven",
           "action": "Bake at 180°C until golden brown and bubbling",
           "after": "layer_moussaka",
-          "inputs": ["assembled_moussaka"],
+          "inputs": [
+            "assembled_moussaka"
+          ],
           "output": "baked_moussaka",
-          "end": { "duration_minutes": 40, "condition": "top golden brown, bubbling at edges" }
+          "end": {
+            "duration_minutes": 40,
+            "condition": "top golden brown, bubbling at edges"
+          }
         },
         {
           "id": "rest_before_serving",
           "device": "baking_dish",
           "action": "Rest for 10 minutes before cutting to allow layers to set",
           "after": "bake_moussaka",
-          "inputs": ["baked_moussaka"],
+          "inputs": [
+            "baked_moussaka"
+          ],
           "output": "moussaka",
-          "end": { "duration_minutes": 10, "condition": "layers firm enough to cut clean slices" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "layers firm enough to cut clean slices"
+          }
         }
       ]
     }

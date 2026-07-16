@@ -1,67 +1,143 @@
 {
   "title": "Victoria Sponge",
   "servings": 8,
-
+  "cuisine": "British",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 45,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "worktop", "name": "Worktop" },
-    { "id": "mixing_bowl", "name": "Mixing Bowl" },
-    { "id": "sieve", "name": "Sieve" },
-    { "id": "cake_tin", "name": "Cake Tin" },
-    { "id": "oven", "name": "Oven", "settings": "180\u00b0C / 350\u00b0F / Gas 4" },
-    { "id": "cooling_rack", "name": "Cooling Rack" }
+    {
+      "id": "worktop",
+      "name": "Worktop"
+    },
+    {
+      "id": "mixing_bowl",
+      "name": "Mixing Bowl"
+    },
+    {
+      "id": "sieve",
+      "name": "Sieve"
+    },
+    {
+      "id": "cake_tin",
+      "name": "Cake Tin"
+    },
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "180°C / 350°F / Gas 4"
+    },
+    {
+      "id": "cooling_rack",
+      "name": "Cooling Rack"
+    }
   ],
-
   "ingredients": [
-    { "id": "butter", "name": "Butter", "quantity": "200g" },
-    { "id": "sugar", "name": "Caster Sugar", "quantity": "200g" },
-    { "id": "eggs", "name": "Eggs", "quantity": "4" },
-    { "id": "flour", "name": "Self-raising Flour", "quantity": "200g" },
-    { "id": "baking_powder", "name": "Baking Powder", "quantity": "1 tsp" },
-    { "id": "jam", "name": "Strawberry Jam", "quantity": "4 tbsp" }
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "200g"
+    },
+    {
+      "id": "sugar",
+      "name": "Caster Sugar",
+      "quantity": "200g"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "4"
+    },
+    {
+      "id": "flour",
+      "name": "Self-raising Flour",
+      "quantity": "200g"
+    },
+    {
+      "id": "baking_powder",
+      "name": "Baking Powder",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "jam",
+      "name": "Strawberry Jam",
+      "quantity": "4 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "make_batter",
       "device": "mixing_bowl",
       "action": "Make batter",
-      "inputs": ["butter", "sugar", "eggs", "flour", "baking_powder"],
+      "inputs": [
+        "butter",
+        "sugar",
+        "eggs",
+        "flour",
+        "baking_powder"
+      ],
       "output": "batter",
-      "end": { "condition": "batter ready" },
+      "end": {
+        "condition": "batter ready"
+      },
       "steps": [
         {
           "id": "cream",
           "device": "mixing_bowl",
           "action": "Cream together",
-          "inputs": ["butter", "sugar"],
+          "inputs": [
+            "butter",
+            "sugar"
+          ],
           "output": "creamed_mixture",
-          "end": { "condition": "pale and fluffy" }
+          "end": {
+            "condition": "pale and fluffy"
+          }
         },
         {
           "id": "beat_eggs",
           "device": "mixing_bowl",
           "action": "Beat in eggs one at a time",
-          "inputs": ["creamed_mixture", "eggs"],
+          "inputs": [
+            "creamed_mixture",
+            "eggs"
+          ],
           "output": "wet_mix",
           "after": "cream",
-          "end": { "condition": "well combined" }
+          "end": {
+            "condition": "well combined"
+          }
         },
         {
           "id": "mix_dry",
           "device": "sieve",
           "action": "Sift together flour and baking powder",
-          "inputs": ["flour", "baking_powder"],
+          "inputs": [
+            "flour",
+            "baking_powder"
+          ],
           "output": "dry_mix",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "fold",
           "device": "mixing_bowl",
           "action": "Fold dry ingredients into wet mixture",
-          "inputs": ["wet_mix", "dry_mix"],
+          "inputs": [
+            "wet_mix",
+            "dry_mix"
+          ],
           "output": "batter",
-          "after": ["beat_eggs", "mix_dry"],
-          "end": { "condition": "just combined, do not overmix" }
+          "after": [
+            "beat_eggs",
+            "mix_dry"
+          ],
+          "end": {
+            "condition": "just combined, do not overmix"
+          }
         }
       ]
     },
@@ -69,36 +145,53 @@
       "id": "bake_cake",
       "device": "oven",
       "action": "Tin, bake and cool",
-      "inputs": ["batter"],
+      "inputs": [
+        "batter"
+      ],
       "output": "cooled_cake",
       "after": "make_batter",
-      "end": { "condition": "cooled" },
+      "end": {
+        "condition": "cooled"
+      },
       "steps": [
         {
           "id": "pour",
           "device": "cake_tin",
           "action": "Pour and level",
-          "inputs": ["batter"],
+          "inputs": [
+            "batter"
+          ],
           "output": "raw_cake",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "bake",
           "device": "oven",
           "action": "Bake",
-          "inputs": ["raw_cake"],
+          "inputs": [
+            "raw_cake"
+          ],
           "output": "baked_cake",
           "after": "pour",
-          "end": { "duration_minutes": 25, "condition": "golden brown" }
+          "end": {
+            "duration_minutes": 25,
+            "condition": "golden brown"
+          }
         },
         {
           "id": "cool",
           "device": "cooling_rack",
           "action": "Cool",
-          "inputs": ["baked_cake"],
+          "inputs": [
+            "baked_cake"
+          ],
           "output": "cooled_cake",
           "after": "bake",
-          "end": { "condition": "completely cool" }
+          "end": {
+            "condition": "completely cool"
+          }
         }
       ]
     },
@@ -106,10 +199,15 @@
       "id": "assemble",
       "device": "worktop",
       "action": "Spread jam and sandwich",
-      "inputs": ["cooled_cake", "jam"],
+      "inputs": [
+        "cooled_cake",
+        "jam"
+      ],
       "output": "victoria_sponge",
       "after": "bake_cake",
-      "end": { "duration_minutes": 2 }
+      "end": {
+        "duration_minutes": 2
+      }
     }
   ]
 }

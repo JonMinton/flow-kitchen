@@ -1,59 +1,162 @@
 {
   "title": "Coq au Vin",
   "servings": 4,
-
+  "cuisine": "French",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 120,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "oven", "name": "Oven", "settings": "160°C" },
-    { "id": "dutch_oven", "name": "Dutch Oven" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "160°C"
+    },
+    {
+      "id": "dutch_oven",
+      "name": "Dutch Oven"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "chicken_legs", "name": "Chicken Legs", "quantity": "4 whole legs" },
-    { "id": "bacon_lardons", "name": "Bacon Lardons", "quantity": "150g" },
-    { "id": "mushrooms", "name": "Mushrooms", "quantity": "250g" },
-    { "id": "pearl_onions", "name": "Pearl Onions", "quantity": "200g" },
-    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
-    { "id": "red_wine", "name": "Red Wine", "quantity": "500ml" },
-    { "id": "chicken_stock", "name": "Chicken Stock", "quantity": "250ml" },
-    { "id": "tomato_puree", "name": "Tomato Purée", "quantity": "1 tbsp" },
-    { "id": "thyme", "name": "Fresh Thyme", "quantity": "4 sprigs" },
-    { "id": "bay_leaf", "name": "Bay Leaf", "quantity": "2" },
-    { "id": "butter", "name": "Butter", "quantity": "40g" },
-    { "id": "plain_flour", "name": "Plain Flour", "quantity": "2 tbsp" },
-    { "id": "brandy", "name": "Brandy", "quantity": "50ml" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Pepper", "quantity": "to taste" },
-    { "id": "parsley", "name": "Fresh Parsley", "quantity": "small bunch" }
+    {
+      "id": "chicken_legs",
+      "name": "Chicken Legs",
+      "quantity": "4 whole legs"
+    },
+    {
+      "id": "bacon_lardons",
+      "name": "Bacon Lardons",
+      "quantity": "150g"
+    },
+    {
+      "id": "mushrooms",
+      "name": "Mushrooms",
+      "quantity": "250g"
+    },
+    {
+      "id": "pearl_onions",
+      "name": "Pearl Onions",
+      "quantity": "200g"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "4 cloves"
+    },
+    {
+      "id": "red_wine",
+      "name": "Red Wine",
+      "quantity": "500ml"
+    },
+    {
+      "id": "chicken_stock",
+      "name": "Chicken Stock",
+      "quantity": "250ml"
+    },
+    {
+      "id": "tomato_puree",
+      "name": "Tomato Purée",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "thyme",
+      "name": "Fresh Thyme",
+      "quantity": "4 sprigs"
+    },
+    {
+      "id": "bay_leaf",
+      "name": "Bay Leaf",
+      "quantity": "2"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "40g"
+    },
+    {
+      "id": "plain_flour",
+      "name": "Plain Flour",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "brandy",
+      "name": "Brandy",
+      "quantity": "50ml"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "quantity": "to taste"
+    },
+    {
+      "id": "parsley",
+      "name": "Fresh Parsley",
+      "quantity": "small bunch"
+    }
   ],
-
   "steps": [
     {
       "id": "prep",
       "device": "chopping_board",
       "action": "Season chicken and prepare pearl onions",
-      "inputs": ["chicken_legs", "pearl_onions", "salt", "pepper"],
+      "inputs": [
+        "chicken_legs",
+        "pearl_onions",
+        "salt",
+        "pepper"
+      ],
       "output": "prepped_ingredients",
-      "end": { "condition": "chicken seasoned and onions peeled" },
+      "end": {
+        "condition": "chicken seasoned and onions peeled"
+      },
       "steps": [
         {
           "id": "season_chicken",
           "device": "chopping_board",
           "action": "Pat chicken legs dry and season generously with salt and pepper",
-          "inputs": ["chicken_legs", "salt", "pepper"],
+          "inputs": [
+            "chicken_legs",
+            "salt",
+            "pepper"
+          ],
           "output": "seasoned_chicken",
-          "end": { "duration_minutes": 3 }
+          "end": {
+            "duration_minutes": 3
+          }
         },
         {
           "id": "peel_pearl_onions",
           "device": "chopping_board",
           "action": "Peel pearl onions, blanch briefly if needed to loosen skins",
-          "inputs": ["pearl_onions"],
+          "inputs": [
+            "pearl_onions"
+          ],
           "output": "peeled_onions",
-          "end": { "duration_minutes": 8 }
+          "end": {
+            "duration_minutes": 8
+          }
         }
       ]
     },
@@ -62,35 +165,54 @@
       "device": "dutch_oven",
       "action": "Brown chicken legs on all sides",
       "after": "prep",
-      "inputs": ["seasoned_chicken", "olive_oil"],
+      "inputs": [
+        "seasoned_chicken",
+        "olive_oil"
+      ],
       "output": "browned_chicken",
-      "end": { "condition": "golden skin on all sides" },
+      "end": {
+        "condition": "golden skin on all sides"
+      },
       "steps": [
         {
           "id": "heat_dutch_oven",
           "device": "dutch_oven",
           "action": "Heat olive oil in dutch oven over medium-high heat",
-          "inputs": ["olive_oil"],
+          "inputs": [
+            "olive_oil"
+          ],
           "output": "hot_oil",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "sear_chicken",
           "device": "dutch_oven",
           "action": "Sear chicken legs skin-side down first, then turn and brown all sides",
           "after": "heat_dutch_oven",
-          "inputs": ["seasoned_chicken", "hot_oil"],
+          "inputs": [
+            "seasoned_chicken",
+            "hot_oil"
+          ],
           "output": "seared_chicken",
-          "end": { "duration_minutes": 10, "condition": "deep golden skin, crisp" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "deep golden skin, crisp"
+          }
         },
         {
           "id": "remove_chicken",
           "device": "chopping_board",
           "action": "Remove chicken to a plate and set aside",
           "after": "sear_chicken",
-          "inputs": ["seared_chicken"],
+          "inputs": [
+            "seared_chicken"
+          ],
           "output": "browned_chicken",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -99,44 +221,73 @@
       "device": "dutch_oven",
       "action": "Fry bacon lardons in the chicken fat",
       "after": "brown_chicken",
-      "inputs": ["bacon_lardons"],
+      "inputs": [
+        "bacon_lardons"
+      ],
       "output": "crispy_lardons",
-      "end": { "duration_minutes": 5, "condition": "golden and crispy" }
+      "end": {
+        "duration_minutes": 5,
+        "condition": "golden and crispy"
+      }
     },
     {
       "id": "saute_onions_mushrooms",
       "device": "dutch_oven",
       "action": "Sauté pearl onions and mushrooms",
       "after": "fry_lardons",
-      "inputs": ["peeled_onions", "mushrooms", "garlic", "crispy_lardons"],
+      "inputs": [
+        "peeled_onions",
+        "mushrooms",
+        "garlic",
+        "crispy_lardons"
+      ],
       "output": "sauteed_garnish",
-      "end": { "condition": "vegetables golden and tender" },
+      "end": {
+        "condition": "vegetables golden and tender"
+      },
       "steps": [
         {
           "id": "slice_mushrooms",
           "device": "chopping_board",
           "action": "Quarter or halve mushrooms depending on size",
-          "inputs": ["mushrooms"],
+          "inputs": [
+            "mushrooms"
+          ],
           "output": "prepared_mushrooms",
-          "end": { "duration_minutes": 3 }
+          "end": {
+            "duration_minutes": 3
+          }
         },
         {
           "id": "cook_onions_and_mushrooms",
           "device": "dutch_oven",
           "action": "Add pearl onions and mushrooms to the pot, cook until golden",
           "after": "slice_mushrooms",
-          "inputs": ["peeled_onions", "prepared_mushrooms", "crispy_lardons"],
+          "inputs": [
+            "peeled_onions",
+            "prepared_mushrooms",
+            "crispy_lardons"
+          ],
           "output": "browned_veg",
-          "end": { "duration_minutes": 8, "condition": "golden edges on mushrooms and onions" }
+          "end": {
+            "duration_minutes": 8,
+            "condition": "golden edges on mushrooms and onions"
+          }
         },
         {
           "id": "add_garlic",
           "device": "dutch_oven",
           "action": "Add minced garlic and cook until fragrant",
           "after": "cook_onions_and_mushrooms",
-          "inputs": ["garlic", "browned_veg"],
+          "inputs": [
+            "garlic",
+            "browned_veg"
+          ],
           "output": "sauteed_garnish",
-          "end": { "duration_minutes": 1, "condition": "garlic fragrant" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "garlic fragrant"
+          }
         }
       ]
     },
@@ -145,53 +296,93 @@
       "device": "dutch_oven",
       "action": "Deglaze with brandy and flambé",
       "after": "saute_onions_mushrooms",
-      "inputs": ["brandy", "sauteed_garnish"],
+      "inputs": [
+        "brandy",
+        "sauteed_garnish"
+      ],
       "output": "deglazed_base",
-      "end": { "duration_minutes": 2, "condition": "brandy flames died down, fond dissolved" }
+      "end": {
+        "duration_minutes": 2,
+        "condition": "brandy flames died down, fond dissolved"
+      }
     },
     {
       "id": "build_braise",
       "device": "dutch_oven",
       "action": "Build braising liquid and return chicken",
       "after": "deglaze_with_brandy",
-      "inputs": ["deglazed_base", "red_wine", "chicken_stock", "tomato_puree", "thyme", "bay_leaf", "browned_chicken"],
+      "inputs": [
+        "deglazed_base",
+        "red_wine",
+        "chicken_stock",
+        "tomato_puree",
+        "thyme",
+        "bay_leaf",
+        "browned_chicken"
+      ],
       "output": "braising_pot",
-      "end": { "condition": "chicken submerged in braising liquid" },
+      "end": {
+        "condition": "chicken submerged in braising liquid"
+      },
       "steps": [
         {
           "id": "add_tomato_puree",
           "device": "dutch_oven",
           "action": "Stir in tomato purée and cook for 1 minute",
-          "inputs": ["deglazed_base", "tomato_puree"],
+          "inputs": [
+            "deglazed_base",
+            "tomato_puree"
+          ],
           "output": "puree_base",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_wine_and_stock",
           "device": "dutch_oven",
           "action": "Pour in red wine and chicken stock, bring to a simmer",
           "after": "add_tomato_puree",
-          "inputs": ["puree_base", "red_wine", "chicken_stock"],
+          "inputs": [
+            "puree_base",
+            "red_wine",
+            "chicken_stock"
+          ],
           "output": "wine_stock_base",
-          "end": { "duration_minutes": 3, "condition": "liquid simmering" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "liquid simmering"
+          }
         },
         {
           "id": "add_herbs",
           "device": "dutch_oven",
           "action": "Add thyme sprigs and bay leaves",
           "after": "add_wine_and_stock",
-          "inputs": ["wine_stock_base", "thyme", "bay_leaf"],
+          "inputs": [
+            "wine_stock_base",
+            "thyme",
+            "bay_leaf"
+          ],
           "output": "herbed_liquid",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "return_chicken",
           "device": "dutch_oven",
           "action": "Nestle browned chicken legs back into the liquid",
           "after": "add_herbs",
-          "inputs": ["herbed_liquid", "browned_chicken"],
+          "inputs": [
+            "herbed_liquid",
+            "browned_chicken"
+          ],
           "output": "braising_pot",
-          "end": { "duration_minutes": 1, "condition": "chicken mostly submerged" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "chicken mostly submerged"
+          }
         }
       ]
     },
@@ -200,69 +391,122 @@
       "device": "oven",
       "action": "Braise in oven at 160°C until chicken is fall-off-the-bone tender",
       "after": "build_braise",
-      "inputs": ["braising_pot"],
+      "inputs": [
+        "braising_pot"
+      ],
       "output": "braised_coq_au_vin",
-      "end": { "duration_minutes": 60, "condition": "chicken tender, sauce rich and reduced" }
+      "end": {
+        "duration_minutes": 60,
+        "condition": "chicken tender, sauce rich and reduced"
+      }
     },
     {
       "id": "thicken_and_finish",
       "device": "hob",
       "action": "Thicken sauce, adjust seasoning and garnish",
       "after": "braise_in_oven",
-      "inputs": ["braised_coq_au_vin", "butter", "plain_flour", "salt", "pepper", "parsley"],
+      "inputs": [
+        "braised_coq_au_vin",
+        "butter",
+        "plain_flour",
+        "salt",
+        "pepper",
+        "parsley"
+      ],
       "output": "coq_au_vin",
-      "end": { "condition": "sauce glossy and coating the back of a spoon" },
+      "end": {
+        "condition": "sauce glossy and coating the back of a spoon"
+      },
       "steps": [
         {
           "id": "make_beurre_manie",
           "device": "chopping_board",
           "action": "Mash together softened butter and flour to make beurre manié",
-          "inputs": ["butter", "plain_flour"],
+          "inputs": [
+            "butter",
+            "plain_flour"
+          ],
           "output": "beurre_manie",
-          "end": { "duration_minutes": 2, "condition": "smooth paste" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "smooth paste"
+          }
         },
         {
           "id": "remove_chicken_from_pot",
           "device": "dutch_oven",
           "action": "Lift chicken pieces out and set aside, remove herbs",
-          "inputs": ["braised_coq_au_vin"],
+          "inputs": [
+            "braised_coq_au_vin"
+          ],
           "output": "braising_sauce",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "thicken_sauce",
           "device": "hob",
           "action": "Whisk beurre manié into sauce and simmer until thickened",
-          "after": ["make_beurre_manie", "remove_chicken_from_pot"],
-          "inputs": ["braising_sauce", "beurre_manie"],
+          "after": [
+            "make_beurre_manie",
+            "remove_chicken_from_pot"
+          ],
+          "inputs": [
+            "braising_sauce",
+            "beurre_manie"
+          ],
           "output": "thickened_sauce",
-          "end": { "duration_minutes": 5, "condition": "sauce coats the back of a spoon" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "sauce coats the back of a spoon"
+          }
         },
         {
           "id": "return_chicken_and_season",
           "device": "dutch_oven",
           "action": "Return chicken to sauce, season with salt and pepper",
           "after": "thicken_sauce",
-          "inputs": ["thickened_sauce", "browned_chicken", "salt", "pepper"],
+          "inputs": [
+            "thickened_sauce",
+            "browned_chicken",
+            "salt",
+            "pepper"
+          ],
           "output": "seasoned_stew",
-          "end": { "duration_minutes": 2, "condition": "perfectly seasoned" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "perfectly seasoned"
+          }
         },
         {
           "id": "chop_parsley",
           "device": "chopping_board",
           "action": "Finely chop fresh parsley",
-          "inputs": ["parsley"],
+          "inputs": [
+            "parsley"
+          ],
           "output": "chopped_parsley",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "garnish",
           "device": "dutch_oven",
           "action": "Scatter fresh parsley over the finished dish",
-          "after": ["return_chicken_and_season", "chop_parsley"],
-          "inputs": ["seasoned_stew", "chopped_parsley"],
+          "after": [
+            "return_chicken_and_season",
+            "chop_parsley"
+          ],
+          "inputs": [
+            "seasoned_stew",
+            "chopped_parsley"
+          ],
           "output": "coq_au_vin",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

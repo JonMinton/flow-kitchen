@@ -1,63 +1,147 @@
 {
   "title": "Teriyaki Salmon",
   "servings": 2,
-
+  "cuisine": "Japanese",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 25,
+  "prep_minutes": 5,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "salmon_fillets", "name": "Salmon Fillets", "quantity": "2 fillets" },
-    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "3 tbsp" },
-    { "id": "mirin", "name": "Mirin", "quantity": "2 tbsp" },
-    { "id": "sake", "name": "Sake", "quantity": "2 tbsp" },
-    { "id": "sugar", "name": "Sugar", "quantity": "1 tbsp" },
-    { "id": "ginger", "name": "Ginger", "quantity": "thumb-sized piece" },
-    { "id": "sesame_seeds", "name": "Sesame Seeds", "quantity": "1 tbsp" },
-    { "id": "spring_onions", "name": "Spring Onions", "quantity": "2" },
-    { "id": "rice", "name": "Rice", "quantity": "300g" },
-    { "id": "water", "name": "Water", "quantity": "450ml" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "1 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "pinch" }
+    {
+      "id": "salmon_fillets",
+      "name": "Salmon Fillets",
+      "quantity": "2 fillets"
+    },
+    {
+      "id": "soy_sauce",
+      "name": "Soy Sauce",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "mirin",
+      "name": "Mirin",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "sake",
+      "name": "Sake",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "sugar",
+      "name": "Sugar",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "ginger",
+      "name": "Ginger",
+      "quantity": "thumb-sized piece"
+    },
+    {
+      "id": "sesame_seeds",
+      "name": "Sesame Seeds",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "spring_onions",
+      "name": "Spring Onions",
+      "quantity": "2"
+    },
+    {
+      "id": "rice",
+      "name": "Rice",
+      "quantity": "300g"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "450ml"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "pinch"
+    }
   ],
-
   "steps": [
     {
       "id": "cook_rice",
       "device": "saucepan",
       "action": "Cook rice",
-      "inputs": ["rice", "water", "salt"],
+      "inputs": [
+        "rice",
+        "water",
+        "salt"
+      ],
       "output": "cooked_rice",
-      "end": { "condition": "rice fluffy and water absorbed" },
+      "end": {
+        "condition": "rice fluffy and water absorbed"
+      },
       "steps": [
         {
           "id": "rinse_rice",
           "device": "saucepan",
           "action": "Rinse rice under cold water until water runs clear",
-          "inputs": ["rice", "water"],
+          "inputs": [
+            "rice",
+            "water"
+          ],
           "output": "rinsed_rice",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "boil_rice",
           "device": "hob",
           "action": "Bring rice to a boil with water and a pinch of salt",
-          "inputs": ["rinsed_rice", "water", "salt"],
+          "inputs": [
+            "rinsed_rice",
+            "water",
+            "salt"
+          ],
           "output": "boiling_rice",
           "after": "rinse_rice",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "simmer_rice",
           "device": "hob",
           "action": "Reduce heat, cover and simmer",
-          "inputs": ["boiling_rice"],
+          "inputs": [
+            "boiling_rice"
+          ],
           "output": "cooked_rice",
           "after": "boil_rice",
-          "end": { "duration_minutes": 12, "condition": "water absorbed, rice fluffy" }
+          "end": {
+            "duration_minutes": 12,
+            "condition": "water absorbed, rice fluffy"
+          }
         }
       ]
     },
@@ -65,35 +149,60 @@
       "id": "make_teriyaki_sauce",
       "device": "saucepan",
       "action": "Make teriyaki sauce",
-      "inputs": ["soy_sauce", "mirin", "sake", "sugar", "ginger"],
+      "inputs": [
+        "soy_sauce",
+        "mirin",
+        "sake",
+        "sugar",
+        "ginger"
+      ],
       "output": "teriyaki_sauce",
-      "end": { "condition": "sauce glossy and thickened" },
+      "end": {
+        "condition": "sauce glossy and thickened"
+      },
       "steps": [
         {
           "id": "grate_ginger",
           "device": "chopping_board",
           "action": "Finely grate ginger",
-          "inputs": ["ginger"],
+          "inputs": [
+            "ginger"
+          ],
           "output": "grated_ginger",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "combine_sauce",
           "device": "saucepan",
           "action": "Combine soy sauce, mirin, sake, sugar and grated ginger",
-          "inputs": ["soy_sauce", "mirin", "sake", "sugar", "grated_ginger"],
+          "inputs": [
+            "soy_sauce",
+            "mirin",
+            "sake",
+            "sugar",
+            "grated_ginger"
+          ],
           "output": "raw_sauce",
           "after": "grate_ginger",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "simmer_sauce",
           "device": "hob",
           "action": "Simmer sauce until reduced and syrupy",
-          "inputs": ["raw_sauce"],
+          "inputs": [
+            "raw_sauce"
+          ],
           "output": "teriyaki_sauce",
           "after": "combine_sauce",
-          "end": { "duration_minutes": 5, "condition": "reduced by half, coats a spoon" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "reduced by half, coats a spoon"
+          }
         }
       ]
     },
@@ -101,45 +210,72 @@
       "id": "cook_salmon",
       "device": "pan",
       "action": "Sear and glaze salmon",
-      "inputs": ["salmon_fillets", "vegetable_oil", "teriyaki_sauce"],
+      "inputs": [
+        "salmon_fillets",
+        "vegetable_oil",
+        "teriyaki_sauce"
+      ],
       "output": "glazed_salmon",
       "after": "make_teriyaki_sauce",
-      "end": { "condition": "salmon cooked through, glossy glaze" },
+      "end": {
+        "condition": "salmon cooked through, glossy glaze"
+      },
       "steps": [
         {
           "id": "heat_pan",
           "device": "hob",
           "action": "Heat pan with vegetable oil over medium-high heat",
-          "inputs": ["vegetable_oil"],
+          "inputs": [
+            "vegetable_oil"
+          ],
           "output": "hot_pan",
-          "end": { "duration_minutes": 1, "condition": "oil shimmering" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "oil shimmering"
+          }
         },
         {
           "id": "sear_skin_side",
           "device": "pan",
           "action": "Place salmon skin-side down and sear until crispy",
-          "inputs": ["hot_pan", "salmon_fillets"],
+          "inputs": [
+            "hot_pan",
+            "salmon_fillets"
+          ],
           "output": "seared_salmon",
           "after": "heat_pan",
-          "end": { "duration_minutes": 4, "condition": "skin crispy and golden" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "skin crispy and golden"
+          }
         },
         {
           "id": "flip_salmon",
           "device": "pan",
           "action": "Flip salmon and cook flesh-side for 2 minutes",
-          "inputs": ["seared_salmon"],
+          "inputs": [
+            "seared_salmon"
+          ],
           "output": "flipped_salmon",
           "after": "sear_skin_side",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "glaze_salmon",
           "device": "pan",
           "action": "Spoon teriyaki sauce over salmon, basting repeatedly",
-          "inputs": ["flipped_salmon", "teriyaki_sauce"],
+          "inputs": [
+            "flipped_salmon",
+            "teriyaki_sauce"
+          ],
           "output": "glazed_salmon",
           "after": "flip_salmon",
-          "end": { "duration_minutes": 2, "condition": "salmon glossy, sauce caramelised" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "salmon glossy, sauce caramelised"
+          }
         }
       ]
     },
@@ -147,54 +283,74 @@
       "id": "prep_garnish",
       "device": "chopping_board",
       "action": "Prepare garnish",
-      "inputs": ["spring_onions"],
+      "inputs": [
+        "spring_onions"
+      ],
       "output": "sliced_spring_onions",
-      "end": { "duration_minutes": 1 },
-      "steps": [
-        {
-          "id": "slice_spring_onions",
-          "device": "chopping_board",
-          "action": "Finely slice spring onions on the diagonal",
-          "inputs": ["spring_onions"],
-          "output": "sliced_spring_onions",
-          "end": { "duration_minutes": 1 }
-        }
-      ]
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "plate_up",
       "device": "chopping_board",
       "action": "Plate salmon on rice and garnish",
-      "inputs": ["cooked_rice", "glazed_salmon", "sliced_spring_onions", "sesame_seeds"],
+      "inputs": [
+        "cooked_rice",
+        "glazed_salmon",
+        "sliced_spring_onions",
+        "sesame_seeds"
+      ],
       "output": "teriyaki_salmon",
-      "after": ["cook_rice", "cook_salmon", "prep_garnish"],
-      "end": { "duration_minutes": 2 },
+      "after": [
+        "cook_rice",
+        "cook_salmon",
+        "prep_garnish"
+      ],
+      "end": {
+        "duration_minutes": 2
+      },
       "steps": [
         {
           "id": "serve_rice",
           "device": "chopping_board",
           "action": "Mound rice on plates",
-          "inputs": ["cooked_rice"],
+          "inputs": [
+            "cooked_rice"
+          ],
           "output": "plated_rice",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "place_salmon",
           "device": "chopping_board",
           "action": "Place glazed salmon on rice, drizzle remaining sauce",
-          "inputs": ["plated_rice", "glazed_salmon"],
+          "inputs": [
+            "plated_rice",
+            "glazed_salmon"
+          ],
           "output": "plated_salmon",
           "after": "serve_rice",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_garnish",
           "device": "chopping_board",
           "action": "Sprinkle with sesame seeds and spring onions",
-          "inputs": ["plated_salmon", "sesame_seeds", "sliced_spring_onions"],
+          "inputs": [
+            "plated_salmon",
+            "sesame_seeds",
+            "sliced_spring_onions"
+          ],
           "output": "teriyaki_salmon",
           "after": "place_salmon",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

@@ -1,67 +1,151 @@
 {
   "title": "Crepes",
   "servings": 4,
-
+  "cuisine": "French",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 30,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pan", "name": "Frying Pan" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "small_bowl", "name": "Small Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pan",
+      "name": "Frying Pan"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "small_bowl",
+      "name": "Small Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "plain_flour", "name": "Plain Flour", "quantity": "125g" },
-    { "id": "eggs", "name": "Eggs", "quantity": "2" },
-    { "id": "milk", "name": "Milk", "quantity": "250ml" },
-    { "id": "butter", "name": "Butter", "quantity": "30g" },
-    { "id": "sugar", "name": "Caster Sugar", "quantity": "1 tbsp, plus extra to serve" },
-    { "id": "salt", "name": "Salt", "quantity": "pinch" },
-    { "id": "lemon", "name": "Lemon", "quantity": "1" },
-    { "id": "vanilla_extract", "name": "Vanilla Extract", "quantity": "1 tsp" }
+    {
+      "id": "plain_flour",
+      "name": "Plain Flour",
+      "quantity": "125g"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "2"
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "quantity": "250ml"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "30g"
+    },
+    {
+      "id": "sugar",
+      "name": "Caster Sugar",
+      "quantity": "1 tbsp, plus extra to serve"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "pinch"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "quantity": "1"
+    },
+    {
+      "id": "vanilla_extract",
+      "name": "Vanilla Extract",
+      "quantity": "1 tsp"
+    }
   ],
-
   "steps": [
     {
       "id": "make_batter",
       "device": "bowl",
       "action": "Make crepe batter",
-      "inputs": ["plain_flour", "eggs", "milk", "butter", "sugar", "salt", "vanilla_extract"],
+      "inputs": [
+        "plain_flour",
+        "eggs",
+        "milk",
+        "butter",
+        "sugar",
+        "salt",
+        "vanilla_extract"
+      ],
       "output": "rested_batter",
-      "end": { "condition": "batter rested and smooth" },
+      "end": {
+        "condition": "batter rested and smooth"
+      },
       "steps": [
         {
           "id": "melt_butter",
           "device": "hob",
           "action": "Melt butter in a small pan and set aside to cool slightly",
-          "inputs": ["butter"],
+          "inputs": [
+            "butter"
+          ],
           "output": "melted_butter",
-          "end": { "duration_minutes": 2, "condition": "melted and slightly cooled" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "melted and slightly cooled"
+          }
         },
         {
           "id": "whisk_dry",
           "device": "bowl",
           "action": "Whisk together flour, sugar and salt",
-          "inputs": ["plain_flour", "sugar", "salt"],
+          "inputs": [
+            "plain_flour",
+            "sugar",
+            "salt"
+          ],
           "output": "dry_mix",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_wet",
           "device": "bowl",
           "action": "Make a well in the centre, add eggs, then gradually whisk in milk, melted butter and vanilla until smooth",
-          "inputs": ["dry_mix", "eggs", "milk", "melted_butter", "vanilla_extract"],
+          "inputs": [
+            "dry_mix",
+            "eggs",
+            "milk",
+            "melted_butter",
+            "vanilla_extract"
+          ],
           "output": "crepe_batter",
-          "after": ["whisk_dry", "melt_butter"],
-          "end": { "duration_minutes": 3, "condition": "smooth with no lumps, consistency of single cream" }
+          "after": [
+            "whisk_dry",
+            "melt_butter"
+          ],
+          "end": {
+            "duration_minutes": 3,
+            "condition": "smooth with no lumps, consistency of single cream"
+          }
         },
         {
           "id": "rest_batter",
           "device": "bowl",
           "action": "Rest batter at room temperature",
-          "inputs": ["crepe_batter"],
+          "inputs": [
+            "crepe_batter"
+          ],
           "output": "rested_batter",
           "after": "add_wet",
-          "end": { "duration_minutes": 10, "condition": "rested, bubbles settled" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "rested, bubbles settled"
+          }
         }
       ]
     },
@@ -69,27 +153,43 @@
       "id": "cook_crepes",
       "device": "hob",
       "action": "Cook crepes one at a time",
-      "inputs": ["rested_batter", "butter"],
+      "inputs": [
+        "rested_batter",
+        "butter"
+      ],
       "output": "cooked_crepes",
       "after": "make_batter",
-      "end": { "condition": "all crepes cooked and stacked" },
+      "end": {
+        "condition": "all crepes cooked and stacked"
+      },
       "steps": [
         {
           "id": "heat_pan",
           "device": "hob",
           "action": "Heat frying pan over medium-high heat and add a small knob of butter",
-          "inputs": ["butter"],
+          "inputs": [
+            "butter"
+          ],
           "output": "hot_pan",
-          "end": { "duration_minutes": 1, "condition": "pan hot, butter foaming" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "pan hot, butter foaming"
+          }
         },
         {
           "id": "cook_each_crepe",
           "device": "pan",
           "action": "Ladle batter into pan, swirl to coat thinly, cook until golden, flip and cook other side. Repeat for 8 crepes.",
-          "inputs": ["hot_pan", "rested_batter"],
+          "inputs": [
+            "hot_pan",
+            "rested_batter"
+          ],
           "output": "cooked_crepes",
           "after": "heat_pan",
-          "end": { "duration_minutes": 12, "condition": "golden brown on both sides, edges lacy" }
+          "end": {
+            "duration_minutes": 12,
+            "condition": "golden brown on both sides, edges lacy"
+          }
         }
       ]
     },
@@ -97,27 +197,43 @@
       "id": "serve",
       "device": "pan",
       "action": "Serve crepes with sugar and lemon",
-      "inputs": ["cooked_crepes", "sugar", "lemon"],
+      "inputs": [
+        "cooked_crepes",
+        "sugar",
+        "lemon"
+      ],
       "output": "crepes",
       "after": "cook_crepes",
-      "end": { "condition": "served" },
+      "end": {
+        "condition": "served"
+      },
       "steps": [
         {
           "id": "cut_lemon",
           "device": "small_bowl",
           "action": "Cut lemon into wedges",
-          "inputs": ["lemon"],
+          "inputs": [
+            "lemon"
+          ],
           "output": "lemon_wedges",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "plate_crepes",
           "device": "pan",
           "action": "Fold or roll each crepe, sprinkle with caster sugar and serve with lemon wedges",
-          "inputs": ["cooked_crepes", "sugar", "lemon_wedges"],
+          "inputs": [
+            "cooked_crepes",
+            "sugar",
+            "lemon_wedges"
+          ],
           "output": "crepes",
           "after": "cut_lemon",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         }
       ]
     }

@@ -1,58 +1,126 @@
 {
   "title": "Prawn Cocktail",
   "servings": 4,
-
+  "cuisine": "British",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 15,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "glass", "name": "Serving Glass" }
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "glass",
+      "name": "Serving Glass"
+    }
   ],
-
   "ingredients": [
-    { "id": "prawns", "name": "Cooked King Prawns", "quantity": "300g" },
-    { "id": "mayonnaise", "name": "Mayonnaise", "quantity": "4 tbsp" },
-    { "id": "ketchup", "name": "Tomato Ketchup", "quantity": "2 tbsp" },
-    { "id": "lemon", "name": "Lemon", "quantity": "1" },
-    { "id": "worcestershire_sauce", "name": "Worcestershire Sauce", "quantity": "1 tsp" },
-    { "id": "tabasco", "name": "Tabasco", "quantity": "few dashes" },
-    { "id": "lettuce", "name": "Little Gem Lettuce", "quantity": "2 heads" },
-    { "id": "paprika", "name": "Paprika", "quantity": "1 tsp" }
+    {
+      "id": "prawns",
+      "name": "Cooked King Prawns",
+      "quantity": "300g"
+    },
+    {
+      "id": "mayonnaise",
+      "name": "Mayonnaise",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "ketchup",
+      "name": "Tomato Ketchup",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "quantity": "1"
+    },
+    {
+      "id": "worcestershire_sauce",
+      "name": "Worcestershire Sauce",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "tabasco",
+      "name": "Tabasco",
+      "quantity": "few dashes"
+    },
+    {
+      "id": "lettuce",
+      "name": "Little Gem Lettuce",
+      "quantity": "2 heads"
+    },
+    {
+      "id": "paprika",
+      "name": "Paprika",
+      "quantity": "1 tsp"
+    }
   ],
-
   "steps": [
     {
       "id": "make_marie_rose_sauce",
       "device": "bowl",
       "action": "Make marie rose sauce",
-      "inputs": ["mayonnaise", "ketchup", "lemon", "worcestershire_sauce", "tabasco"],
+      "inputs": [
+        "mayonnaise",
+        "ketchup",
+        "lemon",
+        "worcestershire_sauce",
+        "tabasco"
+      ],
       "output": "marie_rose_sauce",
-      "end": { "condition": "smooth and pink" },
+      "end": {
+        "condition": "smooth and pink"
+      },
       "steps": [
         {
           "id": "juice_lemon",
           "device": "chopping_board",
           "action": "Halve lemon and squeeze juice, reserving wedges for garnish",
-          "inputs": ["lemon"],
+          "inputs": [
+            "lemon"
+          ],
           "output": "lemon_juice",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "combine_sauce",
           "device": "bowl",
           "action": "Mix mayonnaise, ketchup, Worcestershire sauce, Tabasco and lemon juice",
-          "inputs": ["mayonnaise", "ketchup", "worcestershire_sauce", "tabasco", "lemon_juice"],
+          "inputs": [
+            "mayonnaise",
+            "ketchup",
+            "worcestershire_sauce",
+            "tabasco",
+            "lemon_juice"
+          ],
           "output": "mixed_sauce",
           "after": "juice_lemon",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "season_sauce",
           "device": "bowl",
           "action": "Taste and adjust seasoning",
-          "inputs": ["mixed_sauce"],
+          "inputs": [
+            "mixed_sauce"
+          ],
           "output": "marie_rose_sauce",
           "after": "combine_sauce",
-          "end": { "duration_minutes": 1, "condition": "balanced flavour" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "balanced flavour"
+          }
         }
       ]
     },
@@ -60,26 +128,38 @@
       "id": "prep_lettuce",
       "device": "chopping_board",
       "action": "Prepare lettuce for serving",
-      "inputs": ["lettuce"],
+      "inputs": [
+        "lettuce"
+      ],
       "output": "shredded_lettuce",
-      "end": { "duration_minutes": 2 },
+      "end": {
+        "duration_minutes": 2
+      },
       "steps": [
         {
           "id": "wash_lettuce",
           "device": "chopping_board",
           "action": "Wash and dry lettuce leaves",
-          "inputs": ["lettuce"],
+          "inputs": [
+            "lettuce"
+          ],
           "output": "clean_lettuce",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "shred_lettuce",
           "device": "chopping_board",
           "action": "Finely shred lettuce",
-          "inputs": ["clean_lettuce"],
+          "inputs": [
+            "clean_lettuce"
+          ],
           "output": "shredded_lettuce",
           "after": "wash_lettuce",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -87,45 +167,74 @@
       "id": "assemble",
       "device": "glass",
       "action": "Assemble prawn cocktails in glasses",
-      "inputs": ["shredded_lettuce", "prawns", "marie_rose_sauce", "paprika"],
+      "inputs": [
+        "shredded_lettuce",
+        "prawns",
+        "marie_rose_sauce",
+        "paprika"
+      ],
       "output": "prawn_cocktail",
-      "after": ["make_marie_rose_sauce", "prep_lettuce"],
-      "end": { "condition": "neatly presented" },
+      "after": [
+        "make_marie_rose_sauce",
+        "prep_lettuce"
+      ],
+      "end": {
+        "condition": "neatly presented"
+      },
       "steps": [
         {
           "id": "add_lettuce_base",
           "device": "glass",
           "action": "Divide shredded lettuce between four glasses",
-          "inputs": ["shredded_lettuce"],
+          "inputs": [
+            "shredded_lettuce"
+          ],
           "output": "glasses_with_lettuce",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_prawns",
           "device": "glass",
           "action": "Arrange prawns on top of lettuce",
-          "inputs": ["glasses_with_lettuce", "prawns"],
+          "inputs": [
+            "glasses_with_lettuce",
+            "prawns"
+          ],
           "output": "glasses_with_prawns",
           "after": "add_lettuce_base",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "drizzle_sauce",
           "device": "glass",
           "action": "Spoon marie rose sauce over prawns",
-          "inputs": ["glasses_with_prawns", "marie_rose_sauce"],
+          "inputs": [
+            "glasses_with_prawns",
+            "marie_rose_sauce"
+          ],
           "output": "sauced_cocktail",
           "after": "add_prawns",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "garnish",
           "device": "glass",
           "action": "Dust with paprika and add a lemon wedge",
-          "inputs": ["sauced_cocktail", "paprika"],
+          "inputs": [
+            "sauced_cocktail",
+            "paprika"
+          ],
           "output": "prawn_cocktail",
           "after": "drizzle_sauce",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

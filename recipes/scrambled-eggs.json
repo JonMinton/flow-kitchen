@@ -1,65 +1,122 @@
 {
   "title": "Scrambled Eggs on Toast",
   "servings": 2,
-
+  "cuisine": "British",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 10,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob", "settings": "low-medium heat" },
-    { "id": "pan", "name": "Non-stick Pan" },
-    { "id": "bowl", "name": "Mixing Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob",
+      "settings": "low-medium heat"
+    },
+    {
+      "id": "pan",
+      "name": "Non-stick Pan"
+    },
+    {
+      "id": "bowl",
+      "name": "Mixing Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "eggs", "name": "Eggs", "quantity": "3" },
-    { "id": "butter", "name": "Butter", "quantity": "15g" },
-    { "id": "salt", "name": "Salt", "quantity": "pinch" },
-    { "id": "pepper", "name": "Black Pepper", "quantity": "pinch" },
-    { "id": "toast", "name": "Toast", "quantity": "2 slices" }
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "3"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "15g"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "pinch"
+    },
+    {
+      "id": "pepper",
+      "name": "Black Pepper",
+      "quantity": "pinch"
+    },
+    {
+      "id": "toast",
+      "name": "Toast",
+      "quantity": "2 slices"
+    }
   ],
-
   "steps": [
     {
       "id": "crack_eggs",
       "device": "bowl",
       "action": "Crack eggs into bowl",
-      "inputs": ["eggs"],
+      "inputs": [
+        "eggs"
+      ],
       "output": "raw_eggs",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "beat_eggs",
       "device": "bowl",
       "action": "Beat eggs with a fork until yolks and whites are combined",
-      "inputs": ["raw_eggs", "salt", "pepper"],
+      "inputs": [
+        "raw_eggs",
+        "salt",
+        "pepper"
+      ],
       "output": "beaten_eggs",
       "after": "crack_eggs",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "melt_butter",
       "device": "pan",
       "action": "Melt butter in pan over low-medium heat",
-      "inputs": ["butter"],
+      "inputs": [
+        "butter"
+      ],
       "output": "melted_butter",
       "after": "beat_eggs",
-      "end": { "condition": "butter foaming but not browning" }
+      "end": {
+        "condition": "butter foaming but not browning"
+      }
     },
     {
       "id": "scramble",
       "device": "pan",
       "action": "Pour in beaten eggs and stir gently with a spatula, folding curds as they form",
-      "inputs": ["melted_butter", "beaten_eggs"],
+      "inputs": [
+        "melted_butter",
+        "beaten_eggs"
+      ],
       "output": "scrambled_eggs",
       "after": "melt_butter",
-      "end": { "duration_minutes": 3, "condition": "just set with soft curds" }
+      "end": {
+        "duration_minutes": 3,
+        "condition": "just set with soft curds"
+      }
     },
     {
       "id": "plate",
       "device": "hob",
       "action": "Serve scrambled eggs on toast",
-      "inputs": ["scrambled_eggs", "toast"],
+      "inputs": [
+        "scrambled_eggs",
+        "toast"
+      ],
       "output": "scrambled_eggs_on_toast",
       "after": "scramble",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     }
   ]
 }

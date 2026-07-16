@@ -1,120 +1,237 @@
 {
   "title": "Kimchi Jjigae",
   "servings": 2,
-
+  "cuisine": "Korean",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 30,
+  "prep_minutes": 7,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pot", "name": "Pot" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pot",
+      "name": "Pot"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "kimchi", "name": "Kimchi", "quantity": "200g, well-fermented" },
-    { "id": "pork_belly", "name": "Pork Belly", "quantity": "150g" },
-    { "id": "tofu", "name": "Firm Tofu", "quantity": "200g" },
-    { "id": "onion", "name": "Onion", "quantity": "1 small" },
-    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
-    { "id": "gochugaru", "name": "Gochugaru (Korean Chilli Flakes)", "quantity": "1 tbsp" },
-    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "1 tbsp" },
-    { "id": "spring_onions", "name": "Spring Onions", "quantity": "2" },
-    { "id": "water", "name": "Water", "quantity": "400ml" },
-    { "id": "sugar", "name": "Sugar", "quantity": "1 tsp" },
-    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "1 tbsp" }
+    {
+      "id": "kimchi",
+      "name": "Kimchi",
+      "quantity": "200g, well-fermented"
+    },
+    {
+      "id": "pork_belly",
+      "name": "Pork Belly",
+      "quantity": "150g"
+    },
+    {
+      "id": "tofu",
+      "name": "Firm Tofu",
+      "quantity": "200g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1 small"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "3 cloves"
+    },
+    {
+      "id": "gochugaru",
+      "name": "Gochugaru (Korean Chilli Flakes)",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "sesame_oil",
+      "name": "Sesame Oil",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "spring_onions",
+      "name": "Spring Onions",
+      "quantity": "2"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "400ml"
+    },
+    {
+      "id": "sugar",
+      "name": "Sugar",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "soy_sauce",
+      "name": "Soy Sauce",
+      "quantity": "1 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "prep",
       "device": "chopping_board",
       "action": "Prepare all ingredients",
-      "inputs": ["pork_belly", "tofu", "kimchi", "onion", "garlic", "spring_onions"],
+      "inputs": [
+        "pork_belly",
+        "tofu",
+        "kimchi",
+        "onion",
+        "garlic",
+        "spring_onions"
+      ],
       "output": "prepped_ingredients",
-      "end": { "condition": "all ingredients prepped" },
+      "end": {
+        "condition": "all ingredients prepped"
+      },
       "steps": [
         {
           "id": "slice_pork",
           "device": "chopping_board",
           "action": "Slice pork belly into thin bite-sized pieces",
-          "inputs": ["pork_belly"],
+          "inputs": [
+            "pork_belly"
+          ],
           "output": "sliced_pork",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "cube_tofu",
           "device": "chopping_board",
           "action": "Cut tofu into 2cm cubes",
-          "inputs": ["tofu"],
+          "inputs": [
+            "tofu"
+          ],
           "output": "cubed_tofu",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "chop_kimchi",
           "device": "chopping_board",
           "action": "Roughly chop kimchi into bite-sized pieces",
-          "inputs": ["kimchi"],
+          "inputs": [
+            "kimchi"
+          ],
           "output": "chopped_kimchi",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "slice_onion",
           "device": "chopping_board",
           "action": "Thinly slice the onion",
-          "inputs": ["onion"],
+          "inputs": [
+            "onion"
+          ],
           "output": "sliced_onion",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "mince_garlic",
           "device": "chopping_board",
           "action": "Mince garlic cloves",
-          "inputs": ["garlic"],
+          "inputs": [
+            "garlic"
+          ],
           "output": "minced_garlic",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "slice_spring_onions",
           "device": "chopping_board",
           "action": "Slice spring onions, separating whites and greens",
-          "inputs": ["spring_onions"],
+          "inputs": [
+            "spring_onions"
+          ],
           "output": "sliced_spring_onions",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
     {
       "id": "saute",
       "device": "pot",
-      "action": "Saut\u00e9 pork, kimchi, and aromatics",
-      "inputs": ["sliced_pork", "chopped_kimchi", "sliced_onion", "minced_garlic", "gochugaru", "sesame_oil"],
+      "action": "Sauté pork, kimchi, and aromatics",
+      "inputs": [
+        "sliced_pork",
+        "chopped_kimchi",
+        "sliced_onion",
+        "minced_garlic",
+        "gochugaru",
+        "sesame_oil"
+      ],
       "output": "sauteed_base",
       "after": "prep",
-      "end": { "condition": "pork cooked and kimchi fragrant" },
+      "end": {
+        "condition": "pork cooked and kimchi fragrant"
+      },
       "steps": [
         {
           "id": "fry_pork",
           "device": "pot",
           "action": "Heat sesame oil in pot and fry pork belly until fat renders and edges crisp",
-          "inputs": ["sesame_oil", "sliced_pork"],
+          "inputs": [
+            "sesame_oil",
+            "sliced_pork"
+          ],
           "output": "fried_pork",
-          "end": { "duration_minutes": 4, "condition": "fat rendered, edges lightly crisp" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "fat rendered, edges lightly crisp"
+          }
         },
         {
           "id": "add_onion",
           "device": "pot",
           "action": "Add sliced onion and cook until softened",
-          "inputs": ["fried_pork", "sliced_onion"],
+          "inputs": [
+            "fried_pork",
+            "sliced_onion"
+          ],
           "output": "pork_with_onion",
           "after": "fry_pork",
-          "end": { "duration_minutes": 2, "condition": "onion softened" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "onion softened"
+          }
         },
         {
           "id": "add_kimchi_garlic",
           "device": "pot",
           "action": "Add chopped kimchi, minced garlic, and gochugaru, stir-fry until fragrant",
-          "inputs": ["pork_with_onion", "chopped_kimchi", "minced_garlic", "gochugaru"],
+          "inputs": [
+            "pork_with_onion",
+            "chopped_kimchi",
+            "minced_garlic",
+            "gochugaru"
+          ],
           "output": "sauteed_base",
           "after": "add_onion",
-          "end": { "duration_minutes": 3, "condition": "kimchi fragrant and slightly caramelised" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "kimchi fragrant and slightly caramelised"
+          }
         }
       ]
     },
@@ -122,45 +239,76 @@
       "id": "simmer",
       "device": "pot",
       "action": "Simmer stew with water and tofu",
-      "inputs": ["sauteed_base", "water", "cubed_tofu", "soy_sauce", "sugar"],
+      "inputs": [
+        "sauteed_base",
+        "water",
+        "cubed_tofu",
+        "soy_sauce",
+        "sugar"
+      ],
       "output": "finished_stew",
       "after": "saute",
-      "end": { "duration_minutes": 15, "condition": "broth rich and flavours melded" },
+      "end": {
+        "duration_minutes": 15,
+        "condition": "broth rich and flavours melded"
+      },
       "steps": [
         {
           "id": "add_water",
           "device": "pot",
           "action": "Pour in water and bring to a boil",
-          "inputs": ["sauteed_base", "water"],
+          "inputs": [
+            "sauteed_base",
+            "water"
+          ],
           "output": "boiling_stew",
-          "end": { "duration_minutes": 3, "condition": "rolling boil" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "rolling boil"
+          }
         },
         {
           "id": "season_stew",
           "device": "pot",
           "action": "Add soy sauce and sugar, stir to combine",
-          "inputs": ["boiling_stew", "soy_sauce", "sugar"],
+          "inputs": [
+            "boiling_stew",
+            "soy_sauce",
+            "sugar"
+          ],
           "output": "seasoned_stew",
           "after": "add_water",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_tofu",
           "device": "pot",
           "action": "Gently add tofu cubes to the stew",
-          "inputs": ["seasoned_stew", "cubed_tofu"],
+          "inputs": [
+            "seasoned_stew",
+            "cubed_tofu"
+          ],
           "output": "stew_with_tofu",
           "after": "season_stew",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "simmer_stew",
           "device": "pot",
           "action": "Reduce heat and simmer until flavours meld and tofu is heated through",
-          "inputs": ["stew_with_tofu"],
+          "inputs": [
+            "stew_with_tofu"
+          ],
           "output": "finished_stew",
           "after": "add_tofu",
-          "end": { "duration_minutes": 10, "condition": "broth rich, tofu heated through" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "broth rich, tofu heated through"
+          }
         }
       ]
     },
@@ -168,10 +316,16 @@
       "id": "garnish",
       "device": "pot",
       "action": "Garnish with spring onions and a drizzle of sesame oil",
-      "inputs": ["finished_stew", "sliced_spring_onions", "sesame_oil"],
+      "inputs": [
+        "finished_stew",
+        "sliced_spring_onions",
+        "sesame_oil"
+      ],
       "output": "kimchi_jjigae",
       "after": "simmer",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     }
   ]
 }

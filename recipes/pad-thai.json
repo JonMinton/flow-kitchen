@@ -1,57 +1,145 @@
 {
   "title": "Pad Thai",
   "servings": 2,
-
+  "cuisine": "Thai",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 25,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "wok", "name": "Wok" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "wok",
+      "name": "Wok"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "rice_noodles", "name": "Rice Noodles", "quantity": "200g" },
-    { "id": "prawns", "name": "Prawns", "quantity": "200g" },
-    { "id": "egg", "name": "Eggs", "quantity": "2" },
-    { "id": "tamarind_paste", "name": "Tamarind Paste", "quantity": "2 tbsp" },
-    { "id": "fish_sauce", "name": "Fish Sauce", "quantity": "2 tbsp" },
-    { "id": "palm_sugar", "name": "Palm Sugar", "quantity": "1 tbsp" },
-    { "id": "lime", "name": "Lime", "quantity": "1" },
-    { "id": "bean_sprouts", "name": "Bean Sprouts", "quantity": "100g" },
-    { "id": "spring_onions", "name": "Spring Onions", "quantity": "2" },
-    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
-    { "id": "peanuts", "name": "Peanuts", "quantity": "2 tbsp" },
-    { "id": "chilli_flakes", "name": "Chilli Flakes", "quantity": "1 tsp" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
-    { "id": "warm_water", "name": "Warm Water", "quantity": "enough to soak" }
+    {
+      "id": "rice_noodles",
+      "name": "Rice Noodles",
+      "quantity": "200g"
+    },
+    {
+      "id": "prawns",
+      "name": "Prawns",
+      "quantity": "200g"
+    },
+    {
+      "id": "egg",
+      "name": "Eggs",
+      "quantity": "2"
+    },
+    {
+      "id": "tamarind_paste",
+      "name": "Tamarind Paste",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "fish_sauce",
+      "name": "Fish Sauce",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "palm_sugar",
+      "name": "Palm Sugar",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "lime",
+      "name": "Lime",
+      "quantity": "1"
+    },
+    {
+      "id": "bean_sprouts",
+      "name": "Bean Sprouts",
+      "quantity": "100g"
+    },
+    {
+      "id": "spring_onions",
+      "name": "Spring Onions",
+      "quantity": "2"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "2 cloves"
+    },
+    {
+      "id": "peanuts",
+      "name": "Peanuts",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "chilli_flakes",
+      "name": "Chilli Flakes",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "warm_water",
+      "name": "Warm Water",
+      "quantity": "enough to soak"
+    }
   ],
-
   "steps": [
     {
       "id": "prepare_noodles",
       "device": "bowl",
       "action": "Soak and drain noodles",
-      "inputs": ["rice_noodles", "warm_water"],
+      "inputs": [
+        "rice_noodles",
+        "warm_water"
+      ],
       "output": "drained_noodles",
-      "end": { "condition": "noodles softened" },
+      "end": {
+        "condition": "noodles softened"
+      },
       "steps": [
         {
           "id": "soak_noodles",
           "device": "bowl",
           "action": "Soak rice noodles in warm water",
-          "inputs": ["rice_noodles", "warm_water"],
+          "inputs": [
+            "rice_noodles",
+            "warm_water"
+          ],
           "output": "soaked_noodles",
-          "end": { "duration_minutes": 10, "condition": "pliable but still firm" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "pliable but still firm"
+          }
         },
         {
           "id": "drain_noodles",
           "device": "bowl",
           "action": "Drain noodles thoroughly",
-          "inputs": ["soaked_noodles"],
+          "inputs": [
+            "soaked_noodles"
+          ],
           "output": "drained_noodles",
           "after": "soak_noodles",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -59,26 +147,43 @@
       "id": "make_sauce",
       "device": "bowl",
       "action": "Mix pad thai sauce",
-      "inputs": ["tamarind_paste", "fish_sauce", "palm_sugar"],
+      "inputs": [
+        "tamarind_paste",
+        "fish_sauce",
+        "palm_sugar"
+      ],
       "output": "pad_thai_sauce",
-      "end": { "condition": "sugar dissolved" },
+      "end": {
+        "condition": "sugar dissolved"
+      },
       "steps": [
         {
           "id": "combine_sauce_ingredients",
           "device": "bowl",
           "action": "Mix tamarind paste, fish sauce and palm sugar",
-          "inputs": ["tamarind_paste", "fish_sauce", "palm_sugar"],
+          "inputs": [
+            "tamarind_paste",
+            "fish_sauce",
+            "palm_sugar"
+          ],
           "output": "mixed_sauce",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "stir_until_dissolved",
           "device": "bowl",
           "action": "Stir until sugar is fully dissolved",
-          "inputs": ["mixed_sauce"],
+          "inputs": [
+            "mixed_sauce"
+          ],
           "output": "pad_thai_sauce",
           "after": "combine_sauce_ingredients",
-          "end": { "duration_minutes": 1, "condition": "sugar dissolved, sauce smooth" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "sugar dissolved, sauce smooth"
+          }
         }
       ]
     },
@@ -86,53 +191,94 @@
       "id": "prep_and_cook",
       "device": "wok",
       "action": "Cook protein and combine with noodles and sauce",
-      "inputs": ["drained_noodles", "pad_thai_sauce", "prawns", "egg", "garlic", "vegetable_oil", "bean_sprouts", "spring_onions"],
+      "inputs": [
+        "drained_noodles",
+        "pad_thai_sauce",
+        "prawns",
+        "egg",
+        "garlic",
+        "vegetable_oil",
+        "bean_sprouts",
+        "spring_onions"
+      ],
       "output": "cooked_pad_thai",
       "after": "prepare_noodles",
-      "end": { "condition": "noodles coated and heated through" },
+      "end": {
+        "condition": "noodles coated and heated through"
+      },
       "steps": [
         {
           "id": "cook_protein",
           "device": "wok",
           "action": "Cook prawns and eggs in wok",
-          "inputs": ["prawns", "egg", "garlic", "vegetable_oil"],
+          "inputs": [
+            "prawns",
+            "egg",
+            "garlic",
+            "vegetable_oil"
+          ],
           "output": "cooked_protein",
-          "end": { "condition": "prawns pink, eggs set" },
+          "end": {
+            "condition": "prawns pink, eggs set"
+          },
           "steps": [
             {
               "id": "heat_wok",
               "device": "wok",
               "action": "Heat wok with oil until smoking",
-              "inputs": ["vegetable_oil"],
+              "inputs": [
+                "vegetable_oil"
+              ],
               "output": "hot_wok",
-              "end": { "duration_minutes": 2, "condition": "oil shimmering" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "oil shimmering"
+              }
             },
             {
               "id": "fry_garlic",
               "device": "wok",
               "action": "Add garlic and fry briefly",
-              "inputs": ["hot_wok", "garlic"],
+              "inputs": [
+                "hot_wok",
+                "garlic"
+              ],
               "output": "fragrant_wok",
               "after": "heat_wok",
-              "end": { "duration_minutes": 1, "condition": "fragrant" }
+              "end": {
+                "duration_minutes": 1,
+                "condition": "fragrant"
+              }
             },
             {
               "id": "fry_prawns",
               "device": "wok",
               "action": "Fry prawns until pink, push to side",
-              "inputs": ["fragrant_wok", "prawns"],
+              "inputs": [
+                "fragrant_wok",
+                "prawns"
+              ],
               "output": "cooked_prawns",
               "after": "fry_garlic",
-              "end": { "duration_minutes": 3, "condition": "prawns pink and curled" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "prawns pink and curled"
+              }
             },
             {
               "id": "scramble_eggs",
               "device": "wok",
               "action": "Crack eggs into wok and scramble",
-              "inputs": ["cooked_prawns", "egg"],
+              "inputs": [
+                "cooked_prawns",
+                "egg"
+              ],
               "output": "cooked_protein",
               "after": "fry_prawns",
-              "end": { "duration_minutes": 1, "condition": "eggs just set" }
+              "end": {
+                "duration_minutes": 1,
+                "condition": "eggs just set"
+              }
             }
           ]
         },
@@ -140,45 +286,74 @@
           "id": "combine",
           "device": "wok",
           "action": "Combine noodles, sauce and toppings in wok",
-          "inputs": ["cooked_protein", "drained_noodles", "pad_thai_sauce", "bean_sprouts", "spring_onions"],
+          "inputs": [
+            "cooked_protein",
+            "drained_noodles",
+            "pad_thai_sauce",
+            "bean_sprouts",
+            "spring_onions"
+          ],
           "output": "cooked_pad_thai",
           "after": "cook_protein",
-          "end": { "condition": "noodles coated and heated through" },
+          "end": {
+            "condition": "noodles coated and heated through"
+          },
           "steps": [
             {
               "id": "add_noodles_to_wok",
               "device": "wok",
               "action": "Add drained noodles to wok",
-              "inputs": ["cooked_protein", "drained_noodles"],
+              "inputs": [
+                "cooked_protein",
+                "drained_noodles"
+              ],
               "output": "noodles_in_wok",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_sauce_and_toss",
               "device": "wok",
               "action": "Pour in sauce and toss everything together",
-              "inputs": ["noodles_in_wok", "pad_thai_sauce"],
+              "inputs": [
+                "noodles_in_wok",
+                "pad_thai_sauce"
+              ],
               "output": "sauced_noodles",
               "after": "add_noodles_to_wok",
-              "end": { "duration_minutes": 2, "condition": "noodles evenly coated" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "noodles evenly coated"
+              }
             },
             {
               "id": "add_bean_sprouts",
               "device": "wok",
               "action": "Add bean sprouts and toss briefly",
-              "inputs": ["sauced_noodles", "bean_sprouts"],
+              "inputs": [
+                "sauced_noodles",
+                "bean_sprouts"
+              ],
               "output": "noodles_with_sprouts",
               "after": "add_sauce_and_toss",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_spring_onions",
               "device": "wok",
               "action": "Add sliced spring onions and toss",
-              "inputs": ["noodles_with_sprouts", "spring_onions"],
+              "inputs": [
+                "noodles_with_sprouts",
+                "spring_onions"
+              ],
               "output": "cooked_pad_thai",
               "after": "add_bean_sprouts",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         }
@@ -188,44 +363,73 @@
       "id": "garnish",
       "device": "chopping_board",
       "action": "Garnish and plate pad thai",
-      "inputs": ["cooked_pad_thai", "peanuts", "lime", "chilli_flakes"],
+      "inputs": [
+        "cooked_pad_thai",
+        "peanuts",
+        "lime",
+        "chilli_flakes"
+      ],
       "output": "pad_thai",
       "after": "prep_and_cook",
-      "end": { "condition": "plated and garnished" },
+      "end": {
+        "condition": "plated and garnished"
+      },
       "steps": [
         {
           "id": "crush_peanuts",
           "device": "chopping_board",
           "action": "Roughly crush peanuts",
-          "inputs": ["peanuts"],
+          "inputs": [
+            "peanuts"
+          ],
           "output": "crushed_peanuts",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "squeeze_lime",
           "device": "chopping_board",
           "action": "Cut lime into wedges",
-          "inputs": ["lime"],
+          "inputs": [
+            "lime"
+          ],
           "output": "lime_wedges",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "plate_pad_thai",
           "device": "chopping_board",
           "action": "Transfer pad thai to serving plates",
-          "inputs": ["cooked_pad_thai"],
+          "inputs": [
+            "cooked_pad_thai"
+          ],
           "output": "plated_pad_thai",
-          "after": ["crush_peanuts", "squeeze_lime"],
-          "end": { "duration_minutes": 1 }
+          "after": [
+            "crush_peanuts",
+            "squeeze_lime"
+          ],
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "top_with_garnish",
           "device": "chopping_board",
           "action": "Top with crushed peanuts, chilli flakes and lime wedges",
-          "inputs": ["plated_pad_thai", "crushed_peanuts", "chilli_flakes", "lime_wedges"],
+          "inputs": [
+            "plated_pad_thai",
+            "crushed_peanuts",
+            "chilli_flakes",
+            "lime_wedges"
+          ],
           "output": "pad_thai",
           "after": "plate_pad_thai",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

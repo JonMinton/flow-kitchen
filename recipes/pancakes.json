@@ -1,78 +1,164 @@
 {
   "title": "Pancakes",
   "servings": 4,
-
+  "cuisine": "American",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 15,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "worktop", "name": "Worktop" },
-    { "id": "mixing_bowl", "name": "Mixing Bowl" },
-    { "id": "small_bowl", "name": "Small Bowl" },
-    { "id": "griddle", "name": "Griddle / Frying Pan" },
-    { "id": "hob", "name": "Hob", "settings": "medium heat" }
+    {
+      "id": "worktop",
+      "name": "Worktop"
+    },
+    {
+      "id": "mixing_bowl",
+      "name": "Mixing Bowl"
+    },
+    {
+      "id": "small_bowl",
+      "name": "Small Bowl"
+    },
+    {
+      "id": "griddle",
+      "name": "Griddle / Frying Pan"
+    },
+    {
+      "id": "hob",
+      "name": "Hob",
+      "settings": "medium heat"
+    }
   ],
-
   "ingredients": [
-    { "id": "flour", "name": "Plain Flour", "quantity": "200g" },
-    { "id": "sugar", "name": "Caster Sugar", "quantity": "2 tbsp" },
-    { "id": "baking_powder", "name": "Baking Powder", "quantity": "2 tsp" },
-    { "id": "milk", "name": "Milk", "quantity": "250ml" },
-    { "id": "eggs", "name": "Eggs", "quantity": "2" },
-    { "id": "butter", "name": "Butter", "quantity": "30g, melted" },
-    { "id": "vanilla", "name": "Vanilla Extract", "quantity": "1 tsp" },
-    { "id": "salt", "name": "Salt", "quantity": "1/4 tsp" }
+    {
+      "id": "flour",
+      "name": "Plain Flour",
+      "quantity": "200g"
+    },
+    {
+      "id": "sugar",
+      "name": "Caster Sugar",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "baking_powder",
+      "name": "Baking Powder",
+      "quantity": "2 tsp"
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "quantity": "250ml"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "2"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "30g, melted"
+    },
+    {
+      "id": "vanilla",
+      "name": "Vanilla Extract",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "1/4 tsp"
+    }
   ],
-
   "steps": [
     {
       "id": "mix_dry",
       "device": "mixing_bowl",
       "action": "Whisk together flour, sugar, baking powder and salt",
-      "inputs": ["flour", "sugar", "baking_powder", "salt"],
+      "inputs": [
+        "flour",
+        "sugar",
+        "baking_powder",
+        "salt"
+      ],
       "output": "dry_mix",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "mix_wet",
       "device": "small_bowl",
       "action": "Whisk together milk, eggs, melted butter and vanilla",
-      "inputs": ["milk", "eggs", "butter", "vanilla"],
+      "inputs": [
+        "milk",
+        "eggs",
+        "butter",
+        "vanilla"
+      ],
       "output": "wet_mix",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "make_batter",
       "device": "mixing_bowl",
       "action": "Pour wet ingredients into dry and stir until just combined",
-      "inputs": ["dry_mix", "wet_mix"],
+      "inputs": [
+        "dry_mix",
+        "wet_mix"
+      ],
       "output": "batter",
-      "after": ["mix_dry", "mix_wet"],
-      "end": { "duration_minutes": 1, "condition": "a few small lumps remain — do not overmix" }
+      "after": [
+        "mix_dry",
+        "mix_wet"
+      ],
+      "end": {
+        "duration_minutes": 1,
+        "condition": "a few small lumps remain — do not overmix"
+      }
     },
     {
       "id": "rest_batter",
       "device": "worktop",
       "action": "Let batter rest while griddle heats",
-      "inputs": ["batter"],
+      "inputs": [
+        "batter"
+      ],
       "output": "rested_batter",
       "after": "make_batter",
-      "end": { "duration_minutes": 2 }
+      "end": {
+        "duration_minutes": 2
+      }
     },
     {
       "id": "cook_pancakes",
       "device": "griddle",
       "action": "Ladle batter onto hot greased griddle, cook in batches, flip when bubbles appear",
-      "inputs": ["rested_batter"],
+      "inputs": [
+        "rested_batter"
+      ],
       "output": "cooked_pancakes",
       "after": "rest_batter",
-      "end": { "duration_minutes": 8, "condition": "golden brown on both sides and cooked through" }
+      "end": {
+        "duration_minutes": 8,
+        "condition": "golden brown on both sides and cooked through"
+      }
     },
     {
       "id": "serve",
       "device": "worktop",
       "action": "Stack pancakes and serve warm",
-      "inputs": ["cooked_pancakes"],
+      "inputs": [
+        "cooked_pancakes"
+      ],
       "output": "pancakes",
       "after": "cook_pancakes",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     }
   ]
 }

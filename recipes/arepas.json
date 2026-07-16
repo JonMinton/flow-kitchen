@@ -1,60 +1,133 @@
 {
   "title": "Arepas",
   "servings": 4,
-
+  "cuisine": "Venezuelan",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 35,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "cornmeal", "name": "Pre-cooked Cornmeal (Masarepa)", "quantity": "250g" },
-    { "id": "warm_water", "name": "Warm Water", "quantity": "300ml" },
-    { "id": "salt", "name": "Salt", "quantity": "1 tsp" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" },
-    { "id": "black_beans", "name": "Black Beans", "quantity": "400g tin" },
-    { "id": "avocado", "name": "Avocado", "quantity": "2" },
-    { "id": "queso_fresco", "name": "Queso Fresco (or Feta)", "quantity": "150g" },
-    { "id": "coriander", "name": "Fresh Coriander", "quantity": "small bunch" },
-    { "id": "lime", "name": "Lime", "quantity": "1" }
+    {
+      "id": "cornmeal",
+      "name": "Pre-cooked Cornmeal (Masarepa)",
+      "quantity": "250g"
+    },
+    {
+      "id": "warm_water",
+      "name": "Warm Water",
+      "quantity": "300ml"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "black_beans",
+      "name": "Black Beans",
+      "quantity": "400g tin"
+    },
+    {
+      "id": "avocado",
+      "name": "Avocado",
+      "quantity": "2"
+    },
+    {
+      "id": "queso_fresco",
+      "name": "Queso Fresco (or Feta)",
+      "quantity": "150g"
+    },
+    {
+      "id": "coriander",
+      "name": "Fresh Coriander",
+      "quantity": "small bunch"
+    },
+    {
+      "id": "lime",
+      "name": "Lime",
+      "quantity": "1"
+    }
   ],
-
   "steps": [
     {
       "id": "make_dough",
       "device": "bowl",
       "action": "Make arepa dough and form discs",
-      "inputs": ["cornmeal", "warm_water", "salt"],
+      "inputs": [
+        "cornmeal",
+        "warm_water",
+        "salt"
+      ],
       "output": "arepa_discs",
-      "end": { "condition": "smooth dough formed into thick discs" },
+      "end": {
+        "condition": "smooth dough formed into thick discs"
+      },
       "steps": [
         {
           "id": "mix_dough",
           "device": "bowl",
           "action": "Combine cornmeal, warm water and salt, stir until a soft dough forms",
-          "inputs": ["cornmeal", "warm_water", "salt"],
+          "inputs": [
+            "cornmeal",
+            "warm_water",
+            "salt"
+          ],
           "output": "rough_dough",
-          "end": { "duration_minutes": 3, "condition": "dough comes together, no dry patches" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "dough comes together, no dry patches"
+          }
         },
         {
           "id": "rest_dough",
           "device": "bowl",
           "action": "Let dough rest for 5 minutes so cornmeal absorbs water fully",
           "after": "mix_dough",
-          "inputs": ["rough_dough"],
+          "inputs": [
+            "rough_dough"
+          ],
           "output": "rested_dough",
-          "end": { "duration_minutes": 5, "condition": "dough smooth and pliable" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "dough smooth and pliable"
+          }
         },
         {
           "id": "form_discs",
           "device": "chopping_board",
           "action": "Divide dough into 8 equal balls and flatten into thick discs about 1cm thick",
           "after": "rest_dough",
-          "inputs": ["rested_dough"],
+          "inputs": [
+            "rested_dough"
+          ],
           "output": "arepa_discs",
-          "end": { "duration_minutes": 4, "condition": "even, smooth discs with no cracks" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "even, smooth discs with no cracks"
+          }
         }
       ]
     },
@@ -63,35 +136,56 @@
       "device": "pan",
       "action": "Pan-fry arepas until golden and crusty",
       "after": "make_dough",
-      "inputs": ["arepa_discs", "vegetable_oil"],
+      "inputs": [
+        "arepa_discs",
+        "vegetable_oil"
+      ],
       "output": "cooked_arepas",
-      "end": { "condition": "golden crust on both sides, cooked through" },
+      "end": {
+        "condition": "golden crust on both sides, cooked through"
+      },
       "steps": [
         {
           "id": "heat_pan_with_oil",
           "device": "pan",
           "action": "Heat vegetable oil in a large pan over medium heat",
-          "inputs": ["vegetable_oil"],
+          "inputs": [
+            "vegetable_oil"
+          ],
           "output": "hot_oiled_pan",
-          "end": { "duration_minutes": 2, "condition": "oil shimmering" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "oil shimmering"
+          }
         },
         {
           "id": "fry_first_side",
           "device": "pan",
           "action": "Place arepas in pan and cook until a golden crust forms on the bottom",
           "after": "heat_pan_with_oil",
-          "inputs": ["arepa_discs", "hot_oiled_pan"],
+          "inputs": [
+            "arepa_discs",
+            "hot_oiled_pan"
+          ],
           "output": "half_cooked_arepas",
-          "end": { "duration_minutes": 5, "condition": "golden brown crust on bottom" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "golden brown crust on bottom"
+          }
         },
         {
           "id": "flip_and_cook",
           "device": "pan",
           "action": "Flip arepas and cook until golden on the other side",
           "after": "fry_first_side",
-          "inputs": ["half_cooked_arepas"],
+          "inputs": [
+            "half_cooked_arepas"
+          ],
           "output": "cooked_arepas",
-          "end": { "duration_minutes": 5, "condition": "golden on both sides, sounds hollow when tapped" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "golden on both sides, sounds hollow when tapped"
+          }
         }
       ]
     },
@@ -99,50 +193,89 @@
       "id": "make_filling",
       "device": "hob",
       "action": "Prepare fillings",
-      "inputs": ["black_beans", "avocado", "lime", "queso_fresco", "coriander", "salt"],
+      "inputs": [
+        "black_beans",
+        "avocado",
+        "lime",
+        "queso_fresco",
+        "coriander",
+        "salt"
+      ],
       "output": "fillings",
-      "end": { "condition": "all fillings ready" },
+      "end": {
+        "condition": "all fillings ready"
+      },
       "steps": [
         {
           "id": "heat_beans",
           "device": "pan",
           "action": "Heat black beans in a small pan, season with salt",
-          "inputs": ["black_beans", "salt"],
+          "inputs": [
+            "black_beans",
+            "salt"
+          ],
           "output": "warm_beans",
-          "end": { "duration_minutes": 5, "condition": "beans heated through" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "beans heated through"
+          }
         },
         {
           "id": "make_guacamole",
           "device": "bowl",
           "action": "Mash avocado with lime juice and salt",
-          "inputs": ["avocado", "lime", "salt"],
+          "inputs": [
+            "avocado",
+            "lime",
+            "salt"
+          ],
           "output": "smashed_avocado",
-          "end": { "condition": "chunky mash, well seasoned" },
+          "end": {
+            "condition": "chunky mash, well seasoned"
+          },
           "steps": [
             {
               "id": "halve_avocado",
               "device": "chopping_board",
               "action": "Halve avocados, remove stones and scoop flesh into bowl",
-              "inputs": ["avocado"],
+              "inputs": [
+                "avocado"
+              ],
               "output": "avocado_flesh",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "squeeze_lime",
               "device": "chopping_board",
               "action": "Halve and squeeze lime",
-              "inputs": ["lime"],
+              "inputs": [
+                "lime"
+              ],
               "output": "lime_juice",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "mash_avocado",
               "device": "bowl",
               "action": "Mash avocado roughly with lime juice and a pinch of salt",
-              "after": ["halve_avocado", "squeeze_lime"],
-              "inputs": ["avocado_flesh", "lime_juice", "salt"],
+              "after": [
+                "halve_avocado",
+                "squeeze_lime"
+              ],
+              "inputs": [
+                "avocado_flesh",
+                "lime_juice",
+                "salt"
+              ],
               "output": "smashed_avocado",
-              "end": { "duration_minutes": 2, "condition": "chunky mash" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "chunky mash"
+              }
             }
           ]
         },
@@ -150,25 +283,38 @@
           "id": "prep_cheese_and_herbs",
           "device": "chopping_board",
           "action": "Crumble cheese and chop coriander",
-          "inputs": ["queso_fresco", "coriander"],
+          "inputs": [
+            "queso_fresco",
+            "coriander"
+          ],
           "output": "prepped_toppings",
-          "end": { "duration_minutes": 3 },
+          "end": {
+            "duration_minutes": 3
+          },
           "steps": [
             {
               "id": "crumble_cheese",
               "device": "chopping_board",
               "action": "Crumble queso fresco (or feta) into small pieces",
-              "inputs": ["queso_fresco"],
+              "inputs": [
+                "queso_fresco"
+              ],
               "output": "crumbled_cheese",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "chop_coriander",
               "device": "chopping_board",
               "action": "Roughly chop fresh coriander",
-              "inputs": ["coriander"],
+              "inputs": [
+                "coriander"
+              ],
               "output": "chopped_coriander",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         }
@@ -178,27 +324,51 @@
       "id": "split_and_fill",
       "device": "chopping_board",
       "action": "Split arepas and fill with toppings",
-      "after": ["cook_arepas", "make_filling"],
-      "inputs": ["cooked_arepas", "warm_beans", "smashed_avocado", "crumbled_cheese", "chopped_coriander"],
+      "after": [
+        "cook_arepas",
+        "make_filling"
+      ],
+      "inputs": [
+        "cooked_arepas",
+        "warm_beans",
+        "smashed_avocado",
+        "crumbled_cheese",
+        "chopped_coriander"
+      ],
       "output": "arepas",
-      "end": { "condition": "served" },
+      "end": {
+        "condition": "served"
+      },
       "steps": [
         {
           "id": "split_arepas",
           "device": "chopping_board",
           "action": "Slice each arepa in half horizontally like a pitta bread",
-          "inputs": ["cooked_arepas"],
+          "inputs": [
+            "cooked_arepas"
+          ],
           "output": "split_arepas",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "stuff_arepas",
           "device": "chopping_board",
           "action": "Fill each arepa with black beans, smashed avocado, crumbled cheese and coriander",
           "after": "split_arepas",
-          "inputs": ["split_arepas", "warm_beans", "smashed_avocado", "crumbled_cheese", "chopped_coriander"],
+          "inputs": [
+            "split_arepas",
+            "warm_beans",
+            "smashed_avocado",
+            "crumbled_cheese",
+            "chopped_coriander"
+          ],
           "output": "arepas",
-          "end": { "duration_minutes": 3, "condition": "generously filled and ready to serve" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "generously filled and ready to serve"
+          }
         }
       ]
     }

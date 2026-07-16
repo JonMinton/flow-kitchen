@@ -1,68 +1,138 @@
 {
   "title": "Pasta Aglio e Olio",
   "servings": 2,
-
+  "cuisine": "Italian",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 20,
+  "prep_minutes": 0,
+  "diet_notes": "Parmesan is made with animal rennet — use a vegetarian hard cheese for a strictly vegetarian dish.",
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "large_pot", "name": "Large Pot" },
-    { "id": "pan", "name": "Frying Pan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "colander", "name": "Colander" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "large_pot",
+      "name": "Large Pot"
+    },
+    {
+      "id": "pan",
+      "name": "Frying Pan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "colander",
+      "name": "Colander"
+    }
   ],
-
   "ingredients": [
-    { "id": "spaghetti", "name": "Spaghetti", "quantity": "200g" },
-    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
-    { "id": "chilli_flakes", "name": "Chilli Flakes", "quantity": "1 tsp" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "4 tbsp" },
-    { "id": "parsley", "name": "Fresh Parsley", "quantity": "handful" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "parmesan", "name": "Parmesan", "quantity": "30g" }
+    {
+      "id": "spaghetti",
+      "name": "Spaghetti",
+      "quantity": "200g"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "4 cloves"
+    },
+    {
+      "id": "chilli_flakes",
+      "name": "Chilli Flakes",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "parsley",
+      "name": "Fresh Parsley",
+      "quantity": "handful"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "parmesan",
+      "name": "Parmesan",
+      "quantity": "30g"
+    }
   ],
-
   "steps": [
     {
       "id": "cook_pasta",
       "device": "large_pot",
       "action": "Cook and drain pasta",
-      "inputs": ["spaghetti", "salt"],
+      "inputs": [
+        "spaghetti",
+        "salt"
+      ],
       "output": "drained_pasta",
-      "end": { "condition": "pasta drained, water reserved" },
+      "end": {
+        "condition": "pasta drained, water reserved"
+      },
       "steps": [
         {
           "id": "boil_water",
           "device": "large_pot",
           "action": "Bring salted water to a rolling boil",
-          "inputs": ["salt"],
+          "inputs": [
+            "salt"
+          ],
           "output": "boiling_water",
-          "end": { "duration_minutes": 10, "condition": "rolling boil" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "rolling boil"
+          }
         },
         {
           "id": "add_pasta",
           "device": "large_pot",
           "action": "Add spaghetti to boiling water",
-          "inputs": ["boiling_water", "spaghetti"],
+          "inputs": [
+            "boiling_water",
+            "spaghetti"
+          ],
           "output": "cooking_pasta",
           "after": "boil_water",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "cook_until_al_dente",
           "device": "large_pot",
           "action": "Cook until al dente, stirring occasionally",
-          "inputs": ["cooking_pasta"],
+          "inputs": [
+            "cooking_pasta"
+          ],
           "output": "al_dente_pasta",
           "after": "add_pasta",
-          "end": { "duration_minutes": 8, "condition": "al dente" }
+          "end": {
+            "duration_minutes": 8,
+            "condition": "al dente"
+          }
         },
         {
           "id": "drain",
           "device": "colander",
           "action": "Drain pasta, reserving a cup of pasta water",
-          "inputs": ["al_dente_pasta"],
+          "inputs": [
+            "al_dente_pasta"
+          ],
           "output": "drained_pasta",
           "after": "cook_until_al_dente",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -70,44 +140,70 @@
       "id": "make_sauce",
       "device": "pan",
       "action": "Make garlic and chilli oil sauce",
-      "inputs": ["garlic", "olive_oil", "chilli_flakes"],
+      "inputs": [
+        "garlic",
+        "olive_oil",
+        "chilli_flakes"
+      ],
       "output": "sauce",
-      "end": { "condition": "garlic golden and fragrant" },
+      "end": {
+        "condition": "garlic golden and fragrant"
+      },
       "steps": [
         {
           "id": "slice_garlic",
           "device": "chopping_board",
           "action": "Thinly slice garlic cloves",
-          "inputs": ["garlic"],
+          "inputs": [
+            "garlic"
+          ],
           "output": "sliced_garlic",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "heat_oil",
           "device": "pan",
           "action": "Heat olive oil over medium-low heat",
-          "inputs": ["olive_oil"],
+          "inputs": [
+            "olive_oil"
+          ],
           "output": "hot_oil",
           "after": "slice_garlic",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "fry_garlic",
           "device": "pan",
           "action": "Gently fry garlic until just golden",
-          "inputs": ["hot_oil", "sliced_garlic"],
+          "inputs": [
+            "hot_oil",
+            "sliced_garlic"
+          ],
           "output": "garlic_oil",
           "after": "heat_oil",
-          "end": { "duration_minutes": 3, "condition": "garlic light golden, not burnt" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "garlic light golden, not burnt"
+          }
         },
         {
           "id": "add_chilli",
           "device": "pan",
           "action": "Add chilli flakes and stir briefly",
-          "inputs": ["garlic_oil", "chilli_flakes"],
+          "inputs": [
+            "garlic_oil",
+            "chilli_flakes"
+          ],
           "output": "sauce",
           "after": "fry_garlic",
-          "end": { "duration_minutes": 1, "condition": "fragrant" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "fragrant"
+          }
         }
       ]
     },
@@ -115,45 +211,75 @@
       "id": "combine",
       "device": "pan",
       "action": "Combine pasta with sauce and garnish",
-      "inputs": ["drained_pasta", "sauce", "parsley", "parmesan"],
+      "inputs": [
+        "drained_pasta",
+        "sauce",
+        "parsley",
+        "parmesan"
+      ],
       "output": "aglio_e_olio",
-      "after": ["cook_pasta", "make_sauce"],
-      "end": { "condition": "plated and garnished" },
+      "after": [
+        "cook_pasta",
+        "make_sauce"
+      ],
+      "end": {
+        "condition": "plated and garnished"
+      },
       "steps": [
         {
           "id": "toss_pasta_with_sauce",
           "device": "pan",
           "action": "Toss drained pasta into sauce over low heat",
-          "inputs": ["drained_pasta", "sauce"],
+          "inputs": [
+            "drained_pasta",
+            "sauce"
+          ],
           "output": "sauced_pasta",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_pasta_water",
           "device": "pan",
           "action": "Add splashes of reserved pasta water, toss to emulsify",
-          "inputs": ["sauced_pasta"],
+          "inputs": [
+            "sauced_pasta"
+          ],
           "output": "emulsified_pasta",
           "after": "toss_pasta_with_sauce",
-          "end": { "duration_minutes": 2, "condition": "glossy and coated" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "glossy and coated"
+          }
         },
         {
           "id": "plate",
           "device": "pan",
           "action": "Plate the pasta",
-          "inputs": ["emulsified_pasta"],
+          "inputs": [
+            "emulsified_pasta"
+          ],
           "output": "plated_pasta",
           "after": "add_pasta_water",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "garnish",
           "device": "pan",
           "action": "Garnish with chopped parsley and grated parmesan",
-          "inputs": ["plated_pasta", "parsley", "parmesan"],
+          "inputs": [
+            "plated_pasta",
+            "parsley",
+            "parmesan"
+          ],
           "output": "aglio_e_olio",
           "after": "plate",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

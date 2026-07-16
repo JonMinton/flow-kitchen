@@ -2,12 +2,16 @@
   "name": "recipes-as-music",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run validate && vite build",
+    "validate": "node scripts/validate.js",
+    "build-index": "node scripts/build-index.js",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "ajv": "^8.17.1",
     "d3": "^7.9.0",
     "vite": "^6.1.0"
   },

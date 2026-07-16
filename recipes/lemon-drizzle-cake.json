@@ -1,67 +1,149 @@
 {
   "title": "Lemon Drizzle Cake",
   "servings": 8,
-
+  "cuisine": "British",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 50,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "oven", "name": "Oven", "settings": "180°C / 350°F / Gas 4" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "small_bowl", "name": "Small Bowl" },
-    { "id": "loaf_tin", "name": "Loaf Tin" },
-    { "id": "cooling_rack", "name": "Cooling Rack" }
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "180°C / 350°F / Gas 4"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "small_bowl",
+      "name": "Small Bowl"
+    },
+    {
+      "id": "loaf_tin",
+      "name": "Loaf Tin"
+    },
+    {
+      "id": "cooling_rack",
+      "name": "Cooling Rack"
+    }
   ],
-
   "ingredients": [
-    { "id": "butter", "name": "Butter", "quantity": "175g, softened" },
-    { "id": "caster_sugar", "name": "Caster Sugar", "quantity": "175g" },
-    { "id": "eggs", "name": "Eggs", "quantity": "3" },
-    { "id": "self_raising_flour", "name": "Self-raising Flour", "quantity": "175g" },
-    { "id": "lemons", "name": "Lemons", "quantity": "2" },
-    { "id": "granulated_sugar", "name": "Granulated Sugar", "quantity": "85g" },
-    { "id": "milk", "name": "Milk", "quantity": "2 tbsp" }
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "175g, softened"
+    },
+    {
+      "id": "caster_sugar",
+      "name": "Caster Sugar",
+      "quantity": "175g"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "3"
+    },
+    {
+      "id": "self_raising_flour",
+      "name": "Self-raising Flour",
+      "quantity": "175g"
+    },
+    {
+      "id": "lemons",
+      "name": "Lemons",
+      "quantity": "2"
+    },
+    {
+      "id": "granulated_sugar",
+      "name": "Granulated Sugar",
+      "quantity": "85g"
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "quantity": "2 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "make_batter",
       "device": "bowl",
       "action": "Make cake batter",
-      "inputs": ["butter", "caster_sugar", "eggs", "self_raising_flour", "lemons", "milk"],
+      "inputs": [
+        "butter",
+        "caster_sugar",
+        "eggs",
+        "self_raising_flour",
+        "lemons",
+        "milk"
+      ],
       "output": "batter",
-      "end": { "condition": "batter smooth and combined" },
+      "end": {
+        "condition": "batter smooth and combined"
+      },
       "steps": [
         {
           "id": "cream_butter_sugar",
           "device": "bowl",
           "action": "Cream softened butter and caster sugar together until pale and fluffy",
-          "inputs": ["butter", "caster_sugar"],
+          "inputs": [
+            "butter",
+            "caster_sugar"
+          ],
           "output": "creamed_mixture",
-          "end": { "duration_minutes": 3, "condition": "pale and fluffy" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "pale and fluffy"
+          }
         },
         {
           "id": "add_eggs",
           "device": "bowl",
           "action": "Beat in eggs one at a time, adding a spoonful of flour with each to prevent curdling",
-          "inputs": ["creamed_mixture", "eggs", "self_raising_flour"],
+          "inputs": [
+            "creamed_mixture",
+            "eggs",
+            "self_raising_flour"
+          ],
           "output": "wet_mix",
           "after": "cream_butter_sugar",
-          "end": { "duration_minutes": 3, "condition": "well combined" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "well combined"
+          }
         },
         {
           "id": "zest_lemons",
           "device": "small_bowl",
           "action": "Finely zest both lemons (reserve juice for drizzle)",
-          "inputs": ["lemons"],
+          "inputs": [
+            "lemons"
+          ],
           "output": "lemon_zest",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "fold_flour_zest",
           "device": "bowl",
           "action": "Fold in remaining flour, lemon zest and milk",
-          "inputs": ["wet_mix", "self_raising_flour", "lemon_zest", "milk"],
+          "inputs": [
+            "wet_mix",
+            "self_raising_flour",
+            "lemon_zest",
+            "milk"
+          ],
           "output": "batter",
-          "after": ["add_eggs", "zest_lemons"],
-          "end": { "condition": "just combined, do not overmix" }
+          "after": [
+            "add_eggs",
+            "zest_lemons"
+          ],
+          "end": {
+            "condition": "just combined, do not overmix"
+          }
         }
       ]
     },
@@ -69,27 +151,40 @@
       "id": "bake_cake",
       "device": "oven",
       "action": "Pour into tin and bake",
-      "inputs": ["batter"],
+      "inputs": [
+        "batter"
+      ],
       "output": "baked_cake",
       "after": "make_batter",
-      "end": { "condition": "baked and golden" },
+      "end": {
+        "condition": "baked and golden"
+      },
       "steps": [
         {
           "id": "pour_tin",
           "device": "loaf_tin",
           "action": "Pour batter into greased and lined loaf tin, level the top",
-          "inputs": ["batter"],
+          "inputs": [
+            "batter"
+          ],
           "output": "raw_cake",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "bake",
           "device": "oven",
           "action": "Bake in preheated oven",
-          "inputs": ["raw_cake"],
+          "inputs": [
+            "raw_cake"
+          ],
           "output": "baked_cake",
           "after": "pour_tin",
-          "end": { "duration_minutes": 35, "condition": "golden brown and a skewer comes out clean" }
+          "end": {
+            "duration_minutes": 35,
+            "condition": "golden brown and a skewer comes out clean"
+          }
         }
       ]
     },
@@ -97,26 +192,41 @@
       "id": "make_drizzle",
       "device": "small_bowl",
       "action": "Make lemon drizzle",
-      "inputs": ["lemons", "granulated_sugar"],
+      "inputs": [
+        "lemons",
+        "granulated_sugar"
+      ],
       "output": "lemon_drizzle",
-      "end": { "condition": "sugar mostly dissolved" },
+      "end": {
+        "condition": "sugar mostly dissolved"
+      },
       "steps": [
         {
           "id": "juice_lemons",
           "device": "small_bowl",
           "action": "Squeeze juice from both zested lemons",
-          "inputs": ["lemons"],
+          "inputs": [
+            "lemons"
+          ],
           "output": "lemon_juice",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "mix_drizzle",
           "device": "small_bowl",
           "action": "Stir granulated sugar into lemon juice (do not dissolve fully, the crunch is desirable)",
-          "inputs": ["lemon_juice", "granulated_sugar"],
+          "inputs": [
+            "lemon_juice",
+            "granulated_sugar"
+          ],
           "output": "lemon_drizzle",
           "after": "juice_lemons",
-          "end": { "duration_minutes": 1, "condition": "sugar partially dissolved" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "sugar partially dissolved"
+          }
         }
       ]
     },
@@ -124,27 +234,45 @@
       "id": "apply_drizzle",
       "device": "loaf_tin",
       "action": "Poke holes and pour drizzle over warm cake",
-      "inputs": ["baked_cake", "lemon_drizzle"],
+      "inputs": [
+        "baked_cake",
+        "lemon_drizzle"
+      ],
       "output": "drizzled_cake",
-      "after": ["bake_cake", "make_drizzle"],
-      "end": { "condition": "drizzle absorbed" },
+      "after": [
+        "bake_cake",
+        "make_drizzle"
+      ],
+      "end": {
+        "condition": "drizzle absorbed"
+      },
       "steps": [
         {
           "id": "poke_holes",
           "device": "loaf_tin",
           "action": "Poke holes all over the warm cake with a skewer while still in the tin",
-          "inputs": ["baked_cake"],
+          "inputs": [
+            "baked_cake"
+          ],
           "output": "poked_cake",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "pour_drizzle",
           "device": "loaf_tin",
           "action": "Spoon the lemon drizzle evenly over the warm cake, letting it soak in",
-          "inputs": ["poked_cake", "lemon_drizzle"],
+          "inputs": [
+            "poked_cake",
+            "lemon_drizzle"
+          ],
           "output": "drizzled_cake",
           "after": "poke_holes",
-          "end": { "duration_minutes": 2, "condition": "all drizzle absorbed" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "all drizzle absorbed"
+          }
         }
       ]
     },
@@ -152,10 +280,15 @@
       "id": "cool",
       "device": "cooling_rack",
       "action": "Leave in tin to cool completely before turning out",
-      "inputs": ["drizzled_cake"],
+      "inputs": [
+        "drizzled_cake"
+      ],
       "output": "lemon_drizzle_cake",
       "after": "apply_drizzle",
-      "end": { "duration_minutes": 20, "condition": "completely cool" }
+      "end": {
+        "duration_minutes": 20,
+        "condition": "completely cool"
+      }
     }
   ]
 }

@@ -1,52 +1,121 @@
 {
   "title": "Ceviche",
   "servings": 4,
-
+  "cuisine": "Peruvian",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 50,
+  "prep_minutes": 30,
   "devices": [
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "hob", "name": "Hob" },
-    { "id": "saucepan", "name": "Saucepan" }
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    }
   ],
-
   "ingredients": [
-    { "id": "sea_bass", "name": "Sea Bass Fillets", "quantity": "500g, skinned and pin-boned" },
-    { "id": "limes", "name": "Limes", "quantity": "8" },
-    { "id": "red_onion", "name": "Red Onion", "quantity": "1" },
-    { "id": "coriander", "name": "Fresh Coriander", "quantity": "large bunch" },
-    { "id": "aji_amarillo", "name": "Ají Amarillo Paste", "quantity": "1 tbsp" },
-    { "id": "sweet_potato", "name": "Sweet Potato", "quantity": "2 medium" },
-    { "id": "corn_on_cob", "name": "Corn on the Cob", "quantity": "2" },
-    { "id": "garlic", "name": "Garlic", "quantity": "1 clove" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Pepper", "quantity": "to taste" }
+    {
+      "id": "sea_bass",
+      "name": "Sea Bass Fillets",
+      "quantity": "500g, skinned and pin-boned"
+    },
+    {
+      "id": "limes",
+      "name": "Limes",
+      "quantity": "8"
+    },
+    {
+      "id": "red_onion",
+      "name": "Red Onion",
+      "quantity": "1"
+    },
+    {
+      "id": "coriander",
+      "name": "Fresh Coriander",
+      "quantity": "large bunch"
+    },
+    {
+      "id": "aji_amarillo",
+      "name": "Ají Amarillo Paste",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "sweet_potato",
+      "name": "Sweet Potato",
+      "quantity": "2 medium"
+    },
+    {
+      "id": "corn_on_cob",
+      "name": "Corn on the Cob",
+      "quantity": "2"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "1 clove"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "quantity": "to taste"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_fish",
       "device": "chopping_board",
       "action": "Prepare fish for curing",
-      "inputs": ["sea_bass", "salt"],
+      "inputs": [
+        "sea_bass",
+        "salt"
+      ],
       "output": "diced_fish",
-      "end": { "condition": "fish diced into even cubes" },
+      "end": {
+        "condition": "fish diced into even cubes"
+      },
       "steps": [
         {
           "id": "check_for_bones",
           "device": "chopping_board",
           "action": "Run fingers over fillets to check for and remove any remaining pin bones",
-          "inputs": ["sea_bass"],
+          "inputs": [
+            "sea_bass"
+          ],
           "output": "boneless_fish",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "dice_fish",
           "device": "chopping_board",
           "action": "Cut fish into 2cm cubes, season lightly with salt",
-          "inputs": ["boneless_fish", "salt"],
+          "inputs": [
+            "boneless_fish",
+            "salt"
+          ],
           "output": "diced_fish",
           "after": "check_for_bones",
-          "end": { "duration_minutes": 4, "condition": "even cubes, lightly salted" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "even cubes, lightly salted"
+          }
         }
       ]
     },
@@ -54,41 +123,68 @@
       "id": "make_leche_de_tigre",
       "device": "bowl",
       "action": "Make leche de tigre (tiger's milk curing liquid)",
-      "inputs": ["limes", "garlic", "aji_amarillo", "coriander", "salt", "pepper"],
+      "inputs": [
+        "limes",
+        "garlic",
+        "aji_amarillo",
+        "coriander",
+        "salt",
+        "pepper"
+      ],
       "output": "leche_de_tigre",
-      "end": { "condition": "curing liquid mixed and seasoned" },
+      "end": {
+        "condition": "curing liquid mixed and seasoned"
+      },
       "steps": [
         {
           "id": "prep_leche_ingredients",
           "device": "chopping_board",
           "action": "Prepare ingredients for curing liquid",
-          "inputs": ["limes", "garlic", "coriander"],
+          "inputs": [
+            "limes",
+            "garlic",
+            "coriander"
+          ],
           "output": "prepped_leche_ingredients",
-          "end": { "condition": "ingredients juiced and minced" },
+          "end": {
+            "condition": "ingredients juiced and minced"
+          },
           "steps": [
             {
               "id": "juice_limes",
               "device": "chopping_board",
               "action": "Juice all limes",
-              "inputs": ["limes"],
+              "inputs": [
+                "limes"
+              ],
               "output": "lime_juice",
-              "end": { "duration_minutes": 4 }
+              "end": {
+                "duration_minutes": 4
+              }
             },
             {
               "id": "mince_garlic",
               "device": "chopping_board",
               "action": "Finely mince garlic clove",
-              "inputs": ["garlic"],
+              "inputs": [
+                "garlic"
+              ],
               "output": "minced_garlic",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "chop_coriander_stems",
               "device": "chopping_board",
               "action": "Finely chop coriander stems, reserve leaves for garnish",
-              "inputs": ["coriander"],
+              "inputs": [
+                "coriander"
+              ],
               "output": "prepped_leche_ingredients",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             }
           ]
         },
@@ -96,10 +192,20 @@
           "id": "mix_leche",
           "device": "bowl",
           "action": "Combine lime juice, garlic, ají amarillo, coriander stems, salt and pepper",
-          "inputs": ["lime_juice", "minced_garlic", "aji_amarillo", "prepped_leche_ingredients", "salt", "pepper"],
+          "inputs": [
+            "lime_juice",
+            "minced_garlic",
+            "aji_amarillo",
+            "prepped_leche_ingredients",
+            "salt",
+            "pepper"
+          ],
           "output": "leche_de_tigre",
           "after": "prep_leche_ingredients",
-          "end": { "duration_minutes": 2, "condition": "well combined and tasted for seasoning" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "well combined and tasted for seasoning"
+          }
         }
       ]
     },
@@ -107,44 +213,75 @@
       "id": "cure_fish",
       "device": "bowl",
       "action": "Cure fish in leche de tigre",
-      "inputs": ["diced_fish", "leche_de_tigre", "red_onion"],
+      "inputs": [
+        "diced_fish",
+        "leche_de_tigre",
+        "red_onion"
+      ],
       "output": "cured_ceviche",
-      "after": ["prep_fish", "make_leche_de_tigre"],
-      "end": { "condition": "fish opaque and cured" },
+      "after": [
+        "prep_fish",
+        "make_leche_de_tigre"
+      ],
+      "end": {
+        "condition": "fish opaque and cured"
+      },
       "steps": [
         {
           "id": "slice_onion",
           "device": "chopping_board",
           "action": "Very thinly slice red onion into half-moons",
-          "inputs": ["red_onion"],
+          "inputs": [
+            "red_onion"
+          ],
           "output": "sliced_onion",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "combine_fish_and_leche",
           "device": "bowl",
           "action": "Add diced fish to leche de tigre and toss gently",
-          "inputs": ["diced_fish", "leche_de_tigre"],
+          "inputs": [
+            "diced_fish",
+            "leche_de_tigre"
+          ],
           "output": "fish_in_cure",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_onion",
           "device": "bowl",
           "action": "Add sliced red onion to the fish",
-          "inputs": ["fish_in_cure", "sliced_onion"],
+          "inputs": [
+            "fish_in_cure",
+            "sliced_onion"
+          ],
           "output": "ceviche_mix",
-          "after": ["combine_fish_and_leche", "slice_onion"],
-          "end": { "duration_minutes": 1 }
+          "after": [
+            "combine_fish_and_leche",
+            "slice_onion"
+          ],
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "refrigerate",
           "device": "bowl",
           "action": "Cover and refrigerate to cure",
-          "inputs": ["ceviche_mix"],
+          "inputs": [
+            "ceviche_mix"
+          ],
           "output": "cured_ceviche",
           "after": "add_onion",
-          "end": { "duration_minutes": 20, "condition": "fish opaque on outside, still slightly translucent in centre" }
+          "end": {
+            "duration_minutes": 20,
+            "condition": "fish opaque on outside, still slightly translucent in centre"
+          }
         }
       ]
     },
@@ -152,34 +289,55 @@
       "id": "cook_sides",
       "device": "hob",
       "action": "Cook sweet potato and corn accompaniments",
-      "inputs": ["sweet_potato", "corn_on_cob", "salt"],
+      "inputs": [
+        "sweet_potato",
+        "corn_on_cob",
+        "salt"
+      ],
       "output": "cooked_sides",
-      "end": { "condition": "sides tender and ready" },
+      "end": {
+        "condition": "sides tender and ready"
+      },
       "steps": [
         {
           "id": "boil_sweet_potato",
           "device": "saucepan",
           "action": "Peel and boil sweet potato until tender",
-          "inputs": ["sweet_potato", "salt"],
+          "inputs": [
+            "sweet_potato",
+            "salt"
+          ],
           "output": "cooked_sweet_potato",
-          "end": { "condition": "sweet potato tender" },
+          "end": {
+            "condition": "sweet potato tender"
+          },
           "steps": [
             {
               "id": "peel_and_chop_sweet_potato",
               "device": "chopping_board",
               "action": "Peel sweet potatoes and cut into thick rounds",
-              "inputs": ["sweet_potato"],
+              "inputs": [
+                "sweet_potato"
+              ],
               "output": "sweet_potato_rounds",
-              "end": { "duration_minutes": 3 }
+              "end": {
+                "duration_minutes": 3
+              }
             },
             {
               "id": "cook_sweet_potato",
               "device": "saucepan",
               "action": "Boil sweet potato rounds in salted water until tender",
-              "inputs": ["sweet_potato_rounds", "salt"],
+              "inputs": [
+                "sweet_potato_rounds",
+                "salt"
+              ],
               "output": "cooked_sweet_potato",
               "after": "peel_and_chop_sweet_potato",
-              "end": { "duration_minutes": 15, "condition": "fork-tender but holding shape" }
+              "end": {
+                "duration_minutes": 15,
+                "condition": "fork-tender but holding shape"
+              }
             }
           ]
         },
@@ -187,26 +345,41 @@
           "id": "boil_corn",
           "device": "saucepan",
           "action": "Boil corn on the cob and cut into rounds",
-          "inputs": ["corn_on_cob", "salt"],
+          "inputs": [
+            "corn_on_cob",
+            "salt"
+          ],
           "output": "corn_rounds",
-          "end": { "condition": "corn cooked and sliced" },
+          "end": {
+            "condition": "corn cooked and sliced"
+          },
           "steps": [
             {
               "id": "cook_corn",
               "device": "saucepan",
               "action": "Boil corn on the cob in salted water",
-              "inputs": ["corn_on_cob", "salt"],
+              "inputs": [
+                "corn_on_cob",
+                "salt"
+              ],
               "output": "cooked_corn",
-              "end": { "duration_minutes": 8, "condition": "kernels tender" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "kernels tender"
+              }
             },
             {
               "id": "slice_corn",
               "device": "chopping_board",
               "action": "Cut each cob into thick rounds",
-              "inputs": ["cooked_corn"],
+              "inputs": [
+                "cooked_corn"
+              ],
               "output": "corn_rounds",
               "after": "cook_corn",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             }
           ]
         }
@@ -216,36 +389,61 @@
       "id": "plate_and_garnish",
       "device": "chopping_board",
       "action": "Plate ceviche with sides and garnish",
-      "inputs": ["cured_ceviche", "cooked_sweet_potato", "corn_rounds", "coriander"],
+      "inputs": [
+        "cured_ceviche",
+        "cooked_sweet_potato",
+        "corn_rounds",
+        "coriander"
+      ],
       "output": "finished_ceviche",
-      "after": ["cure_fish", "cook_sides"],
-      "end": { "condition": "plated and garnished" },
+      "after": [
+        "cure_fish",
+        "cook_sides"
+      ],
+      "end": {
+        "condition": "plated and garnished"
+      },
       "steps": [
         {
           "id": "arrange_sides",
           "device": "chopping_board",
           "action": "Place sweet potato rounds and corn on serving plates",
-          "inputs": ["cooked_sweet_potato", "corn_rounds"],
+          "inputs": [
+            "cooked_sweet_potato",
+            "corn_rounds"
+          ],
           "output": "plated_sides",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "spoon_ceviche",
           "device": "chopping_board",
           "action": "Spoon ceviche alongside sides, pour over extra leche de tigre",
-          "inputs": ["cured_ceviche", "plated_sides"],
+          "inputs": [
+            "cured_ceviche",
+            "plated_sides"
+          ],
           "output": "plated_ceviche",
           "after": "arrange_sides",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "garnish",
           "device": "chopping_board",
           "action": "Scatter reserved coriander leaves over the top",
-          "inputs": ["plated_ceviche", "coriander"],
+          "inputs": [
+            "plated_ceviche",
+            "coriander"
+          ],
           "output": "finished_ceviche",
           "after": "spoon_ceviche",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

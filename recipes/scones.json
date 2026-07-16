@@ -1,76 +1,163 @@
 {
   "title": "Scones",
   "servings": 8,
-
+  "cuisine": "British",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 25,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "oven", "name": "Oven", "settings": "220°C / 425°F / Gas 7" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "baking_tray", "name": "Baking Tray" }
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "220°C / 425°F / Gas 7"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "baking_tray",
+      "name": "Baking Tray"
+    }
   ],
-
   "ingredients": [
-    { "id": "self_raising_flour", "name": "Self-raising Flour", "quantity": "350g" },
-    { "id": "butter", "name": "Butter", "quantity": "85g, cold and cubed" },
-    { "id": "caster_sugar", "name": "Caster Sugar", "quantity": "3 tbsp" },
-    { "id": "milk", "name": "Milk", "quantity": "175ml" },
-    { "id": "egg", "name": "Egg", "quantity": "1" },
-    { "id": "baking_powder", "name": "Baking Powder", "quantity": "1 tsp" },
-    { "id": "salt", "name": "Salt", "quantity": "pinch" },
-    { "id": "vanilla_extract", "name": "Vanilla Extract", "quantity": "1 tsp" }
+    {
+      "id": "self_raising_flour",
+      "name": "Self-raising Flour",
+      "quantity": "350g"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "85g, cold and cubed"
+    },
+    {
+      "id": "caster_sugar",
+      "name": "Caster Sugar",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "quantity": "175ml"
+    },
+    {
+      "id": "egg",
+      "name": "Egg",
+      "quantity": "1"
+    },
+    {
+      "id": "baking_powder",
+      "name": "Baking Powder",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "pinch"
+    },
+    {
+      "id": "vanilla_extract",
+      "name": "Vanilla Extract",
+      "quantity": "1 tsp"
+    }
   ],
-
   "steps": [
     {
       "id": "make_dough",
       "device": "bowl",
       "action": "Make scone dough",
-      "inputs": ["self_raising_flour", "baking_powder", "salt", "butter", "caster_sugar", "milk", "vanilla_extract"],
+      "inputs": [
+        "self_raising_flour",
+        "baking_powder",
+        "salt",
+        "butter",
+        "caster_sugar",
+        "milk",
+        "vanilla_extract"
+      ],
       "output": "scone_dough",
-      "end": { "condition": "soft, slightly sticky dough" },
+      "end": {
+        "condition": "soft, slightly sticky dough"
+      },
       "steps": [
         {
           "id": "sift_dry",
           "device": "bowl",
           "action": "Sift flour, baking powder and salt into a large bowl",
-          "inputs": ["self_raising_flour", "baking_powder", "salt"],
+          "inputs": [
+            "self_raising_flour",
+            "baking_powder",
+            "salt"
+          ],
           "output": "sifted_dry",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "rub_in_butter",
           "device": "bowl",
           "action": "Rub cold butter into flour with fingertips until mixture resembles breadcrumbs",
-          "inputs": ["sifted_dry", "butter"],
+          "inputs": [
+            "sifted_dry",
+            "butter"
+          ],
           "output": "rubbed_mixture",
           "after": "sift_dry",
-          "end": { "duration_minutes": 4, "condition": "fine breadcrumb texture, no large lumps of butter" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "fine breadcrumb texture, no large lumps of butter"
+          }
         },
         {
           "id": "add_sugar",
           "device": "bowl",
           "action": "Stir in caster sugar",
-          "inputs": ["rubbed_mixture", "caster_sugar"],
+          "inputs": [
+            "rubbed_mixture",
+            "caster_sugar"
+          ],
           "output": "sweetened_mixture",
           "after": "rub_in_butter",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "make_wet",
           "device": "bowl",
           "action": "Mix milk with vanilla extract",
-          "inputs": ["milk", "vanilla_extract"],
+          "inputs": [
+            "milk",
+            "vanilla_extract"
+          ],
           "output": "vanilla_milk",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "form_dough",
           "device": "bowl",
           "action": "Make a well, pour in vanilla milk and mix quickly with a knife to form a soft dough",
-          "inputs": ["sweetened_mixture", "vanilla_milk"],
+          "inputs": [
+            "sweetened_mixture",
+            "vanilla_milk"
+          ],
           "output": "scone_dough",
-          "after": ["add_sugar", "make_wet"],
-          "end": { "condition": "just comes together, do not overwork" }
+          "after": [
+            "add_sugar",
+            "make_wet"
+          ],
+          "end": {
+            "condition": "just comes together, do not overwork"
+          }
         }
       ]
     },
@@ -78,27 +165,41 @@
       "id": "shape_scones",
       "device": "chopping_board",
       "action": "Shape and cut scones",
-      "inputs": ["scone_dough"],
+      "inputs": [
+        "scone_dough"
+      ],
       "output": "cut_scones",
       "after": "make_dough",
-      "end": { "condition": "even rounds ready for baking" },
+      "end": {
+        "condition": "even rounds ready for baking"
+      },
       "steps": [
         {
           "id": "pat_out",
           "device": "chopping_board",
           "action": "Turn dough onto floured surface and pat out to 3cm thick",
-          "inputs": ["scone_dough"],
+          "inputs": [
+            "scone_dough"
+          ],
           "output": "patted_dough",
-          "end": { "duration_minutes": 1, "condition": "even thickness, about 3cm" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "even thickness, about 3cm"
+          }
         },
         {
           "id": "cut_rounds",
           "device": "chopping_board",
           "action": "Stamp out rounds with a 6cm cutter, re-pat and cut remaining dough",
-          "inputs": ["patted_dough"],
+          "inputs": [
+            "patted_dough"
+          ],
           "output": "cut_scones",
           "after": "pat_out",
-          "end": { "duration_minutes": 2, "condition": "8 even rounds, press cutter straight down without twisting" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "8 even rounds, press cutter straight down without twisting"
+          }
         }
       ]
     },
@@ -106,35 +207,57 @@
       "id": "glaze",
       "device": "baking_tray",
       "action": "Arrange on tray and glaze with egg wash",
-      "inputs": ["cut_scones", "egg"],
+      "inputs": [
+        "cut_scones",
+        "egg"
+      ],
       "output": "glazed_scones",
       "after": "shape_scones",
-      "end": { "condition": "tops evenly glazed" },
+      "end": {
+        "condition": "tops evenly glazed"
+      },
       "steps": [
         {
           "id": "arrange_on_tray",
           "device": "baking_tray",
           "action": "Place scones on a lightly floured baking tray, sides just touching",
-          "inputs": ["cut_scones"],
+          "inputs": [
+            "cut_scones"
+          ],
           "output": "arranged_scones",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "beat_egg",
           "device": "bowl",
           "action": "Beat egg to make egg wash",
-          "inputs": ["egg"],
+          "inputs": [
+            "egg"
+          ],
           "output": "egg_wash",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "brush_tops",
           "device": "baking_tray",
           "action": "Brush tops of scones with egg wash, avoiding drips down the sides",
-          "inputs": ["arranged_scones", "egg_wash"],
+          "inputs": [
+            "arranged_scones",
+            "egg_wash"
+          ],
           "output": "glazed_scones",
-          "after": ["arrange_on_tray", "beat_egg"],
-          "end": { "duration_minutes": 1, "condition": "light even glaze on top only" }
+          "after": [
+            "arrange_on_tray",
+            "beat_egg"
+          ],
+          "end": {
+            "duration_minutes": 1,
+            "condition": "light even glaze on top only"
+          }
         }
       ]
     },
@@ -142,10 +265,15 @@
       "id": "bake",
       "device": "oven",
       "action": "Bake in preheated oven until risen and golden",
-      "inputs": ["glazed_scones"],
+      "inputs": [
+        "glazed_scones"
+      ],
       "output": "scones",
       "after": "glaze",
-      "end": { "duration_minutes": 12, "condition": "tall, risen, golden brown on top and sound hollow when tapped" }
+      "end": {
+        "duration_minutes": 12,
+        "condition": "tall, risen, golden brown on top and sound hollow when tapped"
+      }
     }
   ]
 }

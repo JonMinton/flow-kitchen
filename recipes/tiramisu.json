@@ -1,60 +1,129 @@
 {
   "title": "Tiramisu",
   "servings": 8,
-
+  "cuisine": "Italian",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 270,
+  "prep_minutes": 30,
   "devices": [
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "small_bowl", "name": "Small Bowl" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "baking_dish", "name": "Baking Dish" }
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "small_bowl",
+      "name": "Small Bowl"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "baking_dish",
+      "name": "Baking Dish"
+    }
   ],
-
   "ingredients": [
-    { "id": "mascarpone", "name": "Mascarpone", "quantity": "500g" },
-    { "id": "eggs", "name": "Eggs", "quantity": "4" },
-    { "id": "sugar", "name": "Caster Sugar", "quantity": "100g" },
-    { "id": "espresso", "name": "Strong Espresso", "quantity": "300ml" },
-    { "id": "marsala", "name": "Marsala Wine", "quantity": "4 tbsp" },
-    { "id": "savoiardi", "name": "Savoiardi (Ladyfinger Biscuits)", "quantity": "200g" },
-    { "id": "cocoa_powder", "name": "Cocoa Powder", "quantity": "2 tbsp" },
-    { "id": "dark_chocolate", "name": "Dark Chocolate", "quantity": "50g" },
-    { "id": "vanilla_extract", "name": "Vanilla Extract", "quantity": "1 tsp" }
+    {
+      "id": "mascarpone",
+      "name": "Mascarpone",
+      "quantity": "500g"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "4"
+    },
+    {
+      "id": "sugar",
+      "name": "Caster Sugar",
+      "quantity": "100g"
+    },
+    {
+      "id": "espresso",
+      "name": "Strong Espresso",
+      "quantity": "300ml"
+    },
+    {
+      "id": "marsala",
+      "name": "Marsala Wine",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "savoiardi",
+      "name": "Savoiardi (Ladyfinger Biscuits)",
+      "quantity": "200g"
+    },
+    {
+      "id": "cocoa_powder",
+      "name": "Cocoa Powder",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "dark_chocolate",
+      "name": "Dark Chocolate",
+      "quantity": "50g"
+    },
+    {
+      "id": "vanilla_extract",
+      "name": "Vanilla Extract",
+      "quantity": "1 tsp"
+    }
   ],
-
   "steps": [
     {
       "id": "make_coffee_mixture",
       "device": "bowl",
       "action": "Make coffee soaking mixture",
-      "inputs": ["espresso", "marsala"],
+      "inputs": [
+        "espresso",
+        "marsala"
+      ],
       "output": "coffee_mixture",
-      "end": { "condition": "coffee mixture cooled" },
+      "end": {
+        "condition": "coffee mixture cooled"
+      },
       "steps": [
         {
           "id": "brew_espresso",
           "device": "bowl",
           "action": "Brew strong espresso and pour into a shallow bowl",
-          "inputs": ["espresso"],
+          "inputs": [
+            "espresso"
+          ],
           "output": "brewed_espresso",
-          "end": { "duration_minutes": 5 }
+          "end": {
+            "duration_minutes": 5
+          }
         },
         {
           "id": "add_marsala",
           "device": "bowl",
           "action": "Stir marsala wine into espresso",
-          "inputs": ["brewed_espresso", "marsala"],
+          "inputs": [
+            "brewed_espresso",
+            "marsala"
+          ],
           "output": "warm_coffee_mixture",
           "after": "brew_espresso",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "cool_coffee",
           "device": "bowl",
           "action": "Set aside to cool to room temperature",
-          "inputs": ["warm_coffee_mixture"],
+          "inputs": [
+            "warm_coffee_mixture"
+          ],
           "output": "coffee_mixture",
           "after": "add_marsala",
-          "end": { "duration_minutes": 10, "condition": "room temperature" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "room temperature"
+          }
         }
       ]
     },
@@ -62,34 +131,53 @@
       "id": "make_cream",
       "device": "bowl",
       "action": "Make mascarpone cream",
-      "inputs": ["eggs", "sugar", "mascarpone", "vanilla_extract"],
+      "inputs": [
+        "eggs",
+        "sugar",
+        "mascarpone",
+        "vanilla_extract"
+      ],
       "output": "tiramisu_cream",
-      "end": { "condition": "cream light and fluffy" },
+      "end": {
+        "condition": "cream light and fluffy"
+      },
       "steps": [
         {
           "id": "separate_eggs",
           "device": "bowl",
           "action": "Separate eggs into yolks and whites",
-          "inputs": ["eggs"],
+          "inputs": [
+            "eggs"
+          ],
           "output": "egg_yolks",
-          "end": { "duration_minutes": 2 },
+          "end": {
+            "duration_minutes": 2
+          },
           "steps": [
             {
               "id": "crack_eggs",
               "device": "bowl",
               "action": "Carefully crack eggs, separating yolks into one bowl and whites into another",
-              "inputs": ["eggs"],
+              "inputs": [
+                "eggs"
+              ],
               "output": "separated_eggs",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "reserve_whites",
               "device": "small_bowl",
               "action": "Set whites aside in a clean, grease-free bowl",
-              "inputs": ["separated_eggs"],
+              "inputs": [
+                "separated_eggs"
+              ],
               "output": "egg_whites",
               "after": "crack_eggs",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -97,37 +185,62 @@
           "id": "whisk_yolks_sugar",
           "device": "bowl",
           "action": "Whisk egg yolks with sugar and vanilla until thick and pale",
-          "inputs": ["egg_yolks", "sugar", "vanilla_extract"],
+          "inputs": [
+            "egg_yolks",
+            "sugar",
+            "vanilla_extract"
+          ],
           "output": "yolk_sugar_mix",
           "after": "separate_eggs",
-          "end": { "duration_minutes": 5, "condition": "pale, thick and ribbon-like" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "pale, thick and ribbon-like"
+          }
         },
         {
           "id": "fold_mascarpone",
           "device": "bowl",
           "action": "Gently fold mascarpone into yolk mixture until smooth",
-          "inputs": ["yolk_sugar_mix", "mascarpone"],
+          "inputs": [
+            "yolk_sugar_mix",
+            "mascarpone"
+          ],
           "output": "mascarpone_mix",
           "after": "whisk_yolks_sugar",
-          "end": { "condition": "smooth and combined, no lumps" }
+          "end": {
+            "condition": "smooth and combined, no lumps"
+          }
         },
         {
           "id": "whip_whites",
           "device": "small_bowl",
           "action": "Whip egg whites to stiff peaks",
-          "inputs": ["egg_whites"],
+          "inputs": [
+            "egg_whites"
+          ],
           "output": "whipped_whites",
           "after": "separate_eggs",
-          "end": { "duration_minutes": 3, "condition": "stiff glossy peaks" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "stiff glossy peaks"
+          }
         },
         {
           "id": "fold_whites",
           "device": "bowl",
           "action": "Gently fold whipped whites into mascarpone mixture in two additions",
-          "inputs": ["mascarpone_mix", "whipped_whites"],
+          "inputs": [
+            "mascarpone_mix",
+            "whipped_whites"
+          ],
           "output": "tiramisu_cream",
-          "after": ["fold_mascarpone", "whip_whites"],
-          "end": { "condition": "light and airy, no white streaks" }
+          "after": [
+            "fold_mascarpone",
+            "whip_whites"
+          ],
+          "end": {
+            "condition": "light and airy, no white streaks"
+          }
         }
       ]
     },
@@ -135,63 +248,103 @@
       "id": "assemble_layers",
       "device": "baking_dish",
       "action": "Assemble tiramisu layers",
-      "inputs": ["coffee_mixture", "savoiardi", "tiramisu_cream"],
+      "inputs": [
+        "coffee_mixture",
+        "savoiardi",
+        "tiramisu_cream"
+      ],
       "output": "assembled_tiramisu",
-      "after": ["make_coffee_mixture", "make_cream"],
-      "end": { "condition": "all layers assembled" },
+      "after": [
+        "make_coffee_mixture",
+        "make_cream"
+      ],
+      "end": {
+        "condition": "all layers assembled"
+      },
       "steps": [
         {
           "id": "dip_first_biscuits",
           "device": "bowl",
           "action": "Briefly dip half the savoiardi in coffee mixture (1-2 seconds each side)",
-          "inputs": ["savoiardi", "coffee_mixture"],
+          "inputs": [
+            "savoiardi",
+            "coffee_mixture"
+          ],
           "output": "soaked_biscuits_1",
-          "end": { "duration_minutes": 3, "condition": "soaked but not soggy" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "soaked but not soggy"
+          }
         },
         {
           "id": "first_biscuit_layer",
           "device": "baking_dish",
           "action": "Arrange soaked biscuits in a single layer in the dish",
-          "inputs": ["soaked_biscuits_1"],
+          "inputs": [
+            "soaked_biscuits_1"
+          ],
           "output": "biscuit_layer_1",
           "after": "dip_first_biscuits",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "first_cream_layer",
           "device": "baking_dish",
           "action": "Spread half the cream evenly over the biscuit layer",
-          "inputs": ["biscuit_layer_1", "tiramisu_cream"],
+          "inputs": [
+            "biscuit_layer_1",
+            "tiramisu_cream"
+          ],
           "output": "cream_layer_1",
           "after": "first_biscuit_layer",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "dip_second_biscuits",
           "device": "bowl",
           "action": "Dip remaining savoiardi in coffee mixture",
-          "inputs": ["savoiardi", "coffee_mixture"],
+          "inputs": [
+            "savoiardi",
+            "coffee_mixture"
+          ],
           "output": "soaked_biscuits_2",
           "after": "first_cream_layer",
-          "end": { "duration_minutes": 3, "condition": "soaked but not soggy" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "soaked but not soggy"
+          }
         },
         {
           "id": "second_biscuit_layer",
           "device": "baking_dish",
           "action": "Arrange second layer of soaked biscuits over cream",
-          "inputs": ["cream_layer_1", "soaked_biscuits_2"],
+          "inputs": [
+            "cream_layer_1",
+            "soaked_biscuits_2"
+          ],
           "output": "biscuit_layer_2",
           "after": "dip_second_biscuits",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "second_cream_layer",
           "device": "baking_dish",
           "action": "Spread remaining cream over the top and smooth with a spatula",
-          "inputs": ["biscuit_layer_2", "tiramisu_cream"],
+          "inputs": [
+            "biscuit_layer_2",
+            "tiramisu_cream"
+          ],
           "output": "assembled_tiramisu",
           "after": "second_biscuit_layer",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -199,36 +352,57 @@
       "id": "chill",
       "device": "baking_dish",
       "action": "Cover with cling film and refrigerate for at least 4 hours or overnight",
-      "inputs": ["assembled_tiramisu"],
+      "inputs": [
+        "assembled_tiramisu"
+      ],
       "output": "chilled_tiramisu",
       "after": "assemble_layers",
-      "end": { "duration_minutes": 240, "condition": "set and firm" }
+      "end": {
+        "duration_minutes": 240,
+        "condition": "set and firm"
+      }
     },
     {
       "id": "finish",
       "device": "baking_dish",
       "action": "Dust with cocoa and grate chocolate to serve",
-      "inputs": ["chilled_tiramisu", "cocoa_powder", "dark_chocolate"],
+      "inputs": [
+        "chilled_tiramisu",
+        "cocoa_powder",
+        "dark_chocolate"
+      ],
       "output": "tiramisu",
       "after": "chill",
-      "end": { "condition": "decorated" },
+      "end": {
+        "condition": "decorated"
+      },
       "steps": [
         {
           "id": "dust_cocoa",
           "device": "baking_dish",
           "action": "Sift cocoa powder generously over the top",
-          "inputs": ["chilled_tiramisu", "cocoa_powder"],
+          "inputs": [
+            "chilled_tiramisu",
+            "cocoa_powder"
+          ],
           "output": "cocoa_dusted_tiramisu",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "grate_chocolate",
           "device": "chopping_board",
           "action": "Finely grate dark chocolate over the cocoa",
-          "inputs": ["cocoa_dusted_tiramisu", "dark_chocolate"],
+          "inputs": [
+            "cocoa_dusted_tiramisu",
+            "dark_chocolate"
+          ],
           "output": "tiramisu",
           "after": "dust_cocoa",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

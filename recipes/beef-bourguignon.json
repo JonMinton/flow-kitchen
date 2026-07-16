@@ -1,77 +1,207 @@
 {
   "title": "Beef Bourguignon",
   "servings": 6,
+  "cuisine": "French",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 180,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "oven", "name": "Oven", "settings": "160°C" },
-    { "id": "dutch_oven", "name": "Dutch Oven" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "pan", "name": "Pan" },
-    { "id": "bowl", "name": "Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "160°C"
+    },
+    {
+      "id": "dutch_oven",
+      "name": "Dutch Oven"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "pan",
+      "name": "Pan"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    }
   ],
   "ingredients": [
-    { "id": "beef_chuck", "name": "Beef Chuck", "quantity": "1kg" },
-    { "id": "bacon_lardons", "name": "Bacon Lardons", "quantity": "150g" },
-    { "id": "onion", "name": "Onion", "quantity": "2" },
-    { "id": "carrots", "name": "Carrots", "quantity": "3" },
-    { "id": "celery", "name": "Celery", "quantity": "2 sticks" },
-    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
-    { "id": "red_wine", "name": "Red Wine", "quantity": "500ml" },
-    { "id": "beef_stock", "name": "Beef Stock", "quantity": "250ml" },
-    { "id": "tomato_puree", "name": "Tomato Purée", "quantity": "2 tbsp" },
-    { "id": "thyme", "name": "Thyme", "quantity": "3 sprigs" },
-    { "id": "bay_leaves", "name": "Bay Leaves", "quantity": "2" },
-    { "id": "button_mushrooms", "name": "Button Mushrooms", "quantity": "250g" },
-    { "id": "pearl_onions", "name": "Pearl Onions", "quantity": "200g" },
-    { "id": "flour", "name": "Flour", "quantity": "2 tbsp" },
-    { "id": "butter", "name": "Butter", "quantity": "30g" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Pepper", "quantity": "to taste" },
-    { "id": "parsley", "name": "Parsley", "quantity": "for garnish" }
+    {
+      "id": "beef_chuck",
+      "name": "Beef Chuck",
+      "quantity": "1kg"
+    },
+    {
+      "id": "bacon_lardons",
+      "name": "Bacon Lardons",
+      "quantity": "150g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "2"
+    },
+    {
+      "id": "carrots",
+      "name": "Carrots",
+      "quantity": "3"
+    },
+    {
+      "id": "celery",
+      "name": "Celery",
+      "quantity": "2 sticks"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "4 cloves"
+    },
+    {
+      "id": "red_wine",
+      "name": "Red Wine",
+      "quantity": "500ml"
+    },
+    {
+      "id": "beef_stock",
+      "name": "Beef Stock",
+      "quantity": "250ml"
+    },
+    {
+      "id": "tomato_puree",
+      "name": "Tomato Purée",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "thyme",
+      "name": "Thyme",
+      "quantity": "3 sprigs"
+    },
+    {
+      "id": "bay_leaves",
+      "name": "Bay Leaves",
+      "quantity": "2"
+    },
+    {
+      "id": "button_mushrooms",
+      "name": "Button Mushrooms",
+      "quantity": "250g"
+    },
+    {
+      "id": "pearl_onions",
+      "name": "Pearl Onions",
+      "quantity": "200g"
+    },
+    {
+      "id": "flour",
+      "name": "Flour",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "30g"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "quantity": "to taste"
+    },
+    {
+      "id": "parsley",
+      "name": "Parsley",
+      "quantity": "for garnish"
+    }
   ],
   "steps": [
     {
       "id": "prepare_beef",
       "device": "dutch_oven",
       "action": "Prepare and brown beef",
-      "inputs": ["beef_chuck", "salt", "pepper", "flour", "olive_oil"],
+      "inputs": [
+        "beef_chuck",
+        "salt",
+        "pepper",
+        "flour",
+        "olive_oil"
+      ],
       "output": "browned_beef",
-      "end": { "condition": "beef seared and set aside" },
+      "end": {
+        "condition": "beef seared and set aside"
+      },
       "steps": [
         {
           "id": "prep",
           "device": "chopping_board",
           "action": "Prep beef for browning",
-          "inputs": ["beef_chuck", "salt", "pepper", "flour"],
+          "inputs": [
+            "beef_chuck",
+            "salt",
+            "pepper",
+            "flour"
+          ],
           "output": "floured_beef",
-          "end": { "condition": "beef cubed and dusted" },
+          "end": {
+            "condition": "beef cubed and dusted"
+          },
           "steps": [
             {
               "id": "cut_beef_into_chunks",
               "device": "chopping_board",
               "action": "Cut beef into 3cm chunks",
-              "inputs": ["beef_chuck"],
+              "inputs": [
+                "beef_chuck"
+              ],
               "output": "beef_chunks",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "season_with_salt_pepper",
               "device": "chopping_board",
               "action": "Season beef with salt and pepper",
               "after": "cut_beef_into_chunks",
-              "inputs": ["beef_chunks", "salt", "pepper"],
+              "inputs": [
+                "beef_chunks",
+                "salt",
+                "pepper"
+              ],
               "output": "seasoned_beef",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "dust_with_flour",
               "device": "chopping_board",
               "action": "Dust beef in flour to coat",
               "after": "season_with_salt_pepper",
-              "inputs": ["seasoned_beef", "flour"],
+              "inputs": [
+                "seasoned_beef",
+                "flour"
+              ],
               "output": "floured_beef",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             }
           ]
         },
@@ -80,35 +210,55 @@
           "device": "dutch_oven",
           "action": "Brown beef in batches",
           "after": "prep",
-          "inputs": ["floured_beef", "olive_oil"],
+          "inputs": [
+            "floured_beef",
+            "olive_oil"
+          ],
           "output": "browned_beef",
-          "end": { "condition": "deep golden crust on all sides" },
+          "end": {
+            "condition": "deep golden crust on all sides"
+          },
           "steps": [
             {
               "id": "heat_oil",
               "device": "dutch_oven",
               "action": "Heat olive oil over high heat",
-              "inputs": ["olive_oil"],
+              "inputs": [
+                "olive_oil"
+              ],
               "output": "hot_oil",
-              "end": { "duration_minutes": 2, "condition": "oil shimmering" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "oil shimmering"
+              }
             },
             {
               "id": "sear_beef_in_batches",
               "device": "dutch_oven",
               "action": "Sear beef in 3 batches, don't crowd the pan",
               "after": "heat_oil",
-              "inputs": ["floured_beef", "hot_oil"],
+              "inputs": [
+                "floured_beef",
+                "hot_oil"
+              ],
               "output": "seared_beef",
-              "end": { "duration_minutes": 12, "condition": "deep brown crust on all sides" }
+              "end": {
+                "duration_minutes": 12,
+                "condition": "deep brown crust on all sides"
+              }
             },
             {
               "id": "set_aside",
               "device": "bowl",
               "action": "Transfer browned beef to a bowl and set aside",
               "after": "sear_beef_in_batches",
-              "inputs": ["seared_beef"],
+              "inputs": [
+                "seared_beef"
+              ],
               "output": "browned_beef",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         }
@@ -119,60 +269,110 @@
       "device": "dutch_oven",
       "action": "Build the braising base with aromatics and wine",
       "after": "prepare_beef",
-      "inputs": ["bacon_lardons", "onion", "carrots", "celery", "garlic", "tomato_puree", "red_wine", "beef_stock", "thyme", "bay_leaves"],
+      "inputs": [
+        "bacon_lardons",
+        "onion",
+        "carrots",
+        "celery",
+        "garlic",
+        "tomato_puree",
+        "red_wine",
+        "beef_stock",
+        "thyme",
+        "bay_leaves"
+      ],
       "output": "braising_liquid",
-      "end": { "condition": "rich braising liquid ready" },
+      "end": {
+        "condition": "rich braising liquid ready"
+      },
       "steps": [
         {
           "id": "cook_aromatics",
           "device": "dutch_oven",
           "action": "Cook bacon and soften aromatics",
-          "inputs": ["bacon_lardons", "onion", "carrots", "celery", "garlic", "tomato_puree"],
+          "inputs": [
+            "bacon_lardons",
+            "onion",
+            "carrots",
+            "celery",
+            "garlic",
+            "tomato_puree"
+          ],
           "output": "softened_aromatics",
-          "end": { "condition": "vegetables softened and fragrant" },
+          "end": {
+            "condition": "vegetables softened and fragrant"
+          },
           "steps": [
             {
               "id": "fry_bacon",
               "device": "dutch_oven",
               "action": "Fry bacon lardons until crispy",
-              "inputs": ["bacon_lardons"],
+              "inputs": [
+                "bacon_lardons"
+              ],
               "output": "crispy_bacon",
-              "end": { "duration_minutes": 5, "condition": "golden and crispy" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "golden and crispy"
+              }
             },
             {
               "id": "chop_onions_carrots_celery",
               "device": "chopping_board",
               "action": "Roughly chop onions, carrots, and celery",
-              "inputs": ["onion", "carrots", "celery"],
+              "inputs": [
+                "onion",
+                "carrots",
+                "celery"
+              ],
               "output": "chopped_mirepoix",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "soften_veg",
               "device": "dutch_oven",
               "action": "Soften mirepoix in bacon fat",
               "after": "fry_bacon",
-              "inputs": ["chopped_mirepoix", "crispy_bacon"],
+              "inputs": [
+                "chopped_mirepoix",
+                "crispy_bacon"
+              ],
               "output": "softened_veg",
-              "end": { "duration_minutes": 8, "condition": "vegetables soft and lightly coloured" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "vegetables soft and lightly coloured"
+              }
             },
             {
               "id": "add_garlic",
               "device": "dutch_oven",
               "action": "Add minced garlic, stir until fragrant",
               "after": "soften_veg",
-              "inputs": ["garlic", "softened_veg"],
+              "inputs": [
+                "garlic",
+                "softened_veg"
+              ],
               "output": "garlicky_veg",
-              "end": { "duration_minutes": 1, "condition": "fragrant, not burnt" }
+              "end": {
+                "duration_minutes": 1,
+                "condition": "fragrant, not burnt"
+              }
             },
             {
               "id": "add_tomato_puree",
               "device": "dutch_oven",
               "action": "Stir in tomato purée and cook out raw flavour",
               "after": "add_garlic",
-              "inputs": ["tomato_puree", "garlicky_veg"],
+              "inputs": [
+                "tomato_puree",
+                "garlicky_veg"
+              ],
               "output": "softened_aromatics",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             }
           ]
         },
@@ -181,44 +381,73 @@
           "device": "dutch_oven",
           "action": "Deglaze with wine, add stock and herbs",
           "after": "cook_aromatics",
-          "inputs": ["red_wine", "beef_stock", "thyme", "bay_leaves", "softened_aromatics"],
+          "inputs": [
+            "red_wine",
+            "beef_stock",
+            "thyme",
+            "bay_leaves",
+            "softened_aromatics"
+          ],
           "output": "braising_liquid",
-          "end": { "condition": "rich braising liquid ready" },
+          "end": {
+            "condition": "rich braising liquid ready"
+          },
           "steps": [
             {
               "id": "add_wine",
               "device": "dutch_oven",
               "action": "Pour in red wine and scrape up fond",
-              "inputs": ["red_wine", "softened_aromatics"],
+              "inputs": [
+                "red_wine",
+                "softened_aromatics"
+              ],
               "output": "wine_base",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "reduce_by_half",
               "device": "dutch_oven",
               "action": "Bring to boil and reduce wine by half",
               "after": "add_wine",
-              "inputs": ["wine_base"],
+              "inputs": [
+                "wine_base"
+              ],
               "output": "reduced_wine",
-              "end": { "duration_minutes": 8, "condition": "wine reduced by half" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "wine reduced by half"
+              }
             },
             {
               "id": "add_stock",
               "device": "dutch_oven",
               "action": "Add beef stock",
               "after": "reduce_by_half",
-              "inputs": ["beef_stock", "reduced_wine"],
+              "inputs": [
+                "beef_stock",
+                "reduced_wine"
+              ],
               "output": "stock_and_wine",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_herbs",
               "device": "dutch_oven",
               "action": "Add thyme sprigs and bay leaves",
               "after": "add_stock",
-              "inputs": ["thyme", "bay_leaves", "stock_and_wine"],
+              "inputs": [
+                "thyme",
+                "bay_leaves",
+                "stock_and_wine"
+              ],
               "output": "braising_liquid",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         }
@@ -229,44 +458,69 @@
       "device": "oven",
       "action": "Braise beef low and slow in oven",
       "after": "build_base",
-      "inputs": ["browned_beef", "braising_liquid"],
+      "inputs": [
+        "browned_beef",
+        "braising_liquid"
+      ],
       "output": "braised_beef",
-      "end": { "duration_minutes": 150, "condition": "beef fork-tender" },
+      "end": {
+        "duration_minutes": 150,
+        "condition": "beef fork-tender"
+      },
       "steps": [
         {
           "id": "return_beef",
           "device": "dutch_oven",
           "action": "Return browned beef to the dutch oven",
-          "inputs": ["browned_beef", "braising_liquid"],
+          "inputs": [
+            "browned_beef",
+            "braising_liquid"
+          ],
           "output": "beef_in_liquid",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "bring_to_simmer",
           "device": "hob",
           "action": "Bring to a gentle simmer on hob",
           "after": "return_beef",
-          "inputs": ["beef_in_liquid"],
+          "inputs": [
+            "beef_in_liquid"
+          ],
           "output": "simmering_stew",
-          "end": { "duration_minutes": 3, "condition": "gently bubbling" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "gently bubbling"
+          }
         },
         {
           "id": "transfer_to_oven",
           "device": "oven",
           "action": "Cover and transfer to preheated oven",
           "after": "bring_to_simmer",
-          "inputs": ["simmering_stew"],
+          "inputs": [
+            "simmering_stew"
+          ],
           "output": "stew_in_oven",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "braise_in_oven",
           "device": "oven",
           "action": "Braise at 160°C until beef is fork-tender",
           "after": "transfer_to_oven",
-          "inputs": ["stew_in_oven"],
+          "inputs": [
+            "stew_in_oven"
+          ],
           "output": "braised_beef",
-          "end": { "duration_minutes": 150, "condition": "beef fork-tender, sauce thickened" }
+          "end": {
+            "duration_minutes": 150,
+            "condition": "beef fork-tender, sauce thickened"
+          }
         }
       ]
     },
@@ -274,34 +528,55 @@
       "id": "prepare_garnish",
       "device": "pan",
       "action": "Prepare mushroom and pearl onion garnish",
-      "inputs": ["button_mushrooms", "pearl_onions", "butter"],
+      "inputs": [
+        "button_mushrooms",
+        "pearl_onions",
+        "butter"
+      ],
       "output": "garnish_mixture",
-      "end": { "condition": "mushrooms and onions golden and glazed" },
+      "end": {
+        "condition": "mushrooms and onions golden and glazed"
+      },
       "steps": [
         {
           "id": "cook_mushrooms",
           "device": "pan",
           "action": "Sauté mushrooms in butter",
-          "inputs": ["button_mushrooms", "butter"],
+          "inputs": [
+            "button_mushrooms",
+            "butter"
+          ],
           "output": "sauteed_mushrooms",
-          "end": { "condition": "golden brown" },
+          "end": {
+            "condition": "golden brown"
+          },
           "steps": [
             {
               "id": "halve_mushrooms",
               "device": "chopping_board",
               "action": "Halve or quarter mushrooms depending on size",
-              "inputs": ["button_mushrooms"],
+              "inputs": [
+                "button_mushrooms"
+              ],
               "output": "prepared_mushrooms",
-              "end": { "duration_minutes": 3 }
+              "end": {
+                "duration_minutes": 3
+              }
             },
             {
               "id": "saute_in_butter",
               "device": "pan",
               "action": "Sauté mushrooms in butter until golden",
               "after": "halve_mushrooms",
-              "inputs": ["prepared_mushrooms", "butter"],
+              "inputs": [
+                "prepared_mushrooms",
+                "butter"
+              ],
               "output": "sauteed_mushrooms",
-              "end": { "duration_minutes": 6, "condition": "golden brown, moisture evaporated" }
+              "end": {
+                "duration_minutes": 6,
+                "condition": "golden brown, moisture evaporated"
+              }
             }
           ]
         },
@@ -309,35 +584,55 @@
           "id": "cook_pearl_onions",
           "device": "pan",
           "action": "Brown and glaze pearl onions",
-          "inputs": ["pearl_onions", "butter"],
+          "inputs": [
+            "pearl_onions",
+            "butter"
+          ],
           "output": "glazed_onions",
-          "end": { "condition": "caramelised and glazed" },
+          "end": {
+            "condition": "caramelised and glazed"
+          },
           "steps": [
             {
               "id": "peel_pearl_onions",
               "device": "chopping_board",
               "action": "Peel pearl onions (blanch briefly to loosen skins)",
-              "inputs": ["pearl_onions"],
+              "inputs": [
+                "pearl_onions"
+              ],
               "output": "peeled_onions",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "brown_in_butter",
               "device": "pan",
               "action": "Brown pearl onions in butter",
               "after": "peel_pearl_onions",
-              "inputs": ["peeled_onions", "butter"],
+              "inputs": [
+                "peeled_onions",
+                "butter"
+              ],
               "output": "browned_onions",
-              "end": { "duration_minutes": 5, "condition": "golden on all sides" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "golden on all sides"
+              }
             },
             {
               "id": "glaze_onions",
               "device": "pan",
               "action": "Add splash of stock and glaze until tender",
               "after": "brown_in_butter",
-              "inputs": ["browned_onions"],
+              "inputs": [
+                "browned_onions"
+              ],
               "output": "glazed_onions",
-              "end": { "duration_minutes": 8, "condition": "tender and caramelised" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "tender and caramelised"
+              }
             }
           ]
         }
@@ -347,45 +642,77 @@
       "id": "finish",
       "device": "dutch_oven",
       "action": "Finish stew with garnish and check seasoning",
-      "after": ["braise", "prepare_garnish"],
-      "inputs": ["braised_beef", "garnish_mixture", "parsley", "salt", "pepper"],
+      "after": [
+        "braise",
+        "prepare_garnish"
+      ],
+      "inputs": [
+        "braised_beef",
+        "garnish_mixture",
+        "parsley",
+        "salt",
+        "pepper"
+      ],
       "output": "beef_bourguignon",
-      "end": { "condition": "rich, glossy, perfectly seasoned" },
+      "end": {
+        "condition": "rich, glossy, perfectly seasoned"
+      },
       "steps": [
         {
           "id": "add_mushrooms_and_onions",
           "device": "dutch_oven",
           "action": "Fold in sautéed mushrooms and glazed onions",
-          "inputs": ["braised_beef", "sauteed_mushrooms", "glazed_onions"],
+          "inputs": [
+            "braised_beef",
+            "sauteed_mushrooms",
+            "glazed_onions"
+          ],
           "output": "stew_with_garnish",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "final_simmer",
           "device": "hob",
           "action": "Simmer together to meld flavours",
           "after": "add_mushrooms_and_onions",
-          "inputs": ["stew_with_garnish"],
+          "inputs": [
+            "stew_with_garnish"
+          ],
           "output": "simmered_stew",
-          "end": { "duration_minutes": 10 }
+          "end": {
+            "duration_minutes": 10
+          }
         },
         {
           "id": "check_seasoning",
           "device": "dutch_oven",
           "action": "Taste and adjust seasoning with salt and pepper",
           "after": "final_simmer",
-          "inputs": ["simmered_stew", "salt", "pepper"],
+          "inputs": [
+            "simmered_stew",
+            "salt",
+            "pepper"
+          ],
           "output": "seasoned_stew",
-          "end": { "condition": "perfectly seasoned" }
+          "end": {
+            "condition": "perfectly seasoned"
+          }
         },
         {
           "id": "garnish_with_parsley",
           "device": "dutch_oven",
           "action": "Scatter fresh parsley over the top",
           "after": "check_seasoning",
-          "inputs": ["seasoned_stew", "parsley"],
+          "inputs": [
+            "seasoned_stew",
+            "parsley"
+          ],
           "output": "beef_bourguignon",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

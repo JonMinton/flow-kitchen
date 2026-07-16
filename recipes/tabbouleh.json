@@ -1,109 +1,219 @@
 {
   "title": "Tabbouleh",
   "servings": 4,
-
+  "cuisine": "Lebanese",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 20,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "worktop", "name": "Worktop" },
-    { "id": "bowl", "name": "Large Bowl" },
-    { "id": "small_bowl", "name": "Small Bowl" },
-    { "id": "chopping_board", "name": "Chopping Board" }
+    {
+      "id": "worktop",
+      "name": "Worktop"
+    },
+    {
+      "id": "bowl",
+      "name": "Large Bowl"
+    },
+    {
+      "id": "small_bowl",
+      "name": "Small Bowl"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    }
   ],
-
   "ingredients": [
-    { "id": "bulgur", "name": "Bulgur Wheat", "quantity": "75g" },
-    { "id": "parsley", "name": "Flat-leaf Parsley", "quantity": "large bunch (about 100g)" },
-    { "id": "mint", "name": "Fresh Mint", "quantity": "small bunch (about 30g)" },
-    { "id": "tomatoes", "name": "Tomatoes", "quantity": "3 medium" },
-    { "id": "cucumber", "name": "Cucumber", "quantity": "1/2" },
-    { "id": "spring_onion", "name": "Spring Onion", "quantity": "4" },
-    { "id": "lemon_juice", "name": "Lemon Juice", "quantity": "3 tbsp" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "4 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" }
+    {
+      "id": "bulgur",
+      "name": "Bulgur Wheat",
+      "quantity": "75g"
+    },
+    {
+      "id": "parsley",
+      "name": "Flat-leaf Parsley",
+      "quantity": "large bunch (about 100g)"
+    },
+    {
+      "id": "mint",
+      "name": "Fresh Mint",
+      "quantity": "small bunch (about 30g)"
+    },
+    {
+      "id": "tomatoes",
+      "name": "Tomatoes",
+      "quantity": "3 medium"
+    },
+    {
+      "id": "cucumber",
+      "name": "Cucumber",
+      "quantity": "1/2"
+    },
+    {
+      "id": "spring_onion",
+      "name": "Spring Onion",
+      "quantity": "4"
+    },
+    {
+      "id": "lemon_juice",
+      "name": "Lemon Juice",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    }
   ],
-
   "steps": [
     {
       "id": "soak_bulgur",
       "device": "small_bowl",
       "action": "Soak bulgur in boiling water",
-      "inputs": ["bulgur"],
+      "inputs": [
+        "bulgur"
+      ],
       "output": "soaked_bulgur",
-      "end": { "duration_minutes": 10, "condition": "tender and water absorbed" }
+      "end": {
+        "duration_minutes": 10,
+        "condition": "tender and water absorbed"
+      }
     },
     {
       "id": "chop_parsley",
       "device": "chopping_board",
       "action": "Finely chop parsley leaves",
-      "inputs": ["parsley"],
+      "inputs": [
+        "parsley"
+      ],
       "output": "chopped_parsley",
-      "end": { "duration_minutes": 3 }
+      "end": {
+        "duration_minutes": 3
+      }
     },
     {
       "id": "chop_mint",
       "device": "chopping_board",
       "action": "Finely chop mint leaves",
-      "inputs": ["mint"],
+      "inputs": [
+        "mint"
+      ],
       "output": "chopped_mint",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "dice_tomatoes",
       "device": "chopping_board",
       "action": "Dice tomatoes into small cubes",
-      "inputs": ["tomatoes"],
+      "inputs": [
+        "tomatoes"
+      ],
       "output": "diced_tomatoes",
-      "end": { "duration_minutes": 2 }
+      "end": {
+        "duration_minutes": 2
+      }
     },
     {
       "id": "dice_cucumber",
       "device": "chopping_board",
       "action": "Dice cucumber into small cubes",
-      "inputs": ["cucumber"],
+      "inputs": [
+        "cucumber"
+      ],
       "output": "diced_cucumber",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "slice_spring_onion",
       "device": "chopping_board",
       "action": "Thinly slice spring onions",
-      "inputs": ["spring_onion"],
+      "inputs": [
+        "spring_onion"
+      ],
       "output": "sliced_spring_onion",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "make_dressing",
       "device": "small_bowl",
       "action": "Whisk lemon juice, olive oil and salt together",
-      "inputs": ["lemon_juice", "olive_oil", "salt"],
+      "inputs": [
+        "lemon_juice",
+        "olive_oil",
+        "salt"
+      ],
       "output": "dressing",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "drain_bulgur",
       "device": "small_bowl",
       "action": "Drain any excess water and fluff with a fork",
-      "inputs": ["soaked_bulgur"],
+      "inputs": [
+        "soaked_bulgur"
+      ],
       "output": "drained_bulgur",
       "after": "soak_bulgur",
-      "end": { "duration_minutes": 1 }
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "combine",
       "device": "bowl",
       "action": "Combine all prepared ingredients in a large bowl",
-      "inputs": ["drained_bulgur", "chopped_parsley", "chopped_mint", "diced_tomatoes", "diced_cucumber", "sliced_spring_onion"],
+      "inputs": [
+        "drained_bulgur",
+        "chopped_parsley",
+        "chopped_mint",
+        "diced_tomatoes",
+        "diced_cucumber",
+        "sliced_spring_onion"
+      ],
       "output": "mixed_salad",
-      "after": ["drain_bulgur", "chop_parsley", "chop_mint", "dice_tomatoes", "dice_cucumber", "slice_spring_onion"],
-      "end": { "duration_minutes": 1 }
+      "after": [
+        "drain_bulgur",
+        "chop_parsley",
+        "chop_mint",
+        "dice_tomatoes",
+        "dice_cucumber",
+        "slice_spring_onion"
+      ],
+      "end": {
+        "duration_minutes": 1
+      }
     },
     {
       "id": "dress",
       "device": "bowl",
       "action": "Pour dressing over salad and toss gently",
-      "inputs": ["mixed_salad", "dressing"],
+      "inputs": [
+        "mixed_salad",
+        "dressing"
+      ],
       "output": "tabbouleh",
-      "after": ["combine", "make_dressing"],
-      "end": { "duration_minutes": 1, "condition": "evenly coated" }
+      "after": [
+        "combine",
+        "make_dressing"
+      ],
+      "end": {
+        "duration_minutes": 1,
+        "condition": "evenly coated"
+      }
     }
   ]
 }

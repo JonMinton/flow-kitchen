@@ -1,63 +1,151 @@
 {
   "title": "Black Bean Soup",
   "servings": 4,
-
+  "cuisine": "Mexican",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 40,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "pot", "name": "Pot" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "blender", "name": "Blender" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "pot",
+      "name": "Pot"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "blender",
+      "name": "Blender"
+    }
   ],
-
   "ingredients": [
-    { "id": "black_beans", "name": "Black Beans (tinned)", "quantity": "2 x 400g tins, drained" },
-    { "id": "onion", "name": "Onion", "quantity": "1 large" },
-    { "id": "garlic", "name": "Garlic", "quantity": "4 cloves" },
-    { "id": "jalapeno", "name": "Jalapeño", "quantity": "1" },
-    { "id": "cumin", "name": "Ground Cumin", "quantity": "2 tsp" },
-    { "id": "ground_coriander", "name": "Ground Coriander", "quantity": "1 tsp" },
-    { "id": "smoked_paprika", "name": "Smoked Paprika", "quantity": "1 tsp" },
-    { "id": "vegetable_stock", "name": "Vegetable Stock", "quantity": "750ml" },
-    { "id": "lime", "name": "Lime", "quantity": "1" },
-    { "id": "sour_cream", "name": "Sour Cream", "quantity": "4 tbsp" },
-    { "id": "fresh_coriander", "name": "Fresh Coriander", "quantity": "small bunch" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Pepper", "quantity": "to taste" }
+    {
+      "id": "black_beans",
+      "name": "Black Beans (tinned)",
+      "quantity": "2 x 400g tins, drained"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1 large"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "4 cloves"
+    },
+    {
+      "id": "jalapeno",
+      "name": "Jalapeño",
+      "quantity": "1"
+    },
+    {
+      "id": "cumin",
+      "name": "Ground Cumin",
+      "quantity": "2 tsp"
+    },
+    {
+      "id": "ground_coriander",
+      "name": "Ground Coriander",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "smoked_paprika",
+      "name": "Smoked Paprika",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "vegetable_stock",
+      "name": "Vegetable Stock",
+      "quantity": "750ml"
+    },
+    {
+      "id": "lime",
+      "name": "Lime",
+      "quantity": "1"
+    },
+    {
+      "id": "sour_cream",
+      "name": "Sour Cream",
+      "quantity": "4 tbsp"
+    },
+    {
+      "id": "fresh_coriander",
+      "name": "Fresh Coriander",
+      "quantity": "small bunch"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "quantity": "to taste"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_aromatics",
       "device": "chopping_board",
       "action": "Prepare onion, garlic and jalapeño",
-      "inputs": ["onion", "garlic", "jalapeno"],
+      "inputs": [
+        "onion",
+        "garlic",
+        "jalapeno"
+      ],
       "output": "chopped_aromatics",
-      "end": { "condition": "all aromatics chopped and ready" },
+      "end": {
+        "condition": "all aromatics chopped and ready"
+      },
       "steps": [
         {
           "id": "dice_onion",
           "device": "chopping_board",
           "action": "Finely dice onion",
-          "inputs": ["onion"],
+          "inputs": [
+            "onion"
+          ],
           "output": "diced_onion",
-          "end": { "duration_minutes": 3 }
+          "end": {
+            "duration_minutes": 3
+          }
         },
         {
           "id": "mince_garlic",
           "device": "chopping_board",
           "action": "Mince garlic cloves",
-          "inputs": ["garlic"],
+          "inputs": [
+            "garlic"
+          ],
           "output": "minced_garlic",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "chop_jalapeno",
           "device": "chopping_board",
           "action": "Deseed and finely chop jalapeño",
-          "inputs": ["jalapeno"],
+          "inputs": [
+            "jalapeno"
+          ],
           "output": "chopped_jalapeno",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         }
       ]
     },
@@ -66,43 +154,78 @@
       "device": "pot",
       "action": "Cook soup base with beans and stock",
       "after": "prep_aromatics",
-      "inputs": ["chopped_aromatics", "olive_oil", "cumin", "ground_coriander", "smoked_paprika", "black_beans", "vegetable_stock", "salt", "pepper"],
+      "inputs": [
+        "chopped_aromatics",
+        "olive_oil",
+        "cumin",
+        "ground_coriander",
+        "smoked_paprika",
+        "black_beans",
+        "vegetable_stock",
+        "salt",
+        "pepper"
+      ],
       "output": "cooked_soup",
-      "end": { "condition": "soup rich and flavourful" },
+      "end": {
+        "condition": "soup rich and flavourful"
+      },
       "steps": [
         {
           "id": "saute_aromatics",
           "device": "pot",
           "action": "Sauté onion, garlic and jalapeño in olive oil",
-          "inputs": ["chopped_aromatics", "olive_oil"],
+          "inputs": [
+            "chopped_aromatics",
+            "olive_oil"
+          ],
           "output": "softened_aromatics",
-          "end": { "duration_minutes": 6, "condition": "onion translucent and soft" },
+          "end": {
+            "duration_minutes": 6,
+            "condition": "onion translucent and soft"
+          },
           "steps": [
             {
               "id": "heat_oil",
               "device": "pot",
               "action": "Heat olive oil in a large pot over medium heat",
-              "inputs": ["olive_oil"],
+              "inputs": [
+                "olive_oil"
+              ],
               "output": "hot_oil",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "cook_onion",
               "device": "pot",
               "action": "Cook diced onion until softened",
               "after": "heat_oil",
-              "inputs": ["diced_onion", "hot_oil"],
+              "inputs": [
+                "diced_onion",
+                "hot_oil"
+              ],
               "output": "softened_onion",
-              "end": { "duration_minutes": 4, "condition": "translucent" }
+              "end": {
+                "duration_minutes": 4,
+                "condition": "translucent"
+              }
             },
             {
               "id": "add_garlic_and_jalapeno",
               "device": "pot",
               "action": "Add garlic and jalapeño, cook until fragrant",
               "after": "cook_onion",
-              "inputs": ["minced_garlic", "chopped_jalapeno", "softened_onion"],
+              "inputs": [
+                "minced_garlic",
+                "chopped_jalapeno",
+                "softened_onion"
+              ],
               "output": "softened_aromatics",
-              "end": { "duration_minutes": 1, "condition": "fragrant" }
+              "end": {
+                "duration_minutes": 1,
+                "condition": "fragrant"
+              }
             }
           ]
         },
@@ -111,36 +234,61 @@
           "device": "pot",
           "action": "Add cumin, ground coriander and smoked paprika, toast briefly",
           "after": "saute_aromatics",
-          "inputs": ["softened_aromatics", "cumin", "ground_coriander", "smoked_paprika"],
+          "inputs": [
+            "softened_aromatics",
+            "cumin",
+            "ground_coriander",
+            "smoked_paprika"
+          ],
           "output": "spiced_base",
-          "end": { "duration_minutes": 1, "condition": "spices fragrant" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "spices fragrant"
+          }
         },
         {
           "id": "add_beans_and_stock",
           "device": "pot",
           "action": "Add drained black beans and vegetable stock",
           "after": "add_spices",
-          "inputs": ["spiced_base", "black_beans", "vegetable_stock"],
+          "inputs": [
+            "spiced_base",
+            "black_beans",
+            "vegetable_stock"
+          ],
           "output": "soup_mixture",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "simmer",
           "device": "pot",
           "action": "Bring to boil then simmer until flavours meld",
           "after": "add_beans_and_stock",
-          "inputs": ["soup_mixture"],
+          "inputs": [
+            "soup_mixture"
+          ],
           "output": "simmered_soup",
-          "end": { "duration_minutes": 15, "condition": "flavours melded, slightly thickened" }
+          "end": {
+            "duration_minutes": 15,
+            "condition": "flavours melded, slightly thickened"
+          }
         },
         {
           "id": "season_soup",
           "device": "pot",
           "action": "Season with salt and pepper",
           "after": "simmer",
-          "inputs": ["simmered_soup", "salt", "pepper"],
+          "inputs": [
+            "simmered_soup",
+            "salt",
+            "pepper"
+          ],
           "output": "cooked_soup",
-          "end": { "condition": "well seasoned" }
+          "end": {
+            "condition": "well seasoned"
+          }
         }
       ]
     },
@@ -149,43 +297,73 @@
       "device": "blender",
       "action": "Blend half the soup for a creamy-chunky texture",
       "after": "cook_soup",
-      "inputs": ["cooked_soup"],
+      "inputs": [
+        "cooked_soup"
+      ],
       "output": "blended_soup",
-      "end": { "duration_minutes": 3, "condition": "half smooth, half chunky" }
+      "end": {
+        "duration_minutes": 3,
+        "condition": "half smooth, half chunky"
+      }
     },
     {
       "id": "finish_soup",
       "device": "pot",
       "action": "Finish with lime juice and serve with garnishes",
       "after": "partial_blend",
-      "inputs": ["blended_soup", "lime", "sour_cream", "fresh_coriander"],
+      "inputs": [
+        "blended_soup",
+        "lime",
+        "sour_cream",
+        "fresh_coriander"
+      ],
       "output": "black_bean_soup",
-      "end": { "condition": "served with garnishes" },
+      "end": {
+        "condition": "served with garnishes"
+      },
       "steps": [
         {
           "id": "add_lime",
           "device": "pot",
           "action": "Squeeze in lime juice and stir through",
-          "inputs": ["blended_soup", "lime"],
+          "inputs": [
+            "blended_soup",
+            "lime"
+          ],
           "output": "finished_soup",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "prep_garnishes",
           "device": "chopping_board",
           "action": "Chop fresh coriander for garnish",
-          "inputs": ["fresh_coriander"],
+          "inputs": [
+            "fresh_coriander"
+          ],
           "output": "chopped_coriander",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "serve",
           "device": "pot",
           "action": "Ladle into bowls, top with sour cream and fresh coriander",
-          "after": ["add_lime", "prep_garnishes"],
-          "inputs": ["finished_soup", "sour_cream", "chopped_coriander"],
+          "after": [
+            "add_lime",
+            "prep_garnishes"
+          ],
+          "inputs": [
+            "finished_soup",
+            "sour_cream",
+            "chopped_coriander"
+          ],
           "output": "black_bean_soup",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         }
       ]
     }

@@ -1,70 +1,161 @@
 {
   "title": "Pizza Margherita",
   "servings": 2,
-
+  "cuisine": "Italian",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 90,
+  "prep_minutes": 60,
   "devices": [
-    { "id": "oven", "name": "Oven", "settings": "250°C / highest setting" },
-    { "id": "worktop", "name": "Worktop" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "hob", "name": "Hob" },
-    { "id": "baking_tray", "name": "Baking Tray" }
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "250°C / highest setting"
+    },
+    {
+      "id": "worktop",
+      "name": "Worktop"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "baking_tray",
+      "name": "Baking Tray"
+    }
   ],
-
   "ingredients": [
-    { "id": "flour", "name": "Strong Bread Flour", "quantity": "300g" },
-    { "id": "yeast", "name": "Dried Yeast", "quantity": "7g" },
-    { "id": "salt", "name": "Salt", "quantity": "1 tsp" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
-    { "id": "warm_water", "name": "Warm Water", "quantity": "180ml" },
-    { "id": "tomatoes", "name": "Tinned Tomatoes", "quantity": "400g tin" },
-    { "id": "garlic", "name": "Garlic", "quantity": "1 clove" },
-    { "id": "basil", "name": "Fresh Basil", "quantity": "handful" },
-    { "id": "mozzarella", "name": "Mozzarella", "quantity": "250g" },
-    { "id": "sugar", "name": "Sugar", "quantity": "pinch" }
+    {
+      "id": "flour",
+      "name": "Strong Bread Flour",
+      "quantity": "300g"
+    },
+    {
+      "id": "yeast",
+      "name": "Dried Yeast",
+      "quantity": "7g"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "warm_water",
+      "name": "Warm Water",
+      "quantity": "180ml"
+    },
+    {
+      "id": "tomatoes",
+      "name": "Tinned Tomatoes",
+      "quantity": "400g tin"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "1 clove"
+    },
+    {
+      "id": "basil",
+      "name": "Fresh Basil",
+      "quantity": "handful"
+    },
+    {
+      "id": "mozzarella",
+      "name": "Mozzarella",
+      "quantity": "250g"
+    },
+    {
+      "id": "sugar",
+      "name": "Sugar",
+      "quantity": "pinch"
+    }
   ],
-
   "steps": [
     {
       "id": "make_dough",
       "device": "worktop",
       "action": "Make and prove pizza dough",
-      "inputs": ["flour", "yeast", "salt", "olive_oil", "warm_water"],
+      "inputs": [
+        "flour",
+        "yeast",
+        "salt",
+        "olive_oil",
+        "warm_water"
+      ],
       "output": "proved_dough",
-      "end": { "condition": "dough doubled in size" },
+      "end": {
+        "condition": "dough doubled in size"
+      },
       "steps": [
         {
           "id": "mix_dough",
           "device": "worktop",
           "action": "Combine ingredients and knead dough",
-          "inputs": ["flour", "yeast", "salt", "olive_oil", "warm_water"],
+          "inputs": [
+            "flour",
+            "yeast",
+            "salt",
+            "olive_oil",
+            "warm_water"
+          ],
           "output": "kneaded_dough",
-          "end": { "condition": "smooth and elastic" },
+          "end": {
+            "condition": "smooth and elastic"
+          },
           "steps": [
             {
               "id": "combine_dry",
               "device": "worktop",
               "action": "Combine flour, yeast and salt in a mound",
-              "inputs": ["flour", "yeast", "salt"],
+              "inputs": [
+                "flour",
+                "yeast",
+                "salt"
+              ],
               "output": "dry_mix",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_wet",
               "device": "worktop",
               "action": "Make a well, add warm water and olive oil, bring together",
-              "inputs": ["dry_mix", "warm_water", "olive_oil"],
+              "inputs": [
+                "dry_mix",
+                "warm_water",
+                "olive_oil"
+              ],
               "output": "rough_dough",
               "after": "combine_dry",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "knead",
               "device": "worktop",
               "action": "Knead dough until smooth and elastic",
-              "inputs": ["rough_dough"],
+              "inputs": [
+                "rough_dough"
+              ],
               "output": "kneaded_dough",
               "after": "add_wet",
-              "end": { "duration_minutes": 10, "condition": "smooth and elastic, springs back when poked" }
+              "end": {
+                "duration_minutes": 10,
+                "condition": "smooth and elastic, springs back when poked"
+              }
             }
           ]
         },
@@ -72,27 +163,41 @@
           "id": "prove",
           "device": "worktop",
           "action": "Cover dough and leave to prove",
-          "inputs": ["kneaded_dough"],
+          "inputs": [
+            "kneaded_dough"
+          ],
           "output": "proved_dough",
           "after": "mix_dough",
-          "end": { "duration_minutes": 60, "condition": "doubled in size" },
+          "end": {
+            "duration_minutes": 60,
+            "condition": "doubled in size"
+          },
           "steps": [
             {
               "id": "cover_dough",
               "device": "worktop",
               "action": "Place dough in oiled bowl and cover with cling film",
-              "inputs": ["kneaded_dough"],
+              "inputs": [
+                "kneaded_dough"
+              ],
               "output": "covered_dough",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "rest_dough",
               "device": "worktop",
               "action": "Leave in warm place until doubled in size",
-              "inputs": ["covered_dough"],
+              "inputs": [
+                "covered_dough"
+              ],
               "output": "proved_dough",
               "after": "cover_dough",
-              "end": { "duration_minutes": 60, "condition": "doubled in size" }
+              "end": {
+                "duration_minutes": 60,
+                "condition": "doubled in size"
+              }
             }
           ]
         }
@@ -102,62 +207,100 @@
       "id": "make_pizza_sauce",
       "device": "hob",
       "action": "Make simple tomato sauce",
-      "inputs": ["garlic", "olive_oil", "tomatoes", "sugar", "basil"],
+      "inputs": [
+        "garlic",
+        "olive_oil",
+        "tomatoes",
+        "sugar",
+        "basil"
+      ],
       "output": "pizza_sauce",
-      "end": { "condition": "sauce reduced and flavourful" },
+      "end": {
+        "condition": "sauce reduced and flavourful"
+      },
       "steps": [
         {
           "id": "crush_garlic",
           "device": "worktop",
           "action": "Crush or finely mince garlic clove",
-          "inputs": ["garlic"],
+          "inputs": [
+            "garlic"
+          ],
           "output": "crushed_garlic",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "heat_oil",
           "device": "hob",
           "action": "Heat olive oil in saucepan over medium heat",
-          "inputs": ["olive_oil"],
+          "inputs": [
+            "olive_oil"
+          ],
           "output": "hot_oil",
           "after": "crush_garlic",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "fry_garlic_for_sauce",
           "device": "hob",
           "action": "Fry garlic gently until fragrant",
-          "inputs": ["hot_oil", "crushed_garlic"],
+          "inputs": [
+            "hot_oil",
+            "crushed_garlic"
+          ],
           "output": "garlic_oil",
           "after": "heat_oil",
-          "end": { "duration_minutes": 1, "condition": "fragrant, not browned" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "fragrant, not browned"
+          }
         },
         {
           "id": "add_tomatoes_to_sauce",
           "device": "hob",
           "action": "Add tinned tomatoes and sugar, break up with spoon",
-          "inputs": ["garlic_oil", "tomatoes", "sugar"],
+          "inputs": [
+            "garlic_oil",
+            "tomatoes",
+            "sugar"
+          ],
           "output": "raw_sauce",
           "after": "fry_garlic_for_sauce",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "simmer_pizza_sauce",
           "device": "hob",
           "action": "Simmer sauce until reduced and thickened",
-          "inputs": ["raw_sauce"],
+          "inputs": [
+            "raw_sauce"
+          ],
           "output": "reduced_sauce",
           "after": "add_tomatoes_to_sauce",
-          "end": { "duration_minutes": 15, "condition": "thick and reduced by half" }
+          "end": {
+            "duration_minutes": 15,
+            "condition": "thick and reduced by half"
+          }
         },
         {
           "id": "tear_in_basil",
           "device": "saucepan",
           "action": "Tear basil leaves into sauce and stir",
-          "inputs": ["reduced_sauce", "basil"],
+          "inputs": [
+            "reduced_sauce",
+            "basil"
+          ],
           "output": "pizza_sauce",
           "after": "simmer_pizza_sauce",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -165,62 +308,103 @@
       "id": "assemble_and_bake",
       "device": "oven",
       "action": "Shape, top and bake pizzas",
-      "inputs": ["proved_dough", "pizza_sauce", "mozzarella", "olive_oil"],
+      "inputs": [
+        "proved_dough",
+        "pizza_sauce",
+        "mozzarella",
+        "olive_oil"
+      ],
       "output": "pizza_margherita",
-      "after": ["make_dough", "make_pizza_sauce"],
-      "end": { "condition": "crust golden, cheese bubbling" },
+      "after": [
+        "make_dough",
+        "make_pizza_sauce"
+      ],
+      "end": {
+        "condition": "crust golden, cheese bubbling"
+      },
       "steps": [
         {
           "id": "shape_and_top",
           "device": "worktop",
           "action": "Shape dough and add toppings",
-          "inputs": ["proved_dough", "pizza_sauce", "mozzarella", "olive_oil"],
+          "inputs": [
+            "proved_dough",
+            "pizza_sauce",
+            "mozzarella",
+            "olive_oil"
+          ],
           "output": "topped_pizza",
-          "end": { "condition": "pizzas topped and ready for oven" },
+          "end": {
+            "condition": "pizzas topped and ready for oven"
+          },
           "steps": [
             {
               "id": "punch_down_dough",
               "device": "worktop",
               "action": "Punch down proved dough to knock out air",
-              "inputs": ["proved_dough"],
+              "inputs": [
+                "proved_dough"
+              ],
               "output": "knocked_back_dough",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "divide_and_stretch",
               "device": "worktop",
               "action": "Divide dough in two and stretch each into a round",
-              "inputs": ["knocked_back_dough"],
+              "inputs": [
+                "knocked_back_dough"
+              ],
               "output": "pizza_bases",
               "after": "punch_down_dough",
-              "end": { "duration_minutes": 5, "condition": "thin rounds, slightly thicker at edges" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "thin rounds, slightly thicker at edges"
+              }
             },
             {
               "id": "spread_sauce",
               "device": "worktop",
               "action": "Spread tomato sauce over each base",
-              "inputs": ["pizza_bases", "pizza_sauce"],
+              "inputs": [
+                "pizza_bases",
+                "pizza_sauce"
+              ],
               "output": "sauced_bases",
               "after": "divide_and_stretch",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "tear_mozzarella",
               "device": "worktop",
               "action": "Tear mozzarella and scatter over pizzas",
-              "inputs": ["sauced_bases", "mozzarella"],
+              "inputs": [
+                "sauced_bases",
+                "mozzarella"
+              ],
               "output": "cheesed_pizza",
               "after": "spread_sauce",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "drizzle_oil",
               "device": "worktop",
               "action": "Drizzle with olive oil",
-              "inputs": ["cheesed_pizza", "olive_oil"],
+              "inputs": [
+                "cheesed_pizza",
+                "olive_oil"
+              ],
               "output": "topped_pizza",
               "after": "tear_mozzarella",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -228,10 +412,15 @@
           "id": "bake_pizza",
           "device": "oven",
           "action": "Bake pizzas at maximum heat",
-          "inputs": ["topped_pizza"],
+          "inputs": [
+            "topped_pizza"
+          ],
           "output": "pizza_margherita",
           "after": "shape_and_top",
-          "end": { "duration_minutes": 12, "condition": "crust golden, cheese bubbling" }
+          "end": {
+            "duration_minutes": 12,
+            "condition": "crust golden, cheese bubbling"
+          }
         }
       ]
     }

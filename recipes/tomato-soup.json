@@ -1,87 +1,180 @@
 {
   "title": "Tomato Soup",
   "servings": 4,
-
+  "cuisine": "British",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 30,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "blender", "name": "Blender" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "blender",
+      "name": "Blender"
+    }
   ],
-
   "ingredients": [
-    { "id": "tomatoes", "name": "Tinned Tomatoes", "quantity": "800g" },
-    { "id": "onion", "name": "Onion", "quantity": "1" },
-    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "2 tbsp" },
-    { "id": "vegetable_stock", "name": "Vegetable Stock", "quantity": "300ml" },
-    { "id": "basil", "name": "Fresh Basil", "quantity": "handful" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" },
-    { "id": "cream", "name": "Double Cream", "quantity": "2 tbsp" }
+    {
+      "id": "tomatoes",
+      "name": "Tinned Tomatoes",
+      "quantity": "800g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "2 cloves"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "vegetable_stock",
+      "name": "Vegetable Stock",
+      "quantity": "300ml"
+    },
+    {
+      "id": "basil",
+      "name": "Fresh Basil",
+      "quantity": "handful"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Black Pepper",
+      "quantity": "to taste"
+    },
+    {
+      "id": "cream",
+      "name": "Double Cream",
+      "quantity": "2 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_and_cook",
       "device": "saucepan",
       "action": "Prepare vegetables and cook soup base",
-      "inputs": ["onion", "garlic", "olive_oil", "tomatoes", "vegetable_stock", "salt", "pepper"],
+      "inputs": [
+        "onion",
+        "garlic",
+        "olive_oil",
+        "tomatoes",
+        "vegetable_stock",
+        "salt",
+        "pepper"
+      ],
       "output": "cooked_soup",
-      "end": { "condition": "simmered and flavours developed" },
+      "end": {
+        "condition": "simmered and flavours developed"
+      },
       "steps": [
         {
           "id": "chop_onion",
           "device": "chopping_board",
           "action": "Finely dice the onion",
-          "inputs": ["onion"],
+          "inputs": [
+            "onion"
+          ],
           "output": "chopped_onion",
-          "end": { "duration_minutes": 3 }
+          "end": {
+            "duration_minutes": 3
+          }
         },
         {
           "id": "soften_onion",
           "device": "saucepan",
           "action": "Soften onion in olive oil over medium heat",
-          "inputs": ["chopped_onion", "olive_oil"],
+          "inputs": [
+            "chopped_onion",
+            "olive_oil"
+          ],
           "output": "softened_onion",
           "after": "chop_onion",
-          "end": { "duration_minutes": 5, "condition": "translucent and soft" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "translucent and soft"
+          }
         },
         {
           "id": "add_garlic",
           "device": "saucepan",
           "action": "Crush and add garlic, cook briefly",
-          "inputs": ["softened_onion", "garlic"],
+          "inputs": [
+            "softened_onion",
+            "garlic"
+          ],
           "output": "onion_garlic_base",
           "after": "soften_onion",
-          "end": { "duration_minutes": 1, "condition": "fragrant" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "fragrant"
+          }
         },
         {
           "id": "add_tomatoes",
           "device": "saucepan",
           "action": "Add tinned tomatoes, break up with a spoon",
-          "inputs": ["onion_garlic_base", "tomatoes"],
+          "inputs": [
+            "onion_garlic_base",
+            "tomatoes"
+          ],
           "output": "tomato_base",
           "after": "add_garlic",
-          "end": { "duration_minutes": 2 }
+          "end": {
+            "duration_minutes": 2
+          }
         },
         {
           "id": "add_stock",
           "device": "saucepan",
           "action": "Pour in vegetable stock, season with salt and pepper",
-          "inputs": ["tomato_base", "vegetable_stock", "salt", "pepper"],
+          "inputs": [
+            "tomato_base",
+            "vegetable_stock",
+            "salt",
+            "pepper"
+          ],
           "output": "raw_soup",
           "after": "add_tomatoes",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "simmer",
           "device": "saucepan",
           "action": "Bring to boil then reduce heat and simmer",
-          "inputs": ["raw_soup"],
+          "inputs": [
+            "raw_soup"
+          ],
           "output": "cooked_soup",
           "after": "add_stock",
-          "end": { "duration_minutes": 20, "condition": "tomatoes broken down, flavours melded" }
+          "end": {
+            "duration_minutes": 20,
+            "condition": "tomatoes broken down, flavours melded"
+          }
         }
       ]
     },
@@ -89,35 +182,53 @@
       "id": "blend",
       "device": "blender",
       "action": "Blend soup until smooth",
-      "inputs": ["cooked_soup"],
+      "inputs": [
+        "cooked_soup"
+      ],
       "output": "blended_soup",
       "after": "prep_and_cook",
-      "end": { "duration_minutes": 3, "condition": "completely smooth" }
+      "end": {
+        "duration_minutes": 3,
+        "condition": "completely smooth"
+      }
     },
     {
       "id": "garnish_prep",
       "device": "chopping_board",
       "action": "Prepare garnishes",
-      "inputs": ["basil", "cream"],
+      "inputs": [
+        "basil",
+        "cream"
+      ],
       "output": "garnishes",
-      "end": { "condition": "garnishes ready" },
+      "end": {
+        "condition": "garnishes ready"
+      },
       "steps": [
         {
           "id": "tear_basil",
           "device": "chopping_board",
           "action": "Tear basil leaves into small pieces",
-          "inputs": ["basil"],
+          "inputs": [
+            "basil"
+          ],
           "output": "torn_basil",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "prepare_cream",
           "device": "chopping_board",
           "action": "Measure cream ready for swirling",
-          "inputs": ["cream"],
-          "output": "garnishes",
+          "inputs": [
+            "cream"
+          ],
+          "output": "prepared_cream",
           "after": "tear_basil",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -125,10 +236,18 @@
       "id": "serve",
       "device": "saucepan",
       "action": "Ladle soup into bowls, add cream swirl and basil",
-      "inputs": ["blended_soup", "garnishes"],
+      "inputs": [
+        "blended_soup",
+        "garnishes"
+      ],
       "output": "tomato_soup",
-      "after": ["blend", "garnish_prep"],
-      "end": { "duration_minutes": 2 }
+      "after": [
+        "blend",
+        "garnish_prep"
+      ],
+      "end": {
+        "duration_minutes": 2
+      }
     }
   ]
 }

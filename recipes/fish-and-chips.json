@@ -1,63 +1,146 @@
 {
   "title": "Fish and Chips",
   "servings": 4,
-
+  "cuisine": "British",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 40,
+  "prep_minutes": 10,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "deep_fryer", "name": "Deep Fryer" },
-    { "id": "oven", "name": "Oven", "settings": "130\u00b0C" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "deep_fryer",
+      "name": "Deep Fryer"
+    },
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "130°C"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "cod_fillets", "name": "Cod Fillets", "quantity": "4 fillets" },
-    { "id": "potatoes", "name": "Potatoes", "quantity": "1kg" },
-    { "id": "plain_flour", "name": "Plain Flour", "quantity": "200g" },
-    { "id": "baking_powder", "name": "Baking Powder", "quantity": "1 tsp" },
-    { "id": "beer", "name": "Beer", "quantity": "250ml" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Pepper", "quantity": "to taste" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 litres" },
-    { "id": "malt_vinegar", "name": "Malt Vinegar", "quantity": "to serve" },
-    { "id": "peas", "name": "Peas", "quantity": "300g" },
-    { "id": "butter", "name": "Butter", "quantity": "25g" },
-    { "id": "lemon", "name": "Lemon", "quantity": "1" }
+    {
+      "id": "cod_fillets",
+      "name": "Cod Fillets",
+      "quantity": "4 fillets"
+    },
+    {
+      "id": "potatoes",
+      "name": "Potatoes",
+      "quantity": "1kg"
+    },
+    {
+      "id": "plain_flour",
+      "name": "Plain Flour",
+      "quantity": "200g"
+    },
+    {
+      "id": "baking_powder",
+      "name": "Baking Powder",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "beer",
+      "name": "Beer",
+      "quantity": "250ml"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Pepper",
+      "quantity": "to taste"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "2 litres"
+    },
+    {
+      "id": "malt_vinegar",
+      "name": "Malt Vinegar",
+      "quantity": "to serve"
+    },
+    {
+      "id": "peas",
+      "name": "Peas",
+      "quantity": "300g"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "25g"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "quantity": "1"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_chips",
       "device": "hob",
       "action": "Prepare and par-boil chips",
-      "inputs": ["potatoes", "salt"],
+      "inputs": [
+        "potatoes",
+        "salt"
+      ],
       "output": "parboiled_chips",
-      "end": { "condition": "chips par-boiled and drained" },
+      "end": {
+        "condition": "chips par-boiled and drained"
+      },
       "steps": [
         {
           "id": "peel_and_cut",
           "device": "chopping_board",
           "action": "Peel and cut potatoes into chips",
-          "inputs": ["potatoes"],
+          "inputs": [
+            "potatoes"
+          ],
           "output": "raw_chips",
-          "end": { "condition": "potatoes cut into thick chips" },
+          "end": {
+            "condition": "potatoes cut into thick chips"
+          },
           "steps": [
             {
               "id": "peel_potatoes",
               "device": "chopping_board",
               "action": "Peel the potatoes",
-              "inputs": ["potatoes"],
+              "inputs": [
+                "potatoes"
+              ],
               "output": "peeled_potatoes",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "cut_into_chips",
               "device": "chopping_board",
               "action": "Cut potatoes into thick chip shapes",
-              "inputs": ["peeled_potatoes"],
+              "inputs": [
+                "peeled_potatoes"
+              ],
               "output": "raw_chips",
               "after": "peel_potatoes",
-              "end": { "duration_minutes": 4 }
+              "end": {
+                "duration_minutes": 4
+              }
             }
           ]
         },
@@ -65,19 +148,30 @@
           "id": "parboil_chips",
           "device": "hob",
           "action": "Par-boil chips in salted water until just tender",
-          "inputs": ["raw_chips", "salt"],
+          "inputs": [
+            "raw_chips",
+            "salt"
+          ],
           "output": "boiled_chips",
           "after": "peel_and_cut",
-          "end": { "duration_minutes": 5, "condition": "just tender, not falling apart" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "just tender, not falling apart"
+          }
         },
         {
           "id": "drain_chips",
           "device": "chopping_board",
           "action": "Drain chips and let steam dry",
-          "inputs": ["boiled_chips"],
+          "inputs": [
+            "boiled_chips"
+          ],
           "output": "parboiled_chips",
           "after": "parboil_chips",
-          "end": { "duration_minutes": 3, "condition": "surface dry" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "surface dry"
+          }
         }
       ]
     },
@@ -85,80 +179,133 @@
       "id": "make_batter",
       "device": "bowl",
       "action": "Mix beer batter",
-      "inputs": ["plain_flour", "baking_powder", "beer", "salt"],
+      "inputs": [
+        "plain_flour",
+        "baking_powder",
+        "beer",
+        "salt"
+      ],
       "output": "beer_batter",
-      "end": { "condition": "batter smooth and bubbly" },
+      "end": {
+        "condition": "batter smooth and bubbly"
+      },
       "steps": [
         {
           "id": "combine_dry",
           "device": "bowl",
           "action": "Whisk flour, baking powder and a pinch of salt together",
-          "inputs": ["plain_flour", "baking_powder", "salt"],
+          "inputs": [
+            "plain_flour",
+            "baking_powder",
+            "salt"
+          ],
           "output": "dry_mix",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_beer",
           "device": "bowl",
           "action": "Pour in cold beer and whisk until smooth",
-          "inputs": ["dry_mix", "beer"],
+          "inputs": [
+            "dry_mix",
+            "beer"
+          ],
           "output": "beer_batter",
           "after": "combine_dry",
-          "end": { "duration_minutes": 2, "condition": "smooth, slightly lumpy is fine" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "smooth, slightly lumpy is fine"
+          }
         }
       ]
     },
     {
       "id": "heat_oil",
       "device": "deep_fryer",
-      "action": "Heat oil to 180\u00b0C for frying",
-      "inputs": ["vegetable_oil"],
+      "action": "Heat oil to 180°C for frying",
+      "inputs": [
+        "vegetable_oil"
+      ],
       "output": "hot_oil",
-      "end": { "duration_minutes": 10, "condition": "oil at 180\u00b0C" }
+      "end": {
+        "duration_minutes": 10,
+        "condition": "oil at 180°C"
+      }
     },
     {
       "id": "fry_chips",
       "device": "deep_fryer",
       "action": "Fry chips until golden and crispy",
-      "inputs": ["parboiled_chips", "hot_oil"],
+      "inputs": [
+        "parboiled_chips",
+        "hot_oil"
+      ],
       "output": "fried_chips",
-      "after": ["prep_chips", "heat_oil"],
-      "end": { "condition": "chips golden and crispy" },
+      "after": [
+        "prep_chips",
+        "heat_oil"
+      ],
+      "end": {
+        "condition": "chips golden and crispy"
+      },
       "steps": [
         {
           "id": "first_fry",
           "device": "deep_fryer",
-          "action": "Fry chips at 160\u00b0C for 5 minutes to cook through",
-          "inputs": ["parboiled_chips", "hot_oil"],
+          "action": "Fry chips at 160°C for 5 minutes to cook through",
+          "inputs": [
+            "parboiled_chips",
+            "hot_oil"
+          ],
           "output": "blanched_chips",
-          "end": { "duration_minutes": 5, "condition": "cooked through but pale" }
+          "end": {
+            "duration_minutes": 5,
+            "condition": "cooked through but pale"
+          }
         },
         {
           "id": "rest_chips",
           "device": "oven",
           "action": "Rest chips on a tray while fish cooks",
-          "inputs": ["blanched_chips"],
+          "inputs": [
+            "blanched_chips"
+          ],
           "output": "rested_chips",
           "after": "first_fry",
-          "end": { "duration_minutes": 5 }
+          "end": {
+            "duration_minutes": 5
+          }
         },
         {
           "id": "second_fry",
           "device": "deep_fryer",
-          "action": "Fry chips again at 190\u00b0C until golden and crispy",
-          "inputs": ["rested_chips", "hot_oil"],
+          "action": "Fry chips again at 190°C until golden and crispy",
+          "inputs": [
+            "rested_chips",
+            "hot_oil"
+          ],
           "output": "crispy_chips",
           "after": "rest_chips",
-          "end": { "duration_minutes": 3, "condition": "deep golden and crispy" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "deep golden and crispy"
+          }
         },
         {
           "id": "season_chips",
           "device": "bowl",
           "action": "Season chips with salt",
-          "inputs": ["crispy_chips", "salt"],
+          "inputs": [
+            "crispy_chips",
+            "salt"
+          ],
           "output": "fried_chips",
           "after": "second_fry",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -166,45 +313,79 @@
       "id": "batter_and_fry_fish",
       "device": "deep_fryer",
       "action": "Batter and fry fish fillets",
-      "inputs": ["cod_fillets", "beer_batter", "plain_flour", "hot_oil", "salt", "pepper"],
+      "inputs": [
+        "cod_fillets",
+        "beer_batter",
+        "plain_flour",
+        "hot_oil",
+        "salt",
+        "pepper"
+      ],
       "output": "fried_fish",
-      "after": ["make_batter", "heat_oil"],
-      "end": { "condition": "fish golden and cooked through" },
+      "after": [
+        "make_batter",
+        "heat_oil"
+      ],
+      "end": {
+        "condition": "fish golden and cooked through"
+      },
       "steps": [
         {
           "id": "season_fish",
           "device": "chopping_board",
           "action": "Season cod fillets with salt and pepper",
-          "inputs": ["cod_fillets", "salt", "pepper"],
+          "inputs": [
+            "cod_fillets",
+            "salt",
+            "pepper"
+          ],
           "output": "seasoned_fish",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "dust_fish",
           "device": "chopping_board",
           "action": "Dust fish in flour to help batter stick",
-          "inputs": ["seasoned_fish", "plain_flour"],
+          "inputs": [
+            "seasoned_fish",
+            "plain_flour"
+          ],
           "output": "floured_fish",
           "after": "season_fish",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "dip_in_batter",
           "device": "bowl",
           "action": "Dip floured fish into beer batter to coat",
-          "inputs": ["floured_fish", "beer_batter"],
+          "inputs": [
+            "floured_fish",
+            "beer_batter"
+          ],
           "output": "battered_fish",
           "after": "dust_fish",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "fry_fish",
           "device": "deep_fryer",
           "action": "Lower battered fish into hot oil and fry until golden",
-          "inputs": ["battered_fish", "hot_oil"],
+          "inputs": [
+            "battered_fish",
+            "hot_oil"
+          ],
           "output": "fried_fish",
           "after": "dip_in_batter",
-          "end": { "duration_minutes": 7, "condition": "deep golden, fish flakes easily" }
+          "end": {
+            "duration_minutes": 7,
+            "condition": "deep golden, fish flakes easily"
+          }
         }
       ]
     },
@@ -212,26 +393,44 @@
       "id": "make_mushy_peas",
       "device": "hob",
       "action": "Make mushy peas",
-      "inputs": ["peas", "butter", "salt"],
+      "inputs": [
+        "peas",
+        "butter",
+        "salt"
+      ],
       "output": "mushy_peas",
-      "end": { "condition": "peas soft and lightly mashed" },
+      "end": {
+        "condition": "peas soft and lightly mashed"
+      },
       "steps": [
         {
           "id": "heat_peas",
           "device": "hob",
           "action": "Heat peas in a saucepan with butter",
-          "inputs": ["peas", "butter"],
+          "inputs": [
+            "peas",
+            "butter"
+          ],
           "output": "hot_peas",
-          "end": { "duration_minutes": 4, "condition": "peas heated through" }
+          "end": {
+            "duration_minutes": 4,
+            "condition": "peas heated through"
+          }
         },
         {
           "id": "mash_peas",
           "device": "hob",
           "action": "Roughly mash peas and season with salt",
-          "inputs": ["hot_peas", "salt"],
+          "inputs": [
+            "hot_peas",
+            "salt"
+          ],
           "output": "mushy_peas",
           "after": "heat_peas",
-          "end": { "duration_minutes": 2, "condition": "roughly mashed, some texture remaining" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "roughly mashed, some texture remaining"
+          }
         }
       ]
     },
@@ -239,27 +438,51 @@
       "id": "serve",
       "device": "chopping_board",
       "action": "Plate up fish, chips, mushy peas with lemon and vinegar",
-      "inputs": ["fried_fish", "fried_chips", "mushy_peas", "lemon", "malt_vinegar"],
+      "inputs": [
+        "fried_fish",
+        "fried_chips",
+        "mushy_peas",
+        "lemon",
+        "malt_vinegar"
+      ],
       "output": "fish_and_chips",
-      "after": ["fry_chips", "batter_and_fry_fish", "make_mushy_peas"],
-      "end": { "duration_minutes": 2 },
+      "after": [
+        "fry_chips",
+        "batter_and_fry_fish",
+        "make_mushy_peas"
+      ],
+      "end": {
+        "duration_minutes": 2
+      },
       "steps": [
         {
           "id": "cut_lemon",
           "device": "chopping_board",
           "action": "Cut lemon into wedges",
-          "inputs": ["lemon"],
+          "inputs": [
+            "lemon"
+          ],
           "output": "lemon_wedges",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "plate_up",
           "device": "chopping_board",
           "action": "Plate fish and chips with mushy peas, lemon wedges and malt vinegar",
-          "inputs": ["fried_fish", "fried_chips", "mushy_peas", "lemon_wedges", "malt_vinegar"],
+          "inputs": [
+            "fried_fish",
+            "fried_chips",
+            "mushy_peas",
+            "lemon_wedges",
+            "malt_vinegar"
+          ],
           "output": "fish_and_chips",
           "after": "cut_lemon",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

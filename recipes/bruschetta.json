@@ -1,68 +1,139 @@
 {
   "title": "Bruschetta",
   "servings": 4,
-
+  "cuisine": "Italian",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 15,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "grill", "name": "Grill" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "plate", "name": "Plate" }
+    {
+      "id": "grill",
+      "name": "Grill"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "plate",
+      "name": "Plate"
+    }
   ],
-
   "ingredients": [
-    { "id": "ciabatta", "name": "Ciabatta", "quantity": "1 loaf" },
-    { "id": "tomatoes", "name": "Tomatoes", "quantity": "4 ripe" },
-    { "id": "garlic", "name": "Garlic", "quantity": "3 cloves" },
-    { "id": "basil", "name": "Fresh Basil", "quantity": "small bunch" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "3 tbsp" },
-    { "id": "balsamic_vinegar", "name": "Balsamic Vinegar", "quantity": "1 tbsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" }
+    {
+      "id": "ciabatta",
+      "name": "Ciabatta",
+      "quantity": "1 loaf"
+    },
+    {
+      "id": "tomatoes",
+      "name": "Tomatoes",
+      "quantity": "4 ripe"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "3 cloves"
+    },
+    {
+      "id": "basil",
+      "name": "Fresh Basil",
+      "quantity": "small bunch"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "3 tbsp"
+    },
+    {
+      "id": "balsamic_vinegar",
+      "name": "Balsamic Vinegar",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Black Pepper",
+      "quantity": "to taste"
+    }
   ],
-
   "steps": [
     {
       "id": "toast_bread",
       "device": "grill",
       "action": "Prepare and toast ciabatta slices",
-      "inputs": ["ciabatta", "olive_oil", "garlic"],
+      "inputs": [
+        "ciabatta",
+        "olive_oil",
+        "garlic"
+      ],
       "output": "toasted_bread",
-      "end": { "condition": "bread golden and crisp" },
+      "end": {
+        "condition": "bread golden and crisp"
+      },
       "steps": [
         {
           "id": "slice_ciabatta",
           "device": "chopping_board",
           "action": "Slice ciabatta into 1cm thick slices",
-          "inputs": ["ciabatta"],
+          "inputs": [
+            "ciabatta"
+          ],
           "output": "ciabatta_slices",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "drizzle_bread",
           "device": "chopping_board",
           "action": "Drizzle slices with olive oil on both sides",
-          "inputs": ["ciabatta_slices", "olive_oil"],
+          "inputs": [
+            "ciabatta_slices",
+            "olive_oil"
+          ],
           "output": "oiled_slices",
           "after": "slice_ciabatta",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "grill_bread",
           "device": "grill",
           "action": "Grill slices until golden on both sides",
-          "inputs": ["oiled_slices"],
+          "inputs": [
+            "oiled_slices"
+          ],
           "output": "grilled_slices",
           "after": "drizzle_bread",
-          "end": { "duration_minutes": 3, "condition": "golden brown with char marks" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "golden brown with char marks"
+          }
         },
         {
           "id": "rub_garlic_on_bread",
           "device": "chopping_board",
           "action": "Rub each slice with a cut garlic clove",
-          "inputs": ["grilled_slices", "garlic"],
+          "inputs": [
+            "grilled_slices",
+            "garlic"
+          ],
           "output": "toasted_bread",
           "after": "grill_bread",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -70,34 +141,56 @@
       "id": "make_topping",
       "device": "bowl",
       "action": "Prepare tomato and basil topping",
-      "inputs": ["tomatoes", "garlic", "basil", "olive_oil", "balsamic_vinegar", "salt", "pepper"],
+      "inputs": [
+        "tomatoes",
+        "garlic",
+        "basil",
+        "olive_oil",
+        "balsamic_vinegar",
+        "salt",
+        "pepper"
+      ],
       "output": "bruschetta_topping",
-      "end": { "condition": "topping well mixed and seasoned" },
+      "end": {
+        "condition": "topping well mixed and seasoned"
+      },
       "steps": [
         {
           "id": "prep_tomatoes",
           "device": "chopping_board",
           "action": "Prepare tomatoes for topping",
-          "inputs": ["tomatoes"],
+          "inputs": [
+            "tomatoes"
+          ],
           "output": "diced_tomatoes",
-          "end": { "condition": "tomatoes finely diced" },
+          "end": {
+            "condition": "tomatoes finely diced"
+          },
           "steps": [
             {
               "id": "halve_tomatoes",
               "device": "chopping_board",
               "action": "Halve tomatoes and scoop out seeds",
-              "inputs": ["tomatoes"],
+              "inputs": [
+                "tomatoes"
+              ],
               "output": "deseeded_tomatoes",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "dice_tomatoes",
               "device": "chopping_board",
               "action": "Finely dice the deseeded tomato flesh",
-              "inputs": ["deseeded_tomatoes"],
+              "inputs": [
+                "deseeded_tomatoes"
+              ],
               "output": "diced_tomatoes",
               "after": "halve_tomatoes",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             }
           ]
         },
@@ -105,35 +198,62 @@
           "id": "mince_garlic",
           "device": "chopping_board",
           "action": "Finely mince remaining garlic cloves",
-          "inputs": ["garlic"],
+          "inputs": [
+            "garlic"
+          ],
           "output": "minced_garlic",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "tear_basil",
           "device": "chopping_board",
           "action": "Tear basil leaves into small pieces",
-          "inputs": ["basil"],
+          "inputs": [
+            "basil"
+          ],
           "output": "torn_basil",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "combine_topping",
           "device": "bowl",
           "action": "Combine tomatoes, garlic, basil, oil and vinegar",
-          "inputs": ["diced_tomatoes", "minced_garlic", "torn_basil", "olive_oil", "balsamic_vinegar"],
+          "inputs": [
+            "diced_tomatoes",
+            "minced_garlic",
+            "torn_basil",
+            "olive_oil",
+            "balsamic_vinegar"
+          ],
           "output": "mixed_topping",
-          "after": ["prep_tomatoes", "mince_garlic", "tear_basil"],
-          "end": { "duration_minutes": 1 }
+          "after": [
+            "prep_tomatoes",
+            "mince_garlic",
+            "tear_basil"
+          ],
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "season_topping",
           "device": "bowl",
           "action": "Season with salt and pepper, toss gently",
-          "inputs": ["mixed_topping", "salt", "pepper"],
+          "inputs": [
+            "mixed_topping",
+            "salt",
+            "pepper"
+          ],
           "output": "bruschetta_topping",
           "after": "combine_topping",
-          "end": { "duration_minutes": 1, "condition": "well seasoned" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "well seasoned"
+          }
         }
       ]
     },
@@ -141,27 +261,46 @@
       "id": "assemble",
       "device": "plate",
       "action": "Assemble bruschetta and serve",
-      "inputs": ["toasted_bread", "bruschetta_topping", "olive_oil"],
+      "inputs": [
+        "toasted_bread",
+        "bruschetta_topping",
+        "olive_oil"
+      ],
       "output": "bruschetta",
-      "after": ["toast_bread", "make_topping"],
-      "end": { "condition": "assembled and ready to serve" },
+      "after": [
+        "toast_bread",
+        "make_topping"
+      ],
+      "end": {
+        "condition": "assembled and ready to serve"
+      },
       "steps": [
         {
           "id": "spoon_topping",
           "device": "plate",
           "action": "Spoon topping generously onto each toast",
-          "inputs": ["toasted_bread", "bruschetta_topping"],
+          "inputs": [
+            "toasted_bread",
+            "bruschetta_topping"
+          ],
           "output": "topped_bruschetta",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "finish_with_oil",
           "device": "plate",
           "action": "Drizzle with extra olive oil and serve immediately",
-          "inputs": ["topped_bruschetta", "olive_oil"],
+          "inputs": [
+            "topped_bruschetta",
+            "olive_oil"
+          ],
           "output": "bruschetta",
           "after": "spoon_topping",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

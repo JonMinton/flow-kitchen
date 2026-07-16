@@ -1,57 +1,121 @@
 {
   "title": "Egg Fried Rice",
   "servings": 2,
-
+  "cuisine": "Chinese",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 15,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "wok", "name": "Wok" },
-    { "id": "hob", "name": "Hob" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" }
+    {
+      "id": "wok",
+      "name": "Wok"
+    },
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    }
   ],
-
   "ingredients": [
-    { "id": "cooked_rice", "name": "Cooked Rice", "quantity": "400g (day-old)" },
-    { "id": "eggs", "name": "Eggs", "quantity": "3" },
-    { "id": "soy_sauce", "name": "Soy Sauce", "quantity": "2 tbsp" },
-    { "id": "sesame_oil", "name": "Sesame Oil", "quantity": "1 tsp" },
-    { "id": "spring_onions", "name": "Spring Onions", "quantity": "3" },
-    { "id": "peas", "name": "Peas", "quantity": "100g" },
-    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
-    { "id": "vegetable_oil", "name": "Vegetable Oil", "quantity": "2 tbsp" }
+    {
+      "id": "cooked_rice",
+      "name": "Cooked Rice",
+      "quantity": "400g (day-old)"
+    },
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "3"
+    },
+    {
+      "id": "soy_sauce",
+      "name": "Soy Sauce",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "sesame_oil",
+      "name": "Sesame Oil",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "spring_onions",
+      "name": "Spring Onions",
+      "quantity": "3"
+    },
+    {
+      "id": "peas",
+      "name": "Peas",
+      "quantity": "100g"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "2 cloves"
+    },
+    {
+      "id": "vegetable_oil",
+      "name": "Vegetable Oil",
+      "quantity": "2 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "prep_ingredients",
       "device": "chopping_board",
       "action": "Prepare all ingredients before cooking",
-      "inputs": ["spring_onions", "garlic", "eggs"],
+      "inputs": [
+        "spring_onions",
+        "garlic",
+        "eggs"
+      ],
       "output": "prepped_ingredients",
-      "end": { "condition": "all ingredients prepped and ready" },
+      "end": {
+        "condition": "all ingredients prepped and ready"
+      },
       "steps": [
         {
           "id": "slice_spring_onions",
           "device": "chopping_board",
           "action": "Thinly slice spring onions, separating whites from greens",
-          "inputs": ["spring_onions"],
+          "inputs": [
+            "spring_onions"
+          ],
           "output": "sliced_spring_onions",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "mince_garlic",
           "device": "chopping_board",
           "action": "Finely mince garlic cloves",
-          "inputs": ["garlic"],
+          "inputs": [
+            "garlic"
+          ],
           "output": "minced_garlic",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "beat_eggs",
           "device": "bowl",
           "action": "Crack eggs into a bowl and beat lightly",
-          "inputs": ["eggs"],
+          "inputs": [
+            "eggs"
+          ],
           "output": "beaten_eggs",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     },
@@ -59,44 +123,75 @@
       "id": "cook",
       "device": "wok",
       "action": "Stir-fry everything in the wok",
-      "inputs": ["beaten_eggs", "cooked_rice", "sliced_spring_onions", "minced_garlic", "peas", "vegetable_oil", "soy_sauce", "sesame_oil"],
+      "inputs": [
+        "beaten_eggs",
+        "cooked_rice",
+        "sliced_spring_onions",
+        "minced_garlic",
+        "peas",
+        "vegetable_oil",
+        "soy_sauce",
+        "sesame_oil"
+      ],
       "output": "egg_fried_rice",
       "after": "prep_ingredients",
-      "end": { "condition": "rice hot and well seasoned" },
+      "end": {
+        "condition": "rice hot and well seasoned"
+      },
       "steps": [
         {
           "id": "heat_wok",
           "device": "wok",
           "action": "Heat wok over high heat until smoking, add oil",
-          "inputs": ["vegetable_oil"],
+          "inputs": [
+            "vegetable_oil"
+          ],
           "output": "hot_wok",
-          "end": { "duration_minutes": 2, "condition": "oil shimmering and just smoking" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "oil shimmering and just smoking"
+          }
         },
         {
           "id": "scramble_eggs",
           "device": "wok",
           "action": "Cook eggs in wok",
-          "inputs": ["hot_wok", "beaten_eggs"],
+          "inputs": [
+            "hot_wok",
+            "beaten_eggs"
+          ],
           "output": "wok_with_eggs",
           "after": "heat_wok",
-          "end": { "condition": "eggs just set in soft curds" },
+          "end": {
+            "condition": "eggs just set in soft curds"
+          },
           "steps": [
             {
               "id": "pour_eggs",
               "device": "wok",
               "action": "Pour beaten eggs into hot wok",
-              "inputs": ["hot_wok", "beaten_eggs"],
+              "inputs": [
+                "hot_wok",
+                "beaten_eggs"
+              ],
               "output": "eggs_in_wok",
-              "end": { "duration_minutes": 0.5 }
+              "end": {
+                "duration_minutes": 0.5
+              }
             },
             {
               "id": "stir_eggs",
               "device": "wok",
               "action": "Stir quickly to form soft curds, push to side",
-              "inputs": ["eggs_in_wok"],
+              "inputs": [
+                "eggs_in_wok"
+              ],
               "output": "wok_with_eggs",
               "after": "pour_eggs",
-              "end": { "duration_minutes": 1, "condition": "eggs just set, slightly underdone" }
+              "end": {
+                "duration_minutes": 1,
+                "condition": "eggs just set, slightly underdone"
+              }
             }
           ]
         },
@@ -104,36 +199,58 @@
           "id": "fry_aromatics",
           "device": "wok",
           "action": "Fry garlic and spring onion whites until fragrant",
-          "inputs": ["wok_with_eggs", "minced_garlic", "sliced_spring_onions"],
+          "inputs": [
+            "wok_with_eggs",
+            "minced_garlic",
+            "sliced_spring_onions"
+          ],
           "output": "fragrant_wok",
           "after": "scramble_eggs",
-          "end": { "duration_minutes": 1, "condition": "fragrant but not burnt" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "fragrant but not burnt"
+          }
         },
         {
           "id": "add_rice",
           "device": "wok",
           "action": "Add rice and stir-fry on high heat",
-          "inputs": ["fragrant_wok", "cooked_rice"],
+          "inputs": [
+            "fragrant_wok",
+            "cooked_rice"
+          ],
           "output": "rice_in_wok",
           "after": "fry_aromatics",
-          "end": { "condition": "rice heated through and slightly crispy" },
+          "end": {
+            "condition": "rice heated through and slightly crispy"
+          },
           "steps": [
             {
               "id": "break_up_rice",
               "device": "wok",
               "action": "Add rice, breaking up any clumps with spatula",
-              "inputs": ["fragrant_wok", "cooked_rice"],
+              "inputs": [
+                "fragrant_wok",
+                "cooked_rice"
+              ],
               "output": "loose_rice",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "toss_rice",
               "device": "wok",
               "action": "Toss rice on high heat until grains separate and lightly crisp",
-              "inputs": ["loose_rice"],
+              "inputs": [
+                "loose_rice"
+              ],
               "output": "rice_in_wok",
               "after": "break_up_rice",
-              "end": { "duration_minutes": 2, "condition": "grains separate, edges slightly crispy" }
+              "end": {
+                "duration_minutes": 2,
+                "condition": "grains separate, edges slightly crispy"
+              }
             }
           ]
         },
@@ -141,36 +258,58 @@
           "id": "add_veg",
           "device": "wok",
           "action": "Add peas and toss through",
-          "inputs": ["rice_in_wok", "peas"],
+          "inputs": [
+            "rice_in_wok",
+            "peas"
+          ],
           "output": "rice_with_veg",
           "after": "add_rice",
-          "end": { "duration_minutes": 1, "condition": "peas heated through" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "peas heated through"
+          }
         },
         {
           "id": "season",
           "device": "wok",
           "action": "Season with soy sauce and sesame oil, toss to coat",
-          "inputs": ["rice_with_veg", "soy_sauce", "sesame_oil"],
+          "inputs": [
+            "rice_with_veg",
+            "soy_sauce",
+            "sesame_oil"
+          ],
           "output": "seasoned_rice",
           "after": "add_veg",
-          "end": { "condition": "evenly coated and fragrant" },
+          "end": {
+            "condition": "evenly coated and fragrant"
+          },
           "steps": [
             {
               "id": "add_soy_sauce",
               "device": "wok",
               "action": "Pour soy sauce around edge of wok and toss",
-              "inputs": ["rice_with_veg", "soy_sauce"],
+              "inputs": [
+                "rice_with_veg",
+                "soy_sauce"
+              ],
               "output": "soy_rice",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_sesame_oil",
               "device": "wok",
               "action": "Drizzle sesame oil and toss everything together",
-              "inputs": ["soy_rice", "sesame_oil"],
+              "inputs": [
+                "soy_rice",
+                "sesame_oil"
+              ],
               "output": "seasoned_rice",
               "after": "add_soy_sauce",
-              "end": { "duration_minutes": 0.5 }
+              "end": {
+                "duration_minutes": 0.5
+              }
             }
           ]
         },
@@ -178,10 +317,15 @@
           "id": "finish",
           "device": "wok",
           "action": "Scatter spring onion greens and serve",
-          "inputs": ["seasoned_rice", "sliced_spring_onions"],
+          "inputs": [
+            "seasoned_rice",
+            "sliced_spring_onions"
+          ],
           "output": "egg_fried_rice",
           "after": "season",
-          "end": { "duration_minutes": 0.5 }
+          "end": {
+            "duration_minutes": 0.5
+          }
         }
       ]
     }

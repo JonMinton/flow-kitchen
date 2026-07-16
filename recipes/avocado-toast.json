@@ -1,75 +1,136 @@
 {
   "title": "Avocado Toast",
   "servings": 2,
-
+  "cuisine": "American",
+  "vegetarian": true,
+  "sweet": false,
+  "time_minutes": 10,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "toaster", "name": "Toaster" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "plate", "name": "Plate" }
+    {
+      "id": "toaster",
+      "name": "Toaster"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "plate",
+      "name": "Plate"
+    }
   ],
-
   "ingredients": [
-    { "id": "sourdough_bread", "name": "Sourdough Bread", "quantity": "2 thick slices" },
-    { "id": "avocados", "name": "Avocados", "quantity": "2 ripe" },
-    { "id": "lemon", "name": "Lemon", "quantity": "1/2" },
-    { "id": "chilli_flakes", "name": "Chilli Flakes", "quantity": "1/2 tsp" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "1 tbsp" }
+    {
+      "id": "sourdough_bread",
+      "name": "Sourdough Bread",
+      "quantity": "2 thick slices"
+    },
+    {
+      "id": "avocados",
+      "name": "Avocados",
+      "quantity": "2 ripe"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "quantity": "1/2"
+    },
+    {
+      "id": "chilli_flakes",
+      "name": "Chilli Flakes",
+      "quantity": "1/2 tsp"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Black Pepper",
+      "quantity": "to taste"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "1 tbsp"
+    }
   ],
-
   "steps": [
     {
       "id": "toast_bread",
       "device": "toaster",
       "action": "Toast sourdough until golden and crisp",
-      "inputs": ["sourdough_bread"],
+      "inputs": [
+        "sourdough_bread"
+      ],
       "output": "toasted_bread",
-      "end": { "duration_minutes": 3, "condition": "golden brown and crispy" },
-      "steps": [
-        {
-          "id": "slice_and_toast",
-          "device": "toaster",
-          "action": "Place sourdough slices in toaster and toast until golden",
-          "inputs": ["sourdough_bread"],
-          "output": "toasted_bread",
-          "end": { "duration_minutes": 3, "condition": "deep golden with crisp edges" }
-        }
-      ]
+      "end": {
+        "duration_minutes": 3,
+        "condition": "golden brown and crispy"
+      }
     },
     {
       "id": "prep_avocado",
       "device": "bowl",
       "action": "Prepare avocado mash",
-      "inputs": ["avocados", "lemon", "salt"],
+      "inputs": [
+        "avocados",
+        "lemon",
+        "salt"
+      ],
       "output": "avocado_mash",
-      "end": { "condition": "chunky mash with seasoning" },
+      "end": {
+        "condition": "chunky mash with seasoning"
+      },
       "steps": [
         {
           "id": "halve_avocados",
           "device": "chopping_board",
           "action": "Halve avocados, remove stones, scoop flesh into bowl",
-          "inputs": ["avocados"],
+          "inputs": [
+            "avocados"
+          ],
           "output": "avocado_flesh",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "squeeze_lemon",
           "device": "chopping_board",
           "action": "Squeeze lemon juice",
-          "inputs": ["lemon"],
+          "inputs": [
+            "lemon"
+          ],
           "output": "lemon_juice",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "mash_avocado",
           "device": "bowl",
           "action": "Mash avocado with a fork, keeping it slightly chunky",
-          "inputs": ["avocado_flesh", "lemon_juice", "salt"],
+          "inputs": [
+            "avocado_flesh",
+            "lemon_juice",
+            "salt"
+          ],
           "output": "avocado_mash",
-          "after": ["halve_avocados", "squeeze_lemon"],
-          "end": { "duration_minutes": 1, "condition": "roughly mashed with some chunks" }
+          "after": [
+            "halve_avocados",
+            "squeeze_lemon"
+          ],
+          "end": {
+            "duration_minutes": 1,
+            "condition": "roughly mashed with some chunks"
+          }
         }
       ]
     },
@@ -77,27 +138,50 @@
       "id": "assemble_and_top",
       "device": "plate",
       "action": "Assemble toast with avocado and toppings",
-      "inputs": ["toasted_bread", "avocado_mash", "chilli_flakes", "pepper", "olive_oil"],
+      "inputs": [
+        "toasted_bread",
+        "avocado_mash",
+        "chilli_flakes",
+        "pepper",
+        "olive_oil"
+      ],
       "output": "avocado_toast",
-      "after": ["toast_bread", "prep_avocado"],
-      "end": { "condition": "beautifully topped" },
+      "after": [
+        "toast_bread",
+        "prep_avocado"
+      ],
+      "end": {
+        "condition": "beautifully topped"
+      },
       "steps": [
         {
           "id": "spread_avocado",
           "device": "plate",
           "action": "Pile avocado mash onto toasted sourdough",
-          "inputs": ["toasted_bread", "avocado_mash"],
+          "inputs": [
+            "toasted_bread",
+            "avocado_mash"
+          ],
           "output": "toast_with_avocado",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "add_toppings",
           "device": "plate",
           "action": "Sprinkle with chilli flakes, black pepper and a drizzle of olive oil",
-          "inputs": ["toast_with_avocado", "chilli_flakes", "pepper", "olive_oil"],
+          "inputs": [
+            "toast_with_avocado",
+            "chilli_flakes",
+            "pepper",
+            "olive_oil"
+          ],
           "output": "avocado_toast",
           "after": "spread_avocado",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         }
       ]
     }

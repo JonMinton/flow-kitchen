@@ -1,58 +1,132 @@
 {
   "title": "Madeleines",
   "servings": 12,
-
+  "cuisine": "French",
+  "vegetarian": true,
+  "sweet": true,
+  "time_minutes": 35,
+  "prep_minutes": 15,
   "devices": [
-    { "id": "oven", "name": "Oven", "settings": "220°C / 425°F / Gas 7" },
-    { "id": "bowl", "name": "Bowl" },
-    { "id": "madeleine_tin", "name": "Madeleine Tin" }
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "220°C / 425°F / Gas 7"
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl"
+    },
+    {
+      "id": "madeleine_tin",
+      "name": "Madeleine Tin"
+    }
   ],
-
   "ingredients": [
-    { "id": "eggs", "name": "Eggs", "quantity": "2" },
-    { "id": "caster_sugar", "name": "Caster Sugar", "quantity": "80g" },
-    { "id": "plain_flour", "name": "Plain Flour", "quantity": "100g" },
-    { "id": "baking_powder", "name": "Baking Powder", "quantity": "1/2 tsp" },
-    { "id": "butter", "name": "Butter", "quantity": "100g" },
-    { "id": "lemon", "name": "Lemon", "quantity": "1 (zest only)" },
-    { "id": "vanilla_extract", "name": "Vanilla Extract", "quantity": "1 tsp" },
-    { "id": "icing_sugar", "name": "Icing Sugar", "quantity": "for dusting" },
-    { "id": "salt", "name": "Salt", "quantity": "pinch" }
+    {
+      "id": "eggs",
+      "name": "Eggs",
+      "quantity": "2"
+    },
+    {
+      "id": "caster_sugar",
+      "name": "Caster Sugar",
+      "quantity": "80g"
+    },
+    {
+      "id": "plain_flour",
+      "name": "Plain Flour",
+      "quantity": "100g"
+    },
+    {
+      "id": "baking_powder",
+      "name": "Baking Powder",
+      "quantity": "1/2 tsp"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "100g"
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "quantity": "1 (zest only)"
+    },
+    {
+      "id": "vanilla_extract",
+      "name": "Vanilla Extract",
+      "quantity": "1 tsp"
+    },
+    {
+      "id": "icing_sugar",
+      "name": "Icing Sugar",
+      "quantity": "for dusting"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "pinch"
+    }
   ],
-
   "steps": [
     {
       "id": "make_batter",
       "device": "bowl",
       "action": "Make madeleine batter",
-      "inputs": ["eggs", "caster_sugar", "plain_flour", "baking_powder", "butter", "lemon", "vanilla_extract", "salt"],
+      "inputs": [
+        "eggs",
+        "caster_sugar",
+        "plain_flour",
+        "baking_powder",
+        "butter",
+        "lemon",
+        "vanilla_extract",
+        "salt"
+      ],
       "output": "rested_batter",
-      "end": { "condition": "batter rested and ready to pipe" },
+      "end": {
+        "condition": "batter rested and ready to pipe"
+      },
       "steps": [
         {
           "id": "whisk_eggs_sugar",
           "device": "bowl",
           "action": "Whisk eggs and sugar together",
-          "inputs": ["eggs", "caster_sugar"],
+          "inputs": [
+            "eggs",
+            "caster_sugar"
+          ],
           "output": "egg_sugar_foam",
-          "end": { "condition": "thick, pale and tripled in volume" },
+          "end": {
+            "condition": "thick, pale and tripled in volume"
+          },
           "steps": [
             {
               "id": "combine_eggs_sugar",
               "device": "bowl",
               "action": "Crack eggs into bowl and add sugar",
-              "inputs": ["eggs", "caster_sugar"],
+              "inputs": [
+                "eggs",
+                "caster_sugar"
+              ],
               "output": "eggs_and_sugar",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "whisk_until_thick",
               "device": "bowl",
               "action": "Whisk vigorously until mixture is very thick, pale and leaves a ribbon trail",
-              "inputs": ["eggs_and_sugar"],
+              "inputs": [
+                "eggs_and_sugar"
+              ],
               "output": "egg_sugar_foam",
               "after": "combine_eggs_sugar",
-              "end": { "duration_minutes": 5, "condition": "ribbon trail holds for 3 seconds" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "ribbon trail holds for 3 seconds"
+              }
             }
           ]
         },
@@ -60,44 +134,77 @@
           "id": "melt_butter",
           "device": "bowl",
           "action": "Melt butter and let cool slightly",
-          "inputs": ["butter"],
+          "inputs": [
+            "butter"
+          ],
           "output": "melted_butter",
-          "end": { "duration_minutes": 3, "condition": "melted and warm, not hot" }
+          "end": {
+            "duration_minutes": 3,
+            "condition": "melted and warm, not hot"
+          }
         },
         {
           "id": "zest_lemon",
           "device": "bowl",
           "action": "Finely zest the lemon",
-          "inputs": ["lemon"],
+          "inputs": [
+            "lemon"
+          ],
           "output": "lemon_zest",
-          "end": { "duration_minutes": 1 }
+          "end": {
+            "duration_minutes": 1
+          }
         },
         {
           "id": "fold_dry",
           "device": "bowl",
           "action": "Sift flour, baking powder and salt over egg mixture and fold in gently",
-          "inputs": ["egg_sugar_foam", "plain_flour", "baking_powder", "salt"],
+          "inputs": [
+            "egg_sugar_foam",
+            "plain_flour",
+            "baking_powder",
+            "salt"
+          ],
           "output": "batter_with_flour",
           "after": "whisk_eggs_sugar",
-          "end": { "condition": "just combined, retaining as much air as possible" }
+          "end": {
+            "condition": "just combined, retaining as much air as possible"
+          }
         },
         {
           "id": "add_butter_flavourings",
           "device": "bowl",
           "action": "Fold in melted butter, lemon zest and vanilla extract",
-          "inputs": ["batter_with_flour", "melted_butter", "lemon_zest", "vanilla_extract"],
+          "inputs": [
+            "batter_with_flour",
+            "melted_butter",
+            "lemon_zest",
+            "vanilla_extract"
+          ],
           "output": "finished_batter",
-          "after": ["fold_dry", "melt_butter", "zest_lemon"],
-          "end": { "duration_minutes": 1, "condition": "evenly combined, glossy" }
+          "after": [
+            "fold_dry",
+            "melt_butter",
+            "zest_lemon"
+          ],
+          "end": {
+            "duration_minutes": 1,
+            "condition": "evenly combined, glossy"
+          }
         },
         {
           "id": "rest_batter",
           "device": "bowl",
           "action": "Cover and rest batter in refrigerator",
-          "inputs": ["finished_batter"],
+          "inputs": [
+            "finished_batter"
+          ],
           "output": "rested_batter",
           "after": "add_butter_flavourings",
-          "end": { "duration_minutes": 15, "condition": "chilled and slightly firmed" }
+          "end": {
+            "duration_minutes": 15,
+            "condition": "chilled and slightly firmed"
+          }
         }
       ]
     },
@@ -105,26 +212,42 @@
       "id": "prep_tins",
       "device": "madeleine_tin",
       "action": "Prepare madeleine tins",
-      "inputs": ["butter", "plain_flour"],
+      "inputs": [
+        "butter",
+        "plain_flour"
+      ],
       "output": "prepared_tin",
-      "end": { "condition": "every mould evenly coated" },
+      "end": {
+        "condition": "every mould evenly coated"
+      },
       "steps": [
         {
           "id": "butter_tins",
           "device": "madeleine_tin",
           "action": "Brush each mould generously with melted butter",
-          "inputs": ["butter"],
+          "inputs": [
+            "butter"
+          ],
           "output": "buttered_tin",
-          "end": { "duration_minutes": 2, "condition": "every crevice coated" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "every crevice coated"
+          }
         },
         {
           "id": "flour_tins",
           "device": "madeleine_tin",
           "action": "Dust with flour and tap out excess",
-          "inputs": ["buttered_tin", "plain_flour"],
+          "inputs": [
+            "buttered_tin",
+            "plain_flour"
+          ],
           "output": "prepared_tin",
           "after": "butter_tins",
-          "end": { "duration_minutes": 1, "condition": "thin even coating of flour" }
+          "end": {
+            "duration_minutes": 1,
+            "condition": "thin even coating of flour"
+          }
         }
       ]
     },
@@ -132,27 +255,46 @@
       "id": "fill_and_bake",
       "device": "oven",
       "action": "Fill moulds and bake madeleines",
-      "inputs": ["rested_batter", "prepared_tin"],
+      "inputs": [
+        "rested_batter",
+        "prepared_tin"
+      ],
       "output": "baked_madeleines",
-      "after": ["make_batter", "prep_tins"],
-      "end": { "condition": "golden with characteristic bump" },
+      "after": [
+        "make_batter",
+        "prep_tins"
+      ],
+      "end": {
+        "condition": "golden with characteristic bump"
+      },
       "steps": [
         {
           "id": "fill_moulds",
           "device": "madeleine_tin",
           "action": "Spoon or pipe batter into prepared moulds, filling each two-thirds full",
-          "inputs": ["rested_batter", "prepared_tin"],
+          "inputs": [
+            "rested_batter",
+            "prepared_tin"
+          ],
           "output": "filled_tin",
-          "end": { "duration_minutes": 2, "condition": "each mould two-thirds full" }
+          "end": {
+            "duration_minutes": 2,
+            "condition": "each mould two-thirds full"
+          }
         },
         {
           "id": "bake",
           "device": "oven",
           "action": "Bake in hot oven until golden with the signature bump on top",
-          "inputs": ["filled_tin"],
+          "inputs": [
+            "filled_tin"
+          ],
           "output": "baked_madeleines",
           "after": "fill_moulds",
-          "end": { "duration_minutes": 10, "condition": "golden edges, raised bump in centre, springs back when pressed" }
+          "end": {
+            "duration_minutes": 10,
+            "condition": "golden edges, raised bump in centre, springs back when pressed"
+          }
         }
       ]
     },
@@ -160,10 +302,16 @@
       "id": "finish",
       "device": "madeleine_tin",
       "action": "Turn out and dust with icing sugar",
-      "inputs": ["baked_madeleines", "icing_sugar"],
+      "inputs": [
+        "baked_madeleines",
+        "icing_sugar"
+      ],
       "output": "madeleines",
       "after": "fill_and_bake",
-      "end": { "duration_minutes": 2, "condition": "light dusting of icing sugar on shell side" }
+      "end": {
+        "duration_minutes": 2,
+        "condition": "light dusting of icing sugar on shell side"
+      }
     }
   ]
 }

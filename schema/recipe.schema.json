@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://food.jonminton.net/schema/recipe.schema.json",
+  "title": "Flow Kitchen recipe",
+  "type": "object",
+  "required": ["title", "servings", "cuisine", "vegetarian", "sweet", "time_minutes", "prep_minutes", "devices", "ingredients", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "servings": { "type": "integer", "minimum": 1 },
+    "cuisine": { "type": "string", "minLength": 1 },
+    "vegetarian": { "type": "boolean" },
+    "sweet": { "type": "boolean" },
+    "time_minutes": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Active/attended wall-clock time, excluding unattended prep such as marinating or proving."
+    },
+    "prep_minutes": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Unattended lead time (marinating, proving, chilling, overnight soaking)."
+    },
+    "diet_notes": {
+      "type": "string",
+      "description": "Caveats on the diet flags, e.g. 'Parmesan is made with animal rennet — use a vegetarian hard cheese.'"
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/$defs/slug" },
+          "name": { "type": "string", "minLength": 1 },
+          "settings": { "type": "string" }
+        }
+      }
+    },
+    "ingredients": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "quantity"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/$defs/slug" },
+          "name": { "type": "string", "minLength": 1 },
+          "quantity": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/step" }
+    }
+  },
+  "$defs": {
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(_[a-z0-9]+)*$" },
+    "step": {
+      "type": "object",
+      "required": ["id", "action", "inputs", "output"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/slug" },
+        "device": { "$ref": "#/$defs/slug" },
+        "action": { "type": "string", "minLength": 1 },
+        "inputs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/slug" },
+          "description": "May be empty for source steps that produce a state from nothing, e.g. preheating an oven."
+        },
+        "output": { "$ref": "#/$defs/slug" },
+        "after": {
+          "oneOf": [
+            { "$ref": "#/$defs/slug" },
+            { "type": "array", "items": { "$ref": "#/$defs/slug" }, "minItems": 1 }
+          ]
+        },
+        "end": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "duration_minutes": { "type": "number", "exclusiveMinimum": 0 },
+            "condition": { "type": "string", "minLength": 1 }
+          }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/step" }
+        }
+      }
+    }
+  }
+}

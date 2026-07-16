@@ -1,75 +1,189 @@
 {
   "title": "Shepherd's Pie",
   "servings": 6,
-
+  "cuisine": "British",
+  "vegetarian": false,
+  "sweet": false,
+  "time_minutes": 60,
+  "prep_minutes": 0,
   "devices": [
-    { "id": "hob", "name": "Hob" },
-    { "id": "oven", "name": "Oven", "settings": "200°C" },
-    { "id": "saucepan", "name": "Saucepan" },
-    { "id": "pan", "name": "Frying Pan" },
-    { "id": "chopping_board", "name": "Chopping Board" },
-    { "id": "baking_dish", "name": "Baking Dish" }
+    {
+      "id": "hob",
+      "name": "Hob"
+    },
+    {
+      "id": "oven",
+      "name": "Oven",
+      "settings": "200°C"
+    },
+    {
+      "id": "saucepan",
+      "name": "Saucepan"
+    },
+    {
+      "id": "pan",
+      "name": "Frying Pan"
+    },
+    {
+      "id": "chopping_board",
+      "name": "Chopping Board"
+    },
+    {
+      "id": "baking_dish",
+      "name": "Baking Dish"
+    }
   ],
-
   "ingredients": [
-    { "id": "lamb_mince", "name": "Lamb Mince", "quantity": "500g" },
-    { "id": "onion", "name": "Onion", "quantity": "1" },
-    { "id": "carrots", "name": "Carrots", "quantity": "2" },
-    { "id": "celery", "name": "Celery", "quantity": "1 stick" },
-    { "id": "garlic", "name": "Garlic", "quantity": "2 cloves" },
-    { "id": "tomato_puree", "name": "Tomato Puree", "quantity": "2 tbsp" },
-    { "id": "worcestershire_sauce", "name": "Worcestershire Sauce", "quantity": "1 tbsp" },
-    { "id": "beef_stock", "name": "Beef Stock", "quantity": "250ml" },
-    { "id": "potatoes", "name": "Potatoes", "quantity": "1kg" },
-    { "id": "butter", "name": "Butter", "quantity": "50g" },
-    { "id": "milk", "name": "Milk", "quantity": "100ml" },
-    { "id": "salt", "name": "Salt", "quantity": "to taste" },
-    { "id": "pepper", "name": "Black Pepper", "quantity": "to taste" },
-    { "id": "olive_oil", "name": "Olive Oil", "quantity": "1 tbsp" },
-    { "id": "frozen_peas", "name": "Frozen Peas", "quantity": "100g" }
+    {
+      "id": "lamb_mince",
+      "name": "Lamb Mince",
+      "quantity": "500g"
+    },
+    {
+      "id": "onion",
+      "name": "Onion",
+      "quantity": "1"
+    },
+    {
+      "id": "carrots",
+      "name": "Carrots",
+      "quantity": "2"
+    },
+    {
+      "id": "celery",
+      "name": "Celery",
+      "quantity": "1 stick"
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "quantity": "2 cloves"
+    },
+    {
+      "id": "tomato_puree",
+      "name": "Tomato Puree",
+      "quantity": "2 tbsp"
+    },
+    {
+      "id": "worcestershire_sauce",
+      "name": "Worcestershire Sauce",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "beef_stock",
+      "name": "Beef Stock",
+      "quantity": "250ml"
+    },
+    {
+      "id": "potatoes",
+      "name": "Potatoes",
+      "quantity": "1kg"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "quantity": "50g"
+    },
+    {
+      "id": "milk",
+      "name": "Milk",
+      "quantity": "100ml"
+    },
+    {
+      "id": "salt",
+      "name": "Salt",
+      "quantity": "to taste"
+    },
+    {
+      "id": "pepper",
+      "name": "Black Pepper",
+      "quantity": "to taste"
+    },
+    {
+      "id": "olive_oil",
+      "name": "Olive Oil",
+      "quantity": "1 tbsp"
+    },
+    {
+      "id": "frozen_peas",
+      "name": "Frozen Peas",
+      "quantity": "100g"
+    }
   ],
-
   "steps": [
     {
       "id": "make_meat_filling",
       "device": "pan",
       "action": "Make lamb filling with vegetables",
-      "inputs": ["lamb_mince", "onion", "carrots", "celery", "garlic", "olive_oil", "tomato_puree", "beef_stock", "worcestershire_sauce", "frozen_peas", "salt", "pepper"],
+      "inputs": [
+        "lamb_mince",
+        "onion",
+        "carrots",
+        "celery",
+        "garlic",
+        "olive_oil",
+        "tomato_puree",
+        "beef_stock",
+        "worcestershire_sauce",
+        "frozen_peas",
+        "salt",
+        "pepper"
+      ],
       "output": "finished_filling",
-      "end": { "condition": "filling rich and thickened" },
+      "end": {
+        "condition": "filling rich and thickened"
+      },
       "steps": [
         {
           "id": "prep_veg",
           "device": "chopping_board",
           "action": "Prepare vegetables for filling",
-          "inputs": ["onion", "carrots", "celery"],
+          "inputs": [
+            "onion",
+            "carrots",
+            "celery"
+          ],
           "output": "prepped_veg",
-          "end": { "condition": "all vegetables chopped" },
+          "end": {
+            "condition": "all vegetables chopped"
+          },
           "steps": [
             {
               "id": "chop_onion",
               "device": "chopping_board",
               "action": "Finely dice onion",
-              "inputs": ["onion"],
+              "inputs": [
+                "onion"
+              ],
               "output": "diced_onion",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "dice_carrots",
               "device": "chopping_board",
               "action": "Peel and dice carrots into small cubes",
-              "inputs": ["carrots"],
+              "inputs": [
+                "carrots"
+              ],
               "output": "diced_carrots",
-              "end": { "duration_minutes": 3 }
+              "end": {
+                "duration_minutes": 3
+              }
             },
             {
               "id": "dice_celery",
               "device": "chopping_board",
               "action": "Dice celery finely",
-              "inputs": ["celery"],
+              "inputs": [
+                "celery"
+              ],
               "output": "diced_celery",
               "after": "dice_carrots",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -77,63 +191,112 @@
           "id": "cook_filling",
           "device": "pan",
           "action": "Brown mince and cook with vegetables and stock",
-          "inputs": ["lamb_mince", "prepped_veg", "garlic", "olive_oil", "tomato_puree", "beef_stock", "worcestershire_sauce", "frozen_peas", "salt", "pepper"],
+          "inputs": [
+            "lamb_mince",
+            "prepped_veg",
+            "garlic",
+            "olive_oil",
+            "tomato_puree",
+            "beef_stock",
+            "worcestershire_sauce",
+            "frozen_peas",
+            "salt",
+            "pepper"
+          ],
           "output": "finished_filling",
           "after": "prep_veg",
-          "end": { "condition": "filling rich and thickened" },
+          "end": {
+            "condition": "filling rich and thickened"
+          },
           "steps": [
             {
               "id": "fry_mince",
               "device": "pan",
               "action": "Brown lamb mince in olive oil, breaking up lumps",
-              "inputs": ["lamb_mince", "olive_oil"],
+              "inputs": [
+                "lamb_mince",
+                "olive_oil"
+              ],
               "output": "browned_mince",
-              "end": { "duration_minutes": 8, "condition": "well browned" }
+              "end": {
+                "duration_minutes": 8,
+                "condition": "well browned"
+              }
             },
             {
               "id": "add_veg_to_mince",
               "device": "pan",
               "action": "Add chopped vegetables and garlic, cook until softened",
-              "inputs": ["browned_mince", "prepped_veg", "garlic"],
+              "inputs": [
+                "browned_mince",
+                "prepped_veg",
+                "garlic"
+              ],
               "output": "mince_with_veg",
               "after": "fry_mince",
-              "end": { "duration_minutes": 5, "condition": "vegetables softened" }
+              "end": {
+                "duration_minutes": 5,
+                "condition": "vegetables softened"
+              }
             },
             {
               "id": "add_tomato_puree",
               "device": "pan",
               "action": "Stir in tomato puree and cook out",
-              "inputs": ["mince_with_veg", "tomato_puree"],
+              "inputs": [
+                "mince_with_veg",
+                "tomato_puree"
+              ],
               "output": "mince_with_tomato",
               "after": "add_veg_to_mince",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "add_stock_and_sauce",
               "device": "pan",
               "action": "Add stock and Worcestershire sauce",
-              "inputs": ["mince_with_tomato", "beef_stock", "worcestershire_sauce"],
+              "inputs": [
+                "mince_with_tomato",
+                "beef_stock",
+                "worcestershire_sauce"
+              ],
               "output": "saucy_mince",
               "after": "add_tomato_puree",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "simmer_filling",
               "device": "pan",
               "action": "Simmer until reduced and thickened",
-              "inputs": ["saucy_mince"],
+              "inputs": [
+                "saucy_mince"
+              ],
               "output": "simmered_filling",
               "after": "add_stock_and_sauce",
-              "end": { "duration_minutes": 20, "condition": "thick and rich" }
+              "end": {
+                "duration_minutes": 20,
+                "condition": "thick and rich"
+              }
             },
             {
               "id": "add_peas",
               "device": "pan",
               "action": "Stir in frozen peas and season",
-              "inputs": ["simmered_filling", "frozen_peas", "salt", "pepper"],
+              "inputs": [
+                "simmered_filling",
+                "frozen_peas",
+                "salt",
+                "pepper"
+              ],
               "output": "finished_filling",
               "after": "simmer_filling",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             }
           ]
         }
@@ -143,43 +306,68 @@
       "id": "make_mash",
       "device": "saucepan",
       "action": "Make mashed potatoes",
-      "inputs": ["potatoes", "butter", "milk", "salt", "pepper"],
+      "inputs": [
+        "potatoes",
+        "butter",
+        "milk",
+        "salt",
+        "pepper"
+      ],
       "output": "seasoned_mash",
-      "end": { "condition": "smooth and seasoned" },
+      "end": {
+        "condition": "smooth and seasoned"
+      },
       "steps": [
         {
           "id": "boil_potatoes",
           "device": "saucepan",
           "action": "Boil potatoes until tender",
-          "inputs": ["potatoes"],
+          "inputs": [
+            "potatoes"
+          ],
           "output": "drained_potatoes",
-          "end": { "condition": "tender when pierced" },
+          "end": {
+            "condition": "tender when pierced"
+          },
           "steps": [
             {
               "id": "peel_and_chop",
               "device": "chopping_board",
               "action": "Peel potatoes and cut into even chunks",
-              "inputs": ["potatoes"],
+              "inputs": [
+                "potatoes"
+              ],
               "output": "potato_chunks",
-              "end": { "duration_minutes": 5 }
+              "end": {
+                "duration_minutes": 5
+              }
             },
             {
               "id": "boil_until_tender",
               "device": "hob",
               "action": "Boil potato chunks in salted water",
-              "inputs": ["potato_chunks"],
+              "inputs": [
+                "potato_chunks"
+              ],
               "output": "boiled_potatoes",
               "after": "peel_and_chop",
-              "end": { "duration_minutes": 15, "condition": "tender when pierced with a knife" }
+              "end": {
+                "duration_minutes": 15,
+                "condition": "tender when pierced with a knife"
+              }
             },
             {
               "id": "drain_potatoes",
               "device": "saucepan",
               "action": "Drain potatoes thoroughly",
-              "inputs": ["boiled_potatoes"],
+              "inputs": [
+                "boiled_potatoes"
+              ],
               "output": "drained_potatoes",
               "after": "boil_until_tender",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -187,45 +375,74 @@
           "id": "mash",
           "device": "saucepan",
           "action": "Mash potatoes with butter and milk",
-          "inputs": ["drained_potatoes", "butter", "milk", "salt", "pepper"],
+          "inputs": [
+            "drained_potatoes",
+            "butter",
+            "milk",
+            "salt",
+            "pepper"
+          ],
           "output": "seasoned_mash",
           "after": "boil_potatoes",
-          "end": { "condition": "smooth and seasoned" },
+          "end": {
+            "condition": "smooth and seasoned"
+          },
           "steps": [
             {
               "id": "add_butter",
               "device": "saucepan",
               "action": "Add butter to hot drained potatoes",
-              "inputs": ["drained_potatoes", "butter"],
+              "inputs": [
+                "drained_potatoes",
+                "butter"
+              ],
               "output": "buttered_potatoes",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "add_milk",
               "device": "saucepan",
               "action": "Add milk gradually",
-              "inputs": ["buttered_potatoes", "milk"],
+              "inputs": [
+                "buttered_potatoes",
+                "milk"
+              ],
               "output": "milky_potatoes",
               "after": "add_butter",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "mash_until_smooth",
               "device": "saucepan",
               "action": "Mash until smooth with no lumps",
-              "inputs": ["milky_potatoes"],
+              "inputs": [
+                "milky_potatoes"
+              ],
               "output": "smooth_mash",
               "after": "add_milk",
-              "end": { "duration_minutes": 3, "condition": "smooth and fluffy" }
+              "end": {
+                "duration_minutes": 3,
+                "condition": "smooth and fluffy"
+              }
             },
             {
               "id": "season_mash",
               "device": "saucepan",
               "action": "Season with salt and pepper to taste",
-              "inputs": ["smooth_mash", "salt", "pepper"],
+              "inputs": [
+                "smooth_mash",
+                "salt",
+                "pepper"
+              ],
               "output": "seasoned_mash",
               "after": "mash_until_smooth",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         }
@@ -235,44 +452,70 @@
       "id": "assemble_and_bake",
       "device": "oven",
       "action": "Assemble and bake shepherd's pie",
-      "inputs": ["finished_filling", "seasoned_mash"],
+      "inputs": [
+        "finished_filling",
+        "seasoned_mash"
+      ],
       "output": "shepherds_pie",
-      "after": ["make_meat_filling", "make_mash"],
-      "end": { "condition": "golden on top" },
+      "after": [
+        "make_meat_filling",
+        "make_mash"
+      ],
+      "end": {
+        "condition": "golden on top"
+      },
       "steps": [
         {
           "id": "assemble",
           "device": "baking_dish",
           "action": "Layer filling and mash in baking dish",
-          "inputs": ["finished_filling", "seasoned_mash"],
+          "inputs": [
+            "finished_filling",
+            "seasoned_mash"
+          ],
           "output": "assembled_pie",
-          "end": { "condition": "mash roughed up on top" },
+          "end": {
+            "condition": "mash roughed up on top"
+          },
           "steps": [
             {
               "id": "transfer_filling",
               "device": "baking_dish",
               "action": "Transfer meat filling to baking dish",
-              "inputs": ["finished_filling"],
+              "inputs": [
+                "finished_filling"
+              ],
               "output": "filling_in_dish",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             },
             {
               "id": "top_with_mash",
               "device": "baking_dish",
               "action": "Spread mash evenly over filling",
-              "inputs": ["filling_in_dish", "seasoned_mash"],
+              "inputs": [
+                "filling_in_dish",
+                "seasoned_mash"
+              ],
               "output": "topped_pie",
               "after": "transfer_filling",
-              "end": { "duration_minutes": 2 }
+              "end": {
+                "duration_minutes": 2
+              }
             },
             {
               "id": "rough_up_with_fork",
               "device": "baking_dish",
               "action": "Rough up surface with a fork for crispy peaks",
-              "inputs": ["topped_pie"],
+              "inputs": [
+                "topped_pie"
+              ],
               "output": "assembled_pie",
               "after": "top_with_mash",
-              "end": { "duration_minutes": 1 }
+              "end": {
+                "duration_minutes": 1
+              }
             }
           ]
         },
@@ -280,10 +523,15 @@
           "id": "bake",
           "device": "oven",
           "action": "Bake until golden and bubbling",
-          "inputs": ["assembled_pie"],
+          "inputs": [
+            "assembled_pie"
+          ],
           "output": "shepherds_pie",
           "after": "assemble",
-          "end": { "duration_minutes": 25, "condition": "golden on top and bubbling at edges" }
+          "end": {
+            "duration_minutes": 25,
+            "condition": "golden on top and bubbling at edges"
+          }
         }
       ]
     }
