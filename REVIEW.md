@@ -112,6 +112,11 @@ Phased so each phase ships independently. Ordering reflects the "public recipe s
 decision: data trust first, kitchen usability second, identity third, content
 verification ongoing.
 
+**Status (16 Jul 2026):** Phases 1–3 are implemented and deployed. Label-visibility
+testing (Phase 2 item 4) concluded that labels-on works at all widths thanks to
+row-dodging, so the default is uniform across devices with Explore Mode as the
+opt-in reveal game. Phase 4 (content verification) is ongoing.
+
 ### Phase 1 — Data pipeline & integrity (foundation, ~small)
 1. Write a JSON Schema for the recipe format; document it in the README.
 2. Add `scripts/validate.js` (port of the audit used for this review): referential
