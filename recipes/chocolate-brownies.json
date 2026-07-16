@@ -6,6 +6,9 @@
   "sweet": true,
   "time_minutes": 45,
   "prep_minutes": 0,
+  "provenance": {
+    "status": "generated"
+  },
   "devices": [
     {
       "id": "worktop",

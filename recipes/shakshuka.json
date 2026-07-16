@@ -6,6 +6,9 @@
   "sweet": false,
   "time_minutes": 25,
   "prep_minutes": 0,
+  "provenance": {
+    "status": "generated"
+  },
   "devices": [
     {
       "id": "chopping_board",

@@ -20,6 +20,7 @@ export function buildIndex() {
       sweet: r.sweet,
       time_minutes: r.time_minutes,
       prep_minutes: r.prep_minutes,
+      provenance: r.provenance?.status || 'generated',
       ingredients: (r.ingredients || []).map(i => i.name),
     };
     if (r.diet_notes) entry.diet_notes = r.diet_notes;

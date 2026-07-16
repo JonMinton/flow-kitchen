@@ -163,6 +163,14 @@ function checkRecipe(id, r) {
     }
   }
 
+  // Provenance completeness
+  if (r.provenance.status === 'adapted' && !r.provenance.source) {
+    err(id, `provenance 'adapted' requires a source`);
+  }
+  if (r.provenance.status === 'tested' && !r.provenance.date) {
+    warn(id, `provenance 'tested' should record a date`);
+  }
+
   // Timing sanity (warning only): authored total vs dependency-chain estimate
   const authored = r.time_minutes + r.prep_minutes;
   const critical = criticalPathMinutes(r);

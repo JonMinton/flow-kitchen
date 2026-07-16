@@ -6,6 +6,9 @@
   "sweet": true,
   "time_minutes": 260,
   "prep_minutes": 240,
+  "provenance": {
+    "status": "generated"
+  },
   "devices": [
     {
       "id": "hob",

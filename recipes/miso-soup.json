@@ -7,6 +7,9 @@
   "time_minutes": 15,
   "prep_minutes": 0,
   "diet_notes": "Dashi is traditionally made with bonito (fish) flakes — use kombu or shiitake dashi to keep this vegetarian.",
+  "provenance": {
+    "status": "generated"
+  },
   "devices": [
     {
       "id": "hob",

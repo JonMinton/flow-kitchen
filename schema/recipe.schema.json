@@ -3,7 +3,7 @@
   "$id": "https://food.jonminton.net/schema/recipe.schema.json",
   "title": "Flow Kitchen recipe",
   "type": "object",
-  "required": ["title", "servings", "cuisine", "vegetarian", "sweet", "time_minutes", "prep_minutes", "devices", "ingredients", "steps"],
+  "required": ["title", "servings", "cuisine", "vegetarian", "sweet", "time_minutes", "prep_minutes", "provenance", "devices", "ingredients", "steps"],
   "additionalProperties": false,
   "properties": {
     "title": { "type": "string", "minLength": 1 },
@@ -24,6 +24,18 @@
     "diet_notes": {
       "type": "string",
       "description": "Caveats on the diet flags, e.g. 'Parmesan is made with animal rennet — use a vegetarian hard cheese.'"
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "description": "Where this recipe came from and whether it has been verified.",
+      "properties": {
+        "status": { "enum": ["generated", "adapted", "tested"] },
+        "source": { "type": "string", "description": "For adapted recipes: what it was adapted from." },
+        "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "When it was last tested or adapted." },
+        "note": { "type": "string" }
+      }
     },
     "devices": {
       "type": "array",

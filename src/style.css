@@ -222,6 +222,49 @@ h1 {
   margin: 0.4rem auto 0;
 }
 
+/* ── Provenance ─────────────────────────────────────────────────── */
+
+.landing-provenance {
+  font-size: 0.8rem;
+  color: #999;
+  margin-top: 0.3rem;
+}
+
+#provenance-badge-wrap {
+  margin-top: 0.4rem;
+}
+
+.recipe-print-provenance {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.provenance-badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  border-radius: 999px;
+}
+
+.provenance-generated {
+  background: #fdf3d7;
+  color: #8a6d3b;
+  border: 1px solid #ecd9a0;
+}
+
+.provenance-adapted {
+  background: #e3edf7;
+  color: #31597f;
+  border: 1px solid #bcd4e8;
+}
+
+.provenance-tested {
+  background: #d4edda;
+  color: #2d6a3f;
+  border: 1px solid #b3dcbd;
+}
+
 #score {
   display: flex;
   justify-content: center;

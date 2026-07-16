@@ -25,8 +25,23 @@ const isTouch = window.matchMedia('(pointer: coarse)').matches;
 const canHover = window.matchMedia('(hover: hover)').matches;
 let labelsOn = true;
 
+// ── Provenance badges ────────────────────────────────────────────
+const PROVENANCE_BADGES = {
+  generated: { text: 'AI-generated · not yet kitchen-tested', cls: 'provenance-generated' },
+  adapted: { text: 'Adapted from a published recipe', cls: 'provenance-adapted' },
+  tested: { text: 'Kitchen-tested', cls: 'provenance-tested' },
+};
+
+function provenanceBadgeInfo(prov) {
+  const badge = PROVENANCE_BADGES[prov?.status] || PROVENANCE_BADGES.generated;
+  let text = badge.text;
+  if (prov?.status === 'adapted' && prov.source) text = `Adapted from ${prov.source}`;
+  if (prov?.status === 'tested' && prov.date) text = `Kitchen-tested ${prov.date}`;
+  return { text, cls: badge.cls };
+}
+
 // ── Feedback links ───────────────────────────────────────────────
-const GITHUB_REPO_URL = 'https://github.com/JonMinton/recipes-as-music';
+const GITHUB_REPO_URL = 'https://github.com/JonMinton/flow-kitchen';
 const GOOGLE_FORM_URL = 'https://forms.gle/s3G3RaV6uNNbWsHY9';
 
 let outsideClickWired = false;
@@ -252,6 +267,10 @@ async function loadRecipe(id) {
   d3.select('#diet-note')
     .text(recipe.diet_notes || '')
     .style('display', recipe.diet_notes ? null : 'none');
+  const badge = provenanceBadgeInfo(recipe.provenance);
+  d3.select('#provenance-badge')
+    .attr('class', `provenance-badge ${badge.cls}`)
+    .text(badge.text);
 
   const ghUrl = `${GITHUB_REPO_URL}/issues/new?title=${encodeURIComponent('Recipe feedback: ' + recipe.title)}&labels=recipe-feedback`;
   wireFeedbackDropdown('#recipe-feedback-btn', '#recipe-feedback-dropdown', '#recipe-github-link', '#recipe-form-link', ghUrl);
@@ -996,6 +1015,9 @@ function renderRecipeText() {
   if (entry?.cuisine) metaParts.push(entry.cuisine);
   metaParts.push(`Serves ${recipe.servings}`);
   container.append('p').attr('class', 'recipe-print-meta').text(metaParts.join(' · '));
+  const printBadge = provenanceBadgeInfo(recipe.provenance);
+  container.append('p').attr('class', 'recipe-print-provenance')
+    .append('span').attr('class', `provenance-badge ${printBadge.cls}`).text(printBadge.text);
   if (recipe.diet_notes) {
     container.append('p').attr('class', 'diet-note').text(recipe.diet_notes);
   }
