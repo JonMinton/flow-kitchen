@@ -4,7 +4,7 @@
   "cuisine": "Mexican",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 165,
+  "time_minutes": 60,
   "prep_minutes": 120,
   "provenance": {
     "status": "generated"

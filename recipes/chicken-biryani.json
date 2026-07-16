@@ -4,7 +4,7 @@
   "cuisine": "Indian",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 180,
+  "time_minutes": 100,
   "prep_minutes": 120,
   "provenance": {
     "status": "generated"
@@ -134,7 +134,7 @@
     {
       "id": "water",
       "name": "Water",
-      "quantity": "800ml"
+      "quantity": "2.5 litres (for soaking and parboiling)"
     },
     {
       "id": "lemon",

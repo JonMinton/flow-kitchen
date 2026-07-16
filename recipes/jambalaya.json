@@ -4,8 +4,8 @@
   "cuisine": "American",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 50,
-  "prep_minutes": 10,
+  "time_minutes": 55,
+  "prep_minutes": 0,
   "provenance": {
     "status": "generated"
   },
@@ -394,7 +394,7 @@
           "after": "add_rice_and_meats",
           "end": {
             "duration_minutes": 20,
-            "condition": "rice fluffy, liquid fully absorbed"
+            "condition": "rice fluffy, liquid fully absorbed, chicken cooked through with no pink (75°C)"
           }
         }
       ]

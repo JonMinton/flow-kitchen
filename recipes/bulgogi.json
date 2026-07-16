@@ -4,7 +4,7 @@
   "cuisine": "Korean",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 160,
+  "time_minutes": 40,
   "prep_minutes": 120,
   "provenance": {
     "status": "generated"
@@ -314,7 +314,7 @@
           "output": "batch_one",
           "end": {
             "duration_minutes": 4,
-            "condition": "caramelised and charred edges"
+            "condition": "caramelised and charred edges, no pink remaining"
           }
         },
         {
@@ -328,7 +328,7 @@
           "output": "batch_two",
           "end": {
             "duration_minutes": 4,
-            "condition": "caramelised and charred edges"
+            "condition": "caramelised and charred edges, no pink remaining"
           }
         },
         {

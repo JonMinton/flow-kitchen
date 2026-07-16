@@ -4,8 +4,8 @@
   "cuisine": "British",
   "vegetarian": true,
   "sweet": true,
-  "time_minutes": 50,
-  "prep_minutes": 0,
+  "time_minutes": 60,
+  "prep_minutes": 20,
   "provenance": {
     "status": "generated"
   },
@@ -185,7 +185,7 @@
           "output": "baked_cake",
           "after": "pour_tin",
           "end": {
-            "duration_minutes": 35,
+            "duration_minutes": 45,
             "condition": "golden brown and a skewer comes out clean"
           }
         }

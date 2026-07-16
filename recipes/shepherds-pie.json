@@ -4,7 +4,7 @@
   "cuisine": "British",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 60,
+  "time_minutes": 75,
   "prep_minutes": 0,
   "provenance": {
     "status": "generated"
@@ -223,7 +223,7 @@
               "output": "browned_mince",
               "end": {
                 "duration_minutes": 8,
-                "condition": "well browned"
+                "condition": "well browned, no pink remaining"
               }
             },
             {

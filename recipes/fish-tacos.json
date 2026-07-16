@@ -91,6 +91,11 @@
       "id": "avocado",
       "name": "Avocado",
       "quantity": "1"
+    },
+    {
+      "id": "oil",
+      "name": "Vegetable Oil",
+      "quantity": "1 tbsp"
     }
   ],
   "steps": [
@@ -103,7 +108,8 @@
         "cumin",
         "paprika",
         "garlic_powder",
-        "salt"
+        "salt",
+        "oil"
       ],
       "output": "cooked_fish",
       "end": {
@@ -144,7 +150,8 @@
           "device": "pan",
           "action": "Pan-fry fish over medium-high heat, flipping once",
           "inputs": [
-            "seasoned_fish"
+            "seasoned_fish",
+            "oil"
           ],
           "output": "cooked_fish",
           "after": "coat_fish",

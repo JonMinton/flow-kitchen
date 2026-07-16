@@ -207,15 +207,28 @@
       }
     },
     {
+      "id": "heat_oil",
+      "device": "deep_pan",
+      "action": "Heat the oil in a deep pan to 180°C",
+      "inputs": [
+        "oil"
+      ],
+      "output": "hot_oil",
+      "end": {
+        "duration_minutes": 5,
+        "condition": "oil at 180°C — a cube of bread browns in about 30 seconds"
+      }
+    },
+    {
       "id": "fry_churros",
       "device": "deep_pan",
       "action": "Pipe dough into hot oil and fry in batches until golden and crisp",
       "inputs": [
         "rested_dough",
-        "oil"
+        "hot_oil"
       ],
       "output": "fried_churros",
-      "after": "make_dough",
+      "after": "heat_oil",
       "end": {
         "duration_minutes": 8,
         "condition": "deep golden brown and crisp all over"

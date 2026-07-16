@@ -45,7 +45,7 @@
     {
       "id": "garlic",
       "name": "Garlic",
-      "quantity": "4 cloves"
+      "quantity": "3 cloves"
     },
     {
       "id": "ginger",
@@ -86,6 +86,16 @@
       "id": "salt",
       "name": "Salt",
       "quantity": "to taste"
+    },
+    {
+      "id": "water",
+      "name": "Water",
+      "quantity": "750ml"
+    },
+    {
+      "id": "garlic_tadka",
+      "name": "Garlic (sliced)",
+      "quantity": "2 cloves"
     }
   ],
   "steps": [
@@ -100,7 +110,8 @@
         "ginger",
         "tomatoes",
         "turmeric",
-        "salt"
+        "salt",
+        "water"
       ],
       "output": "cooked_dal",
       "end": {
@@ -212,7 +223,8 @@
             "dal_base",
             "rinsed_lentils",
             "turmeric",
-            "salt"
+            "salt",
+            "water"
           ],
           "output": "cooked_dal",
           "after": [
@@ -234,7 +246,7 @@
         "ghee",
         "cumin_seeds",
         "mustard_seeds",
-        "garlic"
+        "garlic_tadka"
       ],
       "output": "tadka",
       "end": {
@@ -276,7 +288,7 @@
           "action": "Add sliced garlic and fry until golden",
           "inputs": [
             "popped_seeds",
-            "garlic"
+            "garlic_tadka"
           ],
           "output": "tadka",
           "after": "add_seeds",

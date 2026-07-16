@@ -184,7 +184,7 @@
     {
       "id": "blend",
       "device": "blender",
-      "action": "Blend soup until smooth",
+      "action": "Blend the soup in batches — fill the jug no more than half full with the lid vented and covered with a towel (or use a stick blender in the pan)",
       "inputs": [
         "cooked_soup"
       ],

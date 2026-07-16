@@ -143,8 +143,8 @@
     "servings": 6,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 180,
-    "prep_minutes": 0,
+    "time_minutes": 65,
+    "prep_minutes": 150,
     "provenance": "generated",
     "ingredients": [
       "Beef Chuck",
@@ -252,7 +252,7 @@
     "servings": 4,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 160,
+    "time_minutes": 40,
     "prep_minutes": 120,
     "provenance": "generated",
     "ingredients": [
@@ -292,7 +292,7 @@
       "Ginger",
       "Butter",
       "Onion",
-      "Tomato Purée",
+      "Passata (or tinned chopped tomatoes)",
       "Double Cream",
       "Dried Fenugreek Leaves",
       "Sugar",
@@ -324,7 +324,8 @@
       "Worcestershire Sauce",
       "Salt",
       "Black Pepper"
-    ]
+    ],
+    "diet_notes": "The dressing contains raw egg yolk — use a pasteurised yolk if serving pregnant, elderly or immunocompromised diners."
   },
   {
     "id": "caprese-salad",
@@ -365,7 +366,8 @@
       "Black Pepper",
       "Salt",
       "Water"
-    ]
+    ],
+    "diet_notes": "The sauce contains lightly-cooked eggs — use pasteurised eggs if serving pregnant, elderly or immunocompromised diners."
   },
   {
     "id": "cauliflower-cheese",
@@ -398,8 +400,8 @@
     "servings": 4,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 50,
-    "prep_minutes": 30,
+    "time_minutes": 30,
+    "prep_minutes": 20,
     "provenance": "generated",
     "ingredients": [
       "Sea Bass Fillets",
@@ -412,7 +414,8 @@
       "Garlic",
       "Salt",
       "Pepper"
-    ]
+    ],
+    "diet_notes": "The fish is acid-cured, not heat-cooked — lime juice does not kill parasites, so use only sashimi-grade or previously-frozen fish."
   },
   {
     "id": "chicken-biryani",
@@ -421,7 +424,7 @@
     "servings": 6,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 180,
+    "time_minutes": 100,
     "prep_minutes": 120,
     "provenance": "generated",
     "ingredients": [
@@ -512,7 +515,7 @@
     "vegetarian": true,
     "sweet": true,
     "time_minutes": 45,
-    "prep_minutes": 0,
+    "prep_minutes": 60,
     "provenance": "generated",
     "ingredients": [
       "Dark Chocolate",
@@ -584,8 +587,8 @@
     "servings": 4,
     "vegetarian": true,
     "sweet": true,
-    "time_minutes": 165,
-    "prep_minutes": 45,
+    "time_minutes": 50,
+    "prep_minutes": 130,
     "provenance": "generated",
     "ingredients": [
       "Double Cream",
@@ -624,7 +627,7 @@
     "servings": 4,
     "vegetarian": true,
     "sweet": false,
-    "time_minutes": 60,
+    "time_minutes": 120,
     "prep_minutes": 5,
     "provenance": "generated",
     "ingredients": [
@@ -716,7 +719,7 @@
     "servings": 4,
     "vegetarian": true,
     "sweet": false,
-    "time_minutes": 510,
+    "time_minutes": 30,
     "prep_minutes": 480,
     "provenance": "generated",
     "ingredients": [
@@ -778,7 +781,8 @@
       "Garlic Powder",
       "Salt",
       "Fresh Coriander",
-      "Avocado"
+      "Avocado",
+      "Vegetable Oil"
     ]
   },
   {
@@ -831,7 +835,7 @@
     "servings": 4,
     "vegetarian": true,
     "sweet": false,
-    "time_minutes": 15,
+    "time_minutes": 25,
     "prep_minutes": 0,
     "provenance": "generated",
     "ingredients": [
@@ -849,8 +853,8 @@
     "servings": 4,
     "vegetarian": true,
     "sweet": false,
-    "time_minutes": 80,
-    "prep_minutes": 0,
+    "time_minutes": 35,
+    "prep_minutes": 50,
     "provenance": "generated",
     "ingredients": [
       "Floury Potatoes",
@@ -936,8 +940,8 @@
     "servings": 6,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 50,
-    "prep_minutes": 10,
+    "time_minutes": 55,
+    "prep_minutes": 0,
     "provenance": "generated",
     "ingredients": [
       "Long Grain Rice",
@@ -966,8 +970,8 @@
     "servings": 6,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 50,
-    "prep_minutes": 10,
+    "time_minutes": 65,
+    "prep_minutes": 0,
     "provenance": "generated",
     "ingredients": [
       "Long Grain Rice",
@@ -1072,8 +1076,8 @@
     "servings": 8,
     "vegetarian": true,
     "sweet": true,
-    "time_minutes": 50,
-    "prep_minutes": 0,
+    "time_minutes": 60,
+    "prep_minutes": 20,
     "provenance": "generated",
     "ingredients": [
       "Butter",
@@ -1135,7 +1139,7 @@
     "servings": 4,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 60,
+    "time_minutes": 115,
     "prep_minutes": 0,
     "provenance": "generated",
     "ingredients": [
@@ -1261,7 +1265,7 @@
     "servings": 4,
     "vegetarian": false,
     "sweet": true,
-    "time_minutes": 260,
+    "time_minutes": 20,
     "prep_minutes": 240,
     "provenance": "generated",
     "ingredients": [
@@ -1360,7 +1364,7 @@
     "servings": 2,
     "vegetarian": true,
     "sweet": false,
-    "time_minutes": 90,
+    "time_minutes": 50,
     "prep_minutes": 60,
     "provenance": "generated",
     "ingredients": [
@@ -1430,8 +1434,8 @@
     "servings": 4,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 180,
-    "prep_minutes": 0,
+    "time_minutes": 105,
+    "prep_minutes": 240,
     "provenance": "generated",
     "ingredients": [
       "Pork Bones",
@@ -1451,7 +1455,10 @@
       "Sweetcorn",
       "Chilli Oil",
       "Water",
-      "Salt"
+      "Salt",
+      "Soy Sauce (for chashu braise)",
+      "Mirin (for chashu braise)",
+      "Sake (for chashu braise)"
     ]
   },
   {
@@ -1598,7 +1605,7 @@
     "servings": 6,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 60,
+    "time_minutes": 75,
     "prep_minutes": 0,
     "provenance": "generated",
     "ingredients": [
@@ -1700,7 +1707,7 @@
     "servings": 4,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 45,
+    "time_minutes": 65,
     "prep_minutes": 0,
     "provenance": "generated",
     "ingredients": [
@@ -1747,7 +1754,7 @@
     "servings": 4,
     "vegetarian": false,
     "sweet": false,
-    "time_minutes": 165,
+    "time_minutes": 60,
     "prep_minutes": 120,
     "provenance": "generated",
     "ingredients": [
@@ -1788,7 +1795,9 @@
       "Mustard Seeds",
       "Ghee",
       "Fresh Coriander",
-      "Salt"
+      "Salt",
+      "Water",
+      "Garlic (sliced)"
     ]
   },
   {
@@ -1848,8 +1857,8 @@
     "servings": 8,
     "vegetarian": true,
     "sweet": true,
-    "time_minutes": 270,
-    "prep_minutes": 30,
+    "time_minutes": 40,
+    "prep_minutes": 240,
     "provenance": "generated",
     "ingredients": [
       "Mascarpone",
@@ -1861,7 +1870,8 @@
       "Cocoa Powder",
       "Dark Chocolate",
       "Vanilla Extract"
-    ]
+    ],
+    "diet_notes": "Contains raw eggs — use pasteurised (e.g. British Lion) eggs; not suitable for pregnant, elderly or immunocompromised diners."
   },
   {
     "id": "tomato-soup",
@@ -1913,7 +1923,7 @@
     "vegetarian": true,
     "sweet": true,
     "time_minutes": 45,
-    "prep_minutes": 0,
+    "prep_minutes": 60,
     "provenance": "generated",
     "ingredients": [
       "Butter",

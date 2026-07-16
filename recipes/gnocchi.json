@@ -4,8 +4,8 @@
   "cuisine": "Italian",
   "vegetarian": true,
   "sweet": false,
-  "time_minutes": 80,
-  "prep_minutes": 0,
+  "time_minutes": 35,
+  "prep_minutes": 50,
   "diet_notes": "Parmesan is made with animal rennet — use a vegetarian hard cheese for a strictly vegetarian dish.",
   "provenance": {
     "status": "generated"

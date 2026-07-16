@@ -5,7 +5,7 @@
   "vegetarian": true,
   "sweet": true,
   "time_minutes": 45,
-  "prep_minutes": 0,
+  "prep_minutes": 60,
   "provenance": {
     "status": "generated"
   },
@@ -236,7 +236,7 @@
           "output": "baked_brownies",
           "after": "bake",
           "end": {
-            "duration_minutes": 15,
+            "duration_minutes": 60,
             "condition": "completely cool and firm"
           }
         }

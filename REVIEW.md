@@ -115,7 +115,7 @@ verification ongoing.
 **Status (16 Jul 2026):** Phases 1–3 are implemented and deployed. Label-visibility
 testing (Phase 2 item 4) concluded that labels-on works at all widths thanks to
 row-dodging, so the default is uniform across devices with Explore Mode as the
-opt-in reveal game. Phase 4 (content verification) is ongoing.
+opt-in reveal game. Phase 4's machine-and-reviewer pass shipped 16 Jul 2026: a six-agent content audit of all 81 recipes surfaced ~36 issues (safety cues, raw-egg notes, timing semantics, quantity/technique bugs), all fixed; the validator now also lints raw-protein doneness cues. Recipes remain badged 'generated' until actually cooked — flipping badges to 'tested' is the remaining human work.
 
 ### Phase 1 — Data pipeline & integrity (foundation, ~small)
 1. Write a JSON Schema for the recipe format; document it in the README.

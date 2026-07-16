@@ -4,7 +4,7 @@
   "cuisine": "Middle Eastern",
   "vegetarian": true,
   "sweet": false,
-  "time_minutes": 510,
+  "time_minutes": 30,
   "prep_minutes": 480,
   "provenance": {
     "status": "generated"
@@ -297,7 +297,7 @@
           "output": "fried_falafel",
           "after": "heat_oil",
           "end": {
-            "duration_minutes": 8,
+            "duration_minutes": 14,
             "condition": "deep golden brown and crisp all over"
           }
         }

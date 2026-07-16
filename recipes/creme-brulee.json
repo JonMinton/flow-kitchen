@@ -4,8 +4,8 @@
   "cuisine": "French",
   "vegetarian": true,
   "sweet": true,
-  "time_minutes": 165,
-  "prep_minutes": 45,
+  "time_minutes": 50,
+  "prep_minutes": 130,
   "provenance": {
     "status": "generated"
   },

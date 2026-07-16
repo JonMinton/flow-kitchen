@@ -4,8 +4,8 @@
   "cuisine": "Italian",
   "vegetarian": true,
   "sweet": true,
-  "time_minutes": 270,
-  "prep_minutes": 30,
+  "time_minutes": 40,
+  "prep_minutes": 240,
   "provenance": {
     "status": "generated"
   },
@@ -409,5 +409,6 @@
         }
       ]
     }
-  ]
+  ],
+  "diet_notes": "Contains raw eggs — use pasteurised (e.g. British Lion) eggs; not suitable for pregnant, elderly or immunocompromised diners."
 }

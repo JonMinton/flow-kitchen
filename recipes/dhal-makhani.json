@@ -4,7 +4,7 @@
   "cuisine": "Indian",
   "vegetarian": true,
   "sweet": false,
-  "time_minutes": 60,
+  "time_minutes": 120,
   "prep_minutes": 5,
   "provenance": {
     "status": "generated"
@@ -31,12 +31,12 @@
     {
       "id": "urad_dal",
       "name": "Black Lentils (Urad Dal)",
-      "quantity": "200g"
+      "quantity": "200g (soak overnight for best results)"
     },
     {
       "id": "kidney_beans",
       "name": "Kidney Beans",
-      "quantity": "100g, tinned or pre-soaked"
+      "quantity": "100g, tinned and drained"
     },
     {
       "id": "butter",
@@ -118,7 +118,7 @@
       ],
       "output": "cooked_lentils",
       "end": {
-        "duration_minutes": 40,
+        "duration_minutes": 105,
         "condition": "lentils completely soft and creamy"
       },
       "steps": [
@@ -148,8 +148,8 @@
           "output": "boiling_lentils",
           "after": "rinse_lentils",
           "end": {
-            "duration_minutes": 5,
-            "condition": "rolling boil"
+            "duration_minutes": 10,
+            "condition": "vigorous rolling boil held for 10 minutes"
           }
         },
         {
@@ -162,7 +162,7 @@
           "output": "cooked_lentils",
           "after": "boil_lentils",
           "end": {
-            "duration_minutes": 35,
+            "duration_minutes": 90,
             "condition": "lentils soft, creamy, and breaking apart"
           }
         }

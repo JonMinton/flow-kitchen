@@ -5,7 +5,7 @@
   "vegetarian": true,
   "sweet": true,
   "time_minutes": 45,
-  "prep_minutes": 0,
+  "prep_minutes": 60,
   "provenance": {
     "status": "generated"
   },
@@ -160,7 +160,7 @@
         {
           "id": "pour",
           "device": "cake_tin",
-          "action": "Pour and level",
+          "action": "Divide the batter evenly between two greased and lined 20cm sandwich tins",
           "inputs": [
             "batter"
           ],
@@ -180,7 +180,7 @@
           "after": "pour",
           "end": {
             "duration_minutes": 25,
-            "condition": "golden brown"
+            "condition": "golden brown, springs back to the touch, and a skewer comes out clean"
           }
         },
         {
@@ -193,7 +193,8 @@
           "output": "cooled_cake",
           "after": "bake",
           "end": {
-            "condition": "completely cool"
+            "condition": "completely cool",
+            "duration_minutes": 60
           }
         }
       ]
@@ -201,7 +202,7 @@
     {
       "id": "assemble",
       "device": "worktop",
-      "action": "Spread jam and sandwich",
+      "action": "Sandwich the two cooled sponge layers together with jam and dust with sugar",
       "inputs": [
         "cooled_cake",
         "jam"

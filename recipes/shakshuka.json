@@ -268,8 +268,8 @@
           "output": "shakshuka_cooked",
           "after": "crack_eggs_in",
           "end": {
-            "duration_minutes": 5,
-            "condition": "egg whites set, yolks still soft and runny"
+            "duration_minutes": 6,
+            "condition": "egg whites set, yolks still runny — cook 2-3 minutes longer until yolks are firm if serving pregnant, elderly or immunocompromised diners"
           }
         }
       ]

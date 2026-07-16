@@ -4,7 +4,7 @@
   "cuisine": "Thai",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 60,
+  "time_minutes": 115,
   "prep_minutes": 0,
   "provenance": {
     "status": "generated"
@@ -334,8 +334,8 @@
               ],
               "output": "simmered_curry",
               "end": {
-                "duration_minutes": 35,
-                "condition": "beef fork-tender, potatoes cooked through"
+                "duration_minutes": 90,
+                "condition": "beef fork-tender (add the potatoes for the final 30 minutes so they hold their shape)"
               }
             },
             {

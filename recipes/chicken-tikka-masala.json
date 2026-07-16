@@ -232,7 +232,7 @@
           "after": "marinate",
           "end": {
             "duration_minutes": 20,
-            "condition": "charred at edges"
+            "condition": "charred at edges and cooked through — no pink in the centre (75°C)"
           }
         }
       ]

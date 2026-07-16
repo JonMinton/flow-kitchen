@@ -25,6 +25,17 @@ const NEVER_VEGETARIAN = [
 // …and ones that are compatible only with a diet_notes caveat (pragmatic policy).
 const NEEDS_NOTE = ['parmesan', 'dashi', 'worcestershire', 'grana padano', 'pecorino'];
 
+// Raw proteins that demand an explicit doneness cue somewhere in the steps.
+// Names containing the exempt words are assumed already safe to eat.
+const RAW_PROTEINS = [
+  'chicken', 'pork', 'beef', 'lamb', 'mince', 'sausage', 'duck', 'turkey',
+  'fish', 'salmon', 'cod', 'haddock', 'prawn', 'shrimp', 'squid',
+];
+// Cured pork (bacon, guanciale, chorizo…) is excluded: crisping it is a
+// texture step, not a safety-critical doneness step.
+const PROTEIN_EXEMPT = ['smoked', 'cooked', 'cured', 'sushi-grade', 'sashimi', 'stock', 'sauce', 'granules'];
+const DONENESS_CUES = /cooked through|no longer pink|no pink|juices run clear|internal temperature|\b7[0-9]\s?°?c\b|\b6[0-9]\s?°?c\b|\b14[0-9]\s?°?f\b|\b16[0-9]\s?°?f\b|opaque|flakes easily|piping hot|prawns? pink|pink and curled|crisp(y|ed)? and cooked|browned and cooked|falling apart|tender and cooked|fork-tender/i;
+
 let errors = 0;
 let warnings = 0;
 function err(id, msg) { errors++; console.error(`ERROR   ${id}: ${msg}`); }
@@ -160,6 +171,21 @@ function checkRecipe(id, r) {
       if (hit && !(r.diet_notes || '').toLowerCase().includes(frag.split(' ')[0])) {
         err(id, `flagged vegetarian with '${hit}' but diet_notes does not mention '${frag}'`);
       }
+    }
+  }
+
+  // Food-safety lint: a recipe using a raw protein must state a doneness
+  // cue in at least one step's end condition or action.
+  const rawProteins = ingredientNames.filter(n =>
+    RAW_PROTEINS.some(p => n.includes(p)) && !PROTEIN_EXEMPT.some(e => n.includes(e))
+  );
+  if (rawProteins.length) {
+    let hasCue = false;
+    walkSteps(r.steps, s => {
+      if (DONENESS_CUES.test(s.end?.condition || '') || DONENESS_CUES.test(s.action || '')) hasCue = true;
+    });
+    if (!hasCue) {
+      warn(id, `uses raw protein (${rawProteins.join(', ')}) but no step has a doneness cue (e.g. 'cooked through', 'no longer pink', an internal temperature)`);
     }
   }
 

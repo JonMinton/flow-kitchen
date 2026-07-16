@@ -310,7 +310,7 @@
           "after": "add_tofu",
           "end": {
             "duration_minutes": 10,
-            "condition": "broth rich, tofu heated through"
+            "condition": "broth rich, pork cooked through, tofu heated through"
           }
         }
       ]

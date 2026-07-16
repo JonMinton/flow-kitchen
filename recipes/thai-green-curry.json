@@ -183,18 +183,6 @@
           },
           "steps": [
             {
-              "id": "slice_chicken",
-              "device": "chopping_board",
-              "action": "Slice chicken breast into thin strips",
-              "inputs": [
-                "chicken_breast"
-              ],
-              "output": "sliced_chicken",
-              "end": {
-                "duration_minutes": 3
-              }
-            },
-            {
               "id": "quarter_aubergine",
               "device": "chopping_board",
               "action": "Quarter the Thai aubergines",
@@ -216,6 +204,18 @@
               "output": "torn_lime_leaves",
               "end": {
                 "duration_minutes": 1
+              }
+            },
+            {
+              "id": "slice_chicken",
+              "device": "chopping_board",
+              "action": "Slice chicken breast into thin strips (slice the chicken last, then wash the board and knife)",
+              "inputs": [
+                "chicken_breast"
+              ],
+              "output": "sliced_chicken",
+              "end": {
+                "duration_minutes": 3
               }
             }
           ]

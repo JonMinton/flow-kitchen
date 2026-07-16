@@ -4,8 +4,8 @@
   "cuisine": "Peruvian",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 50,
-  "prep_minutes": 30,
+  "time_minutes": 30,
+  "prep_minutes": 20,
   "provenance": {
     "status": "generated"
   },
@@ -31,7 +31,7 @@
     {
       "id": "sea_bass",
       "name": "Sea Bass Fillets",
-      "quantity": "500g, skinned and pin-boned"
+      "quantity": "500g, skinned and pin-boned — sashimi-grade or previously frozen (-20°C for 24h+)"
     },
     {
       "id": "limes",
@@ -450,5 +450,6 @@
         }
       ]
     }
-  ]
+  ],
+  "diet_notes": "The fish is acid-cured, not heat-cooked — lime juice does not kill parasites, so use only sashimi-grade or previously-frozen fish."
 }

@@ -4,7 +4,7 @@
   "cuisine": "Italian",
   "vegetarian": true,
   "sweet": false,
-  "time_minutes": 15,
+  "time_minutes": 25,
   "prep_minutes": 0,
   "provenance": {
     "status": "generated"
@@ -73,7 +73,7 @@
         {
           "id": "soften_butter",
           "device": "bowl",
-          "action": "Leave butter at room temperature until soft",
+          "action": "Soften butter until easily spreadable (use 10-second microwave bursts if fridge-cold)",
           "inputs": [
             "butter"
           ],
@@ -153,7 +153,7 @@
           "inputs": [],
           "output": "hot_oven",
           "end": {
-            "duration_minutes": 2,
+            "duration_minutes": 10,
             "condition": "oven at temperature"
           }
         },

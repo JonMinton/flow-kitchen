@@ -169,7 +169,7 @@
         {
           "id": "blend_base",
           "device": "blender",
-          "action": "Blend anchovies, garlic, lemon juice, egg yolk, mustard and Worcestershire",
+          "action": "Blend anchovies, garlic, lemon juice, egg yolk, mustard and Worcestershire (use a pasteurised yolk if preferred)",
           "inputs": [
             "chopped_anchovies",
             "chopped_garlic",
@@ -259,11 +259,12 @@
         {
           "id": "toss_croutons",
           "device": "baking_tray",
-          "action": "Toss bread cubes with olive oil and a pinch of salt",
+          "action": "Toss bread cubes with olive oil and a pinch of salt and a crushed garlic clove",
           "inputs": [
             "bread_cubes",
             "olive_oil",
-            "salt"
+            "salt",
+            "garlic"
           ],
           "output": "seasoned_cubes",
           "after": "cube_bread",
@@ -398,5 +399,6 @@
         }
       ]
     }
-  ]
+  ],
+  "diet_notes": "The dressing contains raw egg yolk — use a pasteurised yolk if serving pregnant, elderly or immunocompromised diners."
 }

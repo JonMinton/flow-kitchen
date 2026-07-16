@@ -4,8 +4,8 @@
   "cuisine": "Japanese",
   "vegetarian": false,
   "sweet": false,
-  "time_minutes": 180,
-  "prep_minutes": 0,
+  "time_minutes": 105,
+  "prep_minutes": 240,
   "provenance": {
     "status": "generated"
   },
@@ -64,17 +64,17 @@
     {
       "id": "soy_sauce",
       "name": "Soy Sauce",
-      "quantity": "4 tbsp"
+      "quantity": "8 tbsp"
     },
     {
       "id": "mirin",
       "name": "Mirin",
-      "quantity": "2 tbsp"
+      "quantity": "4 tbsp"
     },
     {
       "id": "sake",
       "name": "Sake",
-      "quantity": "2 tbsp"
+      "quantity": "4 tbsp"
     },
     {
       "id": "dashi_granules",
@@ -125,6 +125,21 @@
       "id": "salt",
       "name": "Salt",
       "quantity": "to taste"
+    },
+    {
+      "id": "soy_sauce_braise",
+      "name": "Soy Sauce (for chashu braise)",
+      "quantity": "100ml"
+    },
+    {
+      "id": "mirin_braise",
+      "name": "Mirin (for chashu braise)",
+      "quantity": "50ml"
+    },
+    {
+      "id": "sake_braise",
+      "name": "Sake (for chashu braise)",
+      "quantity": "50ml"
     }
   ],
   "steps": [
@@ -503,9 +518,9 @@
       "action": "Prepare chashu pork belly",
       "inputs": [
         "chashu_pork_belly",
-        "soy_sauce",
-        "mirin",
-        "sake",
+        "soy_sauce_braise",
+        "mirin_braise",
+        "sake_braise",
         "water"
       ],
       "output": "sliced_chashu",
@@ -561,9 +576,9 @@
           "after": "sear_pork",
           "inputs": [
             "seared_pork",
-            "soy_sauce",
-            "mirin",
-            "sake",
+            "soy_sauce_braise",
+            "mirin_braise",
+            "sake_braise",
             "water"
           ],
           "output": "sliced_chashu",
@@ -577,7 +592,7 @@
               "action": "Place seared pork in saucepan, add soy sauce",
               "inputs": [
                 "seared_pork",
-                "soy_sauce"
+                "soy_sauce_braise"
               ],
               "output": "pork_with_soy",
               "end": {
@@ -590,7 +605,7 @@
               "action": "Add mirin",
               "after": "add_soy_to_pork",
               "inputs": [
-                "mirin",
+                "mirin_braise",
                 "pork_with_soy"
               ],
               "output": "pork_with_mirin",
@@ -604,7 +619,7 @@
               "action": "Add sake",
               "after": "add_mirin_to_pork",
               "inputs": [
-                "sake",
+                "sake_braise",
                 "pork_with_mirin"
               ],
               "output": "pork_with_sake",
@@ -728,7 +743,7 @@
         {
           "id": "marinate_in_tare",
           "device": "bowl",
-          "action": "Submerge peeled eggs in tare to marinate",
+          "action": "Marinate the peeled eggs in half the tare diluted with an equal volume of water",
           "after": "peel_eggs",
           "inputs": [
             "peeled_eggs",
