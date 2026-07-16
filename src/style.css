@@ -243,13 +243,38 @@ h1 {
 }
 
 .sankey-label {
-  font-size: 11px;
   font-weight: 500;
   pointer-events: none;
 }
 
+.sankey-label--outside {
+  paint-order: stroke;
+  stroke: #faf8f5;
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
 .expand-indicator {
   pointer-events: none;
+}
+
+/* Keyboard focus */
+.sankey-node:focus {
+  outline: none;
+}
+
+.sankey-node:focus-visible rect {
+  stroke: #1a4f8a;
+  stroke-width: 2.5px;
+  stroke-dasharray: none;
+}
+
+.sankey-link:focus {
+  outline: none;
+}
+
+.sankey-link:focus-visible {
+  opacity: 0.7 !important;
 }
 
 /* Sankey links */
@@ -279,6 +304,56 @@ h1 {
 
 #tooltip.visible {
   opacity: 1;
+}
+
+/* ── Detail card ────────────────────────────────────────────────── */
+
+#detail-card {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(560px, calc(100vw - 24px));
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+  padding: 0.9rem 2.4rem 0.9rem 1.1rem;
+  z-index: 60;
+}
+
+#detail-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+#detail-card .detail-facts {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+#detail-card .detail-step {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+#detail-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #999;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+#detail-close:hover {
+  color: #333;
 }
 
 /* ── Feedback dropdown ──────────────────────────────────────────── */
@@ -414,8 +489,10 @@ h1 {
 @media print {
   #back-link,
   #view-toggle,
+  #labels-toggle,
   #filter-bar,
   #tooltip,
+  #detail-card,
   .feedback-wrapper {
     display: none !important;
   }

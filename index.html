@@ -68,6 +68,7 @@
       <p id="recipe-meta"></p>
       <p id="diet-note" class="diet-note" style="display: none;"></p>
       <button id="view-toggle" class="pill">Show Recipe</button>
+      <button id="labels-toggle" class="pill">Explore Mode</button>
       <div class="feedback-wrapper">
         <button class="pill feedback-btn" id="recipe-feedback-btn">Feedback</button>
         <div class="feedback-dropdown" id="recipe-feedback-dropdown">
@@ -78,6 +79,11 @@
     </header>
     <div id="score"></div>
     <div id="recipe-text" style="display: none;"></div>
+  </div>
+
+  <div id="detail-card" hidden>
+    <button id="detail-close" aria-label="Close details">&times;</button>
+    <div id="detail-body"></div>
   </div>
 
   <div id="tooltip"></div>

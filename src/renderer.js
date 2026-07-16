@@ -3,10 +3,10 @@ import { sankey as d3Sankey, sankeyLeft } from 'd3-sankey';
 import { resolveGraphSteps } from './graph-resolve.js';
 
 // ── Layout constants ──────────────────────────────────────────────
-const WIDTH = 600;
+const MIN_DIAGRAM_WIDTH = 300;
+const MAX_DIAGRAM_WIDTH = 900;
 const NODE_WIDTH = 20;
 const NODE_PADDING = 12;
-const MARGIN = { top: 40, right: 20, bottom: 40, left: 20 };
 
 // ── Colour palettes ──────────────────────────────────────────────
 const INGREDIENT_COLOURS = d3.schemeTableau10;
@@ -18,6 +18,12 @@ let revealed = new Set();
 let recipeIndex = [];
 let currentView = 'diagram';
 let filters = { diet: 'all', category: 'all', time: 'all', prep: 'all', cuisines: new Set(), ingredientQuery: '' };
+
+// Labels are visible by default; touch devices cannot hover so they must
+// never default to the hidden-label explore mode.
+const isTouch = window.matchMedia('(pointer: coarse)').matches;
+const canHover = window.matchMedia('(hover: hover)').matches;
+let labelsOn = true;
 
 // ── Feedback links ───────────────────────────────────────────────
 const GITHUB_REPO_URL = 'https://github.com/JonMinton/recipes-as-music';
@@ -68,6 +74,7 @@ function route() {
 function showLandingView() {
   d3.select('#landing-view').style('display', null);
   d3.select('#diagram-view').style('display', 'none');
+  hideDetail();
   buildCuisineFilters();
   wireFilters();
   renderCards();
@@ -228,6 +235,7 @@ async function loadRecipe(id) {
   expanded = new Set();
   revealed = new Set();
   d3.select('#tooltip').classed('visible', false);
+  hideDetail();
 
   // Reset to diagram view
   currentView = 'diagram';
@@ -249,6 +257,7 @@ async function loadRecipe(id) {
   wireFeedbackDropdown('#recipe-feedback-btn', '#recipe-feedback-dropdown', '#recipe-github-link', '#recipe-form-link', ghUrl);
 
   wireViewToggle();
+  wireLabelsToggle();
   render();
 }
 
@@ -257,6 +266,8 @@ async function init() {
   recipeIndex = await d3.json(`${import.meta.env.BASE_URL}index.json`);
   route();
   window.addEventListener('hashchange', route);
+  wireDetailCard();
+  wireResize();
 }
 
 // ── Humanize an ID like "creamed_mixture" → "Creamed mixture" ─────
@@ -271,7 +282,6 @@ function buildGraph(steps) {
   const nodeIndex = new Map();
 
   const ingById = new Map(recipe.ingredients.map(i => [i.id, i]));
-  const allIngIds = new Set(recipe.ingredients.map(i => i.id));
 
   const ingColourMap = new Map();
   recipe.ingredients.forEach((ing, i) => {
@@ -307,45 +317,29 @@ function buildGraph(steps) {
   findExpandables(recipe.steps);
 
   // Create substance nodes from visible step inputs/outputs
+  function substanceNode(id) {
+    if (nodeIndex.has(id)) return;
+    const ing = ingById.get(id);
+    if (ing) {
+      addNode(id, {
+        type: 'ingredient',
+        label: `${ing.name} (${ing.quantity})`,
+        shortLabel: ing.name,
+        colour: ingColourMap.get(id),
+      });
+    } else {
+      addNode(id, {
+        type: 'intermediate',
+        label: humanize(id),
+        shortLabel: humanize(id),
+        expandableStepId: expandableOutputs.get(id)?.id || null,
+      });
+    }
+  }
+
   for (const step of steps) {
-    for (const inp of step.inputs || []) {
-      if (!nodeIndex.has(inp)) {
-        const ing = ingById.get(inp);
-        if (ing) {
-          addNode(inp, {
-            type: 'ingredient',
-            label: `${ing.name} (${ing.quantity})`,
-            shortLabel: ing.name,
-            colour: ingColourMap.get(inp),
-          });
-        } else {
-          addNode(inp, {
-            type: 'intermediate',
-            label: humanize(inp),
-            shortLabel: humanize(inp),
-            expandableStepId: expandableOutputs.get(inp)?.id || null,
-          });
-        }
-      }
-    }
-    if (step.output && !nodeIndex.has(step.output)) {
-      const ing = ingById.get(step.output);
-      if (ing) {
-        addNode(step.output, {
-          type: 'ingredient',
-          label: `${ing.name} (${ing.quantity})`,
-          shortLabel: ing.name,
-          colour: ingColourMap.get(step.output),
-        });
-      } else {
-        addNode(step.output, {
-          type: 'intermediate',
-          label: humanize(step.output),
-          shortLabel: humanize(step.output),
-          expandableStepId: expandableOutputs.get(step.output)?.id || null,
-        });
-      }
-    }
+    for (const inp of step.inputs || []) substanceNode(inp);
+    if (step.output) substanceNode(step.output);
   }
 
   // Mark final products (outputs not consumed by any step)
@@ -360,9 +354,12 @@ function buildGraph(steps) {
     }
   }
 
-  // Wire links: each step connects inputs → output
+  // Wire links: each step connects inputs → output, and nodes remember
+  // which steps produce them (for the detail card).
   for (const step of steps) {
     if (!step.output) continue;
+    const outNode = nodes[nodeIndex.get(step.output)];
+    if (outNode) (outNode.producedBy ||= []).push(step);
     for (const inp of step.inputs || []) {
       if (nodeIndex.has(inp) && nodeIndex.has(step.output)) {
         addLink(inp, step.output, step.action, step);
@@ -385,7 +382,7 @@ function buildGraph(steps) {
     node.sortKey = consumer != null ? consumer : steps.length;
   }
 
-  // Auto-reveal final product on first render
+  // Auto-reveal final product on first render (explore mode)
   if (revealed.size === 0) {
     for (const node of nodes) {
       if (node.type === 'final') revealed.add(node.id);
@@ -447,7 +444,7 @@ function swapAxes(graph, totalWidth, totalHeight) {
 }
 
 // ── Barycentric relaxation: attract nodes toward their neighbours ─
-function barycentricRelax(graph, innerW) {
+function barycentricRelax(graph, innerW, nodePadding) {
   const layerMap = new Map();
   for (const node of graph.nodes) {
     const key = Math.round(node.y0 / 10) * 10;
@@ -489,7 +486,7 @@ function barycentricRelax(graph, innerW) {
 
       layer.sort((a, b) => a.x0 - b.x0);
       for (let i = 1; i < layer.length; i++) {
-        const gap = NODE_PADDING;
+        const gap = nodePadding;
         if (layer[i].x0 < layer[i - 1].x1 + gap) {
           const w = layer[i].x1 - layer[i].x0;
           layer[i].x0 = layer[i - 1].x1 + gap;
@@ -548,19 +545,75 @@ function verticalLinkPath(d) {
   return `M${sx},${sy} C${sx},${midY} ${tx},${midY} ${tx},${ty}`;
 }
 
-// ── Render ─────────────────────────────────────────────────────────
-function render() {
+// ── Detail card (touch-friendly replacement for hover tooltips) ───
+function wireDetailCard() {
+  document.getElementById('detail-close').addEventListener('click', hideDetail);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') hideDetail();
+  });
+}
+
+function showDetail(buildFn) {
+  const body = d3.select('#detail-body');
+  body.html('');
+  buildFn(body);
+  document.getElementById('detail-card').hidden = false;
+}
+
+function hideDetail() {
+  const card = document.getElementById('detail-card');
+  if (card) card.hidden = true;
+}
+
+function deviceLine(step) {
+  const dev = (recipe.devices || []).find(dv => dv.id === step.device);
+  if (!dev) return null;
+  return `${dev.name}${dev.settings ? ' (' + dev.settings + ')' : ''}`;
+}
+
+function stepFacts(body, step) {
+  const facts = [];
+  if (step.end?.duration_minutes) facts.push(`${step.end.duration_minutes} min`);
+  if (step.end?.condition) facts.push(`until ${step.end.condition}`);
+  const dev = deviceLine(step);
+  if (dev) facts.push(`using ${dev}`);
+  if (facts.length) body.append('p').attr('class', 'detail-facts').text(facts.join(' · '));
+}
+
+function showLinkDetail(d) {
+  showDetail(body => {
+    body.append('h3').text(d.action);
+    if (d.step) stepFacts(body, d.step);
+  });
+}
+
+function showNodeDetail(d) {
+  showDetail(body => {
+    body.append('h3').text(d.label);
+    if (d.type === 'final') body.append('p').attr('class', 'detail-facts').text('Final dish');
+    for (const step of d.producedBy || []) {
+      body.append('p').attr('class', 'detail-step').text(step.action);
+      stepFacts(body, step);
+    }
+  });
+}
+
+// ── Shared flow drawing (main diagram + thumbnail) ────────────────
+function drawFlow(containerSel, opts) {
+  const {
+    width, nodeWidth, nodePadding, margin, fontSize, rowHeight, interactive,
+  } = opts;
+
   const steps = resolveGraphSteps(recipe, expanded);
   const graphData = buildGraph(steps);
 
-  const innerW = WIDTH - MARGIN.left - MARGIN.right;
-  const estimatedHeight = Math.max(400, graphData.nodes.length * 50);
-  const innerH = estimatedHeight;
+  const innerW = width - margin.left - margin.right;
+  const innerH = Math.max(opts.minHeight, graphData.nodes.length * rowHeight);
 
   const sankeyGen = d3Sankey()
     .nodeAlign(sankeyLeft)
-    .nodeWidth(NODE_WIDTH)
-    .nodePadding(NODE_PADDING)
+    .nodeWidth(nodeWidth)
+    .nodePadding(nodePadding)
     .nodeSort((a, b) => (a.sortKey ?? 0) - (b.sortKey ?? 0))
     .extent([[0, 0], [innerH, innerW]]);
 
@@ -570,28 +623,37 @@ function render() {
   });
 
   swapAxes(graph, innerW, innerH);
-  barycentricRelax(graph, innerW);
+  barycentricRelax(graph, innerW, nodePadding);
 
-  const totalW = innerW + MARGIN.left + MARGIN.right;
-  const totalH = innerH + MARGIN.top + MARGIN.bottom;
+  for (const link of graph.links) link.target._hasIncoming = true;
 
-  // Clear & recreate SVG
-  d3.select('#score').selectAll('*').remove();
-  const svg = d3.select('#score')
+  // Relaxation can push nodes slightly outside [0, innerW]; grow the
+  // canvas to the actual content bounds so nothing is clipped.
+  const minX = Math.min(0, d3.min(graph.nodes, n => n.x0));
+  const maxX = Math.max(innerW, d3.max(graph.nodes, n => n.x1));
+  const totalW = (maxX - minX) + margin.left + margin.right;
+  const totalH = innerH + margin.top + margin.bottom;
+
+  const container = d3.select(containerSel);
+  container.selectAll('*').remove();
+  const svg = container
     .append('svg')
     .attr('width', totalW)
     .attr('height', totalH)
     .attr('viewBox', `0 0 ${totalW} ${totalH}`)
-    .attr('preserveAspectRatio', 'xMidYMin meet');
+    .attr('preserveAspectRatio', 'xMidYMin meet')
+    .attr('role', 'img')
+    .attr('aria-label', `Ingredient flow diagram for ${recipe.title}`);
 
   const g = svg.append('g')
-    .attr('transform', `translate(${MARGIN.left}, ${MARGIN.top})`);
+    .attr('transform', `translate(${margin.left - minX}, ${margin.top})`);
 
-  // ── Render links (verbs) ──
-  const linkG = g.append('g').attr('class', 'sankey-links');
+  const labelVisible = d => labelsOn || revealed.has(d.id);
   const tooltip = d3.select('#tooltip');
 
-  linkG.selectAll('path')
+  // ── Links (verbs) ──
+  const linkPaths = g.append('g').attr('class', 'sankey-links')
+    .selectAll('path')
     .data(graph.links)
     .join('path')
     .attr('class', 'sankey-link')
@@ -599,32 +661,11 @@ function render() {
     .attr('stroke', d => linkColour(d))
     .attr('stroke-width', d => Math.max(2, d.width))
     .attr('fill', 'none')
-    .attr('opacity', 0.35)
-    .on('mouseenter', (event, d) => {
-      const lines = [d.action];
-      if (d.step) {
-        if (d.step.end?.duration_minutes) lines.push(`Duration: ${d.step.end.duration_minutes} min`);
-        if (d.step.end?.condition) lines.push(`Until: ${d.step.end.condition}`);
-        const dev = recipe.devices.find(dv => dv.id === d.step.device);
-        if (dev) lines.push(`Using: ${dev.name}${dev.settings ? ' (' + dev.settings + ')' : ''}`);
-      }
-      tooltip
-        .html(lines.join('<br>'))
-        .classed('visible', true)
-        .style('left', (event.clientX + 12) + 'px')
-        .style('top', (event.clientY - 10) + 'px');
-    })
-    .on('mousemove', (event) => {
-      tooltip
-        .style('left', (event.clientX + 12) + 'px')
-        .style('top', (event.clientY - 10) + 'px');
-    })
-    .on('mouseleave', () => tooltip.classed('visible', false));
+    .attr('opacity', 0.35);
 
-  // ── Render nodes (substances) ──
-  const nodeG = g.append('g').attr('class', 'sankey-nodes');
-
-  const nodeGroups = nodeG.selectAll('g')
+  // ── Nodes (substances) ──
+  const nodeGroups = g.append('g').attr('class', 'sankey-nodes')
+    .selectAll('g')
     .data(graph.nodes)
     .join('g')
     .attr('class', d => `sankey-node sankey-node--${d.type}`)
@@ -635,76 +676,250 @@ function render() {
     .attr('height', d => d.y1 - d.y0)
     .attr('fill', d => nodeColour(d))
     .attr('stroke', d => d3.color(nodeColour(d)).darker(0.5))
-    .attr('stroke-width', 1)
+    .attr('stroke-width', d => d.type === 'final' ? 1.5 : 1)
+    .attr('stroke-dasharray', d => d.type === 'intermediate' ? '3 2' : null)
     .attr('rx', 4)
     .attr('ry', 4);
 
-  // Labels — only for revealed nodes
+  // Labels: inside the node when they fit, otherwise just outside it
+  // (above for source nodes, below otherwise) with a halo for legibility.
+  const outsideLabels = [];
   nodeGroups.append('text')
     .attr('class', 'sankey-label')
-    .attr('x', d => (d.x1 - d.x0) / 2)
-    .attr('y', d => (d.y1 - d.y0) / 2)
-    .attr('dy', '0.35em')
+    .attr('font-size', fontSize)
     .attr('text-anchor', 'middle')
-    .attr('opacity', d => revealed.has(d.id) ? 1 : 0)
-    .text(d => {
-      const w = d.x1 - d.x0;
-      const label = d.shortLabel || d.label;
-      const maxChars = Math.floor(w / 7);
-      if (maxChars < 3) return '';
-      return label.length > maxChars ? label.slice(0, maxChars - 1) + '\u2026' : label;
-    })
-    .attr('fill', d => d.type === 'final' ? '#fff' : '#333');
+    .attr('opacity', d => labelVisible(d) ? 1 : 0)
+    .text(d => d.shortLabel || d.label)
+    .each(function (d) {
+      const t = d3.select(this);
+      const nodeW = d.x1 - d.x0;
+      const nodeH = d.y1 - d.y0;
+      const cx = nodeW / 2;
+      if (this.getComputedTextLength() <= nodeW - 8) {
+        t.attr('x', cx).attr('y', nodeH / 2).attr('dy', '0.35em')
+          .attr('fill', d.type === 'final' ? '#fff' : '#333');
+      } else {
+        const above = !d._hasIncoming;
+        t.classed('sankey-label--outside', true)
+          .attr('x', cx)
+          .attr('y', above ? -5 : nodeH + 4)
+          .attr('dy', above ? '0' : '0.8em')
+          .attr('fill', '#444');
+        const maxPx = Math.max(nodeW + nodePadding * 2 - 4, opts.maxLabelPx || 110);
+        let label = t.text();
+        while (label.length > 3 && this.getComputedTextLength() > maxPx) {
+          label = label.slice(0, -1);
+          t.text(label + '…');
+        }
+        outsideLabels.push({ el: this, d, above });
+      }
+    });
+
+  // Keep outside labels within the canvas edges, then dodge collisions
+  // within a layer by stacking labels on additional rows (needed on narrow
+  // screens where nodes sit close together).
+  for (const l of outsideLabels) {
+    const w = l.el.getComputedTextLength();
+    const cx = (l.d.x0 + l.d.x1) / 2;
+    const lo = minX - margin.left + 3 + w / 2;
+    const hi = maxX + margin.right - 3 - w / 2;
+    l.cx = lo < hi ? Math.max(lo, Math.min(hi, cx)) : cx;
+    if (l.cx !== cx) d3.select(l.el).attr('x', l.cx - l.d.x0);
+  }
+
+  const labelRows = d3.group(outsideLabels, l => `${Math.round(l.d.y0)}|${l.above}`);
+  for (const [, labels] of labelRows) {
+    labels.sort((a, b) => a.cx - b.cx);
+    const rowEnds = [];
+    for (const l of labels) {
+      const w = l.el.getComputedTextLength();
+      const left = l.cx - w / 2;
+      let row = 0;
+      while (row < 5 && rowEnds[row] != null && left < rowEnds[row] + 8) row++;
+      rowEnds[row] = l.cx + w / 2;
+      if (row > 0) {
+        const t = d3.select(l.el);
+        const dy = (fontSize + 3) * row;
+        t.attr('y', +t.attr('y') + (l.above ? -dy : dy));
+      }
+    }
+  }
+
+  // Fit the canvas to the actual content (nodes plus dodged label rows),
+  // so nothing is ever clipped regardless of how many rows were needed.
+  {
+    const bb = g.node().getBBox();
+    const fitW = Math.ceil(bb.width + 16);
+    const fitH = Math.ceil(bb.height + 16);
+    const scale = Math.min(1, width / fitW);
+    svg
+      .attr('viewBox', `${Math.floor(bb.x - 8)} ${Math.floor(bb.y - 8)} ${fitW} ${fitH}`)
+      .attr('width', Math.round(fitW * scale))
+      .attr('height', Math.round(fitH * scale));
+    g.attr('transform', null);
+  }
 
   // Expand/collapse indicator
-  nodeGroups.filter(d => d.expandableStepId && revealed.has(d.id))
+  nodeGroups.filter(d => interactive && d.expandableStepId && labelVisible(d))
     .append('text')
     .attr('class', 'expand-indicator')
     .attr('x', d => (d.x1 - d.x0) / 2)
     .attr('y', d => (d.y1 - d.y0) - 4)
     .attr('text-anchor', 'middle')
-    .attr('fill', '#666')
+    .attr('fill', d => d.type === 'final' ? '#fff' : '#666')
     .attr('font-size', '10px')
-    .text(d => expanded.has(d.expandableStepId) ? '\u25b4' : '\u25be');
+    .text(d => expanded.has(d.expandableStepId) ? '▴' : '▾');
 
-  // Click: reveal → then expand/collapse
+  if (!interactive) {
+    svg.style('pointer-events', 'none');
+    return;
+  }
+
+  // ── Interaction ──
+  svg.on('click', () => hideDetail());
+
+  function activateNode(event, d) {
+    event.stopPropagation();
+    if (!labelsOn && !revealed.has(d.id)) {
+      for (const id of findAncestors(d.id, graph)) revealed.add(id);
+      render();
+      return;
+    }
+    if (d.expandableStepId) {
+      if (expanded.has(d.expandableStepId)) {
+        expanded.delete(d.expandableStepId);
+      } else {
+        expanded.add(d.expandableStepId);
+      }
+      hideDetail();
+      render();
+      return;
+    }
+    showNodeDetail(d);
+  }
+
+  function activateLink(event, d) {
+    event.stopPropagation();
+    showLinkDetail(d);
+  }
+
   nodeGroups
     .style('cursor', 'pointer')
-    .on('click', (event, d) => {
-      if (!revealed.has(d.id)) {
-        const ancestors = findAncestors(d.id, graph);
-        for (const id of ancestors) revealed.add(id);
-        render();
-      } else if (d.expandableStepId) {
-        if (expanded.has(d.expandableStepId)) {
-          expanded.delete(d.expandableStepId);
-        } else {
-          expanded.add(d.expandableStepId);
-        }
-        render();
+    .attr('tabindex', 0)
+    .attr('role', 'button')
+    .attr('aria-label', d => {
+      const parts = [d.label];
+      if (d.type === 'final') parts.push('final dish');
+      if (d.expandableStepId) parts.push(expanded.has(d.expandableStepId) ? 'collapse group' : 'expand group');
+      return parts.join(', ');
+    })
+    .on('click', activateNode)
+    .on('keydown', (event, d) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activateNode(event, d);
       }
     });
 
-  // Node tooltips
-  nodeGroups
-    .on('mouseenter', (event, d) => {
-      const lines = [d.label];
-      if (d.expandableStepId && revealed.has(d.id)) {
-        lines.push(expanded.has(d.expandableStepId) ? '(click to collapse)' : '(click to expand)');
+  linkPaths
+    .style('cursor', 'pointer')
+    .attr('tabindex', 0)
+    .attr('role', 'button')
+    .attr('aria-label', d => d.action)
+    .on('click', activateLink)
+    .on('keydown', (event, d) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activateLink(event, d);
       }
-      if (!revealed.has(d.id)) lines.push('(click to reveal)');
-      tooltip
-        .html(lines.join('<br>'))
-        .classed('visible', true)
-        .style('left', (event.clientX + 12) + 'px')
-        .style('top', (event.clientY - 10) + 'px');
-    })
-    .on('mousemove', (event) => {
-      tooltip
-        .style('left', (event.clientX + 12) + 'px')
-        .style('top', (event.clientY - 10) + 'px');
-    })
-    .on('mouseleave', () => tooltip.classed('visible', false));
+    });
+
+  // Hover tooltips as a desktop enhancement only
+  if (canHover) {
+    linkPaths
+      .on('mouseenter', (event, d) => {
+        const lines = [d.action];
+        if (d.step) {
+          if (d.step.end?.duration_minutes) lines.push(`Duration: ${d.step.end.duration_minutes} min`);
+          if (d.step.end?.condition) lines.push(`Until: ${d.step.end.condition}`);
+          const dev = deviceLine(d.step);
+          if (dev) lines.push(`Using: ${dev}`);
+        }
+        tooltip
+          .html(lines.join('<br>'))
+          .classed('visible', true)
+          .style('left', (event.clientX + 12) + 'px')
+          .style('top', (event.clientY - 10) + 'px');
+      })
+      .on('mousemove', (event) => {
+        tooltip
+          .style('left', (event.clientX + 12) + 'px')
+          .style('top', (event.clientY - 10) + 'px');
+      })
+      .on('mouseleave', () => tooltip.classed('visible', false));
+
+    nodeGroups
+      .on('mouseenter', (event, d) => {
+        const lines = [d.label];
+        if (d.expandableStepId && labelVisible(d)) {
+          lines.push(expanded.has(d.expandableStepId) ? '(click to collapse)' : '(click to expand)');
+        }
+        if (!labelVisible(d)) lines.push('(click to reveal)');
+        tooltip
+          .html(lines.join('<br>'))
+          .classed('visible', true)
+          .style('left', (event.clientX + 12) + 'px')
+          .style('top', (event.clientY - 10) + 'px');
+      })
+      .on('mousemove', (event) => {
+        tooltip
+          .style('left', (event.clientX + 12) + 'px')
+          .style('top', (event.clientY - 10) + 'px');
+      })
+      .on('mouseleave', () => tooltip.classed('visible', false));
+  }
+}
+
+// ── Main diagram render ───────────────────────────────────────────
+function diagramWidth() {
+  const el = document.getElementById('score');
+  const available = el?.clientWidth || window.innerWidth - 32;
+  return Math.max(MIN_DIAGRAM_WIDTH, Math.min(MAX_DIAGRAM_WIDTH, available));
+}
+
+let lastRenderWidth = 0;
+
+function render() {
+  const width = diagramWidth();
+  lastRenderWidth = width;
+  const compact = width < 480;
+  drawFlow('#score', {
+    width,
+    nodeWidth: NODE_WIDTH,
+    nodePadding: compact ? 8 : NODE_PADDING,
+    margin: { top: compact ? 62 : 50, right: 16, bottom: compact ? 62 : 52, left: 16 },
+    fontSize: compact ? 10.5 : 12,
+    maxLabelPx: compact ? 80 : 110,
+    rowHeight: compact ? 44 : 52,
+    minHeight: 360,
+    interactive: true,
+  });
+}
+
+// Re-render when the viewport size actually changes (orientation flip,
+// window resize) so the diagram always fits the container.
+function wireResize() {
+  let timer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (recipe && currentView === 'diagram' &&
+          document.getElementById('diagram-view').style.display !== 'none' &&
+          Math.abs(diagramWidth() - lastRenderWidth) > 4) {
+        render();
+      }
+    }, 150);
+  });
 }
 
 // ── Node colour by type ───────────────────────────────────────────
@@ -736,6 +951,7 @@ function wireViewToggle() {
       d3.select('#recipe-text').style('display', null);
       d3.select('#diagram-view').classed('recipe-view-active', true);
       d3.select('#view-toggle').text('Show Flow');
+      hideDetail();
       renderRecipeText();
     } else {
       currentView = 'diagram';
@@ -745,6 +961,26 @@ function wireViewToggle() {
       d3.select('#view-toggle').text('Show Recipe');
     }
   });
+}
+
+// ── Labels toggle: explore mode hides labels until revealed ───────
+let labelsToggleWired = false;
+function wireLabelsToggle() {
+  updateLabelsToggle();
+  if (labelsToggleWired) return;
+  labelsToggleWired = true;
+
+  d3.select('#labels-toggle').on('click', () => {
+    labelsOn = !labelsOn;
+    if (!labelsOn) revealed = new Set();
+    updateLabelsToggle();
+    hideDetail();
+    render();
+  });
+}
+
+function updateLabelsToggle() {
+  d3.select('#labels-toggle').text(labelsOn ? 'Explore Mode' : 'Show Labels');
 }
 
 // ── Recipe text rendering ─────────────────────────────────────────
@@ -837,103 +1073,28 @@ function flattenChildren(steps) {
 
 // ── Thumbnail rendering ───────────────────────────────────────────
 function renderThumbnail() {
-  const thumbContainer = d3.select('#recipe-thumbnail');
-  thumbContainer.html('');
-
-  // Save global state
+  // Collapsed view with all labels visible
   const savedExpanded = expanded;
   const savedRevealed = revealed;
-
-  // Collapsed view with all labels visible
+  const savedLabelsOn = labelsOn;
   expanded = new Set();
   revealed = new Set();
+  labelsOn = true;
 
-  const steps = resolveGraphSteps(recipe, expanded);
-  const graphData = buildGraph(steps);
-
-  // Reveal all nodes for the thumbnail
-  for (const node of graphData.nodes) revealed.add(node.id);
-
-  // Smaller dimensions
-  const thumbW = 300;
-  const thumbNodeWidth = 14;
-  const thumbNodePadding = 8;
-  const thumbMargin = { top: 20, right: 10, bottom: 20, left: 10 };
-  const innerW = thumbW - thumbMargin.left - thumbMargin.right;
-  const innerH = Math.max(200, graphData.nodes.length * 35);
-
-  const sankeyGen = d3Sankey()
-    .nodeAlign(sankeyLeft)
-    .nodeWidth(thumbNodeWidth)
-    .nodePadding(thumbNodePadding)
-    .nodeSort((a, b) => (a.sortKey ?? 0) - (b.sortKey ?? 0))
-    .extent([[0, 0], [innerH, innerW]]);
-
-  const graph = sankeyGen({
-    nodes: graphData.nodes.map(d => ({ ...d })),
-    links: graphData.links.map(d => ({ ...d })),
+  drawFlow('#recipe-thumbnail', {
+    width: Math.min(340, diagramWidth()),
+    nodeWidth: 14,
+    nodePadding: 8,
+    margin: { top: 18, right: 10, bottom: 24, left: 10 },
+    fontSize: 8.5,
+    rowHeight: 36,
+    minHeight: 200,
+    interactive: false,
   });
 
-  swapAxes(graph, innerW, innerH);
-  barycentricRelax(graph, innerW);
-
-  const totalW = innerW + thumbMargin.left + thumbMargin.right;
-  const totalH = innerH + thumbMargin.top + thumbMargin.bottom;
-
-  const svg = thumbContainer.append('svg')
-    .attr('width', totalW)
-    .attr('height', totalH)
-    .attr('viewBox', `0 0 ${totalW} ${totalH}`)
-    .attr('preserveAspectRatio', 'xMidYMin meet')
-    .style('pointer-events', 'none');
-
-  const g = svg.append('g')
-    .attr('transform', `translate(${thumbMargin.left}, ${thumbMargin.top})`);
-
-  // Links
-  g.append('g').selectAll('path')
-    .data(graph.links)
-    .join('path')
-    .attr('d', verticalLinkPath)
-    .attr('stroke', d => linkColour(d))
-    .attr('stroke-width', d => Math.max(1.5, d.width))
-    .attr('fill', 'none')
-    .attr('opacity', 0.3);
-
-  // Nodes
-  const nodeGroups = g.append('g').selectAll('g')
-    .data(graph.nodes)
-    .join('g')
-    .attr('transform', d => `translate(${d.x0}, ${d.y0})`);
-
-  nodeGroups.append('rect')
-    .attr('width', d => d.x1 - d.x0)
-    .attr('height', d => d.y1 - d.y0)
-    .attr('fill', d => nodeColour(d))
-    .attr('stroke', d => d3.color(nodeColour(d)).darker(0.5))
-    .attr('stroke-width', 0.5)
-    .attr('rx', 3)
-    .attr('ry', 3);
-
-  nodeGroups.append('text')
-    .attr('x', d => (d.x1 - d.x0) / 2)
-    .attr('y', d => (d.y1 - d.y0) / 2)
-    .attr('dy', '0.35em')
-    .attr('text-anchor', 'middle')
-    .attr('font-size', '8px')
-    .attr('font-weight', 500)
-    .attr('fill', d => d.type === 'final' ? '#fff' : '#333')
-    .text(d => {
-      const w = d.x1 - d.x0;
-      const label = d.shortLabel || d.label;
-      const maxChars = Math.floor(w / 5);
-      if (maxChars < 3) return '';
-      return label.length > maxChars ? label.slice(0, maxChars - 1) + '\u2026' : label;
-    });
-
-  // Restore global state
   expanded = savedExpanded;
   revealed = savedRevealed;
+  labelsOn = savedLabelsOn;
 }
 
 // ── Boot ──────────────────────────────────────────────────────────
